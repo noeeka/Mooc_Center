@@ -1,7 +1,18 @@
 yum -y update
 yum -y upgrade
 yum  install -y epel-release
-yum install -y libmcrypt libmcrypt-devel mcrypt mhash
+yum install -y libmcrypt libmcrypt-devel mcrypt mhash git
+git clone https://github.com/noeeka/Mooc_Center.git
+mkdir /usr/local/go
+cp -r ./Mooc_Center/go/* /usr/local/go
+mkdir /usr/local/weeds
+cp -r ./Mooc_Center/weed/* /usr/local/weeds
+mkdir /data
+mkdir /data/www
+mkdir /data/www/mooc_center
+mkdir /data/www/iview
+cp -r ./Mooc_Center/code/* /data/www/mooc_center
+cp -r ./Mooc_Center/iview/* /data/www/iview
 rpm -Uvh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 yum -y install nginx 
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
@@ -13,9 +24,8 @@ yum install -y redis php70w-redis
 rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm 
 yum install -y mysql-community-server
 yum install epel -y
-wget -c https://dl.gocn.io/golang/1.9/go1.9.linux-amd64.tar.gz
-tar zxvf go1.9.linux-amd64.tar.gz  -C /usr/local
-chmod -R 777 ./go
+
+chmod -R 777 /usr/local/go
 echo 'export GOROOT=/usr/local/go
 	  export GOPATH=/home/go
 	  export PATH=$PATH:$GOROOT/bin'>> /etc/profile
@@ -96,5 +106,59 @@ yum install npm --enablerepo=epel
 /etc/init.d/iptables stop
 /etc/init.d/nginx restart
 /etc/init.d/php-fpm restart
+/etc/init.d/mysqld restart
 a=$(grep 'temporary password' /var/log/mysqld.log |cut -d ":" -f 4,10 | sed 's/^[ \t]*//g')
-echo $a
+echo "<?php
+return [
+    // 数据库类型
+    'type'            => 'mysql',
+    // 服务器地址
+    'hostname'        => '127.0.0.1',
+    // 数据库名
+    'database'        => 'mooc_center',
+    // 用户名
+    'username'        => 'root',
+    // 密码
+    'password'        => '${a}',
+    // 端口
+    'hostport'        => '',
+    // 连接dsn
+    'dsn'             => '',
+    // 数据库连接参数
+    'params'          => [],
+    // 数据库编码默认采用utf8
+    'charset'         => 'utf8',
+    // 数据库表前缀
+    'prefix'          => '',
+    // 数据库调试模式
+    'debug'           => true,
+    // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+    'deploy'          => 0,
+    // 数据库读写是否分离 主从式有效
+    'rw_separate'     => false,
+    // 读写分离后 主服务器数量
+    'master_num'      => 1,
+    // 指定从服务器序号
+    'slave_no'        => '',
+    // 是否严格检查字段是否存在
+    'fields_strict'   => true,
+    // 数据集返回类型
+    'resultset_type'  => 'array',
+    // 自动写入时间戳字段
+    'auto_timestamp'  => false,
+    // 时间字段取出后的默认时间格式
+    'datetime_format' => false,
+    // 是否需要进行SQL性能分析
+    'sql_explain'     => false,
+];
+">/data/www/mooc_center/application/database.php
+cd /data/www/iview
+npm install --save iview
+rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm install && npm install jquery --save
+
+
+wget https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.bz2
+tar -xvf ffmpeg-4.0.2.tar.bz2
+cd ffmpeg-4.0.2
+./configure --disable-x86asm
+make && make install
