@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接口测试工具</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/js-sha1/0.5.0/sha1.min.js"></script>
+</head>
+<style>
+    .base .row{
+        margin-bottom: 10px;
+    }
+    .json_input {
+        background-color: rgb(238,238,238);
+        border: 1px solid rgb(238,238,238);
+        height: 500px;
+        margin: 0;
+        padding: 0 !important;
+        width: 100%;
+    }
+    .footer{
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        color: #aaa;
+    }
+</style>
+<body>
+<div class="container">
+    <h1>测试工具</h1>
+    <hr>
+    <div class="base">
+        <div class="row">
+            <div class="col-md-1">
+                服务器：
+            </div>
+            <div class="col-md-7">
+                <input type="email" class="form-control" id="server_url" name="server_url" placeholder="服务器地址">
+            </div>
+            <div class="col-md-4">
+                <button id="server_url_submit" type="button" class="btn btn-success">保存</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                token：
+            </div>
+            <div class="col-md-7">
+                <input type="email" class="form-control" id="token" name="token" placeholder="Token">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                salt：
+            </div>
+            <div class="col-md-7">
+                <input type="email" class="form-control" id="salt" name="salt" placeholder="salt">
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                timestamp：
+            </div>
+            <div class="col-md-7">
+                <input type="email" class="form-control" id="timestamp" name="timestamp" placeholder="时间戳" disabled>
+            </div>
+            <div class="col-md-4">
+                <!--<button id="timestamp_reflush" type="submit" class="btn btn-success">刷新</button>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                sign：
+            </div>
+            <div class="col-md-7">
+                <input type="email" class="form-control" id="sign" name="sign" placeholder="sign" disabled>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="content">
+        <div id="r_header">
+
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <select class="form-control" id="method">
+                    <option value="post">Post</option>
+                    <option value="get">Get</option>
+                </select>
+            </div>
+            <div class="col-sm-8">
+                <input type="url" class="form-control" id="url" name="url" placeholder="/module/controller/action" >
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-danger" id="request">发送请求</button>
+            </div>
+        </div>
+        <hr>
+        <form id="request-form">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 30%;">参数名称</th>
+                    <th style="width: 70%;">参数值</th>
+                </tr>
+                </thead>
+                <tbody id="canshu">
+                <tr>
+                    <td colspan="2">
+                        <button type="button" k="keys" v="values" onclick="add_url_parameter(this,'key');" class="btn btn-success addParamenter">添加参数</button>
+                        <button type="button" k="keys" v="values" onclick="parameter_exc('#single_parameter','#butch_parameter',1)" class="btn btn-info">批量添加（JSON参数）</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+    <div class="response">
+        <label>Response Body （返回值是JSON，会自动格式化） </label><br>
+        <textarea placeholder="Response Body info" id="json_input" style="resize: both; " rows="20" wrap="off" spellcheck="false" class="json_input"></textarea>
+    </div>
+    <div class="footer">API 接口测试工具</div>
+</div>
+<script type="text/javascript">
+    var host=location.hostname;
+
+    //初始化
+    $(function(){
+        //服务器URL
+        server_url=localStorage.getItem('server_url');
+        if(server_url==''||server_url==undefined){
+            server_url='http://'+host;
+            localStorage.setItem('server_url',server_url);
+        }
+        $('#server_url').val(server_url);
+        $('#timestamp').val(timstamp());
+        $('#token').val(localStorage.getItem('token'));
+        $('#salt').val(localStorage.getItem('salt'));
+
+    });
+
+    //保存服务器URL
+    $('#server_url_submit').click(function(){
+        server_url=$('#server_url').val();
+        localStorage.setItem('server_url',server_url);
+    });
+
+    //刷新时间
+    $('#timestamp_reflush').click(function(){
+        $('#timestamp').val(timstamp());
+    });
+
+
+
+    //添加参数
+    function add_url_parameter(){
+        $('#canshu').prepend('<tr class="key"><td><input k="" value="" name="keys" class="form-control" type="text" maxlength="100" placeholder="参数名称"></td><td><input value="" v="" name="values" class="form-control" type="text" maxlength="5000" style="width: 70%;float: left;" placeholder="参数数值"><button type="button" onclick="del(this);" class="btn btn-primary btn-sm del_btn">删除参数</button></td></tr>'
+        )
+    }
+
+    //删除参数
+    function del(val){
+        $(val).parent().parent().remove();
+    }
+
+    //发送请求
+    $('#request').click(function(){
+        var method=$('#method').val();
+        var server_url=$('#server_url').val();
+        var url=$('#url').val();
+
+        var token=$('#token').val();
+        var salt=$('#salt').val();
+        var timestamp=timstamp();
+        $('#timestamp').val(timestamp);
+
+        var sign=get_sign(token,salt,url,timestamp);
+        $('#sign').val(sign);
+
+
+
+        var from_data=$('#request-form').serialize();
+        var from_data_new=from_data.split('&');
+
+        var from_data_new=$('#request-form').serializeArray();
+
+        var data={
+            /*token:token,
+            timestamp:timestamp,
+            sign:sign,
+            salt:salt,*/
+        };
+
+//        if(from_data_new!=''){
+//            var i=0;
+//            while(i<from_data_new.length){
+//                var key=from_data_new[i].split('=');
+//                console.log(from_data_new[i+1].split('='));
+//                var value=decodeURI(from_data_new[i+1].split('='));
+//                data=createJson(data,key[1],decodeURIComponent(value[1]));
+//                i=i+2;
+//            }
+//        };
+        console.log(from_data_new);
+        if(from_data_new!=''){
+            var i=0;
+            while(i<from_data_new.length){
+                var key=from_data_new[i].value;
+                console.log('key='+key);
+                var value=from_data_new[i+1].value;
+                data=createJson(data,key,value);
+                i=i+2;
+            }
+        };
+
+
+        $.ajax({
+            'url':server_url+url,
+            'method':method,
+            'data':data,
+            success:function(data){
+                $('#json_input').val('');
+                $('#json_input').val(JSON.stringify(data, null, "\t")); // 缩进一个tab);
+                console.log(data);
+                if(data.status==1){
+                    if('data' in data){
+                        if('token' in data.data){
+                            $('#token').val(data.data.token);
+                            localStorage.setItem('token',token);
+                        }
+                        if('salt' in data.data){
+                            $('#salt').val(data.data.salt);
+                            localStorage.setItem('salt',salt);
+                        }
+                    }
+                }
+
+
+
+            },
+            error:function(data){
+                $('#json_input').val('');
+                $('#json_input').val(JSON.stringify(data, null, "\t")); // 缩进一个tab);
+            }
+        });
+    });
+
+    //创建sign
+    function get_sign(token,salt,url,timestamp){
+        return sha1(token+salt+url+timestamp);
+    }
+    //创建json对象
+    // 参数：prop = 属性，val = 值
+    function createJson(json,prop, val) {
+        // 如果 val 被忽略
+        if(typeof val === "undefined") {
+            // 删除属性
+            delete json[prop];
+        }
+        else {
+            // 添加 或 修改
+            json[prop] = val;
+        }
+
+        return json;
+    }
+
+
+
+    /*
+    生成时间戳
+     */
+    function timstamp(){
+        var timestamp = Date.parse(new Date());
+        timestamp=timestamp/1000;
+        return timestamp;
+    }
+
+</script>
+
+</body>
+</html>

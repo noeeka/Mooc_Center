@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>信息资讯</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<style>
+	* { margin:0; }
+	::-webkit-scrollbar {
+		display: none;
+	}
+	#info_content { margin:auto; position:relative; }
+	.box { float:left; padding:10px;
+		background:#fff;
+		box-shadow: 2px 2px 8px #ccc;
+	}
+	.box:active { box-shadow:0 0 20px #999; }
+	.box img { width:400px; }
+	.htmleaf-content p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.65em;
+	}
+	#load{
+		position: fixed;
+		top: 40%;
+		left: 50%;
+		display:block;
+	}
+	.box .pic{
+		position:relative;
+	}
+	.box .pic .top{
+		position: absolute;
+		width: 60px;
+	}
+	.box .info{
+		width:400px;
+		font-size:18px;
+		text-align:left;
+		
+	}
+	.box .info .title{
+		font-size: 22px;
+		font-weight: bold;
+		margin-top: 10px;
+		color:#1C2438;
+	}
+	.box .info .abstract{
+		font-size: 16px;
+		margin-top: 10px;
+		color:#777;
+	}
+	.box .info .info_bottom{
+		display:flex;
+		margin-top:10px;
+	}
+	.box .info .info_bottom img{
+		width:20px;
+	}
+	.box .info .info_bottom .venue_name, .box .info .info_bottom .look, .box .info .info_bottom .date{
+		font-size: 14px;
+		color: #555;
+		margin-top: 2px;
+		margin-left: 8px;
+		margin-right: 15px;
+	}
+	.dialog{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background:rgba(0,0,0,0.6);
+		z-index: 9999;
+		top: 0;
+		left:0;
+		display:none;
+	}
+	.dialog .content{
+		margin: 40px auto;
+		width: 85%;
+		height: 80%;
+		background-color: #fff;
+		border-radius: 5px;
+		text-align:left;
+		padding:20px;
+	}
+	.dialog .content .title{
+		height: 8%;
+		font-size:1em;
+		overflow:hidden;
+		text-align:center;
+		font-weight: bold;
+	}
+	.dialog .content .content_info{
+		overflow:scroll;
+		height: 92%;
+	}
+	.dialog .content .content_info img{
+		width:100% !important;
+		max-width: 100% !important;
+		height:auto;
+	}
+			
+	.dialog .close{
+		margin: 0 auto;
+		width: 90px;
+		border-radius: 90px;
+		height: 90px;
+	}
+	.dialog .close:active{
+		background-color: #777;
+	}
+	.dialog .close img{
+		width: 90px;
+		height: 90px;
+	}
+	#info_content{
+		opacity: 0;
+	}
+		#next{
+			position: fixed;
+			top:80px;
+			left: 20px;
+			z-index: 9999;
+		}
+	#next1{
+		position: fixed;
+		top:120px;
+		left: 20px;
+		z-index: 9999;
+	}
+	#next2{
+		position: fixed;
+		top:160px;
+		left: 20px;
+		z-index: 9999;
+	}
+	</style>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery.waterfall.js"></script>
+</head>
+<body>
+	<!--<div id="next"><a href="huodong/index.html">活动</a></div>-->
+	<!--<div id="next1"><a href="zongfenguan/index.html">总分馆</a></div>-->
+	<!--<div id="next2"><a href="shipin/index.html">视频资源</a></div>-->
+	<div id="load"><img src="img/load.gif"></div>
+	<div class="htmleaf-container">
+		<div class="htmleaf-content bgcolor-3">
+			<div id="info_content">
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	var host = 'fukang-szwhg.chaoxing.com';//window.location.host;//'fukang-szwhg.chaoxing.com';
+	var protocol="https://";
+	var domain=protocol+host;
+	var page=1;
+	var len=9;
+	var num=0;
+	var first=true;
+
+	var waterfall=$("#info_content").waterfall({
+		itemClass: ".box",
+		minColCount: 2,
+		spacingHeight: 10,
+		resizeable: true,
+		ajaxCallback: function(success, end) {
+			$("#load").show();
+			$.ajax({
+				type: "GET",
+				url:domain+"/api/article/index?cid=8&sort=new&has_child=1&len="+len+"&page="+page,
+				data: {},
+				dataType: "json",
+				success: function(data){
+					if(data.data.list=== undefined || data.data.list.length == 0){
+						console.log('empty');
+						$("#load").hide();
+						return false;
+					}
+					var html = "";
+					for(var  i in data.data.list){
+						var item = data.data.list[i];
+						var templ = ''+
+								'<div class="box">'+
+								'<div class="pic">'+
+								'	<img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/zhiding1.png" class="top" style="display:'+istop(item.is_top)+'">'+
+								'	<img class="cover" src="'+item.thumb+'" >'+
+								'</div>'+
+								'<div class="info">'+
+								'	<div class="title">'+item.title+'</div>'+
+								'	<div class="abstract">'+item.abstract+'</div>'+
+								'	<div class="info_bottom">'+
+								'		<div><img class="venue_icon" src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/5.png"></div>'+
+								'		<div class="venue_name">'+item.venue_name+'</div>'+
+									//'		<div><img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/look.png"></div>'+
+									//'		<div class="look">'+item.hits+'次</div>'+
+								'		<div class="date">'+DateFormat(item.time*1000)+'</div>'+
+								'	</div>'+
+								'</div>'+
+
+								'	<div class="dialog">'+
+								'		<div class="content">'+
+								'			<div class="title">'+item.title+'</div>'+
+								'			<div class="content_info">'+
+								'			'+item.post_content+
+								'			</div>'+
+								'		</div>'+
+								'		<div class="close">'+
+								'			<img src="img/close.png">'+
+								'		</div>'+
+								'	</div>'+
+								'</div>';
+
+
+						html+=templ;
+						templ='';
+					}
+
+					$(html).appendTo($("#info_content"));
+					// 判断图片加载状况，加载完成后回调
+					isImgLoad(function(){
+						// 加载完成
+						success();
+						end();
+						$("#info_content").css('opacity',1);
+						$("#load").hide();
+						page++;
+					});
+					console.log(page);
+
+
+				}
+			});
+		}
+	});
+	
+	$(document).on("click",".box",function(){
+		$(this).children('.dialog').show();
+	});
+	
+	$(document).on("click",".dialog .close",function(event){
+		$(this).parent().css('display','none');
+		event.stopPropagation();    //  阻止事件冒泡
+	});
+	
+	function DateFormat(time){
+		var date = new Date(time);
+		var year = date.getFullYear()+'年';
+		var month = date.getMonth()+1+'月';
+		var date = date.getDate()+'日';
+		
+		return [year,month,date].join('');
+	}
+	function istop(istop){
+		if(istop==1){
+			return 'block';
+		}else{
+			return 'none';
+		}
+	}
+
+	/**
+	 * 判断图片是否加载完成
+	 */
+
+	var t_img; // 定时器
+	var isLoad = true; // 控制变量
+
+
+	// 判断图片加载的函数
+	function isImgLoad(callback){
+		// 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
+		// 查找所有封面图，迭代处理
+		$('.cover').each(function(){
+			// 找到为0就将isLoad设为false，并退出each
+			if(this.height === 0){
+				isLoad = false;
+				return false;
+			}
+		});
+		// 为true，没有发现为0的。加载完毕
+		if(isLoad){
+			clearTimeout(t_img); // 清除定时器
+			// 回调函数
+			callback();
+			// 为false，因为找到了没有加载完成的图，将调用定时器递归
+		}else{
+			isLoad = true;
+			t_img = setTimeout(function(){
+				isImgLoad(callback); // 递归扫描
+			},500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+		}
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代理测试</title>
+    <style>
+        .mask {
+            display: none;
+        }
+
+        .dialog {
+            display: none;
+        }
+
+        button {
+            background-color: green;
+            color: #fff;
+            border: 0;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        li:hover {
+            background-color: #dedede;
+        }
+
+        p::after {
+            display: block;
+            clear: both;
+            height: 1px;
+            visibility: hidden;
+            content: '.';
+        }
+    </style>
+</head>
+<body style="width: 26%;margin: 150px auto;border: 1px solid #ccc;padding: 15px;border-radius: 12px;box-shadow: 0px 0px 2px 5px rgba(0,0,0,0.1);">
+<button id="btn1">用户登陆</button>
+<button id="btn2">场馆登陆</button>
+<button id="btn3">老师登陆</button>
+<button id="btn4">修改密码</button>
+<div>
+    <h4>返回值为:
+        <button class="clear" style="float: right;margin-right: 10px;">清除</button>
+        <div class="clear:both"></div>
+    </h4>
+    <ol class="output" style="height: 500px;overflow: auto;"></ol>
+    <div class="mask"
+         style="position: fixed;height: 100%;width: 100%;background: rgba(0,0,0,0.5);top: 0;left: 0;"></div>
+    <div class="teacher_login dialog"
+         style="position: fixed;top: 25%;z-index: 3;background: #fff;left: 50%;transform: translateX(-50%);padding: 50px;">
+        <div><h5>用户名:</h5><input type="text" name="user_login"></div>
+        <div><h5>密码:</h5><input type="text" name="user_pass"></div>
+        <div>
+            <button>提交</button>
+        </div>
+    </div>
+    <div class="forget_teacher dialog"
+         style="position: fixed;top: 25%;z-index: 3;background: #fff;left: 50%;transform: translateX(-50%);padding: 50px;">
+        <div><h5>密码:</h5><input type="text" name="user_pass"></div>
+        <div>
+            <button>提交</button>
+        </div>
+    </div>
+</div>
+<script src="jquery_3.3.1_jquery.min.js"></script>
+<script>
+    $(function () {
+        //用户登陆
+        $('#btn1').click(function () {
+            $.ajax({
+                url: '/v1/proxy/user_login',
+                dataType: 'html',
+                type: 'post',
+                success: function (res) {
+                    log(res);
+                }
+            });
+        });
+        //后台自动登陆
+        $('#btn2').click(function () {
+            $.ajax({
+                url: '/v1/proxy/center_login',
+                dataType: 'html',
+                success: function (res) {
+                    log(res);
+                }
+            });
+        });
+
+        //老师登陆弹窗
+        $('#btn3').click(function () {
+            $('.mask').show();
+            $('.teacher_login').show();
+        });
+
+        //老师修改密码
+        $('#btn4').click(function () {
+            $('.mask,.forget_teacher').show();
+        });
+
+        //修改密码数据提交
+        $('.forget_teacher button').click(function () {
+            $.ajax({
+                url: '/v1/proxy/index',
+                data: {
+                    user_type: 2,
+                    api: '/v1/user/forget_user_from_teacher',
+                    user_pass: $('.forget_teacher input[name=user_pass]').val()
+                },
+                dataType: 'html',
+                success: function (res) {
+                    $('.forget_teacher,.mask').hide();
+                    log(res);
+                }
+            });
+        });
+
+        //老师登陆数据提交
+        $('.teacher_login button').click(function () {
+            $.ajax({
+                url: '/v1/proxy/teacher_login',
+                data: {
+                    user_login: $('.teacher_login input[name=user_login]').val(),
+                    user_pass: $('.teacher_login input[name=user_pass]').val()
+                },
+                dataType: 'html',
+                success: function (res) {
+                    $('.teacher_login,.mask').hide();
+                    log(res);
+                }
+            });
+        });
+
+        //点击弹窗关闭窗口
+        $('.mask').click(function () {
+            $('.dialog, .mask').hide();
+        });
+
+        //记录返回值
+        function log(log) {
+            $('.output').append('<li><p>' + log + '<button onclick="$(this).parent().parent().remove()" style="float: right;margin-right: 14px;">X</button></p></li>');
+            var h = $('.output').get(0).scrollHeight - $('.output').height();
+            $('.output').scrollTop(h);
+        }
+
+        //清空返回值
+        $('.clear').click(function () {
+            $('.output').html('');
+        });
+    })
+</script>
+</body>
+</html>

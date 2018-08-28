@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>信息资讯</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<style>
+	* { margin:0; }
+	::-webkit-scrollbar {
+		display: none;
+	}
+	#info_content { margin:auto; position:relative; }
+	.box { float:left; padding:10px; border:1px solid #ccc; background:#f7f7f7; box-shadow:0 0 8px #ccc; border-radius: 5px; }
+	/*.box:hover { box-shadow:0 0 10px #999; }*/
+	.box:active { box-shadow:0 0 20px #999; }
+	.box img { width:400px; }
+	.htmleaf-content p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.65em;
+	}
+	#load{
+		position: fixed;
+		top: 40%;
+		left: 50%;
+		display:block;
+	}
+	.box .pic{
+		position:relative;
+	}
+	.box .pic .top{
+		position: absolute;
+		width: 60px;
+	}
+	.box .info{
+		width:400px;
+		font-size:18px;
+		text-align:left;
+		
+	}
+	.box .info .title{
+		font-size: 22px;
+		font-weight: bold;
+		margin-top: 10px;
+		color:#1C2438;
+	}
+	.box .info .abstract{
+		font-size: 16px;
+		margin-top: 10px;
+		color:#777;
+	}
+	.box .info .info_bottom{
+		display:flex;
+		margin-top:10px;
+	}
+	.box .info .info_bottom img{
+		width:20px;
+	}
+	.box .info .info_bottom .venue_name, .box .info .info_bottom .look, .box .info .info_bottom .date{
+		font-size: 14px;
+		color: #555;
+		margin-top: 2px;
+		margin-left: 8px;
+		margin-right: 15px;
+	}
+	.dialog{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background:rgba(0,0,0,0.6);
+		z-index: 9999;
+		top: 0;
+		left:0;
+		display:none;
+	}
+	.dialog .content{
+		margin: 40px auto;
+		width: 85%;
+		height: 80%;
+		background-color: #fff;
+		border-radius: 5px;
+		text-align:left;
+		padding:20px;
+	}
+	.dialog .content .title{
+		height: 8%;
+		font-size:1em;
+		overflow:hidden;
+		text-align:center;
+		font-weight: bold;
+	}
+	.dialog .content .content_info{
+		overflow:scroll;
+		height: 92%;
+	}
+	.dialog .content .content_info img{
+		width:100% !important;
+		max-width: 100% !important;
+		height:auto;
+	}
+			
+	.dialog .close{
+		margin: 0 auto;
+		width: 90px;
+		border-radius: 90px;
+		height: 90px;
+	}
+	.dialog .close:active{
+		background-color: #777;
+	}
+	.dialog .close img{
+		width: 90px;
+		height: 90px;
+	}
+	#info_content{
+		opacity: 0;
+	}
+		#next{
+			position: fixed;
+			top:80px;
+			left: 20px;
+			z-index: 9999;
+		}
+	</style>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery.waterfall.js"></script>
+</head>
+<body>
+	<div id="next"><a href="huodong/index.html">活动</a></div>
+	<div id="load"><img src="img/load.gif"></div>
+	<div class="htmleaf-container">
+		<div class="htmleaf-content bgcolor-3">
+			<div id="info_content">
+				<!--
+				<div class="box">
+					<div class="pic">
+						<img src="img/05.jpg" alt="">
+					</div>
+					<div class="info">
+						<div class="title">江西省文化厅党组书记、厅长池红一行莅临宜春市文化馆调研指导工作</div>
+						<div class="abstract">2018年新年伊始，刚刚完成新馆搬迁、旧貌换新颜的宜春市文化馆便迎来了尊贵的客人。1月5日下午，市文化馆大楼内暖意融融，江西省文化厅党组书记、厅长池红，副厅长黄小蓉等领导一行莅临我馆调研指导公共文化服务工作。市人大常委会副主任邱玉和市文广新局局长张国全等领导陪同调研。</div>
+						<div class="info_bottom">
+							<div >
+								<img class="venue_icon" src="https://fukang-szwhg.chaoxing.com/themes/simpleboot3/public/assets/whgcms/images/information/5.png" alt="">
+							</div>
+							<div class="venue_name">阜康市文化馆</div>
+							<div class="look_icon">
+								<img src="https://fukang-szwhg.chaoxing.com/themes/simpleboot3/public/assets/whgcms/images/information/look.png" alt="">
+							</div>
+							<div class="look">100次</div>
+						</div>
+					</div>
+					
+					<div class="dialog">
+						<div class="content">
+							<div class="title">江西省文化厅党组书记、厅长池红一行莅临宜春市文化馆调研指导工作</div>
+							<div class="content_info">
+							<p>2018年新年伊始，刚刚完成新馆搬迁、旧貌换新颜的宜春市文化馆便迎来了尊贵的客人。1月5日下午，市文化馆大楼内暖意融融，江西省文化厅党组书记、厅长池红，副厅长黄小蓉等领导一行莅临我馆调研指导公共文化服务工作。市人大常委会副主任邱玉和市文广新局局长张国全等领导陪同调研。</p> <p><br></p> <p><img alt="clip_image002.jpg" height="392" src="http://www.jxsqzysg.com/uploadfiles/201801/10/2018011014124910931860.jpg" width="554" style='margin: 0px; padding: 0px; font-family: "microsoft yahei"; list-style: none; border: 0px none; max-width: 600px;'></p> <p> </p> <p><img alt="clip_image004.jpg" height="369" src="http://www.jxsqzysg.com/uploadfiles/201801/10/2018011014125078222057.jpg" width="554" style='margin: 0px; padding: 0px; font-family: "microsoft yahei"; list-style: none; border: 0px none; max-width: 600px;'></p> <p> </p> <p><img alt="clip_image006.jpg" height="381" src="http://www.jxsqzysg.com/uploadfiles/201801/10/2018011014125061660706.jpg" width="554" style='margin: 0px; padding: 0px; font-family: "microsoft yahei"; list-style: none; border: 0px none; max-width: 600px;'></p> <p> </p> <p>    调研中，池红厅长一行认真听取了市文化馆的基本情况介绍，仔细察看了新馆的各项功能布局、设施设备和公共文化服务开展情况。他对宜春市文化馆的新气象、新目标给予了充分肯定，并要求市馆在今后的工作中，进一步创新工作方法，找准功能定位，吸引广大群众进来，做旺文化馆的人气。最后，池红厅长表达了对市馆未来更好更快发展的美好祝愿。</p> <p> </p> <p>宜春市文化馆 易臻</p> <p><br></p>
+							</div>
+						</div>
+						<div class="close">
+							<img src="img/close.png">
+						</div>
+					</div>
+				</div>
+				-->
+				
+				
+			    
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	var host = 'fukang-szwhg.chaoxing.com';//window.location.host;//'fukang-szwhg.chaoxing.com';
+	var protocol="https://";
+	var domain=protocol+host;
+	var page=1;
+	var len=9;
+	var num=0;
+	/*
+	$(document).ready(function(){
+	  htmlobj=$.ajax({url:domain+"/api/article/index?cid=8&sort=new&page=1&len=9&has_child=1",async:false});
+	  var data=JSON.parse(htmlobj.responseText);
+	  
+	  var  html="";
+	  for(var  i in data.data.list){
+	       var item = data.data.list[i];
+		   var templ = ''+
+					'<div class="box">'+
+						'<div class="pic">'+
+						'	<img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/zhiding1.png" class="top" style="display:'+istop(item.is_top)+'">'+
+						'	<img src="'+item.thumb+'" >'+
+						'</div>'+
+						'<div class="info">'+
+						'	<div class="title">'+item.title+'</div>'+
+						'	<div class="abstract">'+item.abstract+'</div>'+
+						'	<div class="info_bottom">'+
+						'		<div><img class="venue_icon" src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/5.png"></div>'+
+						'		<div class="venue_name">'+item.venue_name+'</div>'+
+						//'		<div><img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/look.png"></div>'+
+						//'		<div class="look">'+item.hits+'次</div>'+
+						'		<div class="date">'+DateFormat(item.time*1000)+'</div>'+
+						'	</div>'+
+						'</div>'+
+					
+					'	<div class="dialog">'+
+					'		<div class="content">'+
+					'			<div class="title">'+item.title+'</div>'+
+					'			<div class="content_info">'+
+					'			'+item.post_content+
+					'			</div>'+
+					'		</div>'+
+					'		<div class="close">'+
+					'			<img src="img/close.png">'+
+					'		</div>'+
+					'	</div>'+
+					'</div>';
+					
+			html+=templ;
+			templ='';
+	  }
+	  $("#info_content").append(html);
+	  
+	  setTimeout(function(){
+		$("#info_content").css('opacity',1);
+		$("#load").hide();
+	  },2000);
+	  
+	});
+	*/
+	
+	
+	
+	
+	
+	var waterfall=$("#info_content").waterfall({
+	    itemClass: ".box",
+	    minColCount: 2,
+	    spacingHeight: 10,
+	    resizeable: true,
+	    ajaxCallback: function(success, end) {
+			htmlobj=$.ajax({url:domain+"/api/article/index?cid=8&sort=new&has_child=1&len="+len+"&page="+page,async:false});
+			
+			var data=JSON.parse(htmlobj.responseText);
+
+	        var html = "";
+			for(var  i in data.data.list){
+				var item = data.data.list[i];
+				var templ = ''+
+					'<div class="box">'+
+						'<div class="pic">'+
+						'	<img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/zhiding1.png" class="top" style="display:'+istop(item.is_top)+'">'+
+						'	<img src="'+item.thumb+'" >'+
+						'</div>'+
+						'<div class="info">'+
+						'	<div class="title">'+item.title+'</div>'+
+						'	<div class="abstract">'+item.abstract+'</div>'+
+						'	<div class="info_bottom">'+
+						'		<div><img class="venue_icon" src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/5.png"></div>'+
+						'		<div class="venue_name">'+item.venue_name+'</div>'+
+						//'		<div><img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/look.png"></div>'+
+						//'		<div class="look">'+item.hits+'次</div>'+
+						'		<div class="date">'+DateFormat(item.time*1000)+'</div>'+
+						'	</div>'+
+						'</div>'+
+					
+					'	<div class="dialog">'+
+					'		<div class="content">'+
+					'			<div class="title">'+item.title+'</div>'+
+					'			<div class="content_info">'+
+					'			'+item.post_content+
+					'			</div>'+
+					'		</div>'+
+					'		<div class="close">'+
+					'			<img src="img/close.png">'+
+					'		</div>'+
+					'	</div>'+
+					'</div>';
+					
+					
+					html+=templ;
+					templ='';
+			}
+	        
+	        $(html).appendTo($("#info_content"));
+	        success();
+	        end();
+			$("#info_content").css('opacity',1);
+			$("#load").hide();
+			page++;
+	    }
+	});
+	
+	$(document).on("click",".box",function(){
+		$(this).children('.dialog').show();
+	});
+	
+	$(document).on("click",".dialog .close",function(event){
+		$(this).parent().css('display','none');
+		event.stopPropagation();    //  阻止事件冒泡
+	});
+	
+	function DateFormat(time){
+		var date = new Date(time);
+		var year = date.getFullYear()+'年';
+		var month = date.getMonth()+1+'月';
+		var date = date.getDate()+'日';
+		
+		return [year,month,date].join('');
+	}
+	function istop(istop){
+		if(istop==1){
+			return 'block';
+		}else{
+			return 'none';
+		}
+	}
+	</script>
+</body>
+</html>

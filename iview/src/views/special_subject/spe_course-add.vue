@@ -1,0 +1,138 @@
+<style lang="less">
+    @import '../../styles/common.less';
+    @import 'spe_course-add.less';
+</style>
+
+<template>
+    <Transfer
+            :data="data3"
+            :target-keys="targetKeys3"
+            :list-style="listStyle"
+            :title="['栏目课程', '所有课程']"
+            :render-format="render3"
+            :operations="['To left','To right']"
+            filterable
+            @on-change="handleChange3">
+        <div :style="{float: 'right', margin: '5px'}">
+            <Button type="ghost" size="small" @click="handleBack">返回</Button>
+            <Button type="ghost" size="small" @click="saveData">保存</Button>
+            <Button type="ghost" size="small" @click="refreshData">重置</Button>
+        </div>
+    </Transfer>
+</template>
+
+<script>
+    import axios from 'axios';
+
+    export default {
+        data () {
+            return {
+                data3: this.getAllCourse(),
+                targetKeys3: this.getSpeCourse(),
+                newTargetKeys: [],
+                course_ids: [],
+                listStyle: {
+                    width: '500px',
+                    height: '550px'
+                }
+            };
+        },
+        methods: {
+            request: function (params, callback1) {
+                axios.get(
+                    'http://mooc.com/v1/proxy/index',
+                    {params: params}
+                ).then(callback1).catch();
+            },
+            getAllCourse () {
+                let id = this.$route.params.id;
+                let that = this;
+                this.request(
+                    {
+                        api: '/v1/special_subject/spe_muke',
+                        user_type: 3,
+                        id: id
+                    },
+                    function (response) {
+                        let res = response.data;
+                        if (res.status === 1) {
+                            console.log(res);
+                            if (res.data.all_mk.length !== 0) {
+                                that.data3 = res.data.all_mk.map(function (v) {
+                                    return {
+                                        key: v.course_id.toString(),
+                                        label: v.course_title,
+                                        description: ''
+                                    };
+                                });
+                                console.log(that.data3);
+                            } else {
+                                that.data3 = [];
+                            }
+                        }
+                    }
+                );
+            },
+            getSpeCourse () {
+                let id = this.$route.params.id;
+                let that = this;
+                this.request(
+                    {
+                        api: '/v1/special_subject/spe_muke',
+                        user_type: 3,
+                        id: id
+                    },
+                    function (response) {
+                        let res = response.data;
+                        if (res.status === 1) {
+                            if (res.data.spe_mk.length !== 0) {
+                                that.targetKeys3 = res.data.spe_mk.map(function (v) {
+                                    return v.id.toString();
+                                });
+                            } else {
+                                that.targetKeys3 = [];
+                            }
+                        }
+                    }
+                );
+            },
+            handleChange3 (newTargetKeys) {
+                this.targetKeys3 = newTargetKeys;
+            },
+            render3 (item) {
+                return item.label;
+            },
+            saveData () {
+                let that = this;
+                this.course_ids = this.targetKeys3.map(function (v) {
+                    return Number(v);
+                });
+                this.request(
+                    {
+                        api: '/v1/special_subject/updateRela',
+                        user_type: 3,
+                        course_ids: this.course_ids,
+                        id: this.$route.params.id
+                    }, function (response) {
+                        let res = response.data;
+                        console.log(response);
+                        console.log(res);
+                        if (res.status === 1) {
+                            that.$Message.success(res.msg);
+                        } else {
+                            console.log(res);
+                            // that.$Message.error(res.msg);
+                        }
+                    });
+            },
+            refreshData () {
+                this.data3 = this.getAllCourse();
+                this.targetKeys3 = this.getColumnCourse();
+                console.log(this.targetKeys3);
+            },
+            handleBack: function () {
+                this.$router.go(-1);
+            }
+        }
+    };
+</script>

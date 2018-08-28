@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>活动报名</title>
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../css/default.css">
+	<style>
+	* { margin:0; }
+	::-webkit-scrollbar {
+		display: none;
+	}
+	#info_content { margin:auto; position:relative; }
+    .box {
+        float:left;
+        padding:10px;
+        background:#fff;
+        box-shadow: 2px 2px 8px #ccc;
+    }
+	/*.box:hover { box-shadow:0 0 10px #999; }*/
+	.box:active { box-shadow:0 0 20px #999; }
+	.box img { width:400px; }
+	.htmleaf-content p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.65em;
+	}
+	#load{
+		position: fixed;
+		top: 40%;
+		left: 50%;
+		display:block;
+        z-index: 9999;
+	}
+	.box .pic{
+		position:relative;
+	}
+	.box .pic .top{
+		position: absolute;
+		width: 60px;
+	}
+	.box .info{
+		width:400px;
+		font-size:18px;
+		text-align:left;
+		
+	}
+	.box .info .title{
+		font-size: 22px;
+		font-weight: bold;
+		margin-top: 10px;
+		color:#1C2438;
+	}
+	.box .info .abstract{
+		font-size: 16px;
+		margin-top: 10px;
+		color:#888;
+	}
+	.box .info .info_bottom{
+		display:flex;
+		margin-top:10px;
+        font-size: 14px;
+        color: #888;
+	}
+	.box .info .info_bottom img{
+		width:20px;
+	}
+	.box .info .info_bottom .venue_name, .box .info .info_bottom .look, .box .info .info_bottom .date{
+		margin-left: 8px;
+		margin-right: 15px;
+        margin-top: -1px;
+	}
+	.dialog{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background:rgba(0,0,0,0.6);
+		z-index: 9999;
+		top: 0;
+		left:0;
+		display:none;
+	}
+	.dialog .content{
+		margin: 40px auto;
+		width: 85%;
+		height: 80%;
+		background-color: #fff;
+		border-radius: 5px;
+		text-align:left;
+		padding:20px;
+	}
+	.dialog .content .title{
+		height: 8%;
+		font-size:1em;
+		overflow:hidden;
+		text-align:center;
+		font-weight: bold;
+	}
+	.dialog .content .content_info{
+		overflow:scroll;
+		height: 66%;
+	}
+	.dialog .content .content_info img{
+		width:100% !important;
+		max-width: 100% !important;
+		height:auto;
+	}
+			
+	.dialog .close{
+		margin: 0 auto;
+		width: 90px;
+		border-radius: 90px;
+		height: 90px;
+	}
+	.dialog .close:active{
+		background-color: #777;
+	}
+	.dialog .close img{
+		width: 90px;
+		height: 90px;
+	}
+    .dialog .top_info{
+        display: flex;
+        font-size: 14px;
+    }
+    .dialog .top_info .left .cover{
+        width: 440px;
+        height: 270px;
+    }
+    .dialog .top_info .right{
+        margin-left: 20px;
+    }
+    .dialog .top_info .right .item{
+        margin-bottom: 20px;
+    }
+    .dialog .top_info .right .span_space{
+        margin-left: 69px;
+    }
+	#info_content{
+		opacity: 0;
+	}
+
+    #wrapper {
+        position: fixed;
+        z-index: 1;
+        height: 70px;
+        width: 100%;
+        background: #fff;
+        overflow: hidden;
+        -ms-touch-action: none;
+        border-bottom: 1px solid #E8E8E8;
+    }
+
+    #scroller {
+        position: absolute;
+        z-index: 1;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 2400px;
+        height: 70px;
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-text-size-adjust: none;
+        -moz-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        -o-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    #scroller ul {
+        list-style: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #scroller li {
+        width: 130px;
+        height: 50px;
+        float: left;
+        line-height: 48px;
+        font-size: 24px;
+        overflow: hidden;
+        text-align: center;
+        border-radius: 25px;
+        margin: 10px;
+    }
+    #scroller li:active {
+        background-color: #f4d3b5;
+    }
+        #scroller .active{
+            background-color: #E0AC7C;
+            color: #fff;
+            font-weight: bold;
+        }
+    .button{
+        margin: 10px auto;
+        width: 150px;
+        text-align: center;
+        border-radius: 20px;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 20px;
+        color: #fff;;
+    }
+    /*直接参加*/
+    .join_now{
+        background-color: #008000;
+    }
+    /*报名未开始*/
+    .baoming_not_start{
+        background-color: #777;
+    }
+    /*正在报名中*/
+    .baoming{
+        background-color: #4ABC69;
+    }
+    /*报名已结束*/
+    .baoming_over{
+        background-color: #F6731B;
+    }
+    /*正在活动中*/
+    .huodong{
+        background-color: #E83A1E;
+    }
+    /*活动已过期*/
+    .expire{
+        background-color: #BBBEC4;
+    }
+
+
+	</style>
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="../js/jquery.waterfall.js"></script>
+    <script src="../js/iscroll-lite.js"></script>
+</head>
+<body>
+	<div id="load"><img src="../img/load.gif"></div>
+    <div id="wrapper">
+        <div id="scroller">
+            <ul id="menu">
+                <li id="0" class="active">全部</li>
+                <!--<li>活动</li>-->
+                <!--<li>讲座</li>-->
+                <!--<li>体验预约</li>-->
+                <!--<li>全部</li>-->
+                <!--<li>活动</li>-->
+                <!--<li>讲座</li>-->
+                <!--<li>体验预约</li>-->
+                <!--<li>全部</li>-->
+                <!--<li>活动</li>-->
+                <!--<li>讲座</li>-->
+                <!--<li>体验预约</li>-->
+                <!--<li>全部</li>-->
+                <!--<li>活动</li>-->
+                <!--<li>讲座</li>-->
+                <!--<li>体验预约</li>-->
+            </ul>
+        </div>
+    </div>
+	<div class="htmleaf-container">
+		<div class="htmleaf-content bgcolor-3" style="padding-top: 85px;">
+			<div id="info_content">
+			</div>
+		</div>
+	</div>
+	
+	<script>
+        var myScroll ;
+        var host = 'fukang-szwhg.chaoxing.com';//window.location.host;//'fukang-szwhg.chaoxing.com';
+        var protocol="https://";
+        var domain=protocol+host;
+        var page=1;
+        var len=9;
+        var activity_type_id=0;
+        var num=0;
+        var first=true;
+
+        //获取菜单信息
+        $(function(){
+            $.ajax({
+                type: "POST",
+                url:domain+"/api/filter",
+                data: {
+                    venue_id: 0,
+                    area_id: 0,
+                    activity_type_id: 0
+                },
+                dataType: "json",
+                success: function(data){
+                    console.log(data);
+                    if(data.data.activity_type=== undefined || data.data.activity_type.length == 0){
+                        return false;
+                    }
+                    var html='';
+                    for(var i in data.data.activity_type){
+                        var item=data.data.activity_type[i];
+                        html+='<li id="'+item.id+'">'+item.name+'</li>';
+                    }
+                    $('#scroller').css('width',(data.data.activity_type.length+1)*150+'px');
+                    $(html).appendTo($("#menu"));
+
+                    myScroll = new IScroll('#wrapper', { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false });
+                }
+            });
+        });
+
+        //监听menu点击事件
+        $(document).on("click","#menu li",function(){
+            page=1;
+            activity_type_id=$(this).attr("id");
+            $("#info_content").empty();
+            $("#info_content").css('opacity',0);
+            $('#menu li').trigger("reload");
+
+            $(this).parent().children().removeClass('active');
+            $(this).addClass('active');
+        });
+
+        /*=================================================*/
+
+
+
+        var waterfall=$("#info_content").waterfall({
+            itemClass: ".box",
+            minColCount: 2,
+            spacingHeight: 10,
+            resizeable: true,
+            ajaxCallback: function(success, end) {
+                $("#load").show();
+                $.ajax({
+                    type: "POST",
+                    url:domain+"/api/activity",
+                    data: {
+                        page: page,
+                        venue_id: 0,
+                        area_id: 0,
+                        activity_type_id: activity_type_id,
+                        order: 'published_time',
+                        len: len},
+                    dataType: "json",
+                    success: function(data){
+                        //console.log(data);
+                        if(data.data.list=== undefined || data.data.list.length == 0){
+                            $("#load").hide();
+                            return false;
+                        }
+                        var html = "";
+                        for(var  i in data.data.list){
+                            var item = data.data.list[i];
+                            var templ = ''+
+                                    '<div class="box">'+
+                                    '<div class="pic">'+
+                                    '	<img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/zhiding1.png" class="top" style="display:'+istop(item.is_top)+'">'+
+                                    '	<img class="cover" src="'+item.thumb+'" >'+
+                                    '</div>'+
+                                    '<div class="info">'+
+                                    '	<div class="title">'+item.title+'</div>'+
+                                    '	<div class="abstract">地点：'+item.address+'</div>'+
+                                    '	<div class="abstract">活动时间：'+item.format_start_time+'~'+item.format_end_time+'</div>'+
+                                    '	<div class="info_bottom">'+
+                                    '		<div><img class="venue_icon" src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/5.png"></div>'+
+                                    '		<div class="venue_name">'+item.venue_name+'</div>'+
+                                        //'		<div><img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/look.png"></div>'+
+                                        //'		<div class="look">'+item.hits+'次</div>'+
+//                                    '		<div class="date">'+DateFormat(item.published_time*1000)+'</div>'+
+                                    '		<div class="num">报名人数：'+item.current_num+'/'+item.max_num+'</div>'+
+                                    '	</div>'+
+                                    '   <div class="button '+activity_status(now_time,item.need_baoming,item.baoming_start_time,item.baoming_end_time,item.start_time,item.end_time).status+'">'+
+                                    '       '+activity_status(now_time,item.need_baoming,item.baoming_start_time,item.baoming_end_time,item.start_time,item.end_time).info+
+                                    '   </div>'+
+                                    '</div>'+
+
+                                    '	<div class="dialog">'+
+                                    '		<div class="content">'+
+                                    '			<div class="title">'+item.title+'</div>'+
+                                    '			<div class="top_info">'+
+                                    '			    <div class="left"><img class="cover" src="'+item.thumb+'" ></div>'+
+                                    '               <div class="right">'+
+                                    '                   <div class="item">活动时间：'+item.format_start_time+'~'+ '<br><span class="span_space">'+item.format_end_time+'</span></div>'+
+                                    '                   <div class="item">报名时间：'+DateFormatYMDHMS(item.baoming_start_time)+'~'+ '<br><span class="span_space">'+DateFormatYMDHMS(item.baoming_end_time)+'</span></div>'+
+                                    '                   <div class="item">地点：'+item.address+'</div>'+
+                                    '                   <div class="item">场馆名称：'+item.venue_name+'</div>'+
+                                    '                   <div class="item">报名人数：'+item.current_num+'/'+item.max_num+'</div>'+
+                                    '                   <div class="button '+activity_status(now_time,item.need_baoming,item.baoming_start_time,item.baoming_end_time,item.start_time,item.end_time).status+'">'+
+                                    '                    '+activity_status(now_time,item.need_baoming,item.baoming_start_time,item.baoming_end_time,item.start_time,item.end_time).info+
+                                    '                   </div>'+
+                                    '               </div>'+
+                                    '           </div>'+
+                                    '			<div class="content_info">'+
+                                    '			'+item.content+
+                                    '			</div>'+
+                                    '		</div>'+
+                                    '		<div class="close">'+
+                                    '			<img src="../img/close.png">'+
+                                    '		</div>'+
+                                    '	</div>'+
+                                    '</div>';
+
+
+                            html+=templ;
+                            templ='';
+                        }
+
+                        $(html).appendTo($("#info_content"));
+
+                        // 判断图片加载状况，加载完成后回调
+                        isImgLoad(function(){
+                            // 加载完成
+                            success();
+                            end();
+                            $("#info_content").css('opacity',1);
+                            $("#load").hide();
+                            page++;
+                        });
+                        //console.log(page);
+                    }
+                });
+            },
+            reload:{element:'#menu li',event:'reload'}
+        });
+
+        $(document).on("click",".box",function(){
+            $(this).children('.dialog').show();
+        });
+
+        $(document).on("click",".dialog .close",function(event){
+            $(this).parent().css('display','none');
+            event.stopPropagation();    //  阻止事件冒泡
+        });
+
+        //格式化时间戳
+        function DateFormat(time){
+            var date = new Date(time);
+            var year = date.getFullYear()+'年';
+            var month = date.getMonth()+1+'月';
+            var date = date.getDate()+'日';
+
+            return [year,month,date].join('');
+        }
+        function DateFormatYMDHMS(time){
+            var date = new Date(time*1000).Format('yyyy-MM-dd hh:mm:ss');
+            return date;
+        }
+
+        //判断是否为置顶
+        function istop(istop){
+            if(istop==1){
+                return 'block';
+            }else{
+                return 'none';
+            }
+        }
+
+        /*=================================================*/
+        /**
+         * 判断图片是否加载完成
+         */
+
+        var t_img; // 定时器
+        var isLoad = true; // 控制变量
+
+        // 判断图片加载的函数
+        function isImgLoad(callback){
+            // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
+            // 查找所有封面图，迭代处理
+            $('.cover').each(function(){
+                // 找到为0就将isLoad设为false，并退出each
+                if(this.height === 0){
+                    isLoad = false;
+                    return false;
+                }
+            });
+            // 为true，没有发现为0的。加载完毕
+            if(isLoad){
+                clearTimeout(t_img); // 清除定时器
+                // 回调函数
+                callback();
+                // 为false，因为找到了没有加载完成的图，将调用定时器递归
+            }else{
+                isLoad = true;
+                t_img = setTimeout(function(){
+                    isImgLoad(callback); // 递归扫描
+                },500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+            }
+        }
+
+
+
+
+
+
+        /*=================================================*/
+
+        /**
+         * 报名状态
+         * 1. need_baoming=0，直接参加
+         * 2. need_baoming=1, baoming_start_time>now:报名未开始
+         * 3. need_baoming=1, baoming_start_time<now<baoming_end_time:正在报名
+         * 4. need_baoming=1, baoming_end_time<now<start_time:报名已结束
+         * 4. need_baoming=1, baoming_end_timenow<now, start_time<now<end_time:正在活动中
+         * 5. end_time<now:活动已结束
+         * @param need_baoming
+         */
+        var now_time= Date.parse(new Date())/1000;
+        function activity_status(now_time,need_baoming,baoming_start_time,baoming_end_time,start_time,end_time){
+            if(need_baoming==0){
+                if(now_time<end_time){
+                    return {status:'join_now',info:'直接参与'}
+                }else{
+                    return {status:'expire',info:'活动已结束'}
+                }
+            }
+            else{
+                if(baoming_start_time>now_time){
+                    return {status:'baoming_not_start',info:'报名未开始'}
+                }else if(baoming_start_time<=now_time&&now_time<=baoming_end_time){
+                    return {status:'baoming',info:'正在报名'}
+                }else if(now_time<start_time){
+                    return {status:'baoming_over',info:'报名已结束'}
+                }else if(start_time<=now_time&&now_time<=end_time){
+                    return {status:'huodong',info:'正在活动中'}
+                }else if(end_time<now_time){
+                    return {status:'expire',info:'活动已结束'}
+                }else{
+                    return {status:'expire',info:'活动已结束'}
+                }
+            }
+        }
+        /*=================================================*/
+        // 对Date的扩展，将 Date 转化为指定格式的String
+        // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+        // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+        // 例子：
+        // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+        // (new Date()).Format("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+
+        Date.prototype.Format = function (fmt) { // author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, // 月份
+                "d+": this.getDate(), // 日
+                "h+": this.getHours(), // 小时
+                "m+": this.getMinutes(), // 分
+                "s+": this.getSeconds(), // 秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                "S": this.getMilliseconds() // 毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+
+
+    </script>
+</body>
+</html>

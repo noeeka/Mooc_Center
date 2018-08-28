@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>总分馆</title>
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../css/default.css">
+	<style>
+        * { margin:0; }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        #load{
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            display:none;
+            z-index: 9999;
+        }
+        .main{
+            display: flex;
+        }
+        .main .left{
+            width: 200px;
+        }
+        .main .right{
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+            background-color: #fff;
+        }
+        .main .right .right_content{
+            padding: 30px;
+        }
+
+        #wrapper {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            overflow: hidden;
+        }
+
+        #scroller {
+            position: absolute;
+            z-index: 1;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            width: 100%;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            -o-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+
+        #scroller .item {
+            width: 100%;;
+            line-height: 32px;
+            font-size: 20px;
+            text-align: center;
+            padding: 24px;
+        }
+        #scroller .item:active {
+            background-color: #fff;
+        }
+        #scroller .active {
+            background-color: #fff;
+        }
+        #scroller .active::after{
+            content:"▶";
+            position: absolute;
+            right: 10px;
+        }
+        #scroller .title{
+            width: 100%;
+            line-height: 48px;
+            font-size: 24px;
+            text-align: center;
+            background-color: #E0AC7C;
+            font-weight: bold;
+            color: #fff;
+            padding: 15px;
+        }
+        .box{
+            width: 370px;
+            float: left;
+            margin-left: 24px;
+            margin-bottom: 56px;
+            box-shadow: 2px 2px 8px #ccc;
+        }
+        .box .pic .top {
+            position: absolute;
+            width: 60px;
+        }
+        .box .pic .image {
+            width: 100%;
+            height: 213px;
+            background-size: cover;
+            background-position: center;
+        }
+        .bg100 {
+            background-size: 100% 100% !important;
+        }
+        .box .info h3{
+            padding: 10px;
+            font-size: 16px;
+            line-height: 18px;
+            overflow: hidden;
+        }
+        .box .info p{
+            height: 38px;
+            margin: 0 10px 10px 10px;
+            color: #A0A4AA;
+            font-size: 12px;
+            line-height: 19px;
+            overflow: hidden;
+            word-break: break-all;
+        }
+        .box .info_bottom{
+            display: flex;
+            color: #A0A4AA;
+            font-size: 14px;
+            align-items: center;
+            /* justify-content: center; */
+            padding: 0 10px 15px 10px;
+        }
+        .box .info_bottom img{
+            width: 18px;
+            height: 100%;
+            margin-right: 5px;
+        }
+        .box .info_bottom div{
+            margin-right: 20px;
+        }
+        .right .article{
+
+        }
+        .right .article .title{
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .right .article .info{
+            display: flex;
+            align-items: center;
+             justify-content: center;
+            border-bottom: 1px solid #bbb;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            color: #a0a4aa;
+            font-size: 14px;
+        }
+        .right .article .info p{
+            margin-right: 10px;
+        }
+        .right .article .detail img{
+            width: 100%;
+        }
+
+
+
+
+	</style>
+	<script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/iscroll-lite.js"></script>
+</head>
+<body>
+	<div id="load"><img src="../img/load.gif"></div>
+    <div class="main">
+        <div class="left">
+            <div id="wrapper">
+                <div id="scroller">
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right_content">
+                <div id="list">
+
+                </div>
+                <div id="detail"></div>
+            </div>
+
+        </div>
+    </div>
+
+	
+	<script>
+        var myScroll ;
+        var host = 'fukang-szwhg.chaoxing.com';//window.location.host;//'fukang-szwhg.chaoxing.com';
+        var protocol="https://";
+        var domain=protocol+host;
+        var page=1;
+        var len=9;
+        var activity_type_id=0;
+
+        //分类参数
+        var param_category_child={
+            id:47,//一级分类ID
+            max_depth:2,//子分类深度
+        };
+
+        //内容参数
+        var param_content={
+            cid:0,
+            sort:'new',
+            page:1,
+            len:9,
+            has_child:0
+        };
+
+
+
+        $(function () {
+            /**
+             * 初始化右侧
+             * */
+            $('.right').css('height',$(window).height()+'px');
+            $('.right').css('width',$(window).width()-200+'px');
+
+            /*获取左侧菜单*/
+            $.ajax({
+                type: "POST",
+                url:domain+"/api/category/child",
+                data: param_category_child,
+                dataType: "json",
+                success: function(data){
+                    if(data.data=== undefined || data.data.length == 0){
+                        return false;
+                    }
+                    var html='';
+                    for(var i in data.data){
+                        var item=data.data[i];
+                        var active='';
+                        if(i==0){
+                            active='active';
+                        }
+                        html+='<div class="title '+active+'" id="'+item.id+'" type="'+item.type+'">'+item.name+'</div>';
+                        if(item.children===undefined || item.children.length==0){
+                            continue;
+                        }else{
+                            for (var j in item.children){
+                                var child=item.children[j];
+                                html+='<div class="item" id="'+child.id+'" type="'+child.type+'">'+child.name+'</div>';
+                            }
+                        }
+                    }
+                    //$('#scroller').css('width',(data.data.activity_type.length+1)*150+'px');
+                    $(html).appendTo($("#scroller"));
+                    myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true });
+                    content(data.data[0].id,data.data[0].type);
+                }
+            });
+
+        });
+
+
+
+        //监听menu点击事件
+        $(document).on("click","#scroller div",function(){
+            $(this).parent().children().removeClass('active');
+            $(this).addClass('active');
+
+            content($(this).attr('id'),$(this).attr('type'));
+        });
+
+        //监听box点击事件
+        $(document).on("click",".box",function(){
+            $('#list').empty();
+            var item=get_data($(this).attr('id'));
+            html=''+
+                    '<div class="article">'+
+                    '   <div class="title">'+item.title+'</div>'+
+                    '   <div class="info">' +
+                    '       <p>'+DateFormatYMD(item.time)+'</p>'+
+                    '       <p class="line"></p>'+
+                    '       <p>阅读：'+item.hits+'次</p>'+
+                    '       <p class="line"></p>'+
+                    '       <p>收藏：'+item.is_collect+'次</p>'+
+                    '       <p class="line"></p>'+
+                    '       <p>'+item.venue_name+'</p>'+
+                    '   </div>'+
+                    '   <div class="detail">'+item.post_content+'</div>'+
+                    ' </div>'
+            $(html).appendTo($("#list"));
+
+        });
+
+        /*=================================================*/
+        //获取内容
+        function content(id,type){
+            $('#list').empty();
+            $('#load').show();
+            param_content.cid=id;
+            $.ajax({
+                type: "POST",
+                url:domain+"/api/article/index",
+                data: param_content,
+                dataType: "json",
+                success: function(data){
+                    console.log(data);
+                    if(data.data.list=== undefined || data.data.list.length == 0){
+                        $('#load').hide();
+                        return false;
+                    }
+                    var html='';
+                    if(type==3){//列表
+                        for(var i in data.data.list){
+                            var item=data.data.list[i];
+                            set_data(item.id,item);
+                            html+=''+
+                                    '<div class="box" id="'+item.id+'">'+
+                                    '    <div class="pic">'+
+                                    '       <img src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/zhiding1.png" class="top" style="display:'+istop(item.is_top)+'">'+
+                                    '            <div class="image bg100" style="background-image: url('+item.thumb+');"></div>'+
+                                    '    </div>'+
+                                    '    <div class="info">'+
+                                    '        <h3>'+item.title+'</h3>'+
+                                    '        <p>'+item.abstract+'</p>'+
+                            '               <div class="info_bottom">'+
+                            '                   <img class="venue_icon" src="'+domain+'/themes/simpleboot3/public/assets/whgcms/images/information/5.png">'+
+                            '                       <div class="venue_name">'+item.venue_name+'</div>'+
+                            '                       <div class="date">'+DateFormat(item.time*1000)+'</div>'+
+                            '               </div>'+
+                                    '     </div>'+
+                                    '</div> '
+
+                        }
+
+                        $(html).appendTo($("#list"));
+                        $('#load').hide();
+                    }
+                    else if(type==2){//单篇文章
+                        var item=data.data.list[0];
+                        html=''+
+                                '<div class="article">'+
+                                '   <div class="title">'+item.title+'</div>'+
+                                '   <div class="info">' +
+                                '       <p>'+DateFormatYMD(item.time)+'</p>'+
+                                '       <p class="line"></p>'+
+                                '       <p>阅读：'+item.hits+'次</p>'+
+                                '       <p class="line"></p>'+
+                                '       <p>收藏：'+item.is_collect+'次</p>'+
+                                '       <p class="line"></p>'+
+                                '       <p>'+item.venue_name+'</p>'+
+                                '   </div>'+
+                                '   <div class="detail">'+item.post_content+'</div>'+
+                                ' </div>'
+                        $(html).appendTo($("#list"));
+                        $('#load').hide();
+                    }
+
+                }
+            });
+
+
+        }
+
+        /*=================================================*/
+
+
+
+
+
+        //格式化时间戳
+        function DateFormat(time){
+            var date = new Date(time);
+            var year = date.getFullYear()+'年';
+            var month = date.getMonth()+1+'月';
+            var date = date.getDate()+'日';
+
+            return [year,month,date].join('');
+        }
+        function DateFormatYMDHMS(time){
+            var date = new Date(time*1000).Format('yyyy-MM-dd hh:mm:ss');
+            return date;
+        }
+        function DateFormatYMD(time){
+            var date = new Date(time*1000).Format('yyyy-MM-dd');
+            return date;
+        }
+
+        //判断是否为置顶
+        function istop(istop){
+            if(istop==1){
+                return 'block';
+            }else{
+                return 'none';
+            }
+        }
+
+        /*=================================================*/
+        /**
+         * 判断图片是否加载完成
+         */
+
+        var t_img; // 定时器
+        var isLoad = true; // 控制变量
+
+        // 判断图片加载的函数
+        function isImgLoad(callback){
+            // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
+            // 查找所有封面图，迭代处理
+            $('.cover').each(function(){
+                // 找到为0就将isLoad设为false，并退出each
+                if(this.height === 0){
+                    isLoad = false;
+                    return false;
+                }
+            });
+            // 为true，没有发现为0的。加载完毕
+            if(isLoad){
+                clearTimeout(t_img); // 清除定时器
+                // 回调函数
+                callback();
+                // 为false，因为找到了没有加载完成的图，将调用定时器递归
+            }else{
+                isLoad = true;
+                t_img = setTimeout(function(){
+                    isImgLoad(callback); // 递归扫描
+                },500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+            }
+        }
+
+
+
+
+
+
+        /*=================================================*/
+
+        /**
+         * 报名状态
+         * 1. need_baoming=0，直接参加
+         * 2. need_baoming=1, baoming_start_time>now:报名未开始
+         * 3. need_baoming=1, baoming_start_time<now<baoming_end_time:正在报名
+         * 4. need_baoming=1, baoming_end_time<now<start_time:报名已结束
+         * 4. need_baoming=1, baoming_end_timenow<now, start_time<now<end_time:正在活动中
+         * 5. end_time<now:活动已结束
+         * @param need_baoming
+         */
+        var now_time= Date.parse(new Date())/1000;
+        function activity_status(now_time,need_baoming,baoming_start_time,baoming_end_time,start_time,end_time){
+            if(need_baoming==0){
+                if(now_time<end_time){
+                    return {status:'join_now',info:'直接参与'}
+                }else{
+                    return {status:'expire',info:'活动已结束'}
+                }
+            }
+            else{
+                if(baoming_start_time>now_time){
+                    return {status:'baoming_not_start',info:'报名未开始'}
+                }else if(baoming_start_time<=now_time&&now_time<=baoming_end_time){
+                    return {status:'baoming',info:'正在报名'}
+                }else if(now_time<start_time){
+                    return {status:'baoming_over',info:'报名已结束'}
+                }else if(start_time<=now_time&&now_time<=end_time){
+                    return {status:'huodong',info:'正在活动中'}
+                }else if(end_time<now_time){
+                    return {status:'expire',info:'活动已结束'}
+                }else{
+                    return {status:'expire',info:'活动已结束'}
+                }
+            }
+        }
+        /*=================================================*/
+        // 对Date的扩展，将 Date 转化为指定格式的String
+        // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+        // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+        // 例子：
+        // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+        // (new Date()).Format("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+
+        Date.prototype.Format = function (fmt) { // author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, // 月份
+                "d+": this.getDate(), // 日
+                "h+": this.getHours(), // 小时
+                "m+": this.getMinutes(), // 分
+                "s+": this.getSeconds(), // 秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                "S": this.getMilliseconds() // 毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        //localstorage 存储
+        function set_data(key,data){
+            localStorage.setItem(key,JSON.stringify(data));
+            return true;
+        }
+        function get_data(key){
+            return JSON.parse(localStorage.getItem(key));
+        }
+
+
+
+    </script>
+</body>
+</html>
