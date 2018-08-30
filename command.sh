@@ -1,8 +1,10 @@
 yum -y update
 yum -y upgrade
+rpm -Uvh http://mirror.centos.org/centos/6/extras/x86_64/Packages/epel-release-6-8.noarch.rpm
 yum  install -y epel-release
+rpm -Uvh http://www6.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/libmcrypt-2.5.7-5.el6.art.x86_64.rpm
 yum install -y libmcrypt libmcrypt-devel mcrypt mhash git
-git clone https://github.com/noeeka/Mooc_Center.git
+git clone http://gitlab.szwhg.chaoxing.com/chenchen/Mooc_Center.git
 mkdir /usr/local/go
 cp -r ./Mooc_Center/go/* /usr/local/go
 mkdir /usr/local/weeds
@@ -18,12 +20,12 @@ yum -y install nginx
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 yum -y install php70w php70w-fpm php70w-mysql php70w-mbstring php70w-mcrypt php70w-gd php70w-imap php70w-ldap php70w-odbc php70w-pear php70w-xml php70w-xmlrpc php70w-pdo php70w-apcu php70w-pecl-redis php70w-pecl-memcached php70w-devel
-yum install -y php70w-redis
 rpm -Uvh http://mirrors.ustc.edu.cn/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
-yum install -y redis php70w-redis
+yum install -y redis
 rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm 
 yum install -y mysql-community-server
 yum install epel -y
+yum install sudo -y
 
 chmod -R 777 /usr/local/go
 echo 'export GOROOT=/usr/local/go
@@ -94,20 +96,32 @@ http {
 	types_hash_max_size 2048;
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
-	access_log  /var/log/nginx/access.log  main;
+	access_log  /var/log/nginx/access.log;
 	include /etc/nginx/conf.d/*.conf;
 }'>/etc/nginx/nginx.conf
-
-yum install -y gcc-c++ make
+echo 'extension = "redis.so"'>> /etc/php.ini
+rpm -Uvh http://mirror.centos.org/centos/6/os/x86_64/Packages/gcc-c++-4.4.7-23.el6.x86_64.rpm
+yum install -y gcc-c++
+rpm -Uvh http://mirror.centos.org/centos/6/os/x86_64/Packages/make-3.81-23.el6.x86_64.rpm
+yum install -y make
+yum install wget -y
+wget https://github.com/nicolasff/phpredis/archive/master.zip
+apt-get install unzip -y
+yum install unzip -y
+unzip master.zip 
+cd phpredis-master
+phpize
+./configure --with-php-config=/usr/bin/php-config
+make && make install
 curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
 yum erase nodejs npm -y
 yum install nodejs -y
-yum install npm --enablerepo=epel
+yum install -y npm --enablerepo=epel
 /etc/init.d/iptables stop
 /etc/init.d/nginx restart
 /etc/init.d/php-fpm restart
-/etc/init.d/mysqld restart
 a=$(grep 'temporary password' /var/log/mysqld.log |cut -d ":" -f 4,10 | sed 's/^[ \t]*//g')
+echo $a
 echo "<?php
 return [
     // 数据库类型
@@ -154,7 +168,7 @@ return [
 ">/data/www/mooc_center/application/database.php
 cd /data/www/iview
 npm install --save iview
-rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm install && npm install jquery --save
+rm -rf node_modules && rm -rf package-lock.json && npm cache clear --force && npm install && npm install jquery --save
 
 
 wget https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.bz2
