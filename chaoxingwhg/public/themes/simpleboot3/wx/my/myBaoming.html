@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>我的报名</title>
+
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/reset.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/myBaoming.css">
+
+    <style>
+        .grade-eject, .Category-eject, .Sort-eject{
+            top: 0.93rem;
+        }
+        #date-wrapper h3{
+            background: #3F97F0;!important;
+        }
+        input[type='text']{
+            margin-bottom: 0.11rem;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return">
+        <span class="mui-icon mui-icon-arrowleft"></span>
+    </a>
+    <h3 class="mui-col-xs-12 mui-text-center">我的报名</h3>
+    <a id="refresh" href="/wx/apply/index" style="display: none">refresh</a>
+</div>
+<section style="margin-bottom: 50px;margin-top: 0.43rem;">
+    <div class="classification">
+        <ul class="screenTop clearfix ">
+            <li class="baoming f-left mui-col-xs-4 mui-text-center">
+                <span>已报名</span>
+            </li>
+            <li class="baoming f-left mui-col-xs-4 mui-text-center">
+                <span>已完成</span>
+            </li>
+        </ul>
+        <div class="screenTj">
+            <input type="text" id="date2" value="" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088}" placeholder="开始时间">
+            <input type="text" id="date3" value="" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088}" placeholder="结束时间">
+            <div class="button" id="search">查找</div>
+        </div>
+    </div>
+    <div class="zhezhao" style="display: none"></div>
+
+    <div class="sources" >
+        <div id="lib">
+
+        </div>
+    </div>
+
+    <!--列表-->
+    <script type="text/x-handlebars-template" id="list">
+        {{#each this}}
+        <div class="list">
+            <div class="listtop clearfix">
+                <img src="__TMPL__/public/assets/whgcms/wx/images/appointment.png" alt="" class="f-left">
+                <span class="f-left child1">{{baoming_time}}</span>
+                <span class="f-right child2">{{status_msg}}</span>
+            </div>
+            <!--<div class="listtop clearfix">-->
+
+                <!--<span class="f-left child1">{{apply_time}} {{start_time}} ～ {{end_time}}</span>-->
+                <!--<span class="f-right child2">{{status}}</span>-->
+            <!--</div>-->
+            <hr style="opacity: 0.2;margin-left: 18px;"/>
+            <div class="listbottom ">
+                <ul >
+                    <li>活动名称：{{title}}</li>
+                    <li class="clearfix">
+                        <div class="f-left">活动时间：<span>{{formate_start_time}} ~ {{formate_end_time}}</span></div>
+                        <div class="f-right active1 button cancelApply" data-id="{{id}}">
+                            取消报名
+                        </div>
+                    </li>
+                </ul>
+                <!--<div class="f-right active1 button cancelApply" data-id="{{id}}">-->
+                    <!--取消报名-->
+                <!--</div>-->
+            </div>
+        </div>
+        {{/each}}
+    </script>
+</section>
+
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/jquery/jquery-3.0.0.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/config.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+
+<!--<script src="/weixin/lib/layui/layui.all.js "></script>-->
+<script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo-recruiting.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/jquery.date.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/myBaoming.js"></script>
+
+</body>
+
+</html>

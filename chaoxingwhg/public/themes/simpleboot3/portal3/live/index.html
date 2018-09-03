@@ -1,0 +1,90 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/live.css'>
+<title></title>
+
+<body>
+    <include file="public/nav" />
+    <div class="main-nav">
+        <div class="screening-nav">
+            <div <if condition="$switch eq 0">class="clearfix"<else/>class="hot clearfix"</if> <if condition="$switch eq 0">style="display:none"</if>>
+                <div class="classification f-left">热门场馆:</div>
+                <ul class="f-right level hotvenus" id="venue">
+                </ul>
+            </div>
+            <div <if condition="$switch eq 0">class="clearfix"<else/>class="area clearfix"</if>  <if condition="$switch eq 0">style="display:none"</if>>
+                <div class="classification f-left">区域:</div>
+                <ul class="f-right level areavenus" id="area">
+                </ul>
+            </div>
+            <div class="type clearfix" <if condition="$switch eq 0">style="margin-top:40px"</if>>
+                <div class="classification f-left">状态:</div>
+                <ul class="f-right level typevenus" id="types">
+                    <li data-type="0" class="live-active activity-active">全部</li>
+                    <li data-type="1">即将开始</li>
+                    <li data-type="2">进行中</li>
+                    <li data-type="3">直播结束</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="main-list ">
+                <div style="display: inline-block;text-align: center;width: 100%;margin-top:100px;display: none;" class="no">
+                    <img src="__TMPL__/public/assets/whgcms/images/no.png" alt="">
+                    <span style="font-size: 18px;color: #000000;display: block;margin-top: 16px;">暂无数据</span>
+                </div>
+                <ul class="list clearfix" id="live_list">
+                </ul>
+                <div id="test1" class="page"></div>
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src="__TMPL__/public/assets/whgcms/js/live.js"></script>
+    <script id="live-template" type="text/x-handlebars-template">
+        {{#each this}}
+        <li>
+            <a href="" target="_blank">
+                <div class="image bg100" style="background-image: url({{img}});"></div>
+                <div class="text">
+                    <h3 class="ellipsis">{{live_name}}</h3>
+                    <div class="number clearfix">
+                        <div class="source f-left" style="margin-right: 20px;">
+                            <img src="__TMPL__/public/assets/whgcms/images/information/5.png" alt="" class="f-left">
+                            <span class="f-left" style="width: 75px;">{{name}}</span>
+                        </div>
+                        <div class="time f-left">
+                            <img src="__TMPL__/public/assets/whgcms/images/information/time.png" alt="" class="f-left" style="width:17px;">
+                            <span class="f-left" style="width: 106px;">{{date start_time}}</span>
+                        </div>
+                    </div>
+                    <button class="layui-btn active3">{{status end_time}}</button>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!--热门场馆模板-->
+    <script id="fiter-template" type="text/x-handlebars-template">
+        <li data-venue="0" class="live-active activity-active">全部</li>
+        {{#each this}}
+        <li data-venue="{{id}}">{{name}}</li>
+        {{/each}}
+    </script>
+    <!--区域列表模板-->
+    <script type="text/x-handlebars-template" id="area_list">
+        <li data-area="0" class="live-active activity-active">全部</li>
+        {{#each this}}
+        <li data-area="{{id}}">{{name}}</li>
+        {{/each}} {{#each this}}
+        <ul class="level2 clearfix" style="display: none">
+            {{#each son}}
+            <li data-area="{{id}}">{{name}}</li>
+            {{/each}}
+        </ul>
+        {{/each}}
+    </script>
+</body>
+
+</html>

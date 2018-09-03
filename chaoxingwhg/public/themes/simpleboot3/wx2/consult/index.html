@@ -1,0 +1,120 @@
+<include file="public/header"/>
+<title></title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx2/css/information.css?v={$version_list.wx_information_css}'/>
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/myfeedback.css?v={$version_list.wx_myfeedback_css}">
+<style>
+    .classification{
+        position: fixed;
+        z-index: 2;
+    }
+    .navigation{
+        display: flex;
+    }
+    .navigation li{
+        flex: 1;
+        text-align: center;
+    }
+    button.yuyuebtn {
+        width: 90%;
+        height: 0.45rem;
+        font-size: 0.18rem;
+        border-radius: 0.6rem;
+        background-color: #B93421;
+        border: 0;
+        color: #FFFFFF;
+    }
+</style>
+</head>
+<body style="background: #fff;">
+<include file="public/return"/>
+<div class="classification" style="display: block;">
+    <!--<div class="clearfix" style="padding: 0.1rem 0;background: #fff;">-->
+    <ul class="navigation navmt" style="padding: 0.1rem 0;background: #fff;position:fixed;z-index:2;">
+        <li class="active">咨询反馈</li>
+        <li>我要咨询</li>
+    </ul>
+    <!--</div>-->
+
+    <div class="linemt" style="width: 100%;height: 0.1rem;background: #EEEEEE;position: fixed;z-index: 2;"></div>
+</div>
+
+
+<section class="mainmt">
+    <div  class='test1' style="margin-bottom: 50px;">
+        <div class="infContent list" style="display: block;">
+            <div class="mould1">
+                <ul class="mui-table-view newsContent mould1-list">
+                    <li class="mui-table-view-cell mui-media">
+                        <a href="/wx2/consult/info/?id={{id}}">
+                            <div class="mui-media-body">
+                                <h3>关于河西区文化馆添加群众喜闻乐见文化征集意见</h3>
+                                <span class="source">河西文化馆</span>
+                                <span class="time">2017-6-27</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a href="/wx2/consult/info/?id={{id}}">
+                            <div class="mui-media-body">
+                                <h3>关于河西区文化馆添加群众喜闻乐见文化征集意见</h3>
+                                <span class="source">河西文化馆</span>
+                                <span class="time">2017-6-27</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="consultForm list" style="display: none;">
+            <form class="mui-input-group" id="feedbackForm" style="padding-top: 0.2rem;margin: 0.27rem;">
+                <div class="mui-input-row adviceName">
+                    <!--<label>姓名</label>-->
+                    <input name="title" type="text" placeholder="请输入标题">
+                </div>
+                <div class="adviceText" style="padding-top: 0.1rem;">
+                    <textarea id="textarea" rows="5" placeholder="请输入详情内容" name="content"></textarea>
+                </div>
+            </form>
+            <div style="padding: 0.1rem 0;margin-top: 0.7rem;width: 100%;text-align:  center;background: #fff;">
+                <button class="yuyuebtn zts-bg">报名</button>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<include file="public/footer"/>
+<!--<script src="__TMPL__/public/assets/whgcms/wx2/js/information_news.js?v={$version_list.wx_information_js}"></script>-->
+
+<script type="text/template" id="infContent-item1">
+    {{#each list}}
+    <li class="mui-table-view-cell mui-media">
+        <a href="/wx/category/read/?id={{id}}">
+            <div class="mui-media-body">
+                <h3>{{title}}</h3>
+                {{#if is_top}}
+                <span class="zhiding">置顶</span>
+                {{#if venue_name}}
+                <span class="source">{{venue_name}}</span>
+                {{/if}}
+                <span class="time"> {{date time}}</span>
+                {{else}}
+                <span class="source" style="margin-left: 0">{{venue_name}}</span>
+                <span class="time"> {{date time}}</span>
+                {{/if}}
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script>
+    $('.navigation li').click(function(){
+        var index = $(this).index();
+        $('.navigation li').removeClass('active');
+        $(this).addClass('active');
+        $('.list').hide();
+        $('.list').eq(index).show();
+    });
+
+</script>
+</body>

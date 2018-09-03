@@ -1,0 +1,62 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/class.css'>
+<title>慕课平台</title>
+</head>
+<body>
+<include file="public/nav" />
+<div class="main clearfix">
+    <div class="main-content clearfix">
+        <div class="main-nav">
+            <div class="hot clearfix">
+                <div class="classification f-left">热门场馆</div>
+                <ul class="f-right level">
+                </ul>
+            </div>
+            <div class="area clearfix">
+                <div class="classification f-left">区域</div>
+                <ul class="f-right level">
+                </ul>
+            </div>
+        </div>
+        <div class="main-list">
+            <ul class="tab1">
+                <!--<li class="active1" data-index="3">智能排序</li>-->
+                <li class="active1" data-index="4">最新发布</li>
+                <li data-index="5">人气最高</li>
+            </ul>
+            <ul class="list clearfix">
+            </ul>
+            <div id="test1"></div>
+        </div>
+    </div>
+</div>
+<include file="public/footer" />
+<script src='__TMPL__/public/assets/whgcms/js/class.js'></script>
+<script type="text/template" id="item">
+    {{#each this}}
+    <li>
+        <a href="/portal/category/read/?id={{id}}&cid={$id|default=8}">
+            <div class="image" style="background-image: url({{image thumb}});"></div>
+            <div class="text">
+                <h3>{{title}}</h3>
+                <div class="number clearfix">
+                    <div class="source f-left" style="margin-right: 20px;">
+                        <img src="__TMPL__/public/assets/whgcms/images/information/5.png" alt="" class="f-left">
+                        <span class="f-left" style="width: 96px;">{{venue_name}}</span>
+                    </div>
+                    <!-- <div class="look f-left" style="margin-right: 20px;">
+                        <img src="images/information/look.png" alt="" class="f-left" style="width:19px;height: 11px;margin-top:4px;">
+                        <span class="f-left"><em style="display: inline-block;width: 50px;"></em></span>
+                    </div> -->
+                    <div class="time f-left">
+                        <img src="__TMPL__/public/assets/whgcms/images/information/time.png" alt="" class="f-left" style="width: 17px;">
+                        <span class="f-left" style="width: 67px;">{{date time}}</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+</body>
+</html>

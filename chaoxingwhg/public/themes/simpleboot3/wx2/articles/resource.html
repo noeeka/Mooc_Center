@@ -1,0 +1,167 @@
+<include file="public/header"/>
+<title>{$title}</title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx2/css/information.css?v={$version_list.wx_information_css}'/>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx2/css/sources.css?v={$version_list.wx_information_css}'/>
+<style>
+    .classification{
+        position: fixed;
+        z-index: 2;
+
+    }
+    .activity {
+    margin-top: 0.12rem;
+    margin-bottom: 0.22rem;
+    }
+
+    .activityList h3 {
+    font-size: 0.15rem;
+    margin-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fff;
+    margin-bottom: 4px;
+    text-align: center;
+    }
+
+    .activityList span {
+    font-size: 0.13rem;
+    color: #ffffff;
+    }
+
+    .activityList span.source {
+    margin-right: 0.1rem;
+    }
+
+    .activityList .mui-card-content {
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    }
+
+    .activityList .mui-card {
+    position: relative;
+    margin: 0;
+    border-radius: 0px;
+    }
+
+    .activityList .mui-card {
+    margin-top: 0.1rem;
+    }
+
+    .activityList .mui-card:first-child {
+    margin-top: 0.03rem;
+    }
+
+    .baomingState {
+    width: 0.4rem;
+    position: absolute;
+    left: 0.12rem;
+    top: 0;
+    }
+
+    .mui-table-view-cell {
+    padding-bottom: 13px;
+    }
+    .activityList .mui-card-content-inner {
+        padding: 0px 15px;
+        top: 50%;
+        left: 0;
+        transform: translate(0,-50%);
+    }
+    .screenTj{
+        margin-bottom: 0.11rem;
+    }
+    .screenTj li{
+        padding: 0;
+        border: none;
+    }
+</style>
+</head>
+<body>
+<include file="public/return"/>
+<input type="hidden" name="id" value="{$id}">
+<div class="classification" style="display: block;">
+    <!--<div class="clearfix" style="padding: 0.1rem 0;background: #fff;">-->
+    <ul class="navigation navmt" style="padding: 0.1rem 0;background: #fff;position:fixed;z-index:2;">
+
+    </ul>
+    <!--</div>-->
+
+    <div class="linemt" style="width: 100%;height: 0.1rem;background: #EEEEEE;position: fixed;z-index: 2;"></div>
+</div>
+
+
+<section class="mainmt">
+    <div class='error' style="text-align: center;margin-top: 1rem;display: none"><span>出错啦</span>~(&gt;_&lt;)~~</div>
+    <!--<div class="classification" style="display: none;">-->
+    <!--<ul class="navigation" >-->
+
+    <!--</ul>-->
+     <ul class="screenTj">
+        <li class="active">默认</li>
+        <li>最新发布</li>
+        <li>人气最高</li>
+    </ul>
+    <!--</div>-->
+    <div  class='test1' style="margin-bottom: 50px;">
+        <!--<div class="infContent">-->
+        <!--</div>-->
+        <div class="activityList" id="resourceList">
+            <!--<div class="mui-card">-->
+                <!--<a href="/wx/activity/read?id={{id}}">-->
+                    <!--<div class="mui-card-header mui-card-media"-->
+                         <!--style="height:1.75rem;background:url(http://img-szwhg.chaoxing.com:9334/6,0a830a3de35d.jpg) top center;background-size:100%;"></div>-->
+                    <!--<div class="mui-card-content">-->
+                        <!--<div class="mui-card-content-inner">-->
+                            <!--<div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>-->
+                            <!--<h3 style="margin-top:0.2rem;">宿州市文化馆举行“保护文化遗产”大型活动</h3>-->
+                            <!--<div style="height:0.17rem;overflow: hidden;margin-bottom: 0.2rem;text-align: center;">-->
+                                <!--<div style="display:inline-block;">-->
+                                    <!--<span class="source">砀山县文化馆</span>-->
+                                    <!--<span class="time">2016-10-12 ~ 2016-10-15</span>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                            <!--<div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+        </div>
+        </div>
+    </section>
+    <include file="public/footer"/>
+    <script src="__TMPL__/public/assets/whgcms/wx2/js/resource.js?v={$version_list.wx_information_js}"></script>
+    <!--模板-->
+    <script type="text/template" id="navigation-item">
+        <li data-id="{{id}}">{{name}}</li>
+    </script>
+    <script type="text/template" id="resource-item">
+        {{#each this}}
+        <div class="mui-card">
+            <a href="/wx/activity/read?id={{id}}">
+                <div class="mui-card-header mui-card-media"
+                     style="height:1.75rem;background:url({{thumb}}) top center;background-size:100%;"></div>
+                <div class="mui-card-content">
+                    <div class="mui-card-content-inner">
+                        <div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>
+                        <h3 style="margin-top:0.2rem;">{{title}}</h3>
+                        <div style="height:0.17rem;overflow: hidden;margin-bottom: 0.2rem;text-align: center;">
+                            <div style="display:inline-block;">
+                                <span class="source">{{venue_name}}</span>
+                                <span class="time">{{date time}}</span>
+                            </div>
+
+                        </div>
+                        <div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </script>
+    </body>

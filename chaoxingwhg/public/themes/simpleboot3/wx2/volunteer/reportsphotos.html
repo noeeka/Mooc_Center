@@ -1,0 +1,84 @@
+<include file="public/header"/>
+
+<!--<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/venue.css?v={$version_list.wx_venue_css}">-->
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/fengcai.css?v={$version_list.wx_fengcai_css}'>
+<title>照片墙</title>
+<style>
+    .addphotoBtn a{
+        display: block;
+        width: 2.5rem;
+        height: 0.44rem;
+        background: #3F97F0;
+        color: #fff;
+        font-size: 0.18rem;
+        text-align: center;
+        line-height: 0.44rem;
+        /*margin: 0.36rem auto;*/
+        position: fixed;
+        left: 50%;
+        bottom: 0.3rem;
+        transform: translate(-50%,0);
+        border-radius: 0.3rem;
+    }
+</style>
+</head>
+<body>
+<div class="returnHeader" style="border-bottom: 1px solid #D2D2D2;">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">照片墙</h3>
+</div>
+<!--<section style="margin-top: 0.43rem;">-->
+<!--<div class="infContent" style="margin-top: 0.13rem;margin-bottom: 50px;">-->
+<section class="sources" style="margin-top: 0.43rem;max-height: 5rem;overflow-y: auto;">
+    <ul class="mui-table-view mui-grid-view">
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">志愿者汪小敏风采展示</div>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">志愿者汪小敏风采展示</div>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">志愿者汪小敏风采展示</div>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">志愿者汪小敏风采展示</div>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+    <div class="addphotoBtn" style="position: relative;z-index:3">
+        <a href="javascript:;">提供照片</a>
+    </div>
+</section>
+<!--</div>-->
+<!--</section>-->
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/inscroll/iscroll.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/reportsphotos.js?v={$version_list.wx_reportsphotos_js}"></script>
+<script type="text/template" id="item">
+    {{#each this}}
+        <li class="mui-table-view-cell mui-media mui-col-xs-6">
+            <a href="javascript:;">
+                <img class="mui-media-object" src="{{img}}">
+                <div class="mui-media-body">提供人：{{user_realname}}志愿者</div>
+            </a>
+        </li>
+    {{/each}}
+</script>
+</body>
+</html>

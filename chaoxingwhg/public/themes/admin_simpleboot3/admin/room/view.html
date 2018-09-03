@@ -1,0 +1,282 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('Room/index')}">所有场馆</a></li>
+        <li><a href="{:url('Room/add')}">添加场馆</a></li>
+        <li class="active"><a>查看场馆</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('Room/editPost')}">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled class="form-control" required id="input-name" name="name" value="{$room.name|default=''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-description" class="col-sm-2 control-label">简介<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <textarea disabled class="form-control" name="abstract" required id="input-description" >{$room.abstract|default=''}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="thumbnail" class="col-sm-2 control-label">封面图<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="hidden" name="thumb" id="thumbnail" value="{$room.thumb|default=''}">
+
+                <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#thumbnail');">
+                    <if condition="empty($room.thumb)">
+                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                             id="thumbnail-preview"
+                             width="135" style="cursor: pointer"/>
+                        <else/>
+                        <img src="{:cmf_get_image_preview_url($room.thumb)}"
+                             id="thumbnail-preview"
+                             width="135" style="cursor: pointer"/>
+                    </if>
+                </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-like_count" class="col-sm-2 control-label">所属场馆<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <select disabled name="" class="form-control" required style="width: 49%;display: inline-block" id="area_id">
+                    <option value="0">请选择地区</option>
+                    {$areas}
+                </select>
+                <select disabled name="venue" class="form-control" required style="width: 50%;display: inline-block" id="venue_id">
+                    <option value="0">请选择场馆</option>
+                    {$select_venue}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="venue_type" class="col-sm-2 control-label">场馆类型<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <select disabled name="venue_type" id="venue_type" required class="form-control">
+                    <option value="0">请选择场馆类型</option>
+                    {$room_types}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-fee" class="col-sm-2 control-label">开放时间<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <div>
+                    上午 <select disabled name="open_start_time_am" class="form-control" style="display: inline-block;width: 140px;">
+                    {$open_start_time_am_str}
+                </select> - <select disabled name="open_end_time_am" class="form-control" style="display: inline-block;width: 140px;">
+                    {$open_end_time_am_str}
+                </select>
+                </div>
+                <div>
+                    下午 <select disabled name="open_start_time_pm" class="form-control" style="display: inline-block;width: 140px;">
+                    {$open_start_time_pm_str}
+                </select> - <select disabled name="open_end_time_pm" class="form-control" style="display: inline-block;width: 140px;">
+                    {$open_end_time_pm_str}
+                </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-author" class="col-sm-2 control-label">来源/作者</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="author" value="{$room.author|default=''}" id="input-author" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-area" class="col-sm-2 control-label">面积</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="area" value="{$room.area|default=0}" id="input-area" >
+                <div class="help-block">单位:平方米</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-seat" class="col-sm-2 control-label">座位数量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="seat" value="{$room.seat|default=0}" id="input-seat" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-audio" class="col-sm-2 control-label">音响数量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="audio" value="{$room.audio|default=0}" id="input-audio" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-microphone" class="col-sm-2 control-label">话筒数量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="microphone" value="{$room.microphone|default=0}" id="input-microphone" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-projector" class="col-sm-2 control-label">投影仪数量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="projector" value="{$room.projector|default=0}" id="input-projector" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-tv" class="col-sm-2 control-label">电视机数量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="tv" value="{$room.tv|default=0}" id="input-tv" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-computer" class="col-sm-2 control-label">电脑数量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="computer" value="{$room.computer|default=0}" id="input-computer" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-full_address" class="col-sm-2 control-label">详细地址</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="full_address" value="{$room.full_address|default=''}" id="input-full_address" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-tel" class="col-sm-2 control-label">电话</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="tel" value="{$room.tel|default=''}" id="input-tel" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="is_free" class="col-sm-2 control-label">是否收费</label>
+            <div class="col-md-6 col-sm-10">
+                <select disabled name="is_free" class="form-control" id="is_free">
+                    <option value="0" <if condition="$room.is_free eq 0">selected</if>>免费</option>
+                    <option value="1" <if condition="$room.is_free eq 1">selected</if>>收费</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-fee" class="col-sm-2 control-label">费用</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" value="{$room.fee|default=0}" name="fee" id="input-fee" >
+                <div class="help-block">单位:元</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-fee" class="col-sm-2 control-label">可预约时间段</label>
+            <div class="col-md-6 col-sm-10">
+                <ul class="col-md-3 col-sm-5" style="margin: 0;padding: 0;list-style: none;">
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="preset_time" id="v1" <if condition="$room.preset_time eq 0">checked</if> value="0"><label for="v1">每天</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="preset_time" id="v2" <if condition="$room.preset_time eq 1">checked</if> value="1"><label for="v2">周一到周五</label></li>
+                    <li><input type="radio" <if condition="$room.preset_time neq 2">disabled</if> style="margin-right: 1em;" name="preset_time" id="v3" <if condition="$room.preset_time eq 2">checked</if> value="2"><label for="v3">自定义</label></li>
+                </ul>
+                <ul class="col-md-3 col-sm-5 custom_preset_time_dialog" style="display:none;margin: 0;list-style: none;position: fixed;left: 25%;padding: 20px;top: 30%;box-shadow: 1px 1px 50px rgba(0,0,0,.3);z-index: 19891026;background: #fff;">
+                    <h4>请选择时间段<i class="fa fa-close close" style="position: absolute;right: 20px;cursor: pointer;"></i></h4>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c1" <if condition="$room.custom_preset_time eq 0">checked</if>  value="0"><label for="c1">星期一</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c2" <if condition="$room.custom_preset_time eq 1">checked</if> value="1"><label for="c2">星期二</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c3" <if condition="$room.custom_preset_time eq 2">checked</if> value="2"><label for="c3">星期三</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c4" <if condition="$room.custom_preset_time eq 3">checked</if> value="3"><label for="c4">星期四</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c5" <if condition="$room.custom_preset_time eq 4">checked</if> value="4"><label for="c5">星期五</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c6" <if condition="$room.custom_preset_time eq 5">checked</if> value="5"><label for="c6">星期六</label></li>
+                    <li><input type="radio" disabled  style="margin-right: 1em;" name="custom_preset_time" id="c7" <if condition="$room.custom_preset_time eq 6">checked</if> value="6"><label for="c7">星期日</label></li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="publish_time" class="col-sm-2 control-label">发布时间</label>
+            <div class="col-md-6 col-sm-10">
+                <input id="publish_time" type="text" class="form-control js-bootstrap-datetime" name="publish_time"
+                       value="{$room.publish_time|date='Y-m-d H:i:s', ###}"
+                       style="" autocomplete="off"> &nbsp;
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-page_view" class="col-sm-2 control-label">浏览量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="page_view" value="{$room.page_view|default=0}" id="input-page_view" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-like_count" class="col-sm-2 control-label">点赞量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" disabled  class="form-control" name="like_count" value="{$room.like_count|default=0}" id="input-like_count" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-status" class="col-sm-2 control-label">状态</label>
+            <div class="col-md-6 col-sm-10">
+                <select disabled name="status" id="input-status" class="form-control">
+                    <option value="1" <if condition="$room.status eq 1">selected</if>>可用</option>
+                    <option value="0" <if condition="$room.status eq 0">selected</if>>禁用</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-11 panel panel-default" style="margin-left: 176px;">
+            <div class="panel-heading">
+                <span style="font-weight: 600">预约统计</span><a class="btn btn-primary" style="position: absolute;right: 0;" href="{:url('Room/export',array( 'id'=>$room.id))}">导出</a>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>日期</th>
+                        <th>时间段</th>
+                        <th>昵称</th>
+                        <th>手机号</th>
+                        <th>邮箱</th>
+                        <th>真实姓名</th>
+                        <th>性别</th>
+                        <th>生日</th>
+                        <th>地址</th>
+                        <th>预约时间</th>
+                    </tr>
+                    <volist name="apply_list" id="item">
+                        <tr>
+                            <td>{$item.apply_id}</td>
+                            <td>{$item.durdate}</td>
+                            <td>{$item.durtime}</td>
+                            <td>{$item.user_nickname}</td>
+                            <td>{$item.mobile}</td>
+                            <td>{$item.user_email}</td>
+                            <td>{$item.user_realname}</td>
+                            <td><if condition="$item.sex eq 1">男<elseif condition="$item.sex eq 2" />女<else/>保密</if></td>
+                            <td><if condition="$item.birthday eq 0"><span style="color:red;font-style: italic">未设置</span><else/>{$item.birthday|date='Y-m-d',###}</if></td>
+                            <td><div style="overflow: hidden;text-overflow: ellipsis;width: 10em;" title="{$item.address}">{$item.address}</div></td>
+                            <td><if condition="$item.apply_time eq 0"><span style="color:red;font-style: italic">未设置</span><else/>{$item.apply_time|date='Y-m-d H:i',###}</if></td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+    var venues = {$venues};
+    $('#area_id').change(function(){
+        var area_id = $(this).val();
+        bulidVenueOptions(area_id);
+    });
+    function bulidVenueOptions(area_id){
+        html = "<option value='0'>请选择场馆</option>";
+        for(var i in venues){
+            var venue = venues[i];
+            if(venue['address'] == area_id){
+                html += "<option value="+venue['id']+">"+venue['name']+"</option>"
+            }
+        }
+        $('#venue_id').html(html);
+    }
+    $('#v3').click(function(){
+        var display = $('.custom_preset_time_dialog').css('display');
+        if(display == 'none'){
+            $('.custom_preset_time_dialog').css('display', 'block');
+        }else{
+            $('.custom_preset_time_dialog').css('display', 'none');
+        }
+    });
+    $('.close').click(function(){
+        var display = $('.custom_preset_time_dialog').css('display');
+        if(display == 'none'){
+            $('.custom_preset_time_dialog').css('display', 'block');
+        }else{
+            $('.custom_preset_time_dialog').css('display', 'none');
+        }
+    });
+</script>
+</body>
+</html>

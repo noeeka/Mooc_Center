@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*content-right*/
+
+.content-right {
+	margin-top: 10px;
+	/*padding: 0 27px;*/
+	/*width: 224px;*/
+	width:120px;
+	padding-left: 0;
+	min-height:150px;
+}
+
+.content-right h3 {
+	color: #464C5B;
+	font-size: 20px;
+	padding-bottom: 22px;
+	border-bottom: 1px solid #DCDEE2;
+	text-align: center;
+}
+
+
+/*收藏分享*/
+
+.content-right>div {
+	margin-top: 39px;
+}
+
+.content-right>div div {
+	width: 112px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.content-right>div span {
+	display: block;
+	font-size: 16px;
+	color: #464C5B;
+}
+
+.bdsharebuttonbox {
+	margin-top: 21px;
+}
+/*列表*/
+.list li{
+	width: 282px;
+	margin-top: 24px;
+	margin-right: 24px;
+	transition:all 0.3s ease;
+}
+.list li:nth-child(4n){
+	margin-right: 0;
+}
+.list li:hover{
+	transform:translateY(-6px);
+   -webkit-transform:translateY(-6px);
+   box-shadow: 0 26px 40px -24px rgba(0, 36, 100, 0.3);
+   -webkit-box-shadow: 0 26px 40px -24px rgba(0, 36, 100, 0.3);
+   transition:all 0.3s ease;
+   -webkit-transition: all 0.3s ease;
+}
+.list li img{
+	width: 100%;
+	height: 158px;
+}
+.list li .info{
+	padding:16px 15px 12px;
+	border-left: 1px solid #DCDEE2;
+	border-right: 1px solid #DCDEE2;
+	border-bottom: 1px solid #DCDEE2;
+}
+.list li .info h3{
+	color: #464C5B;
+	font-size: 18px;
+	margin-bottom: 17px;
+}
+.list li .info>div{
+	color: #9EA7B4;
+	font-size: 14px;
+}
+body{ background:#fff;}
+.introduce{ position:relative;}
+.main-special{ width:1200px; margin:0 auto; transform:translateY(-60px);}
+.banner-b img{ display:block; width:100%;}
+.special-in-b{ padding:35px; background:#fff; box-shadow:0px 7px 43px 0px rgba(6,40,61,0.2);}
+.special-in-b .in-main{ /*width:850px;*/ width:1010px;}
+.special-in-b .tit{ font-size:24px; color:#464C5B; margin-bottom:10px;}
+.special-in-b .text{ color:#657180; font-size:16px; line-height:1.5; padding-top:10px; border-right:solid 1px #DCDEE2; padding-right:40px;}
+.main-special .list-b{ margin-top:20px;}
+
+.sc-b{ padding-top:37px; background:url(../images/collection.png) no-repeat top center; transition:all ease 0.3s;}
+.sc-b span{ transition:all ease 0.3s;}
+.sc-b:hover{ background:url(../images/collectionon.png) no-repeat top center;}
+.sc-b:hover span{ color:#EC6D3A;}
+.sc-b.active{ background:url(../images/collectionon.png) no-repeat top center;}
+.sc-b.active span{ color:#EC6D3A;}
+
+.share{ padding-top:37px; background:url(../images/share.png) no-repeat top center; transition:all ease 0.3s;}
+.share .color{ transition:all ease 0.3s;}
+.share:hover{ background:url(../images/shareon.png) no-repeat top center;}
+.share:hover .color{ color:#EC6D3A;}
+.share.active{ background:url(../images/shareon.png) no-repeat top center;}
+.share.active .color{ color:#EC6D3A;}

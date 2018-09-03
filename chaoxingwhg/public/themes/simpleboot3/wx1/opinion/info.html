@@ -1,0 +1,119 @@
+<include file="public/header" />
+<title>民意征集</title>
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/opinion.css?v={$version_list.wx_opinion_css}">
+<style>
+    .Sort-Sort li.active {
+        border-bottom: 1px solid rgb(63, 151, 240);
+    }
+</style>
+</head>
+
+
+<body>
+<include file="public/nav" />
+<section style="margin-bottom: 50px;">
+
+    <div class="classification" style="padding-bottom: 0;">
+        <ul class="screenTop clearfix">
+            <li class="Regional venueHot f-left mui-col-xs-4 mui-text-center"  <if condition="$switch eq 0">style="display:none"</if>
+                <a href="#">
+                    <span>热门场馆</span>
+                    <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt="">
+                </a>
+            </li>
+            <li class="Brand region f-left mui-col-xs-4 mui-text-center"  <if condition="$switch eq 0">style="display:none"</if>
+                <a href="#">
+                    <span>区域</span>
+                    <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt="">
+                </a>
+            </li>
+            <li <if condition="$switch eq 0"> class="Sort venueType f-left1 mui-col-xs-4 mui-text-center" style="margin:0 auto"<else/>class="Sort venueType f-left mui-col-xs-4 mui-text-center"</if>>
+                <a href="#">
+                    <span>征集中</span>
+                    <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="zhezhao" style="display: none"></div>
+    <div class="screenContent">
+        <!-- 场馆 -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+            </ul>
+        </div>
+        <!-- End 场馆 -->
+        <!-- 区域 -->
+        <div class="Category-eject" id="status">
+            <ul class="Category-w" id="Categorytw">
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+            </ul>
+        </div>
+        <!-- End 区域 -->
+        <!-- 类型 -->
+        <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li data-value="0" onclick="Sorts(this)">全部</li>
+                <li data-value="1" style=" border-bottom: 1px solid rgb(63, 151, 240);" onclick="Sorts(this)">征集中</li>
+                <li data-value="2" onclick="Sorts(this)">即将征集</li>
+                <li data-value="3" onclick="Sorts(this)">往期征集</li>
+            </ul>
+        </div>
+        <!-- End 类型 -->
+    </div>
+
+
+    <div class="infContent" style="margin-bottom: 50px;">
+        <div class="huodong">
+            <ul class="mui-table-view newsContent mould1-list" id="lib">
+
+            </ul>
+        </div>
+    </div>
+    <!---->
+    <!--end 列表-->
+</section>
+
+
+<!--列表-->
+<script type="text/x-handlebars-template" id="list">
+    {{#each this}}
+    <li class="mui-table-view-cell mui-media">
+        <a href="/wx/opinion/detail?id={{id}}">
+            <div class="mui-media-body">
+                <h3>{{title}}</h3>
+                {{#if is_top}}
+                <span class="zhiding">置顶</span>
+                {{/if}}
+                <span class="source">{{name}}</span>
+                <span class="time">{{create_time}}</span>
+                <img src="__TMPL__/public/assets/whgcms/wx/images/look.png" alt="">
+                <span >{{views_count}}</span>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+
+<include file="public/footer" >
+
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js"></script>
+    <!--<script src="lib/demoUtils.js"></script>-->
+    <script src="__TMPL__/public/assets/whgcms/wx/js/opinion.js?v={$version_list.wx_opinion_js}"></script>
+
+    <script>
+        //导航
+        nowActive('.navlist li', 'active');
+        //分类
+        nowActive('.navigation li:not(:first-child)', 'active');
+        //排序
+        nowActive('.screenTj li:not(:first-child)', 'active');
+        //当前选择的nav滚动到可视区域
+        // scrollNav('nav7');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<include file="public/header"/>
+
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/venue.css?v={$version_list.wx_venue_css}">
+<title></title>
+</head>
+<body>
+<include file="public/return"/>
+<div class="navmt" style="width: 100%;position: fixed;z-index: 2;">
+    <ul class="screenTop clearfix">
+        <li class="Regional venueHot f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>热门场馆</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        <li class="Brand region f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>区域</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        <li <if condition="$switch eq 0">class="Sort venueType f-left1 mui-col-xs-4 mui-text-center" style="margin:0 auto"<else/>class="Sort venueType f-left mui-col-xs-4 mui-text-center" </if>><a href="#"><span>类型</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+    </ul>
+    <div style="width: 100%;height: 0.1rem;background: #EEEEEE;"></div>
+</div>
+<section class="mainmt" style="margin-bottom: 50px;">
+    <div class="classification">
+        <ul class="screenTj">
+            <li class="active">默认</li>
+            <li>最新发布</li>
+            <li>人气最高</li>
+        </ul>
+    </div>
+    <div class="zhezhao" style="display: none"></div>
+    <div class="screenContent">
+        <!-- grade -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+
+            </ul>
+        </div>
+        <!-- End grade -->
+        <!-- Category -->
+        <div class="Category-eject">
+            <ul class="Category-w" id="Categorytw">
+
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+
+            </ul>
+        </div>
+        <!-- End Category -->
+        <!-- Category -->
+        <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li onclick="Sorts(this)">智能排序</li>
+                <li onclick="Sorts(this)">离我最近</li>
+                <li onclick="Sorts(this)">好评优先</li>
+                <li onclick="Sorts(this)">最新发布</li>
+                <li onclick="Sorts(this)">人气优先</li>
+                <li onclick="Sorts(this)">价格最低</li>
+                <li onclick="Sorts(this)">价格最高</li>
+            </ul>
+        </div>
+        <!-- End Category -->
+    </div>
+    <div class="sources">
+        <div class="sourcesList">
+            <script type="text/x-handlebars-template" id="venue_list">
+            {{#each this}}
+            <div class="mui-card">
+                <a href="/wx2/venue/read?id={{id}}">
+                    <div class="mui-card-header mui-card-media"
+                         style="height:1.75rem;background-image:url(/upload/{{thumb}})"></div>
+                    <div class="mui-card-content">
+                        <div class="mui-card-content-inner">
+                            <div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>
+                            <h3>{{name}}</h3>
+                            <div style="height:0.2rem;overflow: hidden;margin-bottom: 0.2rem;text-align: center;">
+                                <div style="display:inline-block;">
+                                    <span class="kongjian"> 容纳人数：{{max_people}}人</span>
+                                    <span class="source">地点：{{full_address}}</span>
+                                </div>
+                            </div>
+                            <div class="yuyueBtn">预约</div>
+                            <div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+            </script>
+        </div>
+    </div>
+</section>
+<!--底部-->
+<include file="public/footer">
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/screen/demo.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/venue.js?v={$version_list.wx_venue_js}"></script>
+</body>
+</html>

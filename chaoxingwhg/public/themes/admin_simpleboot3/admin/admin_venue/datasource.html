@@ -1,0 +1,249 @@
+<include file="public@header"/>
+<script src="/static/js/echarts.min.js"></script>
+<style>
+    .nodata {
+        text-align: center;
+        margin-top: 150px;
+        display: none;
+    }
+
+    .nodata img {
+        width: 300px;
+    }
+
+    .nodata p {
+        color: #666;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:;">文化馆大数据</a></li>
+    </ul>
+    <form class="well form-inline margin-top-20" method="post" action="{:url('admin_venue/datasource')}">
+        区域:
+        <select class="form-control" name="area_id" style="width: 30%;display: inline-block" id="area_id">
+            <option value="0">请选择地区</option>
+            {$areas}
+        </select>
+
+        <select class="form-control" name="venue_id" style="width: 30%;display: inline-block" id="venue_id">
+            <option value="0">请选择场馆</option>
+            {$my_venue}
+        </select>
+
+        <input type="submit" class="btn btn-primary" value="搜索"/>
+        <a class="btn btn-danger" href="{:url('admin_venue/datasource')}">清空</a>
+    </form>
+    <div class="row">
+        <!--<include file="public@area"/>-->
+        <div class="col-md-3 col-xs-12">
+            <h3 style="text-align: center; font-size: 18px;font-weight: 600;margin-top: 0;">大数据表格</h3>
+            <table class="table table-bordered table-condensed table-hover">
+                <tr>
+                    <th>模块</th>
+                    <th>名称</th>
+                    <th>数量</th>
+                </tr>
+                <tr>
+                    <td rowspan="5">系统数据</td>
+                    <td>系统用户</td>
+                    <td>{$sys_num.user|default=0}</td>
+
+                </tr>
+
+                <tr>
+                    <td>实名用户</td>
+                    <td>{$sys_num.syfUser|default=0}</td>
+                </tr>
+
+                <tr>
+                    <td>管理员</td>
+                    <td>{$sys_num.admin|default=0}</td>
+                </tr>
+                <tr>
+                    <td>黑名单</td>
+                    <td>{$sys_num.blacklist|default=0}</td>
+                </tr>
+                <tr>
+                    <td>文化馆</td>
+                    <td>{$sys_num.wenhuaguan|default=0}</td>
+                </tr>
+                <tr>
+                    <td rowspan="{:count($infos)}">场馆数据</td>
+                    <volist name="infos" id="vo" offset="0" length="1">
+                        <td>{$vo.name}</td>
+                        <td>{$vo.num}</td>
+                    </volist>
+                </tr>
+                <volist name="infos" id="vo" offset="1">
+                    <tr>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.num}</td>
+                    </tr>
+                </volist>
+            </table>
+        </div>
+
+        <div class="col-md-9 col-xs-12" style="height:450px;">
+            <div class="nodata">
+                <img src="__TMPL__/public/assets/images/nodata.png" alt="">
+                <p>暂无数据</p>
+            </div>
+            <div id="main" style="width: 100%;height:100%;">
+            </div>
+        </div>
+    </div>
+    <!--<div  id="echarts1" style="width:900px;height:800px;margin: 0 auto;"></div>-->
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+
+    var venues = {$venues};
+    var areas_id = {$areas_id};
+
+    $('#area_id').change(function () {
+        var area_id = $(this).val();
+        bulidVenueOptions(area_id);
+    });
+
+    if (areas_id != 0) {
+        $('#area_id').val(areas_id);
+    }
+
+    function bulidVenueOptions(area_id) {
+        $.ajax({
+            url:'/admin/article/area_venues',
+            data:{area_id:area_id},
+            dataType:'json',
+            type:'post',
+            success:function(res){
+                if(res.status == 1){
+                    var html = "<option value='0'>请选择场馆</option>";
+                    for(var i in res.data){
+                        var venue = res.data[i];
+                        html += "<option value=" + venue['id'] + ">" + venue['name'] + "</option>";
+                    }
+                    $('#venue_id').html(html);
+                }
+            }
+        });
+    }
+
+
+    var dataAxis = {$dataAxis};
+    var data = {$counts};
+    var yMax = {$masCount};
+    var dataShadow = [];
+    var lens = 0;
+
+    for (var i = 0; i < data.length; i++) {
+        dataShadow.push(yMax)
+        lens = lens + data[i];
+    }
+
+    if (lens == 0) {
+        // $('.nodata').show();
+    } else {
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        option = {
+            title: {
+                text: '场馆数据柱状图',
+                left: 'center'
+                // subtext: '投票柱状图'
+            },
+            xAxis: {
+                data: dataAxis,
+                axisLabel: {
+                    inside: true,
+                    textStyle: {
+                        color: '#000'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                z: 10
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            dataZoom: [
+                {
+                    type: 'inside'
+                }
+            ],
+            series: [
+                { // For shadow
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {color: 'rgba(0,0,0,0.05)'}
+                    },
+                    barGap: '-100%',
+                    barCategoryGap: '40%',
+                    data: dataShadow,
+                    animation: false
+                },
+                {
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83bff6'},
+                                    {offset: 0.5, color: '#188df0'},
+                                    {offset: 1, color: '#188df0'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#2378f7'},
+                                    {offset: 0.7, color: '#2378f7'},
+                                    {offset: 1, color: '#83bff6'}
+                                ]
+                            )
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        var zoomSize = 6;
+        myChart.on('click', function (params) {
+            console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+            myChart.dispatchAction({
+                type: 'dataZoom',
+                startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+            });
+        });
+    }
+
+
+</script>
+</body>
+</html>

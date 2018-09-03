@@ -1,0 +1,130 @@
+<include file="public/header" />
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/dist/css/swiper.min.css">
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/volunteer.css'>
+<title></title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="main-left f-left">
+                <!-- <div class="swiper-container">
+                    <div class="swiper-wrapper" id="banner">
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div> -->
+                <div class="layui-carousel" id="banner">
+                    <div carousel-item class="carousel-item" id="carousel">
+                    </div>
+                </div>
+                <div class="reports clearfix">
+                    <div class="f-left">活动报道</div>
+                    <a href="/portal/volunteer/reports" class="f-right">+更多</a>
+                </div>
+                <ul class="list" id="reports">
+                </ul>
+                <div class="reports clearfix recruite">
+                    <div class="f-left">活动招募</div>
+                    <a href="/portal/volunteer/recruite" class="f-right">+更多</a>
+                </div>
+                <ul class="activelist" id="recurit">
+                </ul>
+                <div class="demeanour">
+                    <h3><span style="display: block;">风采展示</span>
+                    <span style="width: 36px;height: 2px;background: #1C2438;display:block;margin:7px auto 0;"></span>
+                    </h3>
+                    <div class="swiper">
+                        <div class="swiper-container1">
+                            <div class="swiper-wrapper" id="elegant">
+                            </div>
+                        </div>
+                        <div class="swiper-button-next swiper-button-black"></div>
+                        <div class="swiper-button-prev swiper-button-black"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-right f-right">
+                <div class="volunteer" style="position: relative;">
+                    <div style="background-image: url(__TMPL__/public/assets/whgcms/images/volunteer/1.png);width: 320px;height: 180px;background-repeat: no-repeat;background-size: cover;background-position: top center;"></div>
+                    <div style="width: 320px;height: 180px;background-color: RGBA(47,52,59,.5);position: absolute;top:0;left:0;">
+                        <div style="color: #FEFEFF;font-size: 24px;margin:54px auto 34px; text-align: center;">已有<span class="count"></span>名志愿者</div>
+                        <div style="width: 125px;height: 30px;border:1px solid #FFFFFF;color: #FEFEFF;line-height: 30px;text-align: center;margin:0 auto;cursor: pointer;font-size: 14px;border-radius: 15px;" id="reg">注册成为志愿者</div>
+                    </div>
+                </div>
+                <div class="volunteers">
+                    <h3>志愿者TOP10排行</h3>
+                    <div style="width: 72px;height: 1px;background-color: #1C2438;margin:9px auto;"></div>
+                    <ol id="active">
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src="__TMPL__/public/assets/whgcms/lib/swiper/dist/js/swiper.min.js"></script>
+    <script src='__TMPL__/public/assets/whgcms/js/volunteer.js'></script>
+    <!-- banner -->
+    <script type="text/x-handlebars-template" id="banner-template">
+        {{#each this}}
+        <div><a href="{{buildSecondUrl url}}"><img src="{{img}}" alt=""></a></div>
+        {{/each}}
+    </script>
+    <!-- 活动报道 -->
+    <script type="text/x-handlebars-template" id="reports-template">
+        {{#each this}}
+        <li>
+            <a href="{{buildSecondUrl '/portal/volunteer/reportsread?id=' id}}">
+                <div class="list-content ellipsis">
+                    <span class="layui-badge-dot layui-bg-cyan f-left"></span> <span id="hover">{{post_title}}</span>
+                </div>
+                <div class="list-time">
+                    <span>{{name}}</span><span>{{published_time}}</span>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!-- 活动招募 -->
+    <script type="text/x-handlebars-template" id="recurit-template">
+        {{#each this}}
+        <li class="clearfix">
+            <a href="{{buildSecondUrl '/portal/volunteer/recruiteread?id=' id}}">
+                <div class="f-left thumbnail bg100" style="background-image: url({{thumb}})"></div>
+                <div class="f-right introduce">
+                    <h3 class="ellipsis">{{title}}</h3>
+                    <div>
+                        <span style="display: inline-block; color: #A0A4AA;font-size: 14px;" class="f-left">活动时间：{{start_time}} ~ {{end_time}}</span>
+                        <button class="layui-btn f-right activity-active button">报名</button>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!-- 风采展示 -->
+    <script type="text/x-handlebars-template" id="elegant-template">
+        {{#each this}}
+        <div class="swiper-slide">
+            <a href="{{buildSecondUrl '/portal/volunteer/elegant?id=' id}}">
+                <img src=" {{imgs}} " alt=" ">
+                <h3>志愿者{{user_realname}}风采展示</h3></a></div>
+        {{/each}}
+    </script>
+    <!-- 志愿者活跃度 -->
+    <script type="text/x-handlebars-template" id="active-template">
+        {{#each this}}
+        <li class="clearfix ">
+            <a href="{{buildSecondUrl '/portal/volunteer/elegant?id=' id}}">
+                <span  style="display: inline-block;" class="f-left paiming"></span>
+                <img src="{{avatar}}" alt="" class="f-left">
+                <span style="display: inline-block;width:144px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;" class="f-left ">{{realname}}</span>
+                <div class="f-right "><span>{{score}}</span>分</div>
+            </a>
+            <div style="width:300px;height:1px;background-color:RGBA(125,133,144,.5); " class="line "></div>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

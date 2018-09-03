@@ -1,0 +1,436 @@
+<!--头部信息-->
+<include file="public/header" />
+<title></title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/activityread.css'>
+<style>
+
+.time span:first-child {
+    float: left;
+    width: 42px;
+    display: inline-block;
+    text-align: left;
+}
+.main .banner{
+        width: 1120px;
+        height: 630px;
+        margin: 0 auto;
+    }
+.main .banner>img{
+    width: 100%;
+    height: 100%;
+}
+.main{
+    padding-top: 0px;
+}
+.main .btn{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+   .main .btn span{
+       display: inline-block;
+       width: 160px;
+       height: 58px;
+       background: #3259C6;
+       border-radius: 40px;
+       margin-right: 20px;
+       text-align: center;
+       line-height: 58px;
+       color: #fff;
+       font-size: 20px;
+       cursor: pointer;
+   }
+    .main-content{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .huodongCon .title{
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 40px;
+    }
+.huodongCon ul li{
+    float: left;
+    width: 22.5%;
+}
+.huodongCon ul li:last-child{
+    height: 116px;
+}
+    .huodongCon ul li span{
+        display: block;
+        text-align: center;
+        line-height: 24px;
+    }
+.huodongCon ul li span:first-child{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+    .worksCon .title{
+        padding: 10px 0;
+        border-bottom: 2px solid #000;
+    }
+.worksCon .paixu span{
+    font-size: 12px;
+    padding:0 10px;
+    border-right: 1px solid #000;
+    cursor: pointer;
+}
+.worksCon .paixu span:first-child{
+    font-size: 16px;
+    border-right: none;
+    cursor:none ;
+}
+.worksCon .paixu span:last-child{
+    padding: 0;
+    padding-left: 10px;
+    border-right: none;
+}
+.worksCon .paixu span:not(:first-child).active{
+    font-weight: bold;
+}
+    .worksCon ul li{
+        width: 290px;
+        height: 286px;
+        margin-right: 13px;
+        background: #fff;
+        margin-top: 20px;
+    }
+.worksCon ul li:nth-child(4n){
+    margin-right: 0px;
+}
+.worksCon ul li .thumb{
+    width: 100%;
+    height: 165px;
+}
+.worksCon ul li h3{
+    /*width: 261px;*/
+    height: 18px;
+    line-height: 18px;
+    margin: 17px 10px 14px;
+    color: #1C2438;
+    font-size: 16px;
+    overflow: hidden;
+}
+.worksCon ul li .photo{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.worksCon ul li .nick{
+    font-size: 14px;
+    color: #A0A4AA;
+}
+.worksData img {
+    width: 15px;
+    margin-right: 5px;
+}
+.worksData{
+    padding: 5px 10px 30px;
+}
+.worksData span{
+    margin-right: 10px;
+    font-size: 14px;
+    color: #A0A4AA;
+}
+    .huojiangCon .jianjie h4{
+        margin: 50px 0 24px 0;
+    }
+.huojiangCon .jianjie p{
+    font-size: 14px;
+    color: #2F343B;
+}
+</style>
+</head>
+
+<body>
+    <!--导航信息-->
+    <include file="public/nav" />
+    <div class="main clearfix background">
+        <div class="main-content" id="main-content">
+        </div>
+    </div>
+    <!-- 底部信息-->
+    <include file="public/footer" />
+
+    <script type="text/x-handlebars-template" id="activity-template">
+        <div class="banner">
+            <img src="{{thumb}}" alt="">
+        </div>
+        <div class="btn">
+            <span class="huodongBtn">活动首页</span>
+            {{#if is_collecting}}
+            <span class="worksBtn">参赛作品</span>
+            {{/if}}
+            {{#if is_publish}}
+            <span class="huojiangBtn">获奖公布</span>
+            {{/if}}
+            {{#compare collect_start_time collect_end_time}}
+            <span class="canjiaBtn"><a href="/portal/product_collect/collect?id={{id}}" style="color: #fff">我要参加</a></span>
+            {{/compare}}
+        </div>
+        <div class="con">
+            <div class="huodongCon">
+                <h3 class="title">活动阶段</h3>
+                <ul class="clearfix">
+                    <li>
+                        <span>预告</span>
+                        <span>{{format_preview_start_time}}</span>
+                        <span>/</span>
+                        <span>{{format_preview_end_time}}</span>
+                    </li>
+
+                    <li>
+                        <span>征集</span>
+                        <span>{{format_collect_start_time}}</span>
+                        <span>/</span>
+                        <span>{{format_collect_end_time}}</span>
+                    </li>
+                    <li>
+                        <span>评选</span>
+                        <span>{{format_choose_start_time}}</span>
+                        <span>/</span>
+                        <span>{{format_choose_end_time}}</span>
+                    </li>
+                    <li>
+                        <span>公示</span>
+                        <span>{{format_publish_time}}</span>
+                    </li>
+                </ul>
+                <h3 class="title">活动内容</h3>
+                <div class="content" style="line-height: 2rem">
+                    {{{content}}}
+                </div>
+            </div>
+            <div class="worksCon canyuzuopin" style="display: none;">
+
+
+            </div>
+            <div class="worksCon huojiangCon" style="display: none;"></div>
+        </div>
+    </script>
+  <!--  参赛作品模板-->
+    <script type="text/x-handlebars-template" id="activity-zuopin">
+        <div class="title clearfix">
+            <h4 class="f-left">全部作品{{total_count}}</h4>
+            <div class="paixu f-right">
+                <span>排序</span>
+                {{#order_compare order 'created_at'}}
+                <span class="time active order">时间</span>
+                {{else}}
+                <span class="time order">时间</span>
+                {{/order_compare}}
+                {{#order_compare order 'page_view'}}
+                <span class="liulan active order">浏览</span>
+                {{else}}
+                <span class="liulan order">浏览</span>
+                {{/order_compare}}
+                {{#order_compare order 'comments_count'}}
+                <span class="pinglun active order">评论</span>
+                {{else}}
+                <span class="pinglun order">评论</span>
+                {{/order_compare}}
+            </div>
+        </div>
+            {{#if list}}
+            <ul class="list clearfix">
+                    {{#each list}}
+                        <li class="f-left">
+                            <a href="{{buildSecondUrl '/portal/product_collect/details?id=' id}}">
+                                <img class="thumb" src="{{this.thumb}}" alt="">
+                                <h3>{{this.name}}</h3>
+                                <div class="worksData">
+                                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/liulan.png" alt="" class="f-left">
+                                    <span class="f-left">{{this.page_view}}</span>
+                                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/pinglun.png" alt="" class="f-left">
+                                    <span class="f-left">{{this.comments_count}}</span>
+                                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/dianzan.png" alt="" class="f-left">
+                                    <span class="f-left">{{this.production_collect}}</span>
+                                </div>
+                                <div class="clearfix" style="padding: 0 10px;">
+                                    <div class="f-left">
+                                        {{#if has_avatar}}
+                                        <img class="photo" src="{{avatar}}" alt="">
+                                        {{else}}
+                                        <img class="photo" src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="">
+                                        {{/if}}
+                                        <span class="nick">{{this.user_nickname}}</span>
+                                    </div>
+                                    <div class="f-right" style="font-size: 14px;color: #A0A4AA;">{{format_careated_at}}</div>
+                                </div>
+                            </a>
+                        </li>
+                    {{/each}}
+            </ul>
+            {{else}}
+            <ul class="list clearfix">
+                    <li style="text-align: center;width: 100%;height:auto;margin-top: 50px;">暂无数据</li>
+            </ul>
+            {{/if}}
+    </script>
+  <!--  获奖作品模板-->
+    <script type="text/x-handlebars-template" id="activity-award-zuopin">
+        <div class="jianjie" style="line-height: 1.5rem">
+            <h4>获奖公布</h4>
+            <p >{{{award_publicity}}}</p>
+        </div>
+        {{#each award_production}}
+        <div class="list">
+            <h2 style="font-size: 20px;color: #2F343B;margin: 50px 0 20px 0;">{{avard_name}}</h2>
+            <ul class="list clearfix">
+                {{#each avard_production_list}}
+                <li class="f-left">
+                    <a href="{{buildSecondUrl '/portal/product_collect/details?id=' id}}">
+                        <img class="thumb" src="{{thumb}}" alt="">
+                        <h3>{{name}}</h3>
+                        <div class="worksData">
+                            <img src="__TMPL__/public/assets/whgcms/images/product_collect/liulan.png" alt="" class="f-left">
+                            <span class="f-left">{{page_view}}</span>
+                            <img src="__TMPL__/public/assets/whgcms/images/product_collect/pinglun.png" alt="" class="f-left">
+                            <span class="f-left">{{comments_count}}</span>
+                            <img src="__TMPL__/public/assets/whgcms/images/product_collect/dianzan.png" alt="" class="f-left">
+                            <span class="f-left">{{production_like}}</span>
+                        </div>
+                        <div class="clearfix" style="padding: 0 10px;">
+                            <div class="f-left">
+                                {{#if has_avatar}}
+                                <img class="photo" src="{{avatar}}" alt="">
+                                {{else}}
+                                <img class="photo" src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="">
+                                {{/if}}
+                                <span class="nick">{{user_nickname}}</span>
+                            </div>
+                            <div class="f-right" style="font-size: 14px;color: #A0A4AA;">{{format_created_at}}</div>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/each}}
+    </script>
+
+    <script>
+        //排序当前状态
+        $('.worksCon .paixu span:not(:first-child)').click(function(){
+            $('.worksCon .paixu span:not(:first-child)').removeClass('active');
+            $(this).addClass('active');
+        })
+
+        //获取活动详情
+        var activity_id = {$Request.get.id};
+        var order='created_at';
+
+    $(function() {
+        //导航选中
+        selectNav(16);
+        activity_detail(activity_id);
+    })
+
+    //活动详情
+    function activity_detail(activity_id) {
+        request({
+            url: '/api/Productcollect/read',
+            type: 'post',
+            dataType: 'json',
+            data: { 'id': activity_id ,order:order},
+            async: false,
+            success: function(result) {
+                if (result.status == 1) {
+
+                    Handlebars.registerHelper("compare", function(start_time, end_time, options) {
+                        var timestamp = Date.parse(new Date()) / 1000;
+                        if (timestamp >= start_time && timestamp <= end_time) {
+                            return options.fn(this);
+                        } else {
+                            return options.inverse(this);
+                        }
+                    });
+
+                    var template = Handlebars.compile($("#activity-template").html());
+                    $("#main-content").html(template(result.data));
+                    //更改背景色
+                    $(".background").css( "background-color",result.data.background);
+
+                    //点击按钮显示对应的内容
+                    $('.btn>span').click(function(){
+                        $('.con>div').hide();
+                        var that = $(this).index();
+                        $('.con>div').each(function(j){
+                            if(that==j){
+                                if(that==1){
+                                    canyu_zuopin(activity_id);
+                                }else if(that==2){
+                                    award_zuopin(activity_id)
+                                }
+                                $('.con>div').eq(j).show();
+                            }
+                        })
+                    })
+                }
+            }
+        }, false);
+    }
+
+    //参与作品
+    function canyu_zuopin(activity_id) {
+        $.ajax({
+            url: '/api/Productcollect/attend_productions',
+            type: 'post',
+            dataType: 'json',
+            data: { 'id': activity_id,'order':order},
+            async: false,
+            success: function(result) {
+                if (result.status == 1) {
+
+                    Handlebars.registerHelper("order_compare", function(order,order1, options) {
+                        if(order == order1){
+                            return options.fn(this);
+                        }else{
+                            return options.inverse(this);
+                        }
+                    });
+
+                    var template = Handlebars.compile($("#activity-zuopin").html());
+                    $(".canyuzuopin").html(template(result.data));
+
+                    //参与作品排序
+                    $("span.order").click(function () {
+                         var index=$(this).index();
+                        if(index ==2){
+                            order='page_view';
+                        }else if(index ==3){
+                            order='comments_count';
+                        }else{
+                            order='created_at';
+                        }
+                        $("span.order").removeClass('active');
+                        $(this).addClass('active');
+                        canyu_zuopin(activity_id);
+                    })
+
+                }
+            }
+        });
+    }
+    //获奖作品
+    function award_zuopin(activity_id) {
+        request({
+            url: '/api/Productcollect/publish_award',
+            type: 'post',
+            dataType: 'json',
+            data: { 'id': activity_id },
+            async: false,
+            success: function(result) {
+                if (result.status == 1) {
+                    var template = Handlebars.compile($("#activity-award-zuopin").html());
+                    $(".huojiangCon").html(template(result.data));
+                }
+            }
+        }, false);
+    }
+
+    </script>
+</body>
+
+</html>

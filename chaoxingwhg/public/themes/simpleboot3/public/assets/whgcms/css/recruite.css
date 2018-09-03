@@ -1,0 +1,66 @@
+.main {
+    max-width: 1920px;
+    min-width: 1200px;
+    height: auto;
+    padding-top: 40px;
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 650px;
+    margin: 0 auto;
+}
+
+.list {
+    width: 790px;
+    padding: 6px 20px 0 20px;
+    background: #fff;
+}
+
+.list li {
+    padding: 14px 19px 14px 0;
+    border-bottom: 1px solid rgba(125, 133, 144, .5);
+}
+
+.list li:last-child {
+    border-bottom: 0;
+}
+
+.list li img {
+    width: 240px;
+    height: 135px;
+    margin-right: 19px;
+}
+
+.list li .list-time {
+    width: 512px;
+}
+
+
+.list li .list-time h3 {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 17px;
+    font-size: 18px;
+}
+
+.list li .list-time span {
+    display: inline-block;
+    font-size: 14px;
+    color: #A0A4AA;
+}
+
+.list li .list-time span:first-child {
+    margin-right: 32px;
+}
+
+.layui-btn {
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 14PX;
+    font-size: 14px;
+    color: #fff;
+    padding: 0;
+}

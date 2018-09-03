@@ -1,0 +1,46 @@
+<include file="public@header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('production_collect/comments_list')}">所有评论</a></li>
+        <li class="active"><a>评论回复</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('production_collect/reply_comments_replyDo')}">
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">作品标题<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-link_name" value="{$array.title}"  readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_content" class="col-sm-2 control-label">评论人<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-link_content"  value="{$array.user_nickname}"  readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_reply_content" class="col-sm-2 control-label">评论<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <textarea style="width: 480px;" name="comment">{$array.comment}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_reply_content" class="col-sm-2 control-label">我的回复<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <textarea name="content" style="width: 480px;"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id1" value="{$array.id}">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="{:url('production_collect/comments_list')}">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

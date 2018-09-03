@@ -1,0 +1,94 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('AdminVenue/index')}">所有文化馆</a></li>
+        <li><a href="{:url('AdminVenue/add')}">添加文化馆</a></li>
+    </ul>
+    <form method="post" class="js-ajax-form margin-top-20" action="{:url('AdminVenue/listOrder')}">
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit">{:lang('SORT')}</button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminVenue/toggle',array('display'=>1))}" data-subcheck="true">启用
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminVenue/toggle',array('hide'=>1))}" data-subcheck="true">禁用
+            </button>
+
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminVenue/toggle',array('del'=>1))}" data-subcheck="true">删除
+            </button>
+
+
+        </div>
+        <php>$status=array("1"=>lang('DISPLAY'),"0"=>lang('HIDDEN'));</php>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">{:lang('SORT')}</th>
+                <th width="50">ID</th>
+                <th>名称</th>
+                <th>场馆类型</th>
+                <th>所属区域</th>
+                <th width="120">开放时间</th>
+                <th width="120">发布时间</th>
+                <th width="50">{:lang('STATUS')}</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="venue" item="vo">
+                <tr>
+                    <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}"></td>
+                    <td><input name='list_orders[{$vo.id}]' class="input input-order mr5" type='text' size='3'
+                               value='{$vo.list_order}'></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.vtname}</td>
+                    <td>{$vo.parsePath}</td>
+                    <td>{$vo.open_time}</td>
+                    <td>{:date('Y-m-d',$vo.publish_time)}</td>
+                    <td><?php if($vo['status']==1){echo '启用';}else{echo '禁用';}?></td>
+                    <td>
+                        <a href="{:url('AdminVenue/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('AdminVenue/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">
+                            {:lang('DELETE')}
+                        </a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">{:lang('SORT')}</th>
+                <th width="50">ID</th>
+                <th>名称</th>
+                <th>场馆类型</th>
+                <th>所属区域</th>
+                <th width="120">开放时间</th>
+                <th width="120">发布时间</th>
+                <th width="50">{:lang('STATUS')}</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit">{:lang('SORT')}</button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminVenue/toggle',array('display'=>1))}" data-subcheck="true">启用
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminVenue/toggle',array('hide'=>1))}" data-subcheck="true">禁用
+            </button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

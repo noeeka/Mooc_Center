@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>消息通知</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/mytidingsinfo.css?v={$version_list.wx_mytidingsinfo_css}">
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">消息通知</h3>
+</div>
+<section style="margin-top: 0.43rem;" class="tidings">
+    <ul class="mui-table-view" id="tidingsinfo">
+        <li class="mui-table-view-cell mui-media reply my">
+            <h3>我的评论</h3>
+            <img class="mui-media-object mui-pull-left photo" src="__TMPL__/public/assets/whgcms/wx/images/myphoto.png">
+            <div class="mui-media-body replyContent">
+                <h5 class="first"></h5>
+                <p></p>
+            </div>
+        </li>
+        <li class="mui-table-view-cell mui-media reply admin">
+            <h3>管理员回复</h3>
+            <div class="mui-media-body replyContent">
+                <h5></h5>
+                <p></p>
+            </div>
+            <a href="#" class="more">查看原文</a>
+        </li>
+    </ul>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/mytidingsinfo.js?v={$version_list.wx_mytidingsinfo_js}'></script>
+
+</body>
+</html>

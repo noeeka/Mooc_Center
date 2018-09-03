@@ -1,0 +1,165 @@
+.header {
+    width: 100%;
+    height: 1.6rem;
+    background: url("../../images/home-header.png") no-repeat;
+    background-size: 100%;
+    /*padding-top: 0.2rem;*/
+    padding-top: 0.05rem;
+}
+
+.search{
+    display:block;
+    /* -webkit-box-flex: 8; */
+    /* -ms-flex: 8; */
+    flex:8;
+    width:80%;
+    margin:0 auto;
+    height:0.24rem;
+    line-height:0.24rem;
+    font-size:0.1rem;
+    color:#ffffff;
+    border-radius:0.03rem;
+    border:1px solid #e5e5e5;
+    background:rgba(0,0, 0, 0.3);
+    /* position: absolute; */
+    text-align:left;
+    padding-left:0.1rem;
+    position:relative;
+}
+a.search:hover {
+    color: #ffffff;
+}
+
+.home-searchIcon {
+    width: 0.14rem;
+    height: 0.14rem;
+    background: url("../../images/search.png") no-repeat;
+    background-repeat: round;
+    position: absolute;
+    right: 0.05rem !important;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.mui-icon-new:before,
+.mui-icon-resource:before,
+.mui-icon-panorama:before,
+.mui-icon-production:before,
+.mui-icon-muke:before,
+.mui-icon-huodong:before {
+    content: '';
+    display: inline-block;
+    /*width: 0.4rem;
+    height: 0.4rem;*/
+    width: 0.38rem;
+    height: 0.38rem;
+}
+
+.mui-icon-new:before {
+    background: url("../images/new.png");
+    background-repeat: round;
+}
+
+.mui-icon-resource:before {
+    background: url("../images/resource.png");
+    background-repeat: round;
+}
+
+.mui-icon-panorama:before {
+    background: url("../images/panorama.png");
+    background-repeat: round;
+}
+
+.mui-icon-production:before {
+    background: url("../images/productionAppreciate.png");
+    background-repeat: round;
+}
+
+.mui-icon-muke:before {
+    background: url("../images/mukeicon.png");
+    background-repeat: round;
+}
+
+.mui-icon-huodong:before {
+    background: url("../images/huodong.png");
+    background-repeat: round;
+}
+
+.mui-grid-view.mui-grid-9 {
+    background-color: #ffffff;
+    border: none;
+}
+
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+    border: none;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+    color: #303030;
+}
+
+.title {
+    margin-top: 0.08rem;
+    margin-bottom: 0.08rem;
+    overflow: hidden;
+}
+
+.title h1 {
+    font-size: 0.15rem;
+    color: #303030;
+    float: left;
+    margin-left: 0.1rem;
+    font-weight: normal;
+}
+
+.time {
+    color: #898B8F;
+}
+
+.more {
+    float: right;
+    margin-right: 0.1rem;
+    line-height: 0.15rem;
+    height: 0.15rem;
+    font-size: 0.12rem;
+    color: #303030;
+    margin-top: 0.05rem;
+}
+
+.more span {
+    /*font-size: 0.12rem;*/
+    /*color:#303030;*/
+    /*margin-top: 0;*/
+}
+
+.more img {
+    width: 0.025rem;
+    height: 0.08rem;
+    /*vertical-align: middle;*/
+    /*margin-top: 0.05rem;*/
+}
+
+.mui-card {
+    border-radius: 0.08rem;
+    box-shadow: none;
+}
+
+.mui-card-content-inner p {
+    text-align: left;
+}
+
+.mui-card-content-inner {
+    padding: 0.1rem;
+}
+
+.home {
+    margin-bottom: 50px;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+    font-size: 0.12rem;
+}
+
+.news .mui-table-view {
+    /*margin-bottom: 50px;*/
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>修改联系人</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/myaccset-personalinfo.css?v={$version_list.wx_mycollect_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/myaccset-password.css?v={$version_list.wx_password_css}">
+    <style>
+        .addBtn {
+            font-size: 0.14rem;
+            position: absolute;
+            top: 50%;
+            right: 0.15rem;
+            transform: translate(0,-50%);
+        }
+        .mui-input-row input{
+            font-size: 0.15rem;
+        }
+        .mui-btn-primary{
+            background-color: #B93421;
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">修改联系人</h3>
+    <span class="addBtn">完成</span>
+</div>
+<section style="margin-top: 0.43rem;">
+    <div>
+        <h3 style="padding: 0 15px;font-size: 0.15rem;color:#141414;line-height: 0.4rem;">基本信息</h3>
+        <div style="height: 0.09rem;background: #EEEEEE;"></div>
+    </div>
+    <div class="resetPassword">
+        <form class="mui-input-group" id="resetForm">
+            <input type="hidden" name="id" value="">
+            <div class="mui-input-row">
+                <label>姓      名</label>
+                <input type="text" name="name" placeholder="请输入真实姓名">
+            </div>
+            <div class="mui-input-row">
+                <label>类      型</label>
+                <input type="hidden" name="type">
+                <span id="type"  data-id="1" style="display: inline-block; width: 64%;line-height: 60px;font-size: 0.15rem;">成人</span>
+            </div>
+            <div class="mui-input-row guarder" style="display: none;">
+                <label>监护人</label>
+                <input type="text" name="guardian" placeholder="请填写监护人姓名">
+            </div>
+            <div class="mui-input-row">
+                <label>联系电话</label>
+                <input type="text" name="mobile" placeholder="请准确填写手机号码">
+            </div>
+            <div class="mui-input-row">
+                <label>身份证号</label>
+                <input type="text" name="id_card" placeholder="请准确完整填写">
+            </div>
+        </form>
+        <div class="mui-button-row" style="text-align:left;margin: 0.2rem 0 0 0.15rem;">
+            <p style="font-size: 0.12rem;color: #727070;">提示：未满十八周岁请填写“未成年人”类型</p>
+        </div>
+        <div class="mui-button-row">
+            <button type="button" class="passport close-btn mui-btn mui-btn-primary removeBtn">删除联系人</button>
+        </div>
+    </div>
+</section>
+
+
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}'></script>
+<!--<script src='__TMPL__/public/assets/whgcms/wx/js/myaccset-password.js?v={$version_list.wx_password_js}'></script>-->
+<script>
+    var nameEl = document.getElementById('type');//选择性别
+
+    var data1 = [
+        {
+            text: '成年',
+            value: 1
+        }, {
+            text: '未成年人',
+            value: 2
+        }
+    ];
+    var picker = new Picker({
+        data: [data1],
+        selectedIndex: [1, 2]
+        // title: '选择性别'
+    });
+    picker.on('picker.select', function (selectedVal, selectedIndex) {
+        nameEl.innerText = data1[selectedIndex[0]].text;
+        if(data1[selectedIndex[0]].text == '未成年人'){
+            $('.guarder').show();
+        }else{
+            $('.guarder').hide();
+        }
+    })
+    picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+        // console.log(selectedVal);
+        // console.log(selectedIndex);
+        $("input[name='type']").val(selectedVal)
+    });
+
+    nameEl.addEventListener('click', function () {
+        picker.show();
+    });
+    $('body').on('click','.picker-mask',function(){
+        picker.hide();
+    })
+
+    $(function () {
+        var id = getUrl('id')
+        if (id == "null" || id == 0) {
+            alert("获取信息失败");
+            return;
+        }
+        getContacts(id);
+    });
+
+
+
+    function getContacts(id){
+        request({
+            url: '/api/contacts/contactsinfo',
+            type: 'post',
+            dataType: 'json',
+            data :{'id':id},
+            async: false,
+            success: function (res) {
+                if (res.status == 1) {
+                    var data = res.data;
+                    $("input[name='name']").val(data['name'])
+                    $("input[name='type']").val(data['type'])
+                    $("input[name='guardian']").val(data['guardian'])
+                    $("input[name='mobile']").val(data['mobile'])
+                    $("input[name='id_card']").val(data['id_card'])
+                    $("input[name='id']").val(data['id'])
+
+                    if (data['type'] == 2) {
+                        $('#type').text("未成年人")
+                        $('#type').attr("data-id", 2)
+                        $('.guarder').show();
+                    }
+                }
+            },
+            error: function (res) {
+            }
+        }, true);
+    }
+
+    $('.addBtn').on('click' , function () {
+        var data = $("#resetForm").serialize();
+        request({
+            url: '/api/contacts/modifycontacts',
+            type: 'post',
+            dataType: 'json',
+            data : data,
+            async: false,
+            success: function (res) {
+                if(res.status == 0) {
+                    alert(res.msg);
+                }
+                if (res.status == 1) {
+                    layer.open({
+                        title: [
+                            '提示',
+                            'font-size:0.21rem'
+                        ],
+                        yes: function (index) {
+                            window.location.href = "/wx2/my/contacts";
+                            layer.close(index);
+                        },
+                        no:function(){
+                            window.location.href = "/wx2/my/contacts";
+                            layer.closeAll();
+                        },
+                        content:'修改联系人成功',
+                        btn: ['确认','取消'],
+                        style: 'font-size:0.18rem;border-radius:0.18rem;height:23%'
+                    });
+                }
+            }, error: function (res) {
+                alert(res);
+            }
+        }, true);
+    })
+
+    $('.removeBtn').on('click' , function () {
+        var data = $("#resetForm").serialize();
+        request({
+            url: '/api/contacts/delcontacts',
+            type: 'post',
+            dataType: 'json',
+            data : data,
+            async: false,
+            success: function (res) {
+                if(res.status == 0) {
+                    alert(res.msg);
+                }
+                if (res.status == 1) {
+                    layer.open({
+                        title: [
+                            '提示',
+                            'font-size:0.21rem'
+                        ],
+                        yes: function (index) {
+                            window.location.href = "/wx2/my/contacts";
+                            layer.close(index);
+                        },
+                        no:function(){
+                            window.location.href = "/wx2/my/contacts";
+                            layer.closeAll();
+                        },
+                        content:'删除联系人成功',
+                        btn: ['确认','取消'],
+                        style: 'font-size:0.18rem;border-radius:0.18rem;height:23%'
+                    });
+                }
+            }, error: function (res) {
+                alert(res);
+            }
+        }, true);
+    })
+
+</script>
+</body>
+</html>

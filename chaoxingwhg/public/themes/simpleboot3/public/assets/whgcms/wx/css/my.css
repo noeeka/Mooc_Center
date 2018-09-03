@@ -1,0 +1,88 @@
+/*底部*/
+.mui-bar{
+    /*background: #ffffff;*/
+}
+/*用户信息*/
+.user-info{
+    width: 100%;
+    height: 2.2rem;
+    background: #FFFFFF;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+.userInfoContent{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.userInfoContent .Photo{
+    width: 0.85rem;
+    height: 0.85rem;
+    display:block;
+    margin: 0 auto 0.1rem auto;
+}
+/*用户操作部分*/
+.user-handle{
+    /*margin-top: 0.15rem;*/
+}
+.userInfoContent .loginRegister{
+    font-size: 0.16rem;
+    color: #282828;
+    font-weight: normal;
+}
+.user-handle .mui-table-view:before,
+.user-handle .mui-table-view:after{
+    height: 0px;
+}
+.user-handle  .mui-table-view-cell:after{
+    /*background: #F0F2F6;*/
+}
+.mui-table-view-cell > a:not(.mui-btn){
+    color: #282828;
+    font-size: 0.17rem;
+    line-height: 0.2rem;
+}
+.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{
+    font-size: 0.22rem;
+}
+.mui-table-view-cell:after{
+    right: 15px;
+}
+.user-handle .mui-table-view-cell{
+    padding: 13px 15px;
+    padding-left: 0.33rem;
+    position: relative;
+}
+.user-handle .mui-table-view-cell img{
+    width: 0.2rem;
+    position: absolute;
+    top: 50%;
+    left: 0.05rem;
+    transform: translate(0 , -50%);
+}
+.mui-table-view-cell:last-child:after{
+    height: 1px;
+}
+.webuploader-pick{
+    display: none;
+}
+#photo>div:last-child{
+    left:0!important;
+    top:0!important;
+    width:112px!important;
+    height:112px!important;
+}
+#photo{
+    background-size:cover;
+    background-position: center;
+ }
+.mui-table-view-cell > a:not(.mui-btn){
+    /*height: 52px;*/
+}
+
+.user-handle .mui-table-view-cell > a:not(.mui-btn){
+    padding-left: 40px;
+}

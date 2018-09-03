@@ -1,0 +1,134 @@
+body {
+    background-color: #f5f6f8;
+}
+
+
+.main {
+    max-width: 1920px;
+    min-width: 1200px;
+    height: auto;
+    padding-top: 52px;
+    /*background-image: url(../images/orderread/bg.png);
+    background-position: top center;
+    background-size: 100% 1006px;
+    background-repeat: no-repeat;*/
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+/* *******************详情内容****************** */
+
+.details {
+    width: 830px;
+    background-color: #fff;
+    padding-bottom: 29px;
+}
+.details .title {
+   margin-bottom: 14px;
+    width: 100%;
+    color: #1C2438;
+    font-size: 24px;
+    text-align: left;
+    line-height: 34px;
+}
+
+
+/*.details .number {
+    margin-bottom: 28px;
+}
+*/
+.details .number li {
+    /*float: left;*/
+    font-size: 14px;
+    color: #000000;
+}
+
+.details p {
+    color: #1C2438;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: left;
+    text-indent: 2em;
+}
+.time {
+    font-size: 14px;
+    color: #1C2438;
+    margin-top: 11px;
+    line-height: 26px;
+}
+.time img{
+    float: left;
+    margin-right: 12px;
+    margin-top: 4px;
+}
+
+.layui-btn {
+    width: 110px;
+    height: 28px;
+    /*background-color: #3259C6;*/
+    border-radius: 19px;
+    padding: 0;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height:28px;
+}
+
+.layui-layer-title {
+    display: none;
+}
+
+form {
+    width: 335px;
+    padding: 36px 80px 0;
+}
+
+
+
+
+
+
+
+/*.layui-form-item input {
+    width: 226px;
+    height: 24px;
+}
+*/
+
+.layui-form-label {
+    color: #000000;
+    font-size: 16px;
+    width: 85px;
+    padding: 2px 12px;
+}
+
+.layui-form-select .layui-input{
+    width: 225px;
+    height: 24px;
+}
+
+.layui-input, .layui-textarea{
+    width: 225px;
+    height: 24px;
+}
+
+/*.layui-form-label {
+    color: #000000;
+    font-size: 18px;
+    width: 85px;
+    padding: 0;
+    margin-left: 80px;
+}
+.layui-input-block {
+    margin-left: 95px;
+}
+
+.layui-form-select .layui-edge {
+    right: 118px;
+}*/
+.layui-form-select dl dd.layui-this{
+    background-color: #3259C6;
+}

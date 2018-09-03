@@ -1,0 +1,263 @@
+/* 主要内容 */
+
+.main {
+    max-width: 1920px;
+    min-width: 1200px;
+    height: auto;
+    padding-top: 40px;
+    /*background-image: url(../images/bg.png);
+    background-position: top center;
+    background-size: 100% 1006px;
+    background-repeat: no-repeat;*/
+}
+.main-content {
+    width: 1200px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+.main-left {
+    font-family: SourceHanSansCN-Regular;
+}
+
+.main-right {
+    font-family: SourceHanSansCN-Regular;
+}
+
+
+.search1 {
+    position: relative;
+    height: 40px;
+    border: 1px solid #DCDCDC;
+    background-color: #DCDCDC;
+    margin-bottom: 30px;
+    font-family: SourceHanSansCN-Light;
+}
+
+.main-nav {
+    height: 40px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFF;
+}
+
+.main-nav span,
+.main-nav li {
+    float: left;
+    padding: 0 10px;
+    line-height: 20px;
+    margin-right: 10px;
+    line-height: 40px;
+    color: #424242;
+}
+
+.main-nav ul {
+    margin-top: 10px;
+}
+
+.main-nav li {
+    color: #919191;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.main-nav .active1 {
+    color: #FFF;
+    background-color: #2F343B;
+    border-radius: 20px;
+}
+
+.search1 input {
+    position: absolute;
+    top: 0;
+    left: 1%;
+    bottom: 0;
+    margin: auto;
+    width: 80%;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    background-color: #DCDCDC;
+    color: #8E8C89;
+}
+
+.search1 img {
+    width: 20px;
+    /*margin-top: -4px;*/
+    position: absolute;
+    top: 50%;
+    left: -14px;
+    transform: translate(0,-50%);
+}
+
+.search1 span {
+    line-height: 40px;
+    font-size: 16px;
+    color: #494949;
+    margin-left: 15px;
+}
+
+#search1 {
+    position: absolute;
+    top: 0;
+    left: 89%;
+    width: 100px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.main-title {
+
+    font-size: 14px;
+    color: #494949;
+    border: 1px solid #DCDCDC;
+    background-color: #DCDCDC;
+    width: 99%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.tab li {
+    font-size: 18px;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    background-color: #F1B73A;
+    cursor: pointer;
+}
+
+#Hot a {
+    width: 100%;
+}
+
+.tab-content img {
+    width: 100%;
+    height: 130px;
+}
+
+.tab-content .hot {
+    font-size: 20px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #454141;
+    border-bottom: 1px solid #F1B73A;
+}
+
+.tab-content a {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+.tab-content a h3 {
+    font-family: SourceHanSansCN-Normal;
+    font-size: 16px;
+    color: #484747;
+    line-height: 30px;
+    margin-top: 10px;
+    overflow: hidden;
+    height: 30px;
+}
+
+.tab-content a p {
+    font-family: SourceHanSansCN-Normal;
+    font-size: 14px;
+    color: #868585;
+    line-height: 20px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.tab .active {
+    background-color: #2775B9;
+}
+
+.hide {
+    display: none;
+}
+
+.main-list li {
+    margin-bottom: 14px;
+    border-bottom: 1px solid #DCDCDC;
+    width: 100%;
+}
+.main-list li:last-child{
+    border:0;
+    margin-bottom: 0;
+}
+.main-list a {
+    display: inline-block;
+    font-family: SourceHanSansCN-Regular;
+}
+
+.main-list img {
+    width: 195px;
+    float: left;
+}
+
+.main-list .list-right {
+    width: 512px;
+    padding: 44px 19px 30px;
+    float: right;
+}
+
+.main-list .list-right img {
+    width: 14px;
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.main-list .list-right .classification {
+    margin-left: 30px;
+    line-height: 21px;
+}
+
+.main-list .list-content .list-right {
+    width: 95%;
+    padding: 10px;
+}
+
+.main-list h3 {
+    height: 21px;
+    margin: 0 0 17px;
+    color: #1C2438;
+    font-size: 16px;
+    /* line-height: 18px; */
+    /* overflow: hidden; */
+}
+
+.main-list p {
+    /*width: 669px;*/
+        height: 38px;
+    margin: 0 0 14px;
+    color: #A0A4AA;
+    font-size: 12px;
+    line-height: 19px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.main-list .noimg {
+    width: 780px;
+}
+
+.main-list ul span {
+    height: 21px;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 12px;
+    color: #A0A4AA;
+    line-height: 19px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet"
+          href="__TMPL__/public/assets/whgcms/wx2/css/myfeedback.css?v={$version_list.wx_myfeedback_css}">
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">意见反馈</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px; overflow: hidden;">
+    <div class="feedbackContent">
+        <form class="mui-input-group" id="feedbackForm">
+            <div class="adviceText">
+                <textarea id="textarea" rows="5" placeholder="您有什么意见或建议，快来告诉我吧！" name="content"></textarea>
+            </div>
+            <div class="mui-input-row adviceName">
+                <!--<label>姓名</label>-->
+                <input name="name" type="text" placeholder="请输入您的姓名">
+            </div>
+            <div class="mui-input-row adviceTel">
+                <!--<label>联系电话</label>-->
+                <input name="qq" type="text" placeholder="QQ">
+            </div>
+            <!-- <div class="mui-input-row sexContent  clearfix">
+                <label>性别</label>
+                <div class="mui-radio sex f-left"style="margin-right: 50px">
+                    <input name="sex" type="radio" value="0">男
+                </div>
+                <div class="mui-radio sex f-left">
+                    <input name="sex" type="radio" value="1">女
+                </div>
+            </div> -->
+
+            <div class="mui-input-row adviceTel">
+                <!--<label>联系电话</label>-->
+                <input name="mobile" type="text" placeholder="请输入联系电话,必填">
+            </div>
+        </form>
+    </div>
+    <div class="mui-button-row">
+        <button type="button" class="passport close-btn feedback mui-btn mui-btn-primary">确认</button>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/date/datePicker.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx2/js/myfeedback.js?v={$version_list.wx_myfeedback_js}'></script>
+</body>
+</html>

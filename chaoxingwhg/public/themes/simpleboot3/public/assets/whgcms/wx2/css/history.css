@@ -1,0 +1,41 @@
+/* **************列表**************** */
+
+.listtop {
+    padding: 0.1rem 0.17rem;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.listtop img {
+    width: 0.18rem;
+    height: 0.18rem;
+    margin-right: 0.15rem;
+}
+
+.listtop .child1 {
+    font-size: 0.14rem;
+    color: #141414;
+}
+
+.listtop .child2 {
+    font-size: 0.13rem;
+    color: #57585A;
+}
+
+.listbottom {
+    padding: 0.1rem 0.17rem;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.listbottom span {
+    display: inline-block;
+    margin-left: 0.08rem;
+}
+
+.listbottom li {
+    width: 3.36rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.14rem;
+    color: #141414;
+    line-height: 0.25rem;
+}

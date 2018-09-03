@@ -1,0 +1,64 @@
+<include file="public/header">
+
+    <link rel='stylesheet' type='text/css'
+          href="__TMPL__/public/assets/whgcms/wx/css/venueinfo.css?v={$version_list.wx_venueinfo_css}">
+    </head>
+
+    <body>
+    <div class="returnHeader">
+        <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+        <h3 class="mui-col-xs-12 mui-text-center">预约详情</h3>
+    </div>
+    <div class="figure" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/1.png);">
+        <div class="introduce">
+            <script type="text/x-handlebars-template" id="introduce">
+                    <h3>{{name}}</h3>
+                    <div>
+                        <span>{{venue_name}}</span>
+                    </div>
+            </script>
+        </div>
+    </div>
+    <div class="detail clearfix">
+        <script type="text/x-handlebars-template" id="detail">
+            <ul >
+                <li>容纳人数：<span>{{max_people}}</span>人</li>
+                <li>开放时间：<span>{{open_start_time_am}}:00~{{open_end_time_pm}}:00</span></li>
+                <li>联系电话：<span>{{tel}}</span></li>
+                <li>场馆地点：<span>{{full_address}}</span></li>
+            </ul>
+            <button class="f-right yuyuebtn">立即预约</button>
+        </script>
+    </div>
+    <div class="introduction">
+        <script type="text/x-handlebars-template" id="introduction">
+            <h3>场馆简介</h3>
+            <p>{{abstract}}</p>
+        </script>
+    </div>
+    <div class="details">
+        <script type="text/x-handlebars-template" id="details">
+            <h3>场馆详情</h3>
+            <ul>
+                <li>面积:<span>{{area}}</span>平方米</li>
+                <li>座位:<span>{{seat}}</span></li>
+                <li>音响:<span>{{audio}}</span></li>
+            </ul>
+        </script>
+    </div>
+    <script>
+        var id = {$Think.get.id};
+    </script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib//layer_mobile/layer.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/js/venueinfo.js?v={$version_list.wx_venueinfo_js}"></script>
+
+    </body>
+
+    </html>

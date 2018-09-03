@@ -1,0 +1,125 @@
+/*预约日期*/
+.yuyueDate{
+    width: 100%;
+}
+.yuyueDate .title{
+    height: 0.35rem;
+    background: #eeeeee;
+    text-align: center;
+    font-size: 0.14rem;
+    line-height: 0.35rem;
+}
+.yuyueDate .datelist li{
+    /*width: 0.535rem;*/
+    width: 14.285%;
+    height: 0.55rem;
+    border-right:1px solid #DCDCDC;
+    border-bottom:1px solid #DCDCDC;
+    float: left;
+    position: relative;
+}
+.yuyueDate .datelist li:nth-of-type(7),
+.yuyueDate .datelist li:nth-of-type(14),
+.yuyueDate .datelist li:nth-of-type(21),
+.yuyueDate .datelist li:nth-of-type(28){
+    border-right:none;
+}
+
+.yuyueDate .datelist li p {
+    font-size: 0.11rem;
+    color: #838383;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.yuyueDate .datelist li p.day{
+    margin-top: 0.02rem;
+    font-size: 0.15rem;
+}
+.yuyueDate .datelist li p.week{
+    margin-top: -0.02rem;
+}
+.yuyueDate .datelist li .dian{
+    display: block;
+    width: 0.06rem;
+    height: 0.06rem;
+    border-radius: 50%;
+    background: #eb6877;
+    position: absolute;
+    bottom: 0.04rem;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+.yuyueDate .datelist li.active{
+    background: #eb6877;
+}
+.yuyueDate .datelist li.active p{
+    color: #ffffff;
+}
+.zhuyi{
+    font-size: 0.12rem;
+    color: #454444;
+    margin: 0.14rem 0.15rem 0.3rem 0.1rem;
+}
+/*预约时间段*/
+.yuyueTime h3{
+    font-size: 0.16rem;
+    padding: 0 0 0.14rem 0.14rem;
+    font-weight: bold;
+    border-bottom: 1px solid #DCDCDC;
+}
+.times{
+    margin-top: 0.21rem;
+    /*border-bottom: 1px solid #DCDCDC;*/
+    padding-bottom: 0.24rem;
+}
+.times p{
+    font-size: 0.14rem;
+    color: #454444;
+    width: 15%;
+    padding-left: 0.14rem;
+    /*margin-left: 0.14rem;*/
+    /*margin-right: 0.14rem;*/
+}
+
+.times ul{
+    width: 85%;
+    height: 0.6rem;
+    display: inline;
+    white-space: nowrap;
+    overflow-x: scroll;
+    float: left;
+    overflow-y: hidden;
+}
+.times ul::-webkit-scrollbar {
+    display: none;
+}
+.times ul li{
+    font-size: 0.14rem;
+    color: #454444;
+    /*float: left;*/
+    display: inline-block;
+    margin-right: 0.1rem;
+}
+.times ul li span{
+    margin-left: 0.1rem;
+}
+.times ul li{
+    position: relative;
+}
+.pmtime{
+    margin-top: 0;
+}
+.yuyuebtn{
+    width: 0.55rem;
+    height: 0.26rem;
+    font-size: 0.12rem;
+    border-radius: 0.5rem;
+    background: #EB6877;
+    text-align: center;
+    line-height: 0.26rem;
+    color: #fff;
+    position: absolute;
+    top: 0.28rem;
+    left: 0.25rem;
+}

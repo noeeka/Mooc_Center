@@ -1,0 +1,88 @@
+<include file="public/header"/>
+<title>{$title}</title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/information.css?v={$version_list.wx_information_css}'/>
+</head>
+<body>
+<!--<include file="public/nav"/>-->
+<input type="hidden" name="id" value="{$id}">
+<section>
+    <div class="classification">
+        <ul class="navigation">
+            <li>分类:</li>
+        </ul>
+        <!--  <ul class="screenTj">
+            <li>排序:</li>
+            <li class="active">默认</li>
+            <li>最新发布</li>
+            <li>人气最高</li>
+        </ul> -->
+    </div>
+    <div  class='test1' style="margin-top: 0.18rem;margin-bottom: 50px;">
+        <div class="infContent">
+        </div>
+    </div>
+</section>
+<include file="public/footer"/>
+<script src="__TMPL__/public/assets/whgcms/wx/js/information.js?v={$version_list.wx_information_js}"></script>
+<script type="text/template" id="navigation-item">
+    <li data-id="{{id}}">{{name}}</li>
+</script>
+<script type="text/template" id="infContent-item1">
+    {{#each list}}
+    <li class="mui-table-view-cell mui-media">
+        <a href="/wx/category/read/?id={{id}}">
+            <div class="mui-media-body">
+                <h3>{{title}}</h3>
+                {{#if is_top}}
+                    <span class="zhiding">置顶</span>
+                    {{#if venue_name}}
+                    <span class="source">{{venue_name}}</span>
+                    {{/if}}
+                    <span class="time"> {{date time}}</span>
+                {{else}}
+                    <span class="source" style="margin-left: 0">{{venue_name}}</span>
+                    <span class="time"> {{date time}}</span>
+                {{/if}}
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script type="text/template" id="infContent-item2">
+    {{#each list}}
+    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+        <a href="/wx/category/read/?id={{id}}">
+            <img class="mui-media-object" src="{{thumb}}">
+            <div class="mui-media-body" style="height: 0.2rem;line-height: 0.2rem;">
+                {{#if is_top}}
+                    <span class="zhiding">置顶</span>
+                    <span class="source"> {{title}}</span>
+                {{else}}
+                    <span class="source" style="margin-left: 0">{{title}}</span>
+                {{/if}}
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script type="text/template" id="infContent-item3">
+    {{#each list}}
+    <li class="clearfix">
+        <a href="/wx/category/read/?id={{id}}" class="clearfix">
+            <div class="f-left">
+                <h3>{{title}}</h3>
+                <div style="margin-top:0.12rem;">
+                    {{#if is_top}}
+                        <span class="zhiding">置顶</span>
+                        <span class="source"> {{venue_name}}</span>
+                    {{else}}
+                    <span class="source" style="margin-left: 0">{{venue_name}}</span>
+                    {{/if}}
+                </div>
+            </div>
+            <img src="{{thumb}}" alt="" class="f-right thumbnail">
+        </a>
+    </li>
+    {{/each}}
+</script>
+</body>

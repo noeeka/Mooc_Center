@@ -1,0 +1,292 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:;">所有信息</a></li>
+        <li>
+            <a class="thumbnail-preview2" href="javascript:uploadMultiFile('资源上传','#videofiles' , 'file');">
+                添加资源</a>
+        </li>
+    </ul>
+    <form class="well form-inline margin-top-20" method="post" action="{:url('asset/index')}">
+        格式:
+        <select class="form-control" name="suffix" id="suffix" style="width: 140px;">
+            <option value='0'>全部</option>
+            <option value='jpg'>jpg</option>
+            <option value='txt'>txt</option>
+            <option value='pdf'>pdf</option>
+            <option value='doc'>doc</option>
+            <option value='docx'>docx</option>
+            <option value='xls'>xls</option>
+            <option value='xlsx'>xlsx</option>
+            <option value='xls'>xls</option>
+            <option value='ppt'>ppt</option>
+            <option value='pptx'>pptx</option>
+            <option value='zip'>zip</option>
+            <option value='rar'>rar</option>
+            <option value='mp4'>mp4</option>
+            <option value='mp3'>mp3</option>
+            <option value='wma'>wma</option>
+            <option value='wav'>wav</option>
+            <option value='jpg'>jpg</option>
+            <option value='jpeg'>jpeg</option>
+            <option value='png'>png</option>
+            <option value='gif'>gif</option>
+            <option value='bmp4'>bmp4</option>
+        </select> &nbsp;&nbsp;
+        资源类型:
+        <select name="assetType" id="assetType" class="form-control">
+            <option value="0">全部</option>
+            <option value="1">系统资源</option>
+            <option value="2">文章资源</option>
+        </select>
+        <script>
+            $('#assetType').val({$assetType});
+
+            $('#suffix').val("{$suffix}");
+        </script>
+
+        时间:
+        <input type="text" class="form-control js-bootstrap-datetime" name="start_time"
+               value="{$start_time|default=''}"
+               style="width: 140px;" autocomplete="off">-
+        <input type="text" class="form-control js-bootstrap-datetime" name="end_time"
+               value="{$end_time|default=''}"
+               style="width: 140px;" autocomplete="off"> &nbsp; &nbsp;
+        关键字:
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{$keyword|default=''}" placeholder="请输入关键字...">
+        <input type="submit" class="btn btn-primary" value="搜索"/>
+        <a class="btn btn-danger" href="{:url('asset/index')}">清空</a>
+    </form>
+    <form class="js-ajax-form" action="" method="post">
+
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="15">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+
+                <th width="50">文件名</th>
+                <th width="100">文件大小</th>
+                <th width="50">文件格式</th>
+                <th width="300">创建时间</th>
+                <!--<th width="65">文件路径</th>-->
+                <th width="150">预览</th>
+                <th width="150">操作</th>
+            </tr>
+            </thead>
+            <foreach name="assets" item="vo">
+                <tr>
+                    <td>
+                        <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}" title="ID:{$vo.id}">
+                    </td>
+                    <td> {$vo.filename} </td>
+
+                    <td>
+                        <if condition=" $vo['file_size'] /1024/1024 elt 1 ">
+                            <b>{:number_format($vo.file_size/1024,2) }kB</b>
+                            <else />
+                            <b>{:number_format($vo.file_size/1024/1024,2)}MB</b>
+                        </if>
+                    </td>
+                    <td>{$vo.suffix}</td>
+
+                    <td> {:date('Y-m-d H:i',$vo['create_time'])}</td>
+                    <!--<td>{$vo.file_path}</td>-->
+                    <td>
+                        <if condition="!empty($vo['file_store_key']) AND $vo['suffix'] == 'jpg' OR $vo['suffix'] == 'png' OR $vo['suffix'] == 'jpeg'">
+                            <a href="javascript:parent.imagePreviewDialog('{$vo.file_url_path.'/'.$vo.file_store_key }');">
+                                <img src="{$vo.file_url_path.'/'.$vo.file_store_key }.jpg?width=150&height=75&mode=fill" width="150" height="75">
+                            </a>
+                            <elseif condition="empty($vo['file_store_key']) AND $vo['suffix'] == 'jpg' OR $vo['suffix'] == 'png' OR $vo['suffix'] == 'jpeg'">
+                                <a href="javascript:parent.imagePreviewDialog('{:cmf_get_image_preview_url($vo.file_path)}');">
+                                    <img src="{:cmf_get_image_preview_url($vo.file_path)}" width="150" height="75">
+                                </a>
+                            </elseif>
+                            <else/>
+                            <a target="_blank" href="{:cmf_get_image_preview_url($vo.file_path)}">资源预览</a>
+                        </if>
+                    </td>
+
+                    <td>
+                        <if condition="!empty($vo['file_store_key']) AND $vo['suffix'] == 'jpg' OR $vo['suffix'] == 'png' OR $vo['suffix'] == 'jpeg'">
+                            <a class="copyUrl" dataurl="{$vo.file_url_path.'/'.$vo.file_store_key}.jpg">复制链接</a>
+                            <else />
+                            <a class="copyUrl" dataurl="{:cmf_get_image_preview_url($vo.file_path)}">复制链接</a>
+                        </if>
+
+                        <a href="{:url('asset/edit',array('id'=>$vo['id']))}" >编辑</a>
+                    </td>
+                </tr>
+            </foreach>
+            <tfoot>
+            <tr>
+                <th width="15">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+
+                <th width="50">文件名</th>
+                <th width="100">文件大小</th>
+                <th width="50">文件格式</th>
+                <th width="300">创建时间</th>
+                <!--<th width="65">文件路径</th>-->
+                <th width="90">预览</th>
+                <th width="150">操作</th>
+            </tr>
+            </tfoot>
+        </table>
+
+        <ul class="pagination">{$page|default=''}</ul>
+    </form>
+    <input type="hidden" name="webSite" value="{$website}">
+
+
+    <div id="index-map" style="height: 700px;width: 980px;display: none">
+
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th>文件名</th>
+                <th>文件路径</th>
+                <th>操作</th>
+
+            </tr>
+            </thead>
+            <tbody id="uploadContent">
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery-zclip/jquery.zclip.js"></script>
+<script>
+
+
+    function reloadPage(win) {
+        win.location.reload();
+    }
+
+    $(function () {
+        setCookie("refersh_time", 0);
+        Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+            //批量复制
+            $('.js-articles-copy').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选信息，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" + ids, {
+                    title: "批量复制",
+                    width: "300px"
+                });
+            });
+            //批量移动
+            $('.js-articles-move').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选信息，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" + ids, {
+                    title: "批量移动",
+                    width: "300px"
+                });
+            });
+        });
+    });
+
+    $('.copyUrl').on('click' , function () {
+
+        var url = $(this).attr('dataUrl');
+        var oInput = document.createElement('input');
+        oInput.value = url;
+        document.body.appendChild(oInput);
+        oInput.select(); // 选择对象
+        document.execCommand("Copy"); // 执行浏览器复制命令
+        oInput.className = 'oInput';
+        oInput.style.display='none';
+        alert('复制成功');
+    });
+
+
+    function uploadMultiFile(dialog_title, container_selector, item_tpl_wrapper_id, filetype, extra_params, app) {
+        filetype = filetype ? filetype : 'file';
+        openUploadDialog(dialog_title, function(dialog, files) {
+            var itemtpl = "";
+            var webSite = $('input[name="webSite"]').val();
+            $.each(files, function(i, item) {
+                console.log(item);
+                itemtpl += "<tr>";
+                itemtpl += "<td>"+ item.name + "</td>";
+                itemtpl += "<td>" + item.weedPath + "</td>";
+                itemtpl += "<td> <span  class='copyUrl' dataUrl = "+ item.weedPath+">复制到剪切板</span> </td>";
+                itemtpl += "</tr>";
+            });
+            layer.open({
+                type:1,
+                content:$('#index-map'),
+                title:'上传成功文件',
+                area:['1000px', '500px'],
+                btn:['确认']
+            });
+
+            $("#uploadContent").html(itemtpl);
+            $('.copyUrl').on('click' , function () {
+
+                var url = $(this).attr('dataUrl');
+                var oInput = document.createElement('input');
+                oInput.value = url;
+                document.body.appendChild(oInput);
+                oInput.select(); // 选择对象
+                document.execCommand("Copy"); // 执行浏览器复制命令
+                oInput.className = 'oInput';
+                oInput.style.display='none';
+                alert('复制成功');
+            });
+        }, extra_params, 1, filetype, app);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!--头部信息-->
+<include file="public/header"/>
+<title></title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/activityread.css'>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/read.css'>
+<style>
+
+
+    .time span:first-child {
+        float: left;
+        width: 42px;
+        display: inline-block;
+        text-align: left;
+    }
+
+    /*.time span:nth-child(2) {
+        width: 190px;
+        display: inline-block;
+    }*/
+</style>
+</head>
+
+<body>
+<!--导航信息-->
+<include file="public/nav"/>
+<div class="main clearfix">
+    <div class="main-content clearfix">
+        <div style="width: 830px;" class="f-left">
+            <div style="background: #fff;">
+                <div class="details f-left">
+
+                </div>
+
+                <div class="comments hide" style="width: 790px;margin: 0 auto;">
+                    <div style="border-bottom: 1px solid #D9D9D9;" class="clearfix">
+                        <!--<div style="width:1200px;padding:15px 0;text-align: left;color:#2F343A;font-size: 18px;border-bottom:1px solid #D9D9D9;margin-bottom: 24px; ">全部评论</div>-->
+                        <input type="text" name="newContent" placeholder="写点评论…… " style="width: 770px;">
+                        <button class="button expire" id="newBtn">发表评论</button>
+                    </div>
+                    <div class="comment-list">
+                        <ul class="section">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="test1" class="page"></div>
+
+        </div>
+        <div style="width: 320px;" class="f-right">
+            <div>
+                <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">
+                    热门推荐</h3>
+                <ul id="Hot">
+                </ul>
+            </div>
+            <!--<div style="margin-top: 50px;">-->
+            <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+            <!--<ul id="read">-->
+            <!--</ul>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <!-- 底部信息-->
+    <include file="public/footer"/>
+    <script src="__TMPL__/public/assets/whgcms/js/activityread.js"></script>
+    <script type="text/x-handlebars-template" id="activity-template">
+        <div style="width: 790px;margin-bottom: 11px; padding-bottom: 30px;background-color: #fff;" class="clearfix">
+            <div class="title" style="font-size: 24px;">{{name}}</div>
+            <img src="{{thumb}}" alt=" " style="width: 450px;height: 253px; margin-right: 44px;" class="f-left">
+            <div class="f-left" style="width: 296px;">
+                <div class="time"><img src="__TMPL__/public/assets/whgcms/images/activityread/address.png" alt=""><span>地点：</span><span
+                        style="white-space: pre-wrap;">{{address}}</span></div>
+                <div class="time"><img src="__TMPL__/public/assets/whgcms/images/activityread/shijian.png" alt=""><span>活动时间：</span><span>{{open_time}}
+                </span>
+                </div>
+                <div class="time"><img src="__TMPL__/public/assets/whgcms/images/activityread/venue.png" alt=""><span>场馆电话：</span><span>{{tel}}</span></span>
+                </div>
+
+                {{#if has_link}}
+                <a href="{{link}}">
+                    <button class="layui-btn yibaoming">在线访问</button>
+                </a>
+                {{/if}}
+            </div>
+
+        </div>
+        <p>{{{introduction}}}</p>
+        <div style="margin-top: 100px">
+            {{#if dianzan}}
+            <button class="layui-btn dianzan expire" style="margin: auto;display: block;">点赞</button>
+            {{else}}
+            <button class="layui-btn dianzan activity-active" style="margin: auto;display: block">点赞</button>
+            {{/if}}
+        </div>
+
+    </script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each list}}
+        <li style="margin-top: 20px;">
+            <a href="{{buildSecondUrl '/portal/total/read?id=' id}}">
+                <div class="bg100"
+                     style="background-image: url({{thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis"
+                            style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">
+                            {{name}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left"
+                      style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis"
+                      style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script>
+        $(function () {
+            //导航选中
+            selectNav(85);
+            var limit = 15;
+            var uid = 0;
+            request({
+                url: '/api/my/index',
+                type: 'post',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    if (result.status == 1) {
+                        uid = result.data.id;
+                    }
+                }
+            }, true);
+
+            $('.comments input').keyup(function () {
+                var len = $('.comments input').val().length;
+
+                if (parseInt(len) == 0) {
+                    $('.comments button').removeClass('activity-active');
+                    $('.comments button').addClass('expire');
+                } else {
+                    $('.comments button').removeClass('expire');
+                    $('.comments button').addClass('activity-active');
+                }
+
+            });
+
+            //获取活动详情
+            var activity_id = {$Request.get.id
+        }
+            ;
+            activity_detail(activity_id);
+            //活动预约
+
+            $(".dianzan").click(function () {
+                dianzan(activity_id);
+            })
+
+            //活动详情
+            function activity_detail(activity_id) {
+                request({
+                    url: '/api/venue/read',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {'id': activity_id},
+                    async: false,
+                    success: function (result) {
+                        if (result.status == 1) {
+                            $('title').text(result.data.name);
+                            Handlebars.registerHelper("compare", function (start_time, end_time, options) {
+                                var timestamp = Date.parse(new Date()) / 1000;
+
+                                if (timestamp >= start_time && timestamp <= end_time) {
+                                    return options.fn(this);
+                                } else {
+                                    return options.inverse(this);
+                                }
+                            });
+
+                            Handlebars.registerHelper("compare_num", function (apply_people_count, max_num, options) {
+                                if (apply_people_count == max_num) {
+                                    return options.fn(this);
+                                } else {
+                                    return options.inverse(this);
+                                }
+                            });
+                            var template = Handlebars.compile($("#activity-template").html());
+                            $(".details").html(template(result.data));
+                            $('title').html(result.data.title);
+
+                            //场馆评论
+                            if (result.data.comment_status == 1) {
+                                $('.comments').removeClass('hide');
+                                //加载评论
+                                $.ajax({
+                                    url: '/api/venuecomments/index',
+                                    data: {venueid: activity_id, page: 1, len: 15},
+                                    dataType: 'json',
+                                    success: function (res) {
+                                        if (res.status == 1) {
+                                            parseHtml(res);
+                                            layui.use('laypage', function () {
+                                                var laypage = layui.laypage;
+                                                laypage.render({
+                                                    elem: 'test1', //注意，这里的 test1 是 ID，不用加 # 号
+                                                    count: res.data.num, //数据总数，从服务端得到
+                                                    next: '>',
+                                                    limit: limit,
+                                                    jump: function (obj, first) {
+                                                        if (!first) {
+                                                            $.ajax({
+                                                                url: '/api/venuecomments/index',
+                                                                data: {
+                                                                    articleid: activity_id,
+                                                                    page: obj.curr,
+                                                                    len: limit
+                                                                },
+                                                                dataType: 'json',
+                                                                success: function (res) {
+                                                                    parseHtml(res);
+                                                                },
+                                                                error: function () {
+                                                                    console.log('ajax error');
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        }
+                                        if ($('.section li').length == 0) {
+                                            $('.layui-laypage-next').hide();
+                                        }
+                                    },
+                                    error: function (res) {
+                                        console.log('ajax error');
+                                    }
+                                });
+                            }
+
+
+                        }
+                    }
+                }, true);
+
+            }
+
+            //场馆点赞
+            function dianzan(activity_id) {
+                request({
+                    url: '/api/venue/like',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {'id': activity_id},
+                    success: function (result) {
+                        if (result.status == 1) {
+                            if (result.code == '13101') {
+                                $('.dianzan').removeClass('activity-active');
+                                $('.dianzan').addClass('expire');
+                            } else {
+                                $('.dianzan').removeClass('expire');
+                                $('.dianzan').addClass('activity-active');
+                            }
+                        } else {
+                            var regex = /^1000[4-9]$/;
+                            if (regex.test(result.code)) {
+                                getdialog('未登录，请先登录！', '/portal/login/login/');
+                            }
+                        }
+                    }
+                }, true)
+            }
+
+            //发表评论
+            $('#newBtn').click(function () {
+                var content = $('input[name=newContent]').val();
+                comment(content, 0);
+                $('input[name=newContent]').val('');
+                $('#newBtn').removeClass('activity-active');
+                $('#newBtn').addClass('expire');
+            });
+
+            function comment(content, pid) {
+                content = content.trim();
+                request({
+                    url: '/api/venuecomments/comment',
+                    dataType: 'json',
+                    data: {venueid: activity_id, parentid: pid, content: content},
+                    beforeSend: function () {
+                        if (content == '') {
+                            getdialog('请输入内容');
+                            return false;
+                        }
+                    },
+                    success: function (res) {
+                        if (res.status == 1) {
+                            getdialog('您的评论已提交审核，通过后将显示');
+                        } else {
+                            noLogin(res, false);
+                        }
+                    }
+                }, true);
+            }
+
+            function parseHtml(res) {
+                var html = '';
+                if (res.status == 1) {
+                    for (var i in res.data.list) {
+                        var lv1 = res.data.list[i];
+                        var thumb = lv1['avatar'] == '' ? '/themes/simpleboot3/public/assets/whgcms/images/my/avatar1.png' : lv1['avatar_url'];
+                        html += '<li class="clearfix" id="comment-item-' + lv1['id'] + '"><div class="portrait f-left" style="background-image: url(' + thumb + ');"></div><div class="f-left comlist"><ul class="clearfix">';
+                        html += '<li style="color: #1C2438;font-size: 14px;margin-right: 15px;font-weight: bold;">' + lv1['user_nickname'] + '</li>';
+                        html += '<li style="color:#A2A1A1;font-size: 14px;margin-top:1px;margin-right: 15px;">' + getdate(lv1['create_time']) + '</li>';
+                        if (lv1['userid'] == uid) {
+                            html += '<li  class="deleteBtn" data-id="' + lv1['id'] + '"style="background-image: url(/themes/simpleboot3/public/assets/whgcms/images/read/delete.png);width:15px;height: 15px;cursor: pointer;background-size:cover;background-repeat: no-repeat;background-position: top center;"></li></ul>'
+                        } else {
+                            html += '</ul>';
+                        }
+                        html += '<p style="color:#1C2438;margin:18px 0;font-size: 14px;">' + lv1['comment'] + '</p>';
+                        for (var j in lv1.list) {
+                            var lv2 = lv1.list[j];
+                            if (lv2['userid'] == lv1['userid']) {
+                                //自己
+                                html += '<div id="comment-item-' + lv2['id'] + '" style="font-size: 14px;margin:2px 0 14px;"><span style="color:#A0A4AA;margin-right:10px;">' + lv1['user_nickname'] + ':</span>';
+                                html += '<p style="color:#A0A4AA;display: inline-block;margin-right: 15px;font-size:12px;">' + lv2['comment'] + '</p>';
+                                if (lv1['userid'] == uid) {
+                                    html += '<div class="deleteBtn" data-id="' + lv2['id'] + '" style="background-image: url(/themes/simpleboot3/public/assets/whgcms/images/read/delete.png);width:15px;height: 15px;cursor: pointer;background-size:cover;background-repeat: no-repeat;background-position: top center;display: inline-block;"></div>';
+                                }
+                            } else {
+                                //管理员
+                                html += '<div id="comment-item-' + lv2['id'] + '"  style="font-size: 14px;margin:2px 0 14px;"><span style="color:#0059E5;display: inline-block;margin-bottom:10px;margin-right:10px;">管理员:</span>';
+                                html += '<p style="color:#A0A4AA;display: inline-block;margin-right: 15px;line-height: 21px;font-size:12px;">' + lv2['comment'] + '</p>';
+                                if (lv1['userid'] == uid) {
+                                    html += '<div id="reply" data-pid="' + lv1['id'] + '"style="background-image: url(/themes/simpleboot3/public/assets/whgcms/images/read/reply.png);width:13px;height: 13px;cursor: pointer;background-size:cover;background-repeat: no-repeat;background-position: top center;display: inline-block;"></div>';
+                                }
+                            }
+                        }
+                    }
+                }
+                $('.comment-list ul').html(html);
+                if ($('.comment-list .section li').length == 0) {
+                    $('.comments div:first-child').css('border', '0');
+                }
+            }
+
+            $('.comment-list').on('click', '#reply', function () {
+                var replyinput = '<div style="margin-top:10px;display: none" id="replyinput"><input type="text " placeholder="请回复" style="border:1px solid #d9d9d9;width:705px;"><button style="display: block" class="expire">回复</button></div>';
+                if ($(this).hasClass('replyinput_show')) {
+                    $(this).removeClass('replyinput_show');
+                    $("#replyinput").slideUp();
+                } else {
+                    $('#replyinput').remove();
+                    $(this).addClass('replyinput_show');
+                    $(this).after(replyinput);
+                    $("#replyinput").slideDown();
+                    $("#replyinput").attr('data-pid', $(this).data('pid'));
+                }
+
+                $('#replyinput input').keyup(function () {
+                    var len = $('#replyinput input').val().length;
+
+                    if (parseInt(len) == 0) {
+                        $('#replyinput button').removeClass('activity-active');
+                        $('#replyinput button').addClass('expire');
+                    } else {
+                        $('#replyinput button').addClass('activity-active');
+                        $('#replyinput button').removeClass('expire');
+                    }
+
+                });
+            })
+
+            $('.comment-list').on('click', '#replyinput button', function () {
+                var pid = $('#replyinput').data('pid');
+                var content = $('#replyinput input').val();
+                comment(content, pid);
+                $('#replyinput input').val('');
+                $('#replyinput button').removeClass('activity-active');
+                $('#replyinput button').addClass('expire');
+            })
+
+            $('.comment-list').on('click', '.deleteBtn', function () {
+                var id = $(this).data('id');
+                request({
+                    url: '/api/venuecomments/delete',
+                    dataType: 'json',
+                    data: {parentid: id},
+                    success: function (res) {
+                        if (res.status == 1) {
+                            getdialogWithFunc('删除评论成功', function () {
+                                window.location.reload();
+                            });
+                        } else {
+                            getdialog('删除评论失败');
+                        }
+                    },
+                    error: function (res) {
+                        console.log('ajax error');
+                    }
+                }, true);
+            })
+
+            function getdate(time) {
+                var date = new Date();
+                date.setTime(time * 1000);
+                var month = date.getMonth() + 1;
+                month = month > 9 ? month : '0' + month;
+                var day = date.getDate();
+                day = day > 9 ? day : '0' + day;
+                var hour = date.getHours();
+                hour = hour > 9 ? hour : '0' + hour;
+                var minute = date.getMinutes();
+                minute = minute > 9 ? minute : '0' + minute;
+                return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+            }
+
+            function getdialogWithFunc(msg, func) {
+                var href = window.open;
+                layui.use('layer', function () {
+                    layer.open({
+                        title: '提示',
+                        content: msg,
+                        btn: ['确认', '关闭'],
+                        yes: function (index, layero) {
+                            if (func != undefined) {
+                                layer.closeAll();
+                                func();
+                            } else {
+                                layer.closeAll();
+                            }
+                        },
+                        btn2: function (index, layero) {
+                            layer.closeAll();
+                        },
+                        cancel: function () {
+                            return false;
+                        },
+                        btnAlign: 'c',
+                        anim: 1,
+                        shade: 0.3,
+                        scrollbar: false
+                    });
+                });
+            }
+
+
+            hot();
+
+            function hot() {
+                var id = getParam('id');
+                console.log(id)
+                $.ajax({
+                    url: '/api/venue/index',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        area_id: 0,
+                        len: 3,
+                        order: 'publish_time',
+                        page: 1,
+                        venue_type: 0
+                    },
+                    success: function (response) {
+                        if (response.status == 1) {
+                            var hotTpl = $("#hot-template").html();
+                            var hotCmp = Handlebars.compile(hotTpl);
+                            var hotFun = hotCmp(response.data);
+                            $('#Hot').html(hotFun);
+                        }
+                    }
+                })
+            }
+
+            //     hotread();
+            //
+            //     function hotread() {
+            //         var id = getParam('id');
+            //         $.ajax({
+            //             url: '/api/article/index',
+            //             type: 'GET',
+            //             dataType: 'json',
+            //             data: {len: 7, cid:8, sort:'hot'},
+            //             success: function (response) {
+            //                 var res = response.data.list.slice(3);
+            //                 if (response.status == 1) {
+            //                     var readTpl = $("#read-template").html();
+            //                     var readCmp = Handlebars.compile(readTpl);
+            //                     var readFun = readCmp(res);
+            //                     $('#read').html(readFun);
+            //                 }
+            //             }
+            //         })
+            //     }
+            //
+            // })
+
+        });
+    </script>
+</body>
+
+</html>

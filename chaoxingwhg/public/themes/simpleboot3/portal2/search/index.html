@@ -1,0 +1,102 @@
+<include file="public/header" />
+<title>搜索</title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/search.css'>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class=" layui-row">
+        <div class="main clearfix">
+            <div class="main-content">
+                <!-- <div class="search1">
+                    <input type="text" id="searchinput" placeholder="关键字进行搜索" value="">
+                    <div id="search1">
+                        <img src="__TMPL__/public/assets/whgcms/images/search1.png" alt="">
+                        <span>搜索</span>
+                    </div>
+                </div> -->
+                <div class="main-nav">
+                    <span>分类:</span>
+                    <ul>
+                        <li class="active1">全部</li>
+                        <li id="total"></li>
+                    </ul>
+                </div>
+                <div style="width: 1200px;" class="clearfix">
+                    <div class="f-left" style="width: 800px;">
+                        <div style="display: inline-block;text-align: center;width: 100%;margin-top:100px;display: none;" class="no">
+                    <img src="__TMPL__/public/assets/whgcms/images/no.png" alt="">
+                    <span style="font-size: 18px;color: #000000;display: block;margin-top: 16px;">暂无数据</span>
+                </div>
+                        <div class="main-list" id="list">
+                        </div>
+                        <!--<div class="page" id="totalpage">-->
+                        <!--</div>-->
+                        <div id="test1" class="page"></div>
+                    </div>
+                    <div style="width: 320px;" class="f-right">
+                        <div>
+                            <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                            <ul id="Hot">
+                            </ul>
+                        </div>
+                        <div style="margin-top: 50px;">
+                            <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">热门推荐</h3>
+                            <ul id="read">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/search2.js'></script>
+    <script type="text/x-handlebars-template" id="count">
+        <strong style="font-size: 14px;">{{num}}条搜索结果</strong>
+    </script>
+    <script type="text/x-handlebars-template" id="particulars">
+        <ul style="background-color: #fff;width: 790px;padding:20px;padding-bottom: 0; ">
+            {{#each list}}
+            <li>
+                <a href="{{pc_url}}">
+                {{#if thumb}}
+                <img src="{{thumb}}" alt="" style="width:240px;height: 135px;margin-bottom: 12px;">
+                {{/if}}
+                <div class="list-right" id="div1">
+                    <h3 class="ellipsis">{{title}}</h3>
+
+                    <span><img src="__TMPL__/public/assets/whgcms/images/time.png" alt="">{{time}}</span>
+                    <span class="classification">{{source}}</span>
+                </div>
+            </a>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each list}}
+        <li style="margin-top: 20px;">
+            <a href="/portal2/category/read?id={{id}}">
+                <div class="bg100" style="background-image: url({{thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal2/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

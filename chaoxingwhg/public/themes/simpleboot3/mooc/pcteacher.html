@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人中心教师</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="lib/layui/css/layui.css">
+<link rel="stylesheet" href="lib/slick-1.8.1/slick.css">
+<link rel="stylesheet" href="lib/slick-1.8.1/slick-theme.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/pcteacher.css">
+<link rel="stylesheet" href="css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+<header-all></header-all>
+<div class="main">
+    <div class="main-safe layui-form">
+        <div class="pcteacher-content layui-tab">
+        	<div class="teacher-info clearfix">
+                <img class="teacher-img f-left" src="images/lstx.png">
+                <div class="teacher-introduce f-right">
+                    <div class="teacher-name">
+                        <span class="name">孙大圣教师</span>
+                        <span>关注：12</span>
+                        <span>粉丝：12</span>
+                    </div>
+                    <div class="introduce o3">
+                        廖申白，江西省高安县（今高安市）人，汉族。现任北京师范大学哲学与社会学学院教授、博士生导师，同时担任全国伦理学会副会长、中国社
+会科学院应用伦理研究中心副主任、中国社会科学院价值理论研究室研究员、北京大学应用伦理学研究中心学术委员、清华大学道德与宗教研究
+中心研究员。1984至1987年在中国人民大学哲学系攻读伦理学，导师罗国杰教授，1987年毕业，获哲学硕士学位。1987年8月入中国社廖申白，江西省高安县（今高安市）人，汉族。现任北京师范大学哲学与社会学学院教授、博士生导师，同时担任全国伦理学会副会长、中国社 会科学院应用伦理研究中心副主任、中国社会科学院价值理论研究室研究员、北京大学应用伦理学研究中心学术委员、清华大学道德与宗教研究 中心研究员。1984至1987年在中国人民大学哲学系攻读伦理学，导师罗国杰教授，1987年毕业，获哲学硕士学位。1987年8月入中国社
+                    </div>
+                </div>
+            </div>
+            <div class="link-b">
+                <ul class="link-m layui-tab-title">
+                    <li class="layui-this line-li">个人信息</li>
+                    <li>我的课堂</li>
+                </ul>
+            </div>
+            <div class="layui-tab-content">
+            	<!--个人信息-->
+            	<div class="layui-tab-item layui-form layui-show">
+					<div class="form-m">
+                    	<form>
+                            <ul class="form-ul">
+                               <li class="clearfix">
+                                   <p class="ipt-name">姓名：<span>小浣熊干脆面</span></p>
+                                   <label>
+                                       <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                   </label>
+                               </li>
+                               <li class="clearfix radio-b radio-sex-b">
+                                   <p class="ipt-name">
+                                       性别：
+                                       <label style="font-size:16px;">
+                                           <i class="radio-i" style="margin-right:10px;"></i><input type="radio" name="sex" value="0" lay-ignore>男
+                                       </label>
+                                       <label style="font-size:16px;">
+                                           <i class="radio-i" style="margin-right:10px;"></i><input type="radio" name="sex" value="1" lay-ignore>女
+                                       </label>
+                                       <label style="font-size:16px;">
+                                           <i class="radio-i" style="margin-right:10px;"></i><input type="radio" name="sex" value="2" lay-ignore>保密
+                                       </label>
+                                   </p>
+                                   
+                               </li>
+                               <li class="clearfix">
+                                   <p class="ipt-name">职位：<span>南开大学副教授</span></p>
+                                   <label>
+                                       <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                   </label>
+                               </li>
+                               <li class="clearfix">
+                                   <p class="ipt-name">地区：<span>北京</span></p>
+                                   <label>
+                                       <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                   </label>
+                               </li>
+                               <li class="clearfix">
+                                   <p class="ipt-name">邮箱：<span>123456789@qq.com</span></p>
+                                   <label>
+                                       <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                   </label>
+                               </li>
+                               <li class="clearfix">
+                                   <p class="ipt-name">手机号：<span>12345678912</span></p>
+                                   <label>
+                                       <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                   </label>
+                               </li>
+                               <li class="clearfix">
+                                   <p class="ipt-name">手机号：<span>12345678912</span></p>
+                                   <div class="textarea-b">
+                                       <textarea placeholder="请输入内容" class="ipt-border textarea" maxlength="500"></textarea>
+                                       <span class="fontnum">0/500</span>
+                                   </div>
+                               </li>
+                            </ul>
+                            <div class="btn-b">
+                                <button class="btn qd-btn">确定</button>
+                                <button class="btn cz-btn" type="reset">重置</button>
+                            </div>
+                        </form>
+                        <div class="upload-b">
+                            <div class="layui-upload">
+                              <div class="layui-upload-list">
+                                <img class="layui-upload-img" src="images/lstx.png" id="upload-img">
+                                <p id="demoText"></p>
+                              </div>
+                              <span class="upload-btn backgroundcolor" id="upimg">修改头像</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--我的课堂-->
+            	<div class="layui-tab-item layui-tab">
+					<ul class="layui-tab-title class-tab-tit">
+                        <li class="layui-this">课程管理</li>
+                        <li class="kctj">课程统计</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <!--课程管理-->
+                        <div class="layui-tab-item class-gl-b layui-show">
+                        	<a href="#" class="cn-class-btn">新建课程</a>
+                        	<div class="study-tit bordercolor clearfix">
+                            	最近更新
+                                <div class="f-right">
+                                	<span class="show-date"></span>
+                                    <select class="" lay-ignore>
+                                    	<option value="全部">全部</option>
+                                        <option value="最近三天">最近三天</option>
+                                        <option value="最近一周">最近一周</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="study-slick">
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            <p class="tit">《周易》的奥秘</p>
+                                            <p class="date">2018.12.12 到期</p>
+                                            <p>2643人在学</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-b">
+                                        <img src="images/pic/01.jpg">
+                                        <div class="lb-del">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="study-tit bordercolor all-class">全部课程</div>
+                            <table class="class-list" style="margin-bottom:10px;">
+                                <tr class="tr-tit">
+                                    <td>课程</td>
+                                    <td class="tac gxrq-btn" width="130">更新日期<img class="rq" src="images/rq.png"><img class="rqon" src="images/rqon.png"></td>
+                                    <td class="tac" width="280">状态</td>
+                                    <td class="tac" width="200">操作</td>
+                                </tr>
+                            </table>
+                            <table class="class-list all-class-list class-list-m">
+                                <tr>
+                                    <td>
+                                        <img class="f-left" src="images/index2.jpg" width="320">
+                                        <div class="f-left class-info">
+                                            <p class="class-tit">重说中国近代史</p>
+                                            <p>2018.12.09 到期</p>
+                                            <p>更新至：9-2</p>
+                                        </div>
+                                    </td>
+                                    <td class="tac" width="90">2018.08.08</td>
+                                    <td class="tac" width="240">学习中</td>
+                                    <td class="tac" width="160"><span class="edit-btn list-btn">编辑</span><br><br><span class="del-btn list-btn">删除</span></td>
+                                </tr>
+                            </table>
+                            <div class="load-more-b">
+                                <span class="load-more fontcolor class-load-more">加载更多</span>
+                            </div>
+                        </div>
+                        <!--课程统计-->
+                        <div class="layui-tab-item">
+                        	<p class="zl-tit">课程总揽</p>
+                            <ul class="zl-b clearfix">
+                            	<li class="f-left">
+                                	<img src="images/kc.png">
+                                    <p style="color:#669CFE;" class="timer">382</p>
+                                    <p class="zl-name">课程数</p>
+                                </li>
+                                <li class="f-left">
+                                	<img src="images/xs.png">
+                                    <p style="color:#3192E0;" class="timer">1298</p>
+                                    <p class="zl-name">学生数</p>
+                                </li>
+                                <li class="f-left">
+                                	<img src="images/wd.png">
+                                    <p style="color:#EC6D3A;" class="timer">9087</p>
+                                    <p class="zl-name">问答数</p>
+                                </li>
+                                <li class="f-left">
+                                	<img src="images/bj.png">
+                                    <p style="color:#FDA027;" class="timer">6678</p>
+                                    <p class="zl-name">笔记数</p>
+                                </li>
+                                <li class="f-left">
+                                	<img src="images/sc.png">
+                                    <p style="color:#FF7B7C;" class="timer">2017</p>
+                                    <p class="zl-name">收藏数</p>
+                                </li>
+                            </ul>
+                            <div class="tj-fwl-b chart-b">
+                            	<div class="clearfix">
+                                	<p class="chart-tit bordercolor f-left">课程访问量统计</p>
+                                    <div class="f-right">
+                                    	<input type="text" class="layui-input fwl-date" id="test6" placeholder=" - " lay-ignore>
+                                        <select class="fwl-kc" lay-ignore>
+                                        	<option>全部</option>
+                                          <option v-for="(item,index) in fwldata[1]" v-text="item.name"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            	<div id="fwl" style="width:100%; height:400px;"></div>
+                                <div class="clearfix">
+                                	<p class="chart-tit bordercolor f-left">课程学习进度统计</p>
+                                    <div class="f-right">
+                                        <select class="xxjd-kc" lay-ignore>
+                                        	<option>全部</option>
+                                          <option v-for="(item,index) in xxjddata[1]" v-text="item.name"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            	<div id="xxjd" style="width:100%; height:400px;"></div>
+                                <div class="student-charts-b clearfix">
+                                	<div class="xsfb-b f-left">
+                                    	<p class="chart-tit bordercolor">学生分布统计</p>
+                                    	<div id="xsfb" style="width:100%; height:350px;"></div>
+                                    </div>
+                                    <div class="xssx-b f-right">
+                                    	<p class="chart-tit bordercolor">学生属性分析</p>
+                                        <ul class="xb-b">
+                                        	<li style="background:#669CFE;">
+                                            	<p style="font-size: 18px; padding: 35px 0 25px 0; color:#fff;">男</p>
+                                                <span style="color:#fff;" v-text="studentsexboy"></span>
+                                            </li>
+                                            <li style="background:#FF7B7C;">
+                                            	<p style="font-size: 18px; padding: 35px 0 25px 0; color:#fff;">女</p>
+                                                <span style="color:#fff;" v-text="studentsexgirl"></span>
+                                            </li>
+                                            <li style="background:#FDA027;">
+                                            	<p style="font-size: 18px; padding: 35px 0 25px 0; color:#fff;">保密</p>
+                                                <span style="color:#fff;" v-text="studentsexnone"></span>
+                                            </li>
+                                        </ul>
+                                    	<div id="dqrs" style="width:80%; height:175px;"></div>
+                                    </div>
+                                </div>
+                                
+                                <ul class="bl-b clearfix">
+                                	<li class="kchp f-left">
+                                    	<p class="chart-tit bordercolor">课程好评率</p>
+                                        <canvas id="kchp-c" width="100%" height="300" amount="10000" vote="10000" tip="50">您的浏览器不支持canvas标签，建议使用chrome,firefox,ie10+</canvas>
+                                    </li>
+                                    <li class="xsbl f-left">
+                                    	<p class="chart-tit bordercolor">参与讨论的学生比率</p>
+                                        <canvas id="xsbl-c" width="100%" height="300" amount="10000" vote="10000" tip="50">您的浏览器不支持canvas标签，建议使用chrome,firefox,ie10+</canvas>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-all></footer-all>
+</div>
+</body>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="js/store.js"></script>
+<script src="lib/date.js"></script>
+<script src="lib/vue2.js"></script>
+<script src="js/header.js"></script>
+<script src="lib/slick-1.8.1/slick.min.js"></script>
+<script src="lib/layui/layui.all.js"></script>
+<script src="lib/cycle.js"></script>
+<script src="lib/echarts.min.js"></script>
+<script src="js/publice.js"></script>
+<script src="js/pcteacher.js"></script>
+</html>

@@ -1,0 +1,23 @@
+
+
+.sources {
+    margin-top: 0.2rem;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object {
+    height: 0.95rem;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+    font-size: 0.12rem;
+    line-height: 0.12rem;
+    color: #141414;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell {
+    text-align: left;
+}
+
+.sources .mui-table-view:after {
+    height: 0px;
+}

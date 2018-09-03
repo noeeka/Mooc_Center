@@ -1,0 +1,174 @@
+<include file="public/header"/>
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/activityinfo.css?v={$version_list.wx_activityinfo_css}">
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/venueinfo.css?v={$version_list.wx_venueinfo_css}">
+<style>
+    .banner{
+        width: 100%;
+        height: 1.65rem;
+    }
+    .banner .swiper-container{
+        width: 100%;
+        height: 100%;
+    }
+    .banner img{
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-pagination-bullet{
+        width: 0.05rem;
+        height: 0.05rem;
+        background: #fff;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-active{
+        background: #B93421;
+    }
+    .introduction .jianjie {
+        text-indent: 2em;
+        color: #454444;
+        font-size: 0.15rem;
+        line-height: 0.25rem;
+        margin-bottom: 0;
+    }
+    .introduction p{
+        text-indent: 0em;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="returnHeader">
+    <a class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <!--<a href="/wx/activity/index?navid=nav16" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>-->
+    <h3 class="mui-col-xs-12 mui-text-center">活动详情</h3>
+</div>
+
+<div class="banner" style="margin-top: 0.43rem;">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><a href="javascript"><img src="__TMPL__/public/assets/whgcms/wx/images/1.png" alt=""></a></div>
+            <div class="swiper-slide"><a href="javascript"><img src="__TMPL__/public/assets/whgcms/wx/images/1.png" alt=""></a></div>
+            <div class="swiper-slide"><a href="javascript"><img src="__TMPL__/public/assets/whgcms/wx/images/1.png" alt=""></a></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div class="detail">
+    <script type="text/x-handlebars-template" id="detail">
+        <h3 style="font-size:0.18rem;color:#141414;">{{title}}</h3>
+        <ul>
+            {{#if need_baoming}}
+            <li>报名时间：{{format_baoming_start_time}}~{{format_baoming_end_time}}</li>
+            <!--<li>截至时间:<span>{{format_baoming_end_time}}</span></li>-->
+            {{/if}}
+            <li>活动时间：{{format_start_time}}~{{format_end_time}}</li>
+            <li>联系电话：{{tel}}</li>
+            <li>场馆名称：{{venue_name}}</li>
+            {{#if need_baoming}}
+            <li>报名人数：{{cnum}} / {{max_num}}</li>
+            {{/if}}
+        </ul>
+        <!--{{#if need_baoming}}-->
+        <!--{{#test this}}-->
+
+        <!--{{/test}}-->
+        <!--{{/if}}-->
+    </script>
+</div>
+<div style="height:0.09rem;background:#EEEEEE;"></div>
+<div class="introduction">
+    <script type="text/x-handlebars-template" id="introduction">
+        <h3>活动详情</h3>
+        <div>{{{content}}}</div>
+    </script>
+</div>
+<div style="height:0.09rem;background:#EEEEEE;"></div>
+<div  class="address">
+    <h3>地址</h3>
+    <p>安徽省宿州市砀山县友谊路26号文化中心</p>
+</div>
+<div style="height:0.09rem;background:#EEEEEE;"></div>
+<div class="details">
+        <h3>交通方式</h3>
+
+        <div class="traffic">公交26路1231232132131231231</div>
+
+</div>
+<div id="baomingdiv" style="padding: 0.1rem 0;position: fixed;bottom: 0rem;left: 0rem;width: 100%;text-align:  center;background: #fff;">
+    <!--<button class="yuyuebtn zts-bg">报名</button>-->
+
+</div>
+
+<script type="text/x-handlebars-template" id="baoming">
+    {{#if need_baoming}}
+    {{#test this}}
+
+    {{/test}}
+    {{/if}}
+</script>
+
+<!--<a href="#" id="refresh_a" style="display: none">刷新页面</a>-->
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib//layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/activityinfo.js?v={$version_list.wx_activityinfo_js}"></script>
+<script>
+    var id = {$Think.get.id};
+    Handlebars.registerHelper("compare_num",function(apply_people_count,max_num, options){
+        if(apply_people_count == max_num ) {
+            return options.fn(this);
+        } else  {
+            return options.inverse(this);
+        }
+    });
+
+    Handlebars.registerHelper("test", function(attr, options) {
+        var timestamp = Date.parse(new Date()) / 1000;
+
+        // if(attr['need_baoming'] == 1 &&
+        //     attr['baoming'] == 1
+        // )
+        //     return "<button class=\"layui-btn yibaoming\" style=\"background-color: #acacac\">已报名</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            timestamp >= attr['baoming_start_time'] &&
+            timestamp <= attr['baoming_end_time'] &&
+            attr['cnum'] != attr['max_num']
+        )
+            return "<button class=\"yuyuebtn zts-bg baoming\">立刻报名</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            timestamp >= attr['baoming_start_time'] &&
+            timestamp <= attr['baoming_end_time'] &&
+            attr['cnum'] == attr['max_num']
+        )
+            return "<button class=\"yuyuebtn\" style=\"background-color: #acacac\" >已订满</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            attr['baoming_start_time'] >= timestamp &&
+            attr['baoming_end_time'] >= timestamp
+        )
+            return " <button class=\"yuyuebtn\" style=\"background-color: #acacac\">未开始</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            attr['baoming_start_time'] <= timestamp &&
+            attr['baoming_end_time'] <= timestamp
+        )
+            return " <button class=\"yuyuebtn\" style=\"background-color: #acacac\">已过期</button>";
+
+    });
+
+    $('.return').on('click' , function () {
+        window.location.href="/wx2/activity/index"
+    });
+</script>
+</body>
+</html>

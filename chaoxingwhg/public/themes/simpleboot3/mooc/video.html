@@ -1,0 +1,439 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="lib/layui/css/layui.css">
+<link rel="stylesheet" href="lib/video/video-js.min.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/read.css">
+<link rel="stylesheet" href="css/video.css">
+<link rel="stylesheet" href="css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+<header-all></header-all>
+<div>
+    <div class="main-safe">
+        <div class="video-content">
+        	<div class="video-b clearfix">
+            	<div class="ml-b">
+                	<ul>
+                    	<li class="mu-tit o1">第一章</li>
+                        <li class="mu-con"><a class="o1" href="#">第一小节</a></li>
+                        <li class="mu-con"><a class="o1" href="#">第二小节</a></li>
+                    </ul>
+                    <ul>
+                    	<li class="mu-tit">第二章</li>
+                        <li class="mu-con"><a class="o1" href="#">第一小节</a></li>
+                        <li class="mu-con"><a class="o1" href="#">第二小节</a></li>
+                    </ul>
+                </div>
+            	<div class="left-side-b f-left">
+            		<ul class="side-btn-b">
+                    	<li class="zj-btn">
+                        	<img src="images/vzj.png">
+                        	章节
+                        </li>
+                        <li class="wd-btn">
+                        	<img src="images/vwd.png">
+                        	问答
+                        </li>
+                        <li class="bj-btn">
+                        	<img src="images/vbj.png">
+                        	笔记
+                        </li>
+                        <li class="pl-btn">
+                        	<img src="images/vpl.png">
+                        	评价
+                        </li>
+                    </ul>
+            	</div>
+                <div class="video-m">
+                	<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" style="width:100%; height:100%;"
+                          poster="images/index1.jpg" data-setup="{}">
+                        <source src="http://s1.ananas.chaoxing.com/video/15/5e/65/8c3811f55caafc0d53187735cda2e1aa/hd.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="right-side-btn"><i class="layui-icon layui-icon-return"></i></div>
+                <div class="right-side-b">
+                    <div class="close-b">
+                    	<i class="layui-icon layui-icon-close close-ritht-side"></i>
+                    </div>
+                    <div class="teacher-in-b">
+                    	<div class="teacher-in clearfix">
+                        	<img class="teacher-in-img f-left" src="images/index2.jpg">
+                            <div class="teacher-in-m f-left">
+                            	<p class="name-tit">教师姓名</p>
+                                <p class="in-tit">工程师</p>
+                            </div>
+                        </div>
+                        <p class="o3 introduce">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，董事董事董事
+                        </p>
+                        <div>
+                        	<h3 class="bordercolor jskc">讲师课程</h3>
+                            <ul class="kc-list">
+                                <li class="clearfix">
+                                    <img class="f-left" width="100" src="images/index2.jpg">
+                                    <div class="f-left">
+                                        <p class="kc-name o2">课程名称</p>
+                                        <p class="kc-in"><i class="layui-icon layui-icon-user"></i>21000</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="twbj-b tw-b">
+                	<div class="close-b">
+                    	<i class="layui-icon layui-icon-close close-twbj"></i>
+                    </div>
+                    <p class="typename">提问题</p>
+                    <script id="editor_wt" type="text/plain" style="width:100%;height:300px!important; overflow:hidden; overflow-Y:auto; margin-bottom:20px;"></script>
+                    <div class="clearfix">
+                        <span class="edit-sub-btn layui-btn f-right wt-sub-btn">保存</span>
+                    </div>
+                </div>
+                <div class="twbj-b bj-b">
+                	<div class="close-b">
+                    	<i class="layui-icon layui-icon-close close-twbj"></i>
+                    </div>
+                    <p class="typename">写笔记</p>
+                    <script id="editor_bj" type="text/plain" style="width:100%;height:300px!important; overflow:hidden; overflow-Y:auto; margin-bottom:20px;"></script>
+                    <div class="clearfix">
+                        <span class="edit-sub-btn layui-btn f-right bj-sub-btn">保存</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main" style="overflow: hidden;">
+			<div class="main-safe">
+				<div class="main-content clearfix" style="margin-top: 20px;">
+					<div class="f-left">
+						<ul class="tab clearfix bottom-tab">
+							<li class="f-left active1">笔记</li>
+							<li class="f-left">问答</li>
+							<li class="f-left">课程评价</li>
+						</ul>
+						<div class="tab-content notes">
+							<ul class="notes-list">
+								<li class="clearfix">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<div class="f-right">
+										<h3>灰色袈裟</h3>
+										<div class="form">
+											<a href="#" class="all-link-a" style=" color:#9EA7B4; padding-right:30px;">源自：第二章 2.13</a><span>16小时前</span>
+										</div>
+										<p class="o2">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+										<div class="clearfix zan" style="margin-top:30px;">
+											<a style="color:#9EA7B4;" class="f-left">查看全文>></a>
+											<div class="f-right clearfix">
+												<div class="f-left evaluationicon"><img src="images/yuedu.png" alt="" />10</div>
+												<div class="f-right" style="margin-right: 0;margin-left: 35px;"><img src="images/zan1.png" alt="" />23</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="clearfix">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<div class="f-right">
+										<h3>灰色袈裟</h3>
+										<div class="form">
+											<a href="#" class="all-link-a" style=" color:#9EA7B4; padding-right:30px;">源自：第二章 2.13</a><span>16小时前</span>
+										</div>
+										<p class="o2">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+										<div class="clearfix zan" style="margin-top:30px;">
+											<a style="color:#9EA7B4;" class="f-left">查看全文>></a>
+											<div class="f-right clearfix">
+												<div class="f-left evaluationicon"><img src="images/yuedu.png" alt="" />10</div>
+												<div class="f-right" style="margin-right: 0;margin-left: 35px;"><img src="images/zan1.png" alt="" />23</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class="all">
+								<div>
+									<a href="" class="fontcolor">加载更多</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab-content hide qanda">
+							<ul class="tab2 clearfix">
+								<li class="f-left active3">全部</li>
+								<li class="f-left">未解决</li>
+								<li class="f-left">已解决</li>
+								<li class="f-left">精华</li>
+							</ul>
+							<ul class="qanda-list">
+								<li class="clearfix">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<span class="f-left backgroundcolor">未解决</span>
+									<div class="f-right">
+										<p class="o2">“通过AI驱动的变现能力“</p>
+                                        <div class="list-content o2">通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力</div>
+										<div class="clearfix">
+											<div class="button active2 f-left">+我来回答</div>
+											<span class="time f-left">16小时前</span>
+										</div>
+										<div class="info">
+											<span>回答 0</span>
+											<span><a class="all-link-a" href="#" style="color:#9EA7B4;">源自：第二章 2.13 土壤及水资源对文化的影响</a></span>
+										</div>
+									</div>
+								</li>
+								<li class="clearfix">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<span class="f-left layui-btn">已解决</span>
+									<div class="f-right">
+										<p class="o2">“通过A宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+                                        <div class="list-content o2">通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力</div>
+										<div class="clearfix">
+											<div class="button active2 f-left">+我来回答</div>
+											<span class="time f-left">16小时前</span>
+										</div>
+										<div>
+											<ul class="q-list bh-list">
+												<li>
+													<div class="new-q">最新回答／<span class="user">我是柯南我怕谁</span><span class="reply">回复</span></div>
+													<p>就是举个例子，讲讲公式是怎么计算的。干讲公式的组成很难理解。</p>
+												</li>
+                                                <li>
+													<div class="new-q">最新回答／<span class="user">我是柯南我怕谁</span><span class="reply">回复</span></div>
+													<p>就是举个例子，讲讲公式是怎么计算的。干讲公式的组成很难理解。</p>
+												</li>
+                                                <li>
+													<div class="new-q">最新回答／<span class="user">我是柯南我怕谁</span><span class="reply">回复</span></div>
+													<p>就是举个例子，讲讲公式是怎么计算的。干讲公式的组成很难理解。</p>
+												</li>
+											</ul>
+											<div class="slide active4 zksq-btn"><span>展开全部</span><img src="images/slide.png" alt="" /></div>
+										</div>
+
+										<div class="info">
+											<span>回答 0</span>
+											<span><a class="all-link-a" href="#" style="color:#9EA7B4;">源自：第二章 2.13 土壤及水资源对文化的影响</a></span>
+										</div>
+									</div>
+								</li>
+								<li class="clearfix">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<span class="f-left layui-btn">已解决</span>
+									<div class="f-right">
+										<p class="o2">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势表示，“</p>
+										<div class="list-content o2">通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力通过AI驱动的变现能力</div>
+										<!--<div class="list-content"><span>“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，</span><span class="fontcolor" style="cursor: pointer;">【展开】</span></div>-->
+										<div class="clearfix">
+											<div class="button active2 f-left">+我来回答</div>
+											<span class="time f-left">16小时前</span>
+										</div>
+										<div>
+											<ul class="q-list bh-list">
+												<li>
+													<div class="new-q">最新回答／<span class="user">我是柯南我怕谁</span><span class="reply">回复</span></div>
+													<p>就是举个例子，讲讲公式是怎么计算的。干讲公式的组成很难理解。</p>
+												</li>
+												<li>
+													<div class="new-q"><span class="user">我是柯南我怕谁</span><span class="fontcolor2" style="margin: 0 5px;">回复</span><span class="user">我是柯南我怕谁</span><span class="reply">回复</span></div>
+													<p>就是举个例子，讲讲公式是怎么计算的。干讲公式的组成很难理解。</p>
+												</li>
+											</ul>
+											<div class="slide2 active4 zksq-btn"><span>展开全部</span><img src="images/slide.png" alt="" /></div>
+										</div>
+
+										<div class="info">
+											<span>回答 0</span>
+											<span><a class="all-link-a" href="#" style="color:#9EA7B4;">源自：第二章 2.13 土壤及水资源对文化的影响</a></span>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class="all">
+								<div>
+									<a href="" class="fontcolor">加载更多</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab-content hide evaluation">
+							<ul class="evaluation-list">
+								<li class="clearfix pj-li">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<div class="f-right">
+										<div class="clearfix">
+											<h3 class="f-left">灰色袈裟</h3>
+											<div id="evaluation" class="f-right"></div>
+										</div>
+										<p class="o2">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+                                        <div class="slide active4 pjzk"><span>展开全部</span><img src="images/slide.png" alt="" /></div>
+										<div class="clearfix evaluation-zan">
+											<div class="f-left look" style="font-size:12px;">16小时前</div>
+											<div class="f-right"><img src="images/zan1.png" alt="" />23</div>
+										</div>
+									</div>
+								</li>
+								<li class="clearfix pj-li">
+									<a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+									<div class="f-right">
+										<div class="clearfix">
+											<h3 class="f-left">灰色袈裟</h3>
+											<div id="evaluation" class="f-right"></div>
+										</div>
+										<p class="o2">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+                                        <div class="slide active4 pjzk"><span>展开全部</span><img src="images/slide.png" alt="" /></div>
+										<div class="clearfix evaluation-zan">
+											<div class="f-left look" style="font-size:12px;">16小时前</div>
+											<div class="f-right"><img src="images/zan1.png" alt="" />23</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class="all">
+								<div>
+									<a href="" class="fontcolor">加载更多</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="f-right">
+						<div>
+							<dl class="tuijian hover-b">
+								<dt><h3 class="bordercolor">推荐课程</h3></dt>
+								<dd class="clearfix">
+                                	<a href="#" class="clearfix">
+                                        <div class="img-b f-left">
+                                            <img src="images/index1.jpg" alt="" />
+                                        </div>
+                                        <div class="f-right" style="width: 189px;line-height: 30px;">
+                                            <h3 class="title">管健</h3>
+                                            <div>
+                                                <span>包国章等 </span>
+                                            </div>
+                                        </div>
+                                    </a>
+								</dd>
+								<dd class="clearfix">
+                                    <a href="#" class="clearfix">
+                                        <div class="img-b f-left">
+                                            <img src="images/index1.jpg" alt="" />
+                                        </div>
+                                        <div class="f-right" style="width: 189px;line-height: 30px;">
+                                            <h3 class="title">管健</h3>
+                                            <div>
+                                                <span>包国章等 </span>
+                                            </div>
+                                        </div>
+                                    </a>
+								</dd>
+								<dd class="clearfix">
+									<div class="img-b f-left">
+                                    	<img src="images/index1.jpg" alt="" />
+                                    </div>
+									<div class="f-right" style="width: 189px;line-height: 30px;">
+										<h3 class="title">管健</h3>
+										<div>
+											<span>包国章等 </span>
+										</div>
+									</div>
+								</dd>
+                                <dd class="clearfix">
+									<div class="img-b f-left">
+                                    	<img src="images/index1.jpg" alt="" />
+                                    </div>
+									<div class="f-right" style="width: 189px;line-height: 30px;">
+										<h3 class="title">管健</h3>
+										<div>
+											<span>包国章等 </span>
+										</div>
+									</div>
+								</dd>
+                                <dd class="clearfix">
+									<div class="img-b f-left">
+                                    	<img src="images/index1.jpg" alt="" />
+                                    </div>
+									<div class="f-right" style="width: 189px;line-height: 30px;">
+										<h3 class="title">管健</h3>
+										<div>
+											<span>包国章等 </span>
+										</div>
+									</div>
+								</dd>
+							</dl>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="footer">
+            <div class="footer-safe">
+                <div class="footer-content">
+                    <ul class="clearfix">
+                        <li class="f-left">
+                            <a href="">技术支持:超星泛雅Copyright © 1993-2018 超星网 </a>
+                        </li>
+                        <li class="f-left">
+                            <a href="">单位编号:1101081827 </a>
+                        </li>
+                        <li class="f-left">
+                            <a href="">京ICP证:060172号 网络 </a>
+                        </li>
+                        <li class="f-left">
+                            <a href="">视听许可证:0110438号 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="evaluation-reply hide" id="evaluation-reply">
+			<textarea name="" rows="" cols="" placeholder="请输入文字……"></textarea>
+			<em>0/200</em>
+			<div>
+				<span>取消</span>
+				<div class="huifu backgroundcolor">回答</div>
+			</div>
+		</div>
+        <div class="evaluation-reply hide" id="hf-pop">
+			<textarea name="" rows="" cols="" placeholder="请输入文字……"></textarea>
+			<em>0/200</em>
+			<div>
+				<span>取消</span>
+				<div class="huifu backgroundcolor">回复</div>
+			</div>
+		</div>
+        <div class="evaluation-reply hide" id="pl-pop">
+			<textarea name="" rows="" cols="" placeholder="请输入文字……"></textarea>
+			<em>0/200</em>
+			<div class="clearfix">
+            	<div class="f-left">
+                	<div id="rate-pj"></div>
+                </div>
+                <div class="f-right">
+                	<span>取消</span>
+					<div class="huifu pj-btn backgroundcolor" rate="5">评价</div>
+                </div>
+				
+			</div>
+		</div>
+</div>
+</body>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="lib/vue2.js"></script>
+<script src="js/header.js"></script>
+<script src="lib/layui/layui.all.js"></script>
+<script src="lib/ueditor/ueditor.config.js"></script>
+<script src="lib/ueditor/ueditor.all.min.js"></script>
+<script src="lib/ueditor/zh-cn.js"></script>
+<script src="lib/video/video.min.js"></script>
+<script src="js/publice.js"></script>
+<script src="js/video.js"></script>
+</html>

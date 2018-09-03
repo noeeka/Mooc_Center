@@ -1,0 +1,113 @@
+.figure {
+    position: relative;
+    width: 100%;
+    height: 2.08rem;
+    margin-top: 0.43rem;
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.introduce {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.56rem;
+    background-color: RGBA(0, 0, 0, 0.6);
+    z-index: 99;
+}
+
+.introduce h3 {
+    margin: 0.1rem 0.15rem 0rem;
+    font-size: 0.15rem;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.introduce div {
+    margin: 0 0.15rem;
+    margin-bottom: 0.05rem;
+    font-size: 0.13rem;
+    color: #FFFFFF;
+}
+
+.introduce div span:nth-child(1) {
+    display: inline-block;
+    margin-right: 0.15rem;
+}
+
+.detail {
+    position: relative;
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+    font-size: 0.13rem;
+    color: #454444;
+    padding-top: 0.05rem;
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+
+.detail li {
+    /*width: 3.4rem;*/
+    line-height: 0.25rem;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+}
+
+.detail span {
+    display: inline-block;
+    /*margin-left: 0.1rem;*/
+}
+
+
+.introduction {
+    width: 100%;
+    padding: 0.18rem 0.17rem 0.23rem;
+    font-size: 0.13rem;
+    color: #454444;
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+
+.introduction h3 {
+    font-size: 0.16rem;
+    color: #141414;
+    font-weight: bold;
+    margin-bottom: 0.18rem;
+}
+
+.introduction p {
+    /*text-indent: 2em;*/
+    color: #454444;
+    font-size: 0.16rem;
+    line-height: 0.28rem;
+    margin-bottom: 0;
+}
+
+.details h3 {
+    font-size: 0.16rem;
+    color: #141414;
+    font-weight: bold;
+    margin-bottom: 0.18rem;
+}
+
+.details {
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+}
+
+
+
+.details span {
+    display: inline-block;
+    margin-left: 0.1rem;
+}
+button:enabled:active{
+    background-color: #EB6877;
+}

@@ -1,0 +1,49 @@
+/*内容*/
+.collectList.mui-table-view .mui-media-object {
+    width: 1.42rem;
+    height: 0.8rem;
+    max-width: 1.42rem;
+}
+
+.collectList .mui-table-view-cell:after {
+    left: 0px;
+}
+
+.collectList.mui-table-view:before {
+    height: 0px;
+}
+
+.collectList h3 {
+    font-size: 0.14rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.collectList .time, .collectList .laiyuan {
+    font-size: 0.12rem;
+    color: #625F5F;
+    margin-top: 0.03rem;
+}
+
+.collectList .laiyuan {
+    margin-right: 0.1rem;
+}
+
+.mui-table-view-cell > a:not(.mui-btn) {
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}
+.mui-table-view-cell{
+    padding: 0.17rem 0.15rem;
+}
+
+/*返回上一页*/
+.returnHeader {
+    border-bottom: 1px solid #c8c7cc;
+}

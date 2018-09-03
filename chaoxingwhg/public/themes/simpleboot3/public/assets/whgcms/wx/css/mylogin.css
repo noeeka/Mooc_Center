@@ -1,0 +1,85 @@
+.close-btn{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.18rem;
+    border-radius: 0.6rem;
+    margin-top: 0.12rem;
+}
+.mui-input-group:before{
+    height: 0px;
+}
+.feedbackContent{
+    margin: 0.27rem;
+}
+.mui-input-group input{
+    border: 1px solid #B7B7B7;
+    border-radius: 0.06rem;
+    font-size: 0.16rem;
+}
+.mui-input-group .mui-input-row:after{
+    height: 0px;
+}
+.mui-input-group:after{
+    height: 0px;
+}
+.logo{
+    width: 1.18rem;
+    margin: 0.53rem auto;
+}
+.logo img{
+    width: 100%;
+}
+.mui-input-group .mui-input-row{
+    height: 0.47rem;
+    text-align: center;
+    margin-bottom: 0.12rem;
+}
+.loginTel input,.loginPassword input{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.16rem;
+    padding-left: 0.84rem;
+    background: #F0EFEF;
+    border-radius: 1rem;
+    border: none;
+    margin: 0 auto;
+}
+.loginTel,.loginPassword{
+    position: relative;
+}
+.loginTel img,.loginPassword img{
+    width: 0.18rem;
+    height: 0.19rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translate(0 , -50%);
+}
+.loginTel input::-webkit-input-placeholder{
+    /*color: #403E3E;*/
+}
+.forgetPwd{
+    text-align: center;
+    margin-top: 0.1rem;
+}
+.forgetPwd a{
+    font-size: 0.12rem;
+    /*color: #2B2B2C;*/
+    color: #3F97F0;
+}
+.register{
+    width: 2.69rem;
+    /*position: absolute;*/
+    /*bottom: 0.5rem;*/
+    /*left: 50%;*/
+    /*transform: translate(-50% , 0);*/
+    margin: 0.6rem auto 0 auto;
+    text-align: center;
+    padding-top: 0.17rem;
+    border-top: 1px solid #D2D2D2;
+}
+.register a{
+    font-size: 0.12rem;
+    /*color: #2B2B2C;*/
+    color: #3F97F0;
+}

@@ -1,0 +1,126 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+    .to-a-tag{
+        border: 0;
+        background: none;
+        color: #18BC9C;
+        text-decoration: underline;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 500;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}"
+               style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('图片上传','#file-{id}','file');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+
+    <form action="{:url('Activity/addPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+            <div  class="col-md-9">
+                <table class="table table-hover table-bordered table-list">
+                    <thead>
+                    <tr>
+                        <th>作品名称</th>
+                        <th>状态</th>
+                        <th>作者</th>
+                        <th>上传时间</th>
+                        <th>浏览量</th>
+                        <th>点赞量</th>
+                        <th>评论数</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <foreach name="list" item="vo">
+                        <tr>
+                            <td>{$vo.name}</td>
+                            <td>
+                                <php>
+                                switch($vo['status']) {
+                                case 0:
+                                echo "未审核"; break;
+                                case 1:
+                                echo "已通过"; break;
+                                case 2:
+                                echo "未通过"; break;
+                                default:
+                                echo "";break;
+                                }
+                                </php>
+                            </td>
+                            <td>{$vo.user_login}</td>
+                            <td>{:date('Y-m-d H:i:s',$vo['created_at'])}</td>
+                            <td>{$vo.page_view}</td>
+                            <td>{$vo.production_like}</td>
+                            <td>{$vo.comments_count}</td>
+                            <td width="140">
+                                <button class="to-a-tag js-ajax-submit" type="submit"
+                                        data-action="{:url('ProductionCollect/shenhe',array('id'=>$vo['id'],'status'=>1))}">通过
+                                </button>
+                                <button class="to-a-tag js-ajax-submit" type="submit"
+                                        data-action="{:url('ProductionCollect/shenhe',array('id'=>$vo['id'],'status'=>2))}">未通过
+                                </button>
+                                <a href="{:url('ProductionCollect/info',array('id'=>$vo['id']))}">查看</a>
+                            </td>
+                        </tr>
+                    </foreach>
+                </table>
+            </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+   /* $('.export').click(function () {
+        $.ajax(
+            {
+                url: "{:url('Activity/export')}",
+                type: "POST",
+                dataType: "json",
+                success:function () {
+
+                }
+            }
+        )
+    })*/
+
+
+</script>
+</body>
+</html>

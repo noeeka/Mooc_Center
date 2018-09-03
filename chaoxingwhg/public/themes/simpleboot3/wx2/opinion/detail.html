@@ -1,0 +1,93 @@
+
+<include file="public/header" />
+
+<title>民意征集</title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/opinioninfo.css?v={$version_list.wx_opinioninfo_css}'>
+<style>
+    .cotents img{
+        width: 100% !important;
+        height: auto !important;
+    }
+    #commentForm {
+        display: none;
+    }
+    #comments {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">内容详情</h3>
+</div>
+<div class="figure details">
+
+</div>
+<form action="" id="commentForm" class="clearfix">
+        <input type="hidden" name="opinion_id" value="0">
+        <input type="hidden" name="allow_public" value="1">
+        <textarea name="content" id="" placeholder="我的意见…"></textarea>
+        <button type="button" class="commentBtn f-right">
+            提交
+        </button>
+        <div class="f-right">
+            <span data-value="2"></span>不公开
+        </div>
+        <div class="active1  public f-right">
+            <span class="active" data-value="1"></span>公开
+        </div>
+</form>
+
+<div id="comments" >
+    <ul class="comments section">
+
+
+    </ul>
+</div>
+
+<script type="text/template" id="commentlist">
+    {{#each comment_list}}
+    <li class="clearfix">
+        <div class="img f-left" style="background-image: url({{avatar}});"></div>
+        <div class="f-left" style="width: 90%;">
+            <div class="reply">
+                <h3>{{user_nickname}}</h3>
+                <p>{{content}}</p>
+                <div style="font-size: 0.11rem;color: #969494;">发表时间：{{create_time}}</div>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</script>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/inscroll/iscroll.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<!--<script src="__TMPL__/public/assets/whgcms/wx/js/nav.js?v={$version_list.wx_nav_js}"></script>-->
+<script src='__TMPL__/public/assets/whgcms/wx/js/opinioninfo.js?v={$version_list.wx_opinioninfo_js}'></script>
+
+
+<script type="text/template" id="info">
+    <h3>{{title}}</h3>
+    <ul class="clearfix">
+        <li>{{venue_name}}</li>
+        <li>{{create_time}}</li>
+        <li><img src="__TMPL__/public/assets/whgcms/wx/images/look.png" alt="" style="width: 0.16rem;height: 0.09rem;margin-right: 0.05rem;">
+            <span>{{views_count}}</span>
+        </li>
+    </ul>
+
+    <div class="cotents">{{{content}}}</div>
+</script>
+
+
+</body>
+</html>

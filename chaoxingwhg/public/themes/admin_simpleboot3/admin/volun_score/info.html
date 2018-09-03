@@ -1,0 +1,75 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('VolunScore/index')}">活跃度管理</a></li>
+        <li class="active"><a>活跃详情</a></li>
+    </ul>
+        <div class="form-group" style="margin-top: 20px">
+            <label for="input-venue_tel1"  style="width: 80px;padding-left: 32px">姓名：</label><b style="padding-left: 20px;">{$user.user_realname}</b>
+        </div>
+    <form class="form-horizontal js-ajax-form" method="post" action="{:url('VolunScore/editPost')}">
+        <div class="form-group">
+            <label for="input-venue_tel" style="width:60px;margin-left:32px">活跃度：</label>
+            <div style="display: inline-block;">
+                <input type="text" style="width: 300px;display: inline-block;" class="form-control" id="input-venue_tel" name="score" value="{$user.score}">
+                <input type="hidden" name="id" value="{$user.id}">
+                <input type="submit" class="btn btn-primary" value="修改"/>
+            </div>
+            <label for="input-venue_tel" style="width:100px;margin-left:32px">原始积分： {$origin_score}</label>
+        </div>
+    </form>
+    <form class="well form-inline margin-top-20" method="post" action="{:url('admin/VolunScore/info')}">
+        <input type="hidden" name="id" value="{$user.id}">
+        活动名称:
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{$keyword|default=''}" placeholder="请输入活动名称">
+        活动时间:
+        <input type="text" class="form-control js-bootstrap-datetime" name="start_time"
+               value="{$start_time|default=''}"
+               style="width: 140px;" autocomplete="off">-
+        <input type="text" class="form-control js-bootstrap-datetime" name="end_time"
+               value="{$end_time|default=''}"
+               style="width: 140px;" autocomplete="off"> &nbsp; &nbsp;
+
+        <input type="submit" class="btn btn-primary" value="搜索"/>
+    </form>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="60">序号</th>
+                <th>活动名称</th>
+                <th>招募单位</th>
+                <th>活动时间</th>
+                <th>活跃值</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.title}</td>
+                    <td>{$vo.name}</td>
+                    <td>{:date('Y-m-d',$vo.created_at)}</td>
+                    <td>{$vo.score}</td>
+
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="60">序号</th>
+                <th>活动名称</th>
+                <th>招募单位</th>
+                <th>活动时间</th>
+                <th>活跃值</th>
+            </tr>
+            </tfoot>
+        </table>
+
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

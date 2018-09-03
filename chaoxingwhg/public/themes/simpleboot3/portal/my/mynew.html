@@ -1,0 +1,829 @@
+<!--头部-->
+<include file="public/header" />
+<title>个人中心—超星数字文化馆</title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/mynew.css'>
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/liandong/jquery.inputbox.css">
+<link rel='stylesheet' type='text/css' href='/static/js/webuploader/webuploader.css'>
+<style>
+.oninion-active {
+    font-weight: bold;
+}
+
+.status-btn {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.status-btn span {
+    background-color: #BBBEC4;
+    color: #fff;
+}
+</style>
+</head>
+
+<body>
+    <!--导航-->
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="content-left f-left">
+                <div class="program">
+                    <span style="margin-right: 5px;">个人中心</span>/<span style="margin-left: 5px;" class="title">账号信息</span>
+                </div>
+                <ul class="main-nav1" style="width: 210px!important;">
+                    <li style="overflow: hidden;">
+                        <div class="picture" style="width: 50px;height: 50px;background-image: url(__TMPL__/public/assets/whgcms/images/my/avatar1.png);background-position: top center;background-size: cover;background-repeat: no-repeat;margin:24px auto 10px;border-radius: 50%;"></div>
+                        <div id='nicknameText' style="margin:0 auto;width: 100%;line-height: 20px;font-size: 14px;color:#494949;text-align: center;"></div>
+                    </li>
+                    <li style="width:160px;height: 1px;background-color: RGBA(47,52,59,.3);margin:20px auto;"></li>
+                    <li class="" style="margin-top: 20px;">
+                        <a href="javascript:;"><img src="__TMPL__/public/assets/whgcms/images/my/account.png" alt=""
+                                                style="margin-right: 10px; line-height: 50px;vertical-align: middle;margin-bottom: 6px;"><span></span>账户管理</a>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="zhutise options" data-index="0">账号信息</a></dd>
+                            <dd><a href="{:get_forget_url()}" target="_blank" class="options" data-index="1">修改密码</a></dd>
+                            <dd><a href="javascript:;" class="options" data-index="2">实名认证</a></dd>
+                            <dd><a href="javascript:;" data-index="3" class="options">常用联系人</a></dd>
+                        </dl>
+                    </li>
+                    <li style="width:160px;height: 1px;background-color: RGBA(47,52,59,.3);margin:20px auto;"></li>
+                    <li class="">
+                        <a href="javascript:;"><img src="__TMPL__/public/assets/whgcms/images/my/resources.png" alt=""
+                                                style="margin-right: 10px;line-height: 50px;vertical-align: middle;margin-bottom: 5px;">资源管理</a>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="4">收藏文章</a></dd>
+                        </dl>
+                    </li>
+                    <li style="width:160px;height: 1px;background-color: RGBA(47,52,59,.3);margin:20px auto;"></li>
+                    <li class="">
+                        <a href="javascript:;"><img src="__TMPL__/public/assets/whgcms/images/my/message.png" alt=""
+                                                style="margin-right: 10px;line-height: 50px;vertical-align: middle;margin-bottom: 4px;">我的消息</a>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="5">我的消息</a></dd>
+                        </dl>
+                    </li>
+                    <li style="width:160px;height: 1px;background-color: RGBA(47,52,59,.3);margin:20px auto;"></li>
+                    <li class="">
+                        <a href="javascript:;"><img src="__TMPL__/public/assets/whgcms/images/my/appointment.png" alt=""
+                                                style="margin-right: 10px;line-height: 50px;vertical-align: middle;margin-bottom: 4px;">我的预约</a>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="6">我的预约</a></dd>
+                        </dl>
+                    </li>
+                    <li style="width:160px;height: 1px;background-color: RGBA(47,52,59,.3);margin:20px auto;"></li>
+                    <li class="">
+                        <a href="javascript:;"><img src="__TMPL__/public/assets/whgcms/images/my/my-activity.png" alt=""
+                                                style="margin-right: 10px;line-height: 50px;vertical-align: middle;margin-bottom: 5px;">我的活动</a>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="7">我的活动</a></dd>
+                        </dl>
+                    </li>
+                    <li style="width:160px;height: 1px;background-color: RGBA(47,52,59,.3);margin:20px auto;" id="last_line" class="hide"></li>
+                    <li class="hide" id="volunteer">
+                        <a href="javascript:;"><img src="__TMPL__/public/assets/whgcms/images/my/volunteers.png" alt=""
+                                                style="margin-right: 10px;line-height: 50px;vertical-align: middle;margin-bottom: 5px;">志愿者服务</a>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="8">资料管理</a></dd>
+                        </dl>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="9">参与历史</a></dd>
+                        </dl>
+                        <dl class="">
+                            <dd><a href="javascript:;" class="options" data-index="10">报名结果</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-right f-right">
+                <div class="hide content">
+                    <div class="account-information ">
+                        <h3>修改头像</h3>
+                    </div>
+                    <div class='touxiang'>
+                        <img id="userAvator" src="__TMPL__/public/assets/whgcms/images/my/avatar-big1.png" alt="">
+                        <div style="display: inline-block;margin-left: 99px;color:#2F343B;font-size: 16px;">【图片大小不超过800K】</div>
+                        <div class='mess'></div>
+                        <span class='touxiangbtn' id="touxiangbtn"></span><span class='txuploadbtn layui-btn layui-btn-primary bg' style="width: 110px; height: 30px;">上传</span>
+                    </div>
+                </div>
+                <div class="content-content">
+                    <div class="account-information ">
+                        <h3>账号信息</h3>
+                    </div>
+                    <form class="layui-form login" action="post" id="ajaxForm4">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">昵称:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="user_id" id="user_nickname" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;">
+                                <!-- <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;">请输入正确手机号码!</span> -->
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">真实姓名:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="user_id" id="user_realname" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;">
+                                <!-- <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;">请输入正确手机号码!</span> -->
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别:</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="sex" class="sex" value="1" title="男">
+                                <input type="radio" name="sex" class="sex" value="2" title="女">
+                                <input type="radio" name="sex" class="sex" value="0" title="保密">
+                            </div>
+                        </div>
+                        <input type="hidden" name="avatar" value="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">出生日期:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="user_id" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;" id="test2">
+                                <!-- <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;">请输入正确手机号码!</span> -->
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">家庭住址:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="user_id" id="address" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;">
+                                <!-- <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;">请输入正确手机号码!</span> -->
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <submit class="layui-btn" lay-submit lay-filter="formDemo" id='submitx' class="submit" onSubmit="return false;">保存
+                                </submit>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hide content-content">
+                    <div class="account-information ">
+                        <h3>修改密码</h3>
+                    </div>
+                    <div class="confirm">
+                        <div class="step ">
+                            <ul>
+                                <li class="line active2"></li>
+                                <li class="cirl">
+                                    <img src="__TMPL__/public/assets/whgcms/images/my/1.png" alt="">
+                                    <h3 class="active3">确认账户</h3>
+                                </li>
+                                <li class="line "></li>
+                                <li class="cirl"><img src="__TMPL__/public/assets/whgcms/images/my/2.2.png" alt="">
+                                    <h3>重设密码</h3></li>
+                                <li class="line"></li>
+                                <li class="cirl"><img src="__TMPL__/public/assets/whgcms/images/my/3.2.png" alt="">
+                                    <h3>完成</h3></li>
+                                <li class="line"></li>
+                            </ul>
+                        </div>
+                        <br>
+                        <form class="layui-form login" action="post" id="ajaxForm1">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">手机号码:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name='xmmobile' id="mobile" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;" id="resetnumber">
+                                    <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;margin-left:14px;display: none;" class="resetnumber">请输入正确手机号码!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">验证码:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name='captcha_img' placeholder="" autocomplete="off" class="layui-input f-left yanzheng" style="width:178px;">
+                                    <!-- <img id="verify_img" src="{:captcha_src()}" alt="验证码"><span class="see">看不清？换一张</span> -->
+                                    <img src="{:captcha_src()}" alt="" class="f-left" id="verify_img" style="width: 100px;height:38px;margin-left: 10px;"><span class="see" style="font-size: 14px;line-height: 38px;margin-left: 10px;color:#2F343B;cursor: pointer;">看不清？换一张</span>
+                                    <!-- <span style="display: block;color: #F40556;margin-top:30px;font-size: 12px;clear: both;">请输入正确验证码!</span> -->
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">短信验证码:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name='xmyzm' placeholder="" autocomplete="off" class="layui-input f-left yanzhengma" style="width: 162px;margin-bottom:10px;">
+                                    <!-- <img id="verify_img" src="{:captcha_src()}" alt="验证码"><span class="see">看不清？换一张</span> -->
+                                    <div alt="" class="f-left codebtn" style="width: 116px;height:38px;margin-left: 10px;line-height: 38px;font-size: 14px;text-align: center;background-color: #2F343B;color:#fff;cursor: pointer;">
+                                        获取验证码
+                                    </div>
+                                    <span class="regcode" style="display: none;color: #F40556;margin-left: 14px;font-size: 12px;clear: both;">请输入正确短信验证码!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <submit class="layui-btn reset_btn" lay-submit lay-filter="formDemo" id='submitx' class="submit" onSubmit="return false;">下一步
+                                    </submit>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="reset" style="display: none;">
+                        <div class="step ">
+                            <ul>
+                                <li class="line active2"></li>
+                                <li class="cirl">
+                                    <img src="__TMPL__/public/assets/whgcms/images/my/1.png" alt="">
+                                    <h3 class="active3">确认账户</h3>
+                                </li>
+                                <li class="line active2"></li>
+                                <li class="cirl"><img src="__TMPL__/public/assets/whgcms/images/my/2.png" alt="">
+                                    <h3>重设密码</h3></li>
+                                <li class="line"></li>
+                                <li class="cirl"><img src="__TMPL__/public/assets/whgcms/images/my/3.2.png" alt="">
+                                    <h3>完成</h3></li>
+                                <li class="line"></li>
+                            </ul>
+                        </div>
+                        <br>
+                        <form class="layui-form login" action="post" id="ajaxForm2">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码:</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="password" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;" id="resetpassword">
+                                    <span style="display: inline-block;color: #F40556;margin-top:10px;font-size: 12px; display: none;" class="resetpassword">请输入正确密码!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">重复密码:</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="repeat" placeholder="" autocomplete="off" class="layui-input" style="width: 290px;" id="repeatpassword">
+                                    <span style="display: inline-block;color: #F40556;margin-top:10px;font-size: 12px;display: none;" class="repeatpassword">请输入正确密码!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <submit class="layui-btn csmmbtn" lay-submit lay-filter="formDemo" id='submitx' class="submit" onSubmit="return false;">下一步
+                                    </submit>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="complete" style="display: none">
+                        <div class="step ">
+                            <ul>
+                                <li class="line active2"></li>
+                                <li class="cirl">
+                                    <img src="__TMPL__/public/assets/whgcms/images/my/1.png" alt="">
+                                    <h3 class="active3">确认账户</h3>
+                                </li>
+                                <li class="line active2"></li>
+                                <li class="cirl"><img src="__TMPL__/public/assets/whgcms/images/my/2.png" alt="">
+                                    <h3>重设密码</h3></li>
+                                <li class="line active2"></li>
+                                <li class="cirl"><img src="__TMPL__/public/assets/whgcms/images/my/3.png" alt="">
+                                    <h3>完成</h3></li>
+                                <li class="line active2"></li>
+                            </ul>
+                        </div>
+                        <br>
+                        <form class="layui-form login" action="post" id="ajaxForm3">
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <submit class="layui-btn wcbtn" lay-submit lay-filter="formDemo" id='submitx' class="submit">完成
+                                    </submit>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="hide content-content">
+                    <div class="account-information">
+                        <h3>实名认证</h3>
+                    </div>
+                    <form action="" class="renzheng yirenzheng hide">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">认证信息:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name='xmmobile' placeholder="墨子谦  120***********7821" autocomplete="off" class="layui-input f-left" style="width: 290px;"><span class="rerenzheng f-left">修改认证</span>
+                                <!-- <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;">请输入正确手机号码!</span> -->
+                            </div>
+                        </div>
+                    </form>
+                    <div class='weirenzheng hide'>
+                        您还未实名认证,请认证<a href="javascript:;" class='qurenzhengbtn'>去认证</a>
+                    </div>
+                    <div class='renzhengshibai hide'>
+                        您的提交的认证信息审核失败,请<a href="javascript:;" class='chongxinrenzhengbtn'>重新认证</a>
+                        <div class="error" style="margin-top:20px;color:blue;">
+                        </div>
+                    </div>
+                    <div class='yirenzhengdiv hide'>
+                        <!--<h3 style="font-size: 18px;color: #2F343B;">查看认证</h3>-->
+                        <form class="layui-form management" style="width: 681px;">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名:</label>
+                                <div class="layui-input-block realname" style="line-height: 36px;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证号:</label>
+                                <div class="layui-input-block shenfenzheng" style="line-height: 36px;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证照片:</label>
+                                <div class="layui-input-block">
+                                    <div class='ft_sfzimg' style="display: inline-block;width: 170px;height: 109px;background-color: #dcdcdc;margin-right: 20px;background-image: url(__TMPL__/public/assets/whgcms/images/application/before.jpg);background-repeat: no-repeat;background-size: contain;background-position:center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left"></div>
+                                    <div class='bd_sfzimg' style="display: inline-block;width: 170px;height: 109px;background-color: #dcdcdc;background-image: url(__TMPL__/public/assets/whgcms/images/application/after.jpg);background-repeat: no-repeat;background-size: contain;background-position:center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left"></div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="status-btn layui-form-item">
+                            <span class="layui-btn">认证中...</span>
+                        </div>
+                    </div>
+                    <div class='weirenzhengdiv hide'>
+                        <!--<h3 style="font-size: 18px;color: #2F343B;">实名认证</h3>-->
+                        <form class="layui-form management" style="width: 681px;">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="realname" placeholder="请输入您的真实姓名" value="" autocomplete="off" class="layui-input" id="name">
+                                    <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;margin-left:3px;" class="name">真实姓名不能为空!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证号:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="shenfenzheng" placeholder="请输入二代身份证号" value="" autocomplete="off" class="layui-input" id="idnumber">
+                                    <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;margin-left:3px;" class="idnumber">身份证号不能为空!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证照片:</label>
+                                <div class="layui-input-block clearfix" style="top:-30px">
+                                    <div id='ft_sfzimg' style="width: 170px;height: 109px;border:1px solid #e6e6e6;margin-right: 20px;background-image: url(__TMPL__/public/assets/whgcms/images/application/before.jpg);background-repeat: no-repeat;background-size: contain;background-position: center; cursor: pointer;text-align: center;line-height: 160px;color: #000;font-size: 14px;" class="f-left">点击上传
+                                    </div>
+                                    <div id='bd_sfzimg' style="width: 170px;height: 109px;border:1px solid #e6e6e6;background-image: url(__TMPL__/public/assets/whgcms/images/application/after.jpg);background-repeat: no-repeat;background-size: contain;background-position: center; cursor: pointer;text-align: center;line-height: 160px;color: #000;font-size: 14px;" class="f-left">点击上传
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;margin-left:123px;" class="idcard">身份证正面照不能为空!</span>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="hidden" name="ft_sfzimg" value="">
+                                    <input type="hidden" name="bd_sfzimg" value="">
+                                    <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                 <div class="hide content-content">
+                    <div id="contact">
+                         <div class="account-information ">
+                            <h3>常用联系人</h3>
+                        </div>
+                        <div class="contact">
+                            <div class="addcontact"><span>+添加联系人</span></div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>姓名</th>
+                                        <th>联系电话</th>
+                                        <th>身份证号</th>
+                                        <th>认证状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                     <tr>
+                                        <td>1</td>
+                                        <td>迪丽热巴</td>
+                                        <td>15033985203</td>
+                                        <td>432894188234567890</td>
+                                        <td>待审核</td>
+                                        <td><button class="layui-btn editor">编辑</button><button class="detele">删除</button></td>
+                                    </tr>
+                                 </tbody>
+                            </table>
+                        </div>
+                        <div class="tianjia hide">
+                           <form class="layui-form" style="width: 706px;" onsubmit="return false">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="" placeholder="" autocomplete="off" class="layui-input" value="" style="width: 290px;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联系方式:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="dianhua" placeholder="" autocomplete="off" class="layui-input" value=""  style="width: 290px;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证号:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name=""autocomplete="off" class="layui-input" value=""  style="width: 290px;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="*" type="submit" id="contactsave">保存</button>
+                                    <button type="reset" class="layui-btn expire">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    <div id="authentication" class="hide">
+                        <div class="account-information ">
+                            <h3>实名认证</h3>
+                        </div>
+                        <div class="shimingweirenzheng">
+                            <form class="layui-form management" style="width: 681px;">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="realname" placeholder="请输入您的真实姓名" value="" autocomplete="off" class="layui-input">
+                                    <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;margin-left:3px;" class="name">真实姓名不能为空!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证号:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="shenfenzheng" placeholder="请输入二代身份证号" value="" autocomplete="off" class="layui-input">
+                                    <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;margin-left:3px;" class="">身份证号不能为空!</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">身份证照片:</label>
+                                <div class="layui-input-block clearfix" style="top:-30px">
+                                    <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;margin-right: 20px;background-image: url(__TMPL__/public/assets/whgcms/images/application/before.jpg);background-repeat: no-repeat;background-size: contain;background-position: center; cursor: pointer;text-align: center;line-height: 160px;color: #000;font-size: 14px;" class="f-left">点击上传
+                                    </div>
+                                    <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;background-image: url(__TMPL__/public/assets/whgcms/images/application/after.jpg);background-repeat: no-repeat;background-size: contain;background-position: center; cursor: pointer;text-align: center;line-height: 160px;color: #000;font-size: 14px;" class="f-left">点击上传
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;margin-left:123px;" class="">身份证正面照不能为空!</span>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="hidden" name="" value="">
+                                    <input type="hidden" name="" value="">
+                                    <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+                                    <button class="layui-btn expire" lay-submit lay-filter="*">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="hide content-content">
+                    <div class="account-information">
+                        <h3>收藏文章</h3>
+                    </div>
+                    <h4>共<span class="collect-num">0</span>条收藏</h4>
+                    <ul class="list clearfix collect-list">
+                    </ul>
+                    <div id="collect_page" class="page"></div>
+                </div>
+                <div class="hide content-content">
+                    <div class="account-information">
+                        <h3>我的消息</h3>
+                    </div>
+                    <h4>共<span class="message-num">0</span>条信息</h4>
+                    <ul class="message clearfix message-list">
+                    </ul>
+                    <div id="message_page" class="page"></div>
+                </div>
+                <div class="hide content-content clearfix">
+                    <div class="account-information">
+                        <h3>我的预约</h3>
+                    </div>
+                    <h4>共<span id="count">0</span>条预约</h4>
+                    <div style="" class="clearfix" id="venueform">
+                        <select name="area" lay-verify="" class="f-left" id="state">
+                            <option value="0">状态</option>
+                            <option value="1">已完成</option>
+                            <option value="2">已预约</option>
+                        </select>
+                        <select name="city" lay-verify="" class="f-left" id="city">
+                        </select>
+                        <select name="cityson" lay-verify="" class="f-left" id="son">
+                            <option value="0">区域</option>
+                        </select>
+                        <select name="cityson" lay-verify="" class="f-left" id="venue">
+                        </select>
+                        <!-- </form> -->
+                        <span style="display: inline-block;padding:0 16px 0 6px;font-size: 26px;color: #BFBFBF;" class="f-left">|</span>
+                        <input class="f-left" type="text" id="time1" style="width: 100px; margin-right: 11px;line-height: 30px;text-align: center;border:1px solid #80848B;background-color: transparent;border-radius: 4px;font-size: 16px;color: #2F343B;cursor: pointer;padding: 0 10px" placeholder="开始时间">
+                        <input class="f-left" type="text" id="time2" style="width: 100px;line-height: 30px;text-align: center;border:1px solid #80848B;background-color: transparent;border-radius: 4px;font-size: 16px;color: #2F343B;cursor: pointer;margin-right: 11px;padding: 0 10px" placeholder="结束时间">
+                        <div class="f-left clearfix" id="find" style="width: 100px;line-height: 30px;text-align: center;border:1px solid #80848B;background-color: transparent;border-radius: 4px;font-size: 16px;color: #0059e5;cursor: pointer;">
+                            <img src="__TMPL__/public/assets/whgcms/images/my/search.png" style="display: inline-block;margin-top: 6px;margin-left: 20px; margin-right: 5px;" class="f-left"><span style="font-size: 16px;display: inline-block;" class="f-left">查找</span></div>
+                    </div>
+                    <div id="reservation">
+                    </div>
+                    <div id="test3" class="page"></div>
+                </div>
+                <div class="hide content-content clearfix">
+                    <div class="account-information">
+                        <h3>我的活动</h3>
+                    </div>
+                    <h4>共<span id="activitycount">0</span>条活动</h4>
+                    <div style="" class="clearfix" id="activityform">
+                        <select name="area" lay-verify="" class="f-left" id="zhuangtai">
+                            <option value="0">状态</option>
+                            <option value="1">已完成</option>
+                            <option value="2">已报名</option>
+                        </select>
+                        <span style="display: inline-block;padding:0 16px 0 6px;font-size: 26px;color: #BFBFBF;" class="f-left">|</span>
+                        <input class="f-left" type="text" id="time3" style="width: 100px; margin-right: 11px;line-height: 30px;text-align: center;border:1px solid #80848B;background-color: transparent;border-radius: 4px;font-size: 16px;color: #2F343B;cursor: pointer;padding: 0 10px" placeholder="开始时间">
+                        <input class="f-left" type="text" id="time4" style="width: 100px;line-height: 30px;text-align: center;border:1px solid #80848B;background-color: transparent;border-radius: 4px;font-size: 16px;color: #2F343B;cursor: pointer;margin-right: 11px;padding: 0 10px" placeholder="结束时间">
+                        <div class="f-left clearfix" id="seek" style="width: 100px;line-height: 30px;text-align: center;border:1px solid #80848B;background-color: transparent;border-radius: 4px;font-size: 16px;color: #0059e5;cursor: pointer;">
+                            <img src="__TMPL__/public/assets/whgcms/images/my/search.png" style="display: inline-block;margin-top: 6px;margin-left: 20px; margin-right: 5px;" class="f-left"><span style="font-size: 16px;display: inline-block;" class="f-left">查找</span></div>
+                    </div>
+                    <div id="activities">
+                    </div>
+                    <div id="huodong" class="page"></div>
+                </div>
+                <div class="hide content-content">
+                    <div class="account-information ">
+                        <h3>资料管理</h3>
+                        <form class="layui-form management" style="width: 706px;" onsubmit="return false">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">我的积分:</label>
+                                <div class="layui-input-block" style="line-height: 36px;">
+                                    <span style="display: inline-block;" id="score"></span>分
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">我的排名:</label>
+                                <div class="layui-input-block" style="line-height: 36px;" id="order">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名:</label>
+                                <div class="layui-input-block" style="line-height: 36px;">
+                                    <span style="display: inline-block;" id="real_name"></span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" style="display: none;">
+                                <label class="layui-form-label">性别:</label>
+                                <div class="layui-input-block">
+                                    <input class='xingbie' type="radio" name="sex" value="1" title="男" disabled>
+                                    <input class="xingbie" type="radio" name="sex" value="2" title="女" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">出生日期:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" class="layui-input" id="birthday" value="">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">民族:</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="nation" placeholder="" autocomplete="off" class="layui-input" id="nation" value="">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联系方式:</label>
+                                <div class="layui-input-block mobile_phone">
+                                    <input type="text" name="mobile_phone" id="mobile_phone" placeholder="" autocomplete="off" class="layui-input" value="">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">活动区域:</label>
+                                <div>
+                                    <select name="city" id="volun_area">
+                                        <!--<option value=""></option>-->
+                                        <!--<option value="0">北京</option>-->
+                                        <!--<option value="1">上海</option>-->
+                                        <!--<option value="2">广州</option>-->
+                                        <!--<option value="3">深圳</option>-->
+                                        <!--<option value="4">杭州</option>-->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">特长备注:</label>
+                                <div class="layui-input-block">
+                                    <textarea placeholder="" id="speciality" class="layui-textarea" style="width: 497px;" wrap="wrap"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">才艺照片:</label>
+                                <div class="layui-input-block clearfix">
+                                    <div class="volun_photo" id="volun_photo" style="margin-top: -38px;">
+                                    </div>
+                                    <div style="border:1px solid #e6e6e6; margin-top: 20px;cursor: pointer;" class="f-left" onclick="uploadMultiImage('图片上传','#volun_photo','photos-item-tpl')">
+                                        <img src="__TMPL__/public/assets/whgcms/images/my/add.png" alt="" id="thumb-preview" style="cursor: pointer;width: 100%;height: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn button" lay-submit lay-filter="*" type="submit" id="button">提交</button>
+                                    <button type="reset" class="layui-btn cancel expire">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="hide content-content clearfix">
+                    <div class="account-information">
+                        <h3>参与历史</h3>
+                    </div>
+                    <h4 style="display: inline-block;">共参加活动<span class="canjiacount">0</span>场</h4>
+                    <h4 style="display: inline-block;">共获得积分<span class="jifen">0</span>分</h4>
+                    <table style="border:1px solid #80848B;border-radius: 4px;width: 100%;margin-top: 20px;" class="history" id="history">
+                    </table>
+                    <div id="test4" class="page"></div>
+                </div>
+                <div class="hide content-content clearfix">
+                    <div class="account-information">
+                        <h3>报名结果</h3>
+                    </div>
+                    <h4>共<span class="resultcount">0</span>条报名</h4>
+                    <div class="clearfix">
+                        <select name="city" lay-verify="" class="" style="width: auto;padding: 0 10px;height: 32px;line-height: 30px;border: 1px solid #80848B;color: #2F343B;background-color: transparent;border-radius: 4px;font-size: 16px;cursor: pointer;text-align: center;text-align-last: center;margin-left: 822px;" id="shenhe">
+                            <option value="3">全部状态</option>
+                            <option value="0">审核中</option>
+                            <option value="2">未通过</option>
+                            <option value="1">已通过</option>
+                        </select>
+                        <table style="border:1px solid #80848B;border-radius: 4px;width: 100%;margin-top: 20px;" class="yuyue" id="result">
+                        </table>
+                        <div id="test5" class="page"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tishi" style="display:none;">
+        <div style="width: 100%;text-align: center;color: #000000;font-size: 18px;line-height: 103px;">是否取消预约</div>
+        <div style="width:332px;margin:0 auto;">
+            <button class="layui-btn yesbtn f-left" lay-submit lay-filter="*" style="display:inline-block;margin:5px 28px;width: 110px;font-size: 16px;border: 1px solid #dedede;color: #333;background-color: #fff;">确定</button>
+            <button class="layui-btn nobtn f-left" lay-submit lay-filter="*" style="display:inline-block;margin:5px 28px;width: 110px;font-size: 16px;">取消</button>
+        </div>
+    </div>
+    <div id="queren" style="display:none;">
+        <div style="width: 100%;text-align: center;color: #000000;font-size: 18px;line-height: 103px;">取消预约成功</div>
+        <button class="layui-btn yesbtn2" lay-submit lay-filter="*" style="display:inline-block;margin:5px 195px;width: 110px;font-size: 16px;">确定</button>
+    </div>
+    <div id="xiaoxi" style="display:none;">
+        <div style="width: 100%;text-align: center;color: #000000;font-size: 18px;line-height: 103px;">是否取消报名</div>
+        <div style="width:332px;margin:0 auto;">
+            <button class="layui-btn huodongyesbtn f-left" lay-submit lay-filter="*" style="display:inline-block;margin:5px 28px;width: 110px;font-size: 16px;border: 1px solid #dedede;color: #333;background-color: #fff;">确定</button>
+            <button class="layui-btn huodongnobtn f-left" lay-submit lay-filter="*" style="display:inline-block;margin:5px 28px;width: 110px;font-size: 16px;">取消</button>
+        </div>
+    </div>
+    <div id="huodongqueren" style="display:none;">
+        <div style="width: 100%;text-align: center;color: #000000;font-size: 18px;line-height: 103px;">取消报名成功</div>
+        <button class="layui-btn huodongyesbtn2" lay-submit lay-filter="*" style="display:inline-block;margin:5px 195px;width: 110px;font-size: 16px;">确定</button>
+    </div>
+    <include file="public/footer" />
+    <script src="__TMPL__/public/assets/whgcms/lib/liandong/jquery.ganged.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/liandong/jquery.inputbox.js"></script>
+    <script>
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}' /*当前应用名*/
+    };
+    </script>
+    <script src="/static/js/wind.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <script src='__TMPL__/public/assets/whgcms/js/mynew.js?v=1'></script>
+    <script src='/static/js/webuploader/webuploader.min.js'></script>
+    <script type="text/template" id="collect-item">
+        {{#each list}}
+        <li>
+            <a href="/portal/category/read/?id={{id}}">
+                <div class="image bg100" style="background-image: url({{image thumb}});"></div>
+                <div class="text">
+                    <h3 title="{{post_title}}" class="ellipsis">{{post_title}}</h3>
+                    <div class="number clearfix">
+                        <div class="source f-left" style="margin-right: 20px;">
+                            <img src="__TMPL__/public/assets/whgcms/images/my/10.png" alt="" class="f-left">
+                            <span class="f-left" style="width: 96px;">{{venue_name}}</span>
+                        </div>
+                        <div class="time f-left">
+                            <img src="__TMPL__/public/assets/whgcms/images/my/like2.png" alt="" class="f-left">
+                            <span class="f-left" style="width: 67px;"><em>{{collect_num}}</em>次</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/template" id="message-item">
+        {{#each list}}
+        <li>
+            <a href="{{detail_url}}">
+                <div style="display: inline-block;margin-right: 15px;"><span class="layui-badge-dot layui-bg-cyan" style="display: inline-block;margin-bottom: 7px;"></span></div>
+                <span style="display: inline-block;width:720px;height: 25px;overflow: hidden;">{{title}}</span>
+                <span style="display: inline-block;margin-left: 90px;">{{date create_time}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!--  我的预约 -->
+    <script type="text/template" id="reservation-item">
+        {{#each this}}
+        <div class="clearfix">
+            <img src="__TMPL__/public/assets/whgcms/images/information/1.png" alt="" class="f-left">
+            <div class="yuyue f-left">
+                <h3>{{name}}</h3>
+                <span class="clearfix"><em class="f-left">预约人：</em><em class="f-left">擎天柱</em></span>
+                <span class="clearfix"><em class="f-left">联系电话：</em><em class="f-left">12345678907</em></span>
+                <span class="clearfix"><em class="f-left">预约时间：</em><em class="f-left" style="width: 440px;">2018.7.2 8:00~12:00 2018.7.3 8:00~12:00 2018.7.4 8:00~12:00 2018.7.2 8:00~12:00</em></span>
+            </div>
+            <div class="f-left anniu">
+                <button class="layui-btn type">待审核</button>
+                <strong>对不起，由于这个原因未通过</strong>
+                <button class="layui-btn detele">取消预约</button>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!-- 我的活动 -->
+    <script type="text/template" id="activities-item">
+        <table style="border:1px solid #80848B;border-radius: 4px;width: 100%;margin-top: 20px;" class="baoming">
+            <tr>
+                <th>活动名称</th>
+                <th>活动时间段</th>
+                <th>报名时间</th>
+                <th>操作</th>
+            </tr>
+            {{#each this}}
+            <tr id="{{id}}">
+                <td>
+                    <a href="/portal/activity/read?id={{id}}">
+                        <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 290px;margin: 0 auto;color: #676ae5;">{{title}}</div>
+                    </a>
+                </td>
+                <td>{{start_time}} ~ {{end_time}}</td>
+                <td class="zhuangtai">{{baoming_time}}</td>
+                <td>
+                    <button class="layui-btn activitybtn" style="width: 100px;height: 28px;margin-top: 20px;margin-left: 0;margin-right: 0;">取消报名</button>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </script>
+    <!-- 参与历史 -->
+    <script type="text/template" id="history-item">
+        <tr>
+            <th>序号</th>
+            <th>活动名称</th>
+            <th>招募单位</th>
+            <th>活动日期</th>
+            <th>积分</th>
+            <th>操作</th>
+        </tr>
+        {{#each this}}
+        <tr>
+            <td class="number1"></td>
+            <td>
+                <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 150px;margin: 0 auto;">{{title}}</div>
+            </td>
+            <td>{{vname}}</td>
+            <td>
+                {{start_time}} ~ {{end_time}}
+            </td>
+            <td>{{score}}</td>
+            <td><a href="/portal/volunteer/recruiteread?id={{activity_id}}" style="color: #676ae5;">查看</a></td>
+        </tr>
+        {{/each}}
+    </script>
+    <!-- 报名结果 -->
+    <script type="text/template" id="result-item">
+        <tr>
+            <th>序号</th>
+            <th>活动名称</th>
+            <th>招募单位</th>
+            <th>报名日期</th>
+            <th>活动日期</th>
+            <th>状态</th>
+        </tr>
+        {{#each this}}
+        <tr>
+            <td class="xuhao"></td>
+            <td>
+                <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 150px;margin: 0 auto;">{{title}}</div>
+            </td>
+            <td>{{vname}}</td>
+            <td>
+                {{created_at}}
+            </td>
+            <td>
+                {{start_time}} ~ {{end_time}}
+            </td>
+            <td class="shenhe"></td>
+        </tr>
+        {{/each}}
+    </script>
+    <!--上传图片-->
+    <script type="text/html" id="photos-item-tpl">
+        <div style="position: relative;width: 170px;height: 109px;margin-right: 20px;margin-bottom: 20px;" class="f-left parent">
+            <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;overflow: hidden;" id="saved-image{id}">
+                <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+                <img id="photo-{id}-preview" src="{url}" style="cursor: pointer;height: 109px;" onclick="uploadOneImage('图片上传','#photo-{id}');">;
+            </div>
+            <div class="delete" style="width:15px;height: 15px;position:absolute;top:0;right:0;background:url(/themes/simpleboot3/public/assets/whgcms/images/read/delete.png) no-repeat;cursor: pointer;"></div>
+        </div>
+    </script>
+</body>
+
+</html>

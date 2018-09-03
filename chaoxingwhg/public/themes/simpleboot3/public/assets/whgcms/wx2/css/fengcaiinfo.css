@@ -1,0 +1,56 @@
+.fengcaiinfo h3{
+    font-size: 0.2rem;
+    color: #141414;
+    margin: 0.67rem 0.15rem 0.19rem 0.15rem;
+    font-weight: bold;
+}
+.jianjie{
+    margin: 0 0.15rem;
+}
+.jianjie h4{
+    font-size: 0.16rem;
+    color: #141414;
+    margin-bottom: 0.17rem;
+    font-weight: bold;
+}
+.jianjie p{
+    font-size: 0.16rem;
+    color: #454444;
+    line-height: 0.28rem;
+}
+.photo{
+    margin-top: 0.23rem;
+    border-top: 1px solid #DCDCDC;
+}
+.photo h4{
+    font-size: 0.16rem;
+    color: #141414;
+    margin: 0.2rem 0.15rem 0.17rem 0.15rem;
+    font-weight: bold;
+}
+/*轮播图*/
+.swiper-container{
+    height: 1.94rem;
+}
+.swiper-slide{
+    height: 1.94rem;
+}
+.swiper-container img{
+    width: 100%;
+    height: 1.94rem;
+}
+.swiper-pagination-bullet {
+    width: 5px;
+    height: 5px;
+    transition: width 0.3s ease-in-out;
+}
+.swiper-pagination-bullet{
+    background: #ffffff;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active{
+    width: 13px;
+    height: 5px;
+    border-radius: 30px;
+    background: #0059E5;
+}

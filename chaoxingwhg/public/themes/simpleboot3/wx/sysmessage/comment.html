@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>评论回复</title>
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .layui-btn {
+            display: inline-block;
+            width: 150px;
+            height: 38px;
+            background-color: #F40556;
+            border-radius: 19px;
+            padding: 0;
+            margin: 24px 480px 34px;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            font-size: 18px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+<div style="padding: 20px;">
+    <div style="background-color:RGBA(47,52,59,.2);margin-bottom: 41px;margin:0 auto;padding:30px;" class="clearfix"><span style="font-size: 18px;color: #2F343B;padding-bottom: 18px;font-weight: bold;display: inline-block;">我的评论:</span><p style="line-height: 24px;color: #2F343B;font-size: 16px; text-indent: 2em;">{$sys.content.my}</p></div>
+    <div style="margin-bottom: 41px;margin:0 auto;padding:30px;" class="clearfix"><span style="font-size: 18px;color: #0059e5;padding-bottom: 18px;font-weight: bold;display: inline-block;">管理员回复:</span><p style="line-height: 24px;color: #2F343B;font-size: 16px; text-indent: 2em;">{$sys.content.reply}</p></div>
+    <a href="{$sys.url}" target="_blank" class="layui-btn">查看详情</a>
+</div>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery.nicescroll.min.js"></script>
+<script src=""></script>
+<script>
+    $("html").niceScroll({ cursorcolor: "transparent", cursorborder: "none" });
+</script>
+</body>
+
+</html>

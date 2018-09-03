@@ -1,0 +1,198 @@
+<include file="public@header" />
+<script src="__STATIC__/js/code-mirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="__STATIC__/js/code-mirror/lib/codemirror.css">
+<script src="__STATIC__/js/code-mirror/mode/javascript/javascript.js"></script>
+<style>
+    .CodeMirror{
+        border:1px solid #dce4ec;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('home_page_special_tpl/index')}">特殊模板管理</a></li>
+        <li><a href="{:url('home_page_special_tpl/add')}">添加特殊模板</a></li>
+        <li class="active"><a>编辑特殊模板</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('home_page_special_tpl/editPost')}">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-name" name="name" value="{$specialtpl['name']}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">类型<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" name="type" >
+                        <option value="1" <if condition="$specialtpl['type'] eq 1">selected</if>>header</option>
+                        <option value="2" <if condition="$specialtpl['type'] eq 2">selected</if>>footer</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exam_img" class="col-sm-2 control-label">示例图<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="hidden" class="form-control" id="exam_img" name="exam_img" value="{$specialtpl['exam_img']}">
+                <a href="javascript:uploadOneImage('图片上传','#exam_img');">
+                    <empty name="$specialtpl.exam_img">
+                        <img src="__TMPL__/public/assets/images/default-thumbnail.png" style="display: block" id="exam_img-preview" alt="" width="150" height="75">
+                    <else/>
+                        <img src="{:cmf_get_image_preview_url($specialtpl.exam_img)}" style="display: block" id="exam_img-preview" alt="" width="150" height="75">
+                    </empty>
+                </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">别名<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-url" name="alias" value="{$specialtpl['alias']}">
+            </div>
+        </div>
+        <if condition="$specialtpl.type eq 1">
+                <div class="header-block">
+            <else/>
+                <div class="header-block" style="display: none">
+        </if>
+            <div class="form-group">
+                <label for="background-image" class="col-sm-2 control-label">背景图片<span class="form-required">*</span></label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="hidden" class="form-control" id="background-image" name="background_image" value="{$specialtpl.background_image|default=''}">
+                    <a href="javascript:uploadOneImage('图片上传','#background-image');">
+                        <empty name="$specialtpl.background_image">
+                            <img src="__TMPL__/public/assets/images/default-thumbnail.png" style="display: block" id="background-image-preview" alt="" width="150" height="75">
+                            <else/>
+                            <img src="{:cmf_get_image_preview_url($specialtpl.background_image)}" style="display: block" id="background-image-preview" alt="" width="150" height="75">
+                        </empty>
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="background-color" class="col-sm-2 control-label">背景颜色<span class="form-required">*</span></label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" id="background-color" name="background_color" value="{$specialtpl.background_color|default=''}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="css" class="col-sm-2 control-label">CSS</label>
+                <div class="col-md-6 col-sm-10">
+                    <textarea name="css" id="css" cols="30" rows="10">{$specialtpl.css|default=''}</textarea>
+                    <button type="button" class="setdefault_css btn btn-default" style="float: right;clear: both;margin-right: 5px; margin-top:10px;padding:2px 4px;border-radius: 2px;font-size: 12px;">设为默认值</button>
+                    <button type="button" class="recover_css btn btn-info" style="float: right;margin-right: 5px; margin-top:10px;padding:2px 4px;border-radius: 2px;font-size: 12px;">恢复默认值</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit" id="edit">{:lang('EDIT')}</button>
+                <button type="button" class="btn btn-primary js-ajax-submit" id="btn">另存为</button>
+                <a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{$specialtpl['id']}" />
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js"></script>
+<script>
+    $(function(){
+        var css = CodeMirror.fromTextArea(document.getElementById('css'), {
+            mode:  "css",
+            lineNumbers:true,
+            theme:'default'
+        });
+
+        $('#edit').click(function(){
+            var css_val = css.getValue();
+            $('#css').val(css_val);
+
+        });
+
+        $('[name=type]').change(function(){
+            if($(this).val() == 1){
+                $('.header-block').show();
+            } else{
+                $('.header-block').hide();
+            }
+        });
+
+        $('.recover_css').click(function(){
+            var id = $('input[name=id]').val();
+            var tablename = 'home_page_tpl_special'
+            var field = 'css'
+            var key = tablename+';'+field+';'+id;
+
+            $.ajax({
+                url:'/api/Homepagelog/getDefault',
+                data:{key:key},
+                success:function(res){
+                    if(res.status == 1){
+                        console.log(res.data.value)
+                        css.setValue(res.data.value);
+                    }
+                }
+            })
+        });
+
+        $('.setdefault_css').click(function(){
+            var tablename = 'home_page_tpl_special';
+            var field = 'css';
+            var id = $('input[name=id]').val();
+            var key = tablename+';'+field+';'+id;
+            var value = css.getValue();
+
+            $.ajax({
+                url:'/api/Homepagelog/setDefaultLog',
+                data:{key:key,value:value},
+                success:function(res){
+                    if(res.status == 1){
+                        layer.msg('设置默认值成功');
+                    }else{
+                        layer.msg('设置默认值失败');
+                    }
+                }
+            })
+        });
+
+        $('#btn').click(function(){
+            var id = $('input[name=id]').val();
+            layer.prompt({title: '请填写模板名称', formType: 0}, function(name, index){
+                layer.close(index);
+                $.ajax({
+                    url:'/api/Homepage/Special_saveas',
+                    type:'GET',
+                    data:{id:id,name:name},
+                    beforeSend:function(){
+                        if(name == ''){
+                            layer.msg('模板名称不能为空');
+                            return false;
+                        }
+                    },
+                    success:function(res){
+                        if(res.status == 1){
+                            var data = res.data;
+                            console.log(data);
+                            layer.confirm('是否留在当前页', {
+                                btn: ['当前页面','新页面'] //按钮
+                            }, function(index){
+                                layer.close(index);
+                            }, function(){
+                                window.location.href = data.url;
+                            });
+                        }else{
+                            layer.msg('另存为失败');
+                        }
+                    }
+
+                })
+
+            });
+        })
+    })
+</script>
+</body>
+</html>

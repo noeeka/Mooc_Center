@@ -1,0 +1,61 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('AdminCategory/index')}">栏目管理</a></li>
+        <!--<li class="active"><a href="{:url('AdminCategory/add')}">添加栏目</a></li>-->
+    </ul>
+    <div class="row margin-top-20">
+        <div class="col-md-6">
+            <form class="js-ajax-form" action="{:url('AdminCategory/addPost')}" method="post">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="A">
+                        <div class="form-group">
+                            <label for="input-parent"><span class="form-required">*</span>上级</label>
+                            <div>
+                                <select class="form-control" name="parent_id" id="input-parent">
+                                    {$categories_tree}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-name"><span class="form-required">*</span>栏目名称</label>
+                            <div>
+                                <input type="text" class="form-control" id="input-name" name="name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                                <label for="type-status"><span class="form-required">*</span>选择栏目类型</label>
+                                <div>
+                                    <select class="form-control" name="type" id="type-status">
+                                        <volist name="config.types" key="k" id="vo">
+                                            <option value="{$k}"> {$vo}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-status"><span class="form-required">*</span>状态</label>
+                            <div>
+                                <select class="form-control" name="status" id="input-status">
+                                    <option value="1">显示</option>
+                                    <option value="0">隐藏</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                    <a class="btn btn-default" href="{:url('AdminCategory/index')}">{:lang('BACK')}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

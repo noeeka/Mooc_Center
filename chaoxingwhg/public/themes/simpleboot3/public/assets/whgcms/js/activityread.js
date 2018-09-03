@@ -1,0 +1,7 @@
+$(function() {
+
+    // hot();
+    //
+    // hotread();
+
+})

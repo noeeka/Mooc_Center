@@ -1,0 +1,78 @@
+<include file="public/header"/>
+<title>精选</title>
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/search.css?v={$version_list.wx_search_css}">
+</head>
+<body>
+<section style="margin-top: 0.43rem;">
+    <section class="search-header" style="padding: 0 15px; background: #ffffff;">
+        <div class="searc01">
+            <div class="searchInput">
+                <form class="search-form" action="javascript:;">
+                    <input type="text" placeholder="文化馆" class="searchValue">
+                </form>
+                <!-- <a href="">  -->
+                <img class="searchIcon" src="__TMPL__/public/assets/whgcms/wx/images/searchicon.png" alt="">
+                <!-- </a> -->
+            </div>
+            <a href="javascript:history.back(-1)">
+                <span class="cancel">取消</span>
+            </a>
+        </div>
+    </section>
+    <div class="search-content" style="padding: 0 15px; margin-top: 0.8rem;">
+        <div class="historySearch">
+            <h3>历史搜索</h3>
+            <div class="historySearch-content">
+                <!--<span>场馆活动</span>-->
+                <!--<span>文化馆</span>-->
+                <!--<span>兵马俑</span>-->
+            </div>
+        </div>
+    </div>
+    <div class="search-result">
+        <h3 style="margin-left: 0.15rem;">已找到“<span class="searchResultValue">文化馆</span>”相关<span id="searchNum">0</span>条资源</h3>
+        <div class="searchs" style="margin-top: 0.02rem;">
+            <ul class="mui-table-view result-content" id="result-content">
+                <!--<li class="mui-table-view-cell mui-media newsNotice-item">-->
+                    <!--<a href="javascript:;">-->
+                        <!--<img class="mui-media-object mui-pull-left" src="/weixin/images/newsNotice.png">-->
+                        <!--<div class="mui-media-body">-->
+                            <!--<p class='mui-ellipsis'>第六届定西市声乐器乐大赛圆满结束第六届定西市声乐器乐大赛圆满结束</p>-->
+                            <!--<div class="mui-row clearfix">-->
+                                <!--<p class='f-left'>2017-09-12</p>-->
+                                <!--<div class='f-right'><img class="eye" src="/weixin/images/eye.png" alt="">469</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!--搜索内容模板-->
+<script type="text/x-handlebars-template" id="searchContent-template">
+    {{#each this}}
+    <li class="mui-table-view-cell mui-media">
+        <a href="{{mb_url}}">
+            {{#if thumb}}
+            <img class="mui-media-object mui-pull-left" src="{{thumb}}">
+            {{/if}}
+            <div class="mui-media-body clearfix">
+                <h3>{{title}}</h3>
+                <p class="laiyuan f-left">{{source}}</p>
+                <p class="time f-left">{{time}}</p>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/search.js?v={$version_list.wx_search_js}"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+.close-btn{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.18rem;
+    border-radius: 0.6rem;
+    margin-top: 0.3rem;
+}
+.mui-input-row label{
+    font-size: 0.17rem;
+    color: #282828;
+}
+#name,#idCards{
+    font-size: 0.15rem;
+}
+.mui-input-row .validateBtn{
+    width: 0.9rem;
+    height: 0.3rem;
+    background: #3F97F0;
+    position: absolute;
+    top: 50%;
+    right: 0.15rem;
+    transform: translate(0,-50%);
+    border-radius: 0.5rem;
+    text-align: center;
+    line-height: 0.3rem;
+    color: #FFFFFF;
+    padding: 0;
+    font-size: 0.13rem;
+}
+.mui-input-group .mui-input-row{
+    height: 60px;
+}
+.mui-input-row label{
+    padding: 21px 15px;
+}
+select, textarea, input[type='text'], input[type='search'], input[type='password'], input[type='datetime'], input[type='datetime-local'], input[type='date'], input[type='month'], input[type='time'], input[type='week'], input[type='number'], input[type='email'], input[type='url'], input[type='tel'], input[type='color']{
+    height: 60px;
+}
+.mui-input-row label{
+    width: 32%;
+}
+.mui-input-row label ~ input{
+    width: 68%;
+}
+.mui-input-group:before{
+    height: 0px;
+}
+.mui-input-group .mui-input-row:after{
+    left: 0px;
+}
+.idphoto{
+    padding: 0 15px;
+
+}
+.idphoto h3{
+    font-size: 0.17rem;
+    margin-bottom: 0.1rem;
+    margin-top: 0.2rem;
+}
+.idphotoOne,.idphotoTwo{
+    /*width: 100%;*/
+    height: 1.5rem;
+    margin: 0.12rem 0.35rem;
+    background: #F8F8F8;
+    border-radius: 0.1rem;
+    background: url("../images/idphoto.png") no-repeat center center;
+    background-size: 100%;
+    position: relative;
+}
+.idphotoOne span,.idphotoTwo span{
+    font-size: 0.12rem;
+    color: #727070;
+    position: absolute;
+    left: 50%;
+    bottom: 0.3rem;
+    transform: translate(-50%,0);
+}
+.atteState{
+    font-size: 0.15rem;
+    text-align: center;
+    margin-top: 0.2rem;
+}
+.mui-input-group:after{
+    height:0px;
+}

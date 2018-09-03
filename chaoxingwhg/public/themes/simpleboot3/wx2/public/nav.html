@@ -1,0 +1,30 @@
+<!--头部-->
+<header class="header" style="height: 0.98rem;">
+<!--<header class="header" style="height: 0.38rem;">-->
+    <div class="search">
+        <a href="/wx/search/index"><img class="searchicon" src="__TMPL__/public/assets/whgcms/wx/images/searchicon.png">搜索关键字</a>
+    </div>
+    <div class="nav" id="wrapper" style="display: block">
+        <div id="scroller">
+            <ul class="navlist" id="navlist">
+                <!--<li><a href="index.html">精选</a></li>-->
+                <!--<li><a href="information.html">信息咨询</a></li>-->
+                <!--<li class="active" id="nav3"><a href="activity.html">活动信息</a></li>-->
+                <!--<li><a href="live.html">文化直播</a></li>-->
+                <!--&lt;!&ndash;<li><a href="volunteers.html">志愿者</a></li>&ndash;&gt;-->
+                <!--<li><a href="culture.html">文化点单</a></li>-->
+                <!--<li><a href="opinion.html">民意征集</a></li>-->
+                <!--<li><a href="#">特色库</a></li>-->
+                <!--<li><a href="features.html">文化活动资源库</a></li>-->
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- 模板 -->
+<script type="text/x-handlebars-template" id="nav-template">
+    <li id="navindex"><a href="/wx2/index?navid=navindex">精选</a></li>
+    {{#each this}}
+        <li id="nav{{id}}"><a href="{{url}}?navid=nav{{id}}">{{title}}</a></li>
+    {{/each}}
+</script>

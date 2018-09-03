@@ -1,0 +1,121 @@
+.figure {
+    position: relative;
+    width: 100%;
+    height: 2.08rem;
+    margin-top: 0.43rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.introduce {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.6rem;
+    background-color: RGBA(0, 0, 0, .6);
+}
+
+.introduce h3 {
+    margin: 0.14rem 0.15rem 0.05rem;
+    font-size: 0.14rem;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.introduce div {
+    margin: 0 0.15rem;
+    font-size: 0.12rem;
+    color: #FFFFFF;
+}
+
+.introduce div span:nth-child(1) {
+    display: inline-block;
+    margin-right: 0.15rem;
+}
+
+.detail {
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+    font-size: 0.13rem;
+    color: #454444;
+    border-bottom: 1px solid #DCDCDC;
+    position: relative;
+}
+
+.detail li {
+    /*width: 2.11rem;*/
+    line-height: 0.25rem;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+}
+
+.detail span {
+    display: inline-block;
+    margin-left: 0.1rem;
+}
+
+button {
+    width: 0.96rem;
+    height: 0.35rem;
+    border-radius: 0.18rem;
+    background-color: #EB6877;
+    border: 0;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    /*margin-top: -1.1rem;*/
+    position: absolute;
+    top: 0.4rem;
+    right: 0.15rem;
+}
+
+.introduction {
+    width: 100%;
+    padding: 0.18rem 0.17rem 0.23rem;
+    font-size: 0.13rem;
+    color: #454444;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.introduction h3 {
+    font-size: 0.16rem;
+    color: #141414;
+    font-weight: bold;
+    margin-bottom: 0.18rem;
+}
+
+.introduction p {
+    text-indent: 2em;
+    color: #454444;
+    font-size: 0.16rem;
+    line-height: 0.25rem;
+    margin-bottom: 0;
+}
+
+.details h3 {
+    font-size: 0.16rem;
+    color: #141414;
+    font-weight: bold;
+    margin-bottom: 0.18rem;
+}
+
+.details {
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+}
+
+.details li {
+    width: 3.45rem;
+    line-height: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.13rem;
+    color: #454444;
+}
+
+.details span {
+    display: inline-block;
+    margin-left: 0.1rem;
+}

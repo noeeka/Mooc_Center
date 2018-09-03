@@ -1,0 +1,65 @@
+<include file="public/header" />
+<style>
+    /*返回上一页*/
+    .returnHeader{
+        border-bottom: 1px solid #c8c7cc;
+    }
+</style>
+<body>
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return">
+        <span class="mui-icon mui-icon-arrowleft"></span>
+    </a>
+    <h3 class="mui-col-xs-12 mui-text-center">特色库</h3>
+</div>
+<section class="mt40">
+    <div id="iframe-box">
+        <iframe id="ifram" src="http://www.chaoxing.com" frameborder="0"></iframe>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script>
+    // request({
+    //     url:'/v1/journal/cxqkurl',
+    //     data:{type:'mobile', id:'mb_qikan'},
+    //     dataType:'json',
+    //     async:false,
+    //     type:'post',
+    //     success:function(res){
+    //         if(res.status == 0){
+    //             location.href = '/wx/site/loginRegister';
+    //         }else{
+    //             $('#ifram').attr('src', res.data);
+    //         }
+    //     }
+    // }, false);
+    var height = document.documentElement.clientHeight
+    var returnHeight = $('.returnHeader').height();
+    // console.log(width);
+    var iframeHeight = height - returnHeight;
+    // console.log(iframeHeight);
+    $('iframe').height(iframeHeight + 'px');
+    $('#iframe-box').height(iframeHeight + 'px');
+    var width = document.documentElement.clientWidth;
+    $('iframe').width(width + 'px');
+
+    var ifram = document.getElementById('ifram');
+    if (navigator.userAgent.match(/iPad|iPhone/i)) {
+        var iframe_box = document.getElementById('iframe-box');
+        // iframe_box.style.width = 100 + '%';
+        iframe_box.style.overflowX = 'hidden';
+        iframe_box.style.overflowY = 'scroll';
+        iframe_box.style.webkitOverflowScrolling = 'touch';
+        ifram.setAttribute('scrolling', 'no');
+        iframe_box.appendChild(ifram)
+        $('iframe').height('1200px');
+        var clientWidth = window.screen.width;
+        iframe_box.width = clientWidth;
+        ifram.width = clientWidth;
+    }
+</script>
+
+</body>
+
+</html>

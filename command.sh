@@ -15,6 +15,8 @@ mkdir /data/www/mooc_center
 mkdir /data/www/iview
 cp -r ./Mooc_Center/code/* /data/www/mooc_center
 cp -r ./Mooc_Center/iview/* /data/www/iview
+mkdir /data/www/chaoxingwhg
+cp -r ./Mooc_Center/chaoxingwhg/* /data/www/chaoxingwhg
 rpm -Uvh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 yum -y install nginx 
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
@@ -32,50 +34,105 @@ echo 'export GOROOT=/usr/local/go
 	  export GOPATH=/home/go
 	  export PATH=$PATH:$GOROOT/bin'>> /etc/profile
 source /etc/profile
-echo 'server {
+echo 'server{
 	listen 80 default_server;
 	listen [::]:80 default_server;
 	root /data/www/mooc_center/public;
 	index index.html index.htm index.php;
 	server_name _;
 	location / {
-                if (!-e $request_filename) {
-                        rewrite  ^(.*)$  /index.php?s=$1  last;
-                        break;
-                }
+		if (!-e $request_filename) {
+			rewrite  ^(.*)$  /index.php?s=$1  last;
+			break;
+		}
     }
 	
 	location ~ [^/]\.php(/|$){
 		fastcgi_pass  127.0.0.1:9000;	
 		fastcgi_buffer_size 128k;
 		fastcgi_buffers 8 128k;
-		
-fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-fastcgi_param  QUERY_STRING       $query_string;
-fastcgi_param  REQUEST_METHOD     $request_method;
-fastcgi_param  CONTENT_TYPE       $content_type;
-fastcgi_param  CONTENT_LENGTH     $content_length;
-
-fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
-fastcgi_param  REQUEST_URI        $request_uri;
-fastcgi_param  DOCUMENT_URI       $document_uri;
-fastcgi_param  DOCUMENT_ROOT      $document_root;
-fastcgi_param  SERVER_PROTOCOL    $server_protocol;
-fastcgi_param  REQUEST_SCHEME     $scheme;
-fastcgi_param  HTTPS              $https if_not_empty;
-
-fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
-fastcgi_param  SERVER_SOFTWARE    nginx/$nginx_version;
-
-fastcgi_param  REMOTE_ADDR        $remote_addr;
-fastcgi_param  REMOTE_PORT        $remote_port;
-fastcgi_param  SERVER_ADDR        $server_addr;
-fastcgi_param  SERVER_PORT        $server_port;
-fastcgi_param  SERVER_NAME        $server_name;
-fastcgi_param  REDIRECT_STATUS    200;
-
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_param  QUERY_STRING       $query_string;
+		fastcgi_param  REQUEST_METHOD     $request_method;
+		fastcgi_param  CONTENT_TYPE       $content_type;
+		fastcgi_param  CONTENT_LENGTH     $content_length;
+		fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
+		fastcgi_param  REQUEST_URI        $request_uri;
+		fastcgi_param  DOCUMENT_URI       $document_uri;
+		fastcgi_param  DOCUMENT_ROOT      $document_root;
+		fastcgi_param  SERVER_PROTOCOL    $server_protocol;
+		fastcgi_param  REQUEST_SCHEME     $scheme;
+		fastcgi_param  HTTPS              $https if_not_empty;
+		fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
+		fastcgi_param  SERVER_SOFTWARE    nginx/$nginx_version;
+		fastcgi_param  REMOTE_ADDR        $remote_addr;
+		fastcgi_param  REMOTE_PORT        $remote_port;
+		fastcgi_param  SERVER_ADDR        $server_addr;
+		fastcgi_param  SERVER_PORT        $server_port;
+		fastcgi_param  SERVER_NAME        $server_name;
+		fastcgi_param  REDIRECT_STATUS    200;
 	}
 }'>/etc/nginx/conf.d/mooc_center.conf
+echo 'server
+{
+        listen 80;
+       
+        server_name demo-mooc.com;
+        index index.php index.html index.htm;
+        root  /data/www/chaoxingwhg/public;
+
+
+        #error_page   404   /404.html;
+        #include enable-php.conf;
+       
+        fastcgi_connect_timeout 300;
+        fastcgi_send_timeout 300;
+        fastcgi_read_timeout 300;
+
+
+		location = /themes/simpleboot3/mooc-admin {
+			proxy_pass http://127.0.0.1:8082/#/login;
+		}
+
+		location ^~ /dist/{
+			proxy_pass http://127.0.0.1:8082;
+		}
+        location /nginx_status
+        {
+            stub_status on;
+            access_log   off;
+        }
+
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+        {
+            expires      30d;
+        }
+
+        location ~ .*\.(js|css)?$
+        {
+            expires      12h;
+        }
+        location ~ /\.
+        {
+            deny all;
+        }
+        location / {
+			if (!-e $request_filename) {
+				rewrite  ^(.*)$  /index.php?s=$1  last;
+				break;
+			}
+        }
+		location ~ [^/]\.php(/|$)
+        {
+            try_files $uri =404;
+            fastcgi_pass  127.0.0.1:9000;# unix:/tmp/php-cgi.sock;
+            fastcgi_buffer_size 128k;
+            fastcgi_buffers 32 32k;
+            fastcgi_index index.php;
+            include fastcgi.conf;
+            include pathinfo.conf;
+        }
+}'>/etc/nginx/conf.d/demo-mooc.conf
 echo 'user nginx;
 worker_processes  1;
 
@@ -117,11 +174,10 @@ curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
 yum erase nodejs npm -y
 yum install nodejs -y
 yum install -y npm --enablerepo=epel
-/etc/init.d/iptables stop
 /etc/init.d/nginx restart
 /etc/init.d/php-fpm restart
+/etc/init.d/mysqld restart
 a=$(grep 'temporary password' /var/log/mysqld.log |cut -d ":" -f 4,10 | sed 's/^[ \t]*//g')
-echo $a
 echo "<?php
 return [
     // 数据库类型
@@ -166,13 +222,36 @@ return [
     'sql_explain'     => false,
 ];
 ">/data/www/mooc_center/application/database.php
+echo "<?php
+return [
+    // 数据库类型
+    'type'     => 'mysql',
+    // 服务器地址
+    'hostname' => 'localhost',
+    // 数据库名
+    'database' => 'demo-mooc',
+    // 用户名
+    'username' => 'root',
+    // 密码
+    'password' => '${a}',
+    // 端口
+    'hostport' => '3306',
+    // 数据库编码默认采用utf8
+    'charset'  => 'utf8mb4',
+    // 数据库表前缀
+    'prefix'   => 'cxtj_',
+    'authcode' => 'HmyDzUUsgsAPtBNUpM',
+    //#COOKIE_PREFIX#
+];">/data/www/chaoxingwhg/data/conf/database.php
 cd /data/www/iview
-npm install --save iview
-rm -rf node_modules && rm -rf package-lock.json && npm cache clear --force && npm install && npm install jquery --save
-
-
 wget https://ffmpeg.org/releases/ffmpeg-4.0.2.tar.bz2
 tar -xvf ffmpeg-4.0.2.tar.bz2
 cd ffmpeg-4.0.2
 ./configure --disable-x86asm
 make && make install
+
+cd /usr/local/weeds && sh master.sh && sh volume.sh
+cd /data/www/mooc_center && php time.php start -d
+cd /data/www/iview && sh mooc_admin.sh
+mysql -uroot -p${a} <  /data/www/mooc_center/database/mooc_center.sql
+mysql -uroot -p${a} <  /data/www/chaoxingwhg/demo-mooc.sql

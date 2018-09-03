@@ -1,0 +1,127 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('home_page_list_tpl/index')}">模板管理</a></li>
+        <li><a href="{:url('home_page_list_tpl/add')}">添加模板</a></li>
+    </ul>
+    <form method="post" class="js-ajax-form margin-top-20" action="">
+        <div class="table-actions">
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit">{:lang('SORT')}</button>-->
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"-->
+                    <!--data-action="{:url('link/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}-->
+            <!--</button>-->
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"-->
+                    <!--data-action="{:url('link/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}-->
+            <!--</button>-->
+
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('home_page_list_tpl/delete')}" data-subcheck="true" data-msg="您确定删除吗？">
+                {:lang('DELETE')}
+            </button>
+        </div>
+        <!--<php>$status=array("1"=>lang('DISPLAY'),"0"=>lang('HIDDEN'));</php>-->
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">ID</th>
+                <th>模板名称</th>
+                <th>示例图</th>
+                <th>描述</th>
+                <th>长度</th>
+                <th width="150">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}"></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.name}</td>
+                    <td><img src="/upload/{$vo.exam_img}" width="150px"></td>
+                    <td>{$vo.desc}
+                    <td>{$vo.len}</td>
+                    <td>
+                        <a href="{:url('home_page_list_tpl/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="javascript:;" onclick="Saveas({$vo['id']});">另存为</a>
+                        <a href="{:url('home_page_list_tpl/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">
+                            {:lang('DELETE')}
+                        </a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">ID</th>
+                <th>模板名称</th>
+                <th>示例图</th>
+                <th>描述</th>
+                <th>长度</th>
+                <th width="150">{:lang('ACTIONS')}</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit">{:lang('SORT')}</button>-->
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"-->
+                    <!--data-action="{:url('link/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}-->
+            <!--</button>-->
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"-->
+                    <!--data-action="{:url('link/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}-->
+            <!--</button>-->
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('home_page_list_tpl/delete')}" data-subcheck="true" data-msg="您确定删除吗？">
+                {:lang('DELETE')}
+            </button>
+        </div>
+        <ul class="pagination">{$page|default=''}</ul>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js"></script>
+<script>
+
+    function Saveas(id){
+        layer.prompt({title: '请填写模板名称', formType: 0}, function(name, index){
+            layer.close(index);
+            $.ajax({
+                url:'/api/Homepage/Saveas',
+                type:'GET',
+                data:{id:id,name:name},
+                beforeSend:function(){
+                    if(name == ''){
+                        layer.msg('模板名称不能为空');
+                        return false;
+                    }
+                },
+                success:function(res){
+                    if(res.status == 1){
+                        layer.confirm('另存为成功', {
+                            btn: ['确定'] //按钮
+                        }, function(index){
+                            layer.close(index);
+                            location.reload();
+                        });
+                    }else{
+                        layer.msg('另存为失败');
+                    }
+                }
+
+            })
+
+        });
+    }
+
+
+
+
+</script>
+</body>
+</html>

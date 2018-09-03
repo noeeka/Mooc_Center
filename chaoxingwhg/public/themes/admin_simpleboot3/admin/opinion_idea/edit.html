@@ -1,0 +1,109 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a>关于{$discussion['title']}的意见征集</a></li>
+    </ul>
+    <form action="{:url('opinionIdea/update')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <input type="hidden" name="id" value="{$opinionIdea['id']}">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="110">内容<span class="form-required">*</span></th>
+                        <td>
+                            <textarea class="form-control" name="content" >{$opinionIdea.content}</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="110">提交人：</th>
+                        <td>
+                            <php>
+                                echo $userInfo->user_realname ?? '未知';
+                            </php>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="110">提交时间：</th>
+                        <td>
+                            {:date('Y-m-d H:i',$opinionIdea['create_time'])}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="110">公开状态：</th>
+                        <td>
+                            <switch name="$opinionIdea['public_status']">
+                                <case value="1">
+                                    未公开
+                                </case>
+                                <case value="2">
+                                    公开
+                                </case>
+                            </switch>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                        <a class="btn btn-default" href="{:url('/admin/opinion_idea/show/' , ['id' => $opinionIdea['opinion_id']])}">{:lang('BACK')}</a>
+                        <switch name="$opinionIdea['public_status']">
+                            <case value="1">
+                                <a  class="btn btn-default js-ajax-delete" data-msg="确定要标记已读？" href="{:url('opinionIdea/updateStatus',
+                                    array(
+                                    'id'=> $opinionIdea['id'] ,
+                                    'opinionId' => $opinionIdea['opinion_id'],
+                                    'key' => 'public_status' ,
+                                    'value' => 2
+                                     ))}" >公开</a>
+                            </case>
+                            <case value="2">
+                                <a  class="btn btn-default js-ajax-delete" data-msg="确定要标记已读？" href="{:url('opinionIdea/updateStatus',
+                                    array(
+                                    'id'=>$opinionIdea['id'] ,
+                                    'opinionId' =>  $opinionIdea['opinion_id'],
+                                    'key' => 'public_status' ,
+                                    'value' => 1
+                                     ))}" >取消公开</a>
+                            </case>
+                        </switch>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+    });
+
+
+
+
+</script>
+</body>
+</html>

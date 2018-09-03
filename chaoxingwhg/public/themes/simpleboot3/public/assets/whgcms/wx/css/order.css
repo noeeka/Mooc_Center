@@ -1,0 +1,83 @@
+section {
+    margin-top: 0.43rem;
+}
+
+.classification {
+    padding: 0.14rem 0 0.17rem 0;
+    /* background: url(../images/fenleibg.png) no-repeat; */
+    background-size: 100%;
+}
+
+
+
+
+/*筛选*/
+
+.screenTop {
+    /*display: inline-block;*/
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 0.1rem;
+}
+
+.screenTop li {
+    border-right: 1px solid #959595;
+}
+
+.screenTop li:last-child {
+    border-right: none;
+}
+
+.screenTop li img {
+    width: 0.11rem;
+    height: 0.07rem;
+}
+
+
+
+
+
+/* 内容 */
+
+.huodong p {
+    padding: 0.2rem 0.17rem 0.28rem;
+    font-size: 0.15rem;
+    color: #141414;
+    margin-bottom: 0;
+}
+
+.huodong .list {
+    padding: 0.13rem 0 0.1rem;
+    border-bottom: 1px solid RGBA(210, 210, 210, .5);
+}
+
+.huodong label {
+    float: left;
+    color: #282828;
+    font-size: 0.17rem;
+    padding-left: 0.17rem;
+    padding-right: 0.2rem;
+    line-height: 0.38rem;
+    text-align: left;
+    width: 1.4rem;
+}
+
+.huodong input {
+    width: 59%;
+    float: left;
+    border: 0;
+    margin-bottom: 0;
+    padding: 0;
+    color: #727070;
+    font-size: 0.15rem;
+}
+
+.huodong button {
+    width: 91%;
+    height: 0.49rem;
+    margin: 0.71rem 0.17rem;
+    font-size: 0.18rem;
+    color: #FFFFFF;
+    background-color: #3F97F0;
+    border-radius: 0.24rem;
+    border: 0;
+}

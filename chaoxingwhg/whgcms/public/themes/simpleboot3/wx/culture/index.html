@@ -1,0 +1,172 @@
+<include file="public/header" />
+<script type="text/javascript">
+    document.write("<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/culture.css?v=" + new Date().getTime() + "'>");
+</script>
+<body>
+    <include file="public/nav" />
+    <section style="margin-bottom: 50px;">
+        <div class="classification">
+            <ul class="screenTop clearfix">
+                <li class="Regional venueHot f-left mui-col-xs-4 mui-text-center"><a href="#"><span>热门场馆</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+                <li class="Brand region f-left mui-col-xs-4 mui-text-center"><a href="#"><span>区域</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+                <li class="Sort venueType f-left mui-col-xs-4 mui-text-center"><a href="#"><span>状态</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+            </ul>
+            <ul class="screenTj">
+                <li>排序:</li>
+                <li class="active" data-id='0'>默认</li>
+                <li data-id='1'>最新发布</li>
+                <li data-id='2'>人气最高</li>
+            </ul>
+        </div>
+        <div class="zhezhao" style="display: none"></div>
+        <div class="screenContent">
+            <!-- grade -->
+            <div class="grade-eject">
+                <ul class="grade-w" id="gradew">
+                    <li onclick="grade1(this)" data-id='0'>全部</li>
+                    <!-- <li onclick="grade1(this)">哈尔滨</li>
+                    <li onclick="grade1(this)">全国</li>
+                    <li onclick="grade1(this)">北京</li>
+                    <li onclick="grade1(this)">天津</li>
+                    <li onclick="grade1(this)">河北</li>
+                    <li onclick="grade1(this)">山西</li>
+                    <li onclick="grade1(this)">内蒙古</li>
+                    <li onclick="grade1(this)">辽宁</li>
+                    <li onclick="grade1(this)">吉林</li>
+                    <li onclick="grade1(this)">黑龙江</li>
+                    <li onclick="grade1(this)">上海</li>
+                    <li onclick="grade1(this)">江苏</li>
+                    <li onclick="grade1(this)">山东</li>
+                    <li onclick="grade1(this)">河南</li>
+                    <li onclick="grade1(this)">湖北</li>
+                    <li onclick="grade1(this)">湖南</li>
+                    <li onclick="grade1(this)">广东</li>
+                    <li onclick="grade1(this)">广西</li>
+                    <li onclick="grade1(this)">海南</li> -->
+                </ul>
+            </div>
+            <!-- End grade -->
+            <!-- Category -->
+            <div class="Category-eject">
+                <ul class="Category-w" id="Categorytw">
+                    <li onclick="Categorytw(this)" data-id='all'>全部区域</li>
+                    <!-- <li onclick="Categorytw(this)">奥迪</li>
+                    <li onclick="Categorytw(this)">丰田</li>
+                    <li onclick="Categorytw(this)">本田</li>
+                    <li onclick="Categorytw(this)">大众</li>
+                    <li onclick="Categorytw(this)">别克</li>
+                    <li onclick="Categorytw(this)">标志</li>
+                    <li onclick="Categorytw(this)">东风悦达起亚</li>
+                    <li onclick="Categorytw(this)">东风</li>
+                    <li onclick="Categorytw(this)">奔驰</li>
+                    <li onclick="Categorytw(this)">玛莎拉蒂</li>
+                    <li onclick="Categorytw(this)">保时捷</li>
+                    <li onclick="Categorytw(this)">广汽传祺</li> -->
+                </ul>
+                <ul class="Category-t" id="Categoryt">
+                    <!-- <li onclick="Categoryt(this)">奥迪A6</li>
+                    <li onclick="Categoryt(this)">奥迪A6L</li>
+                    <li onclick="Categoryt(this)">奥迪A4</li>
+                    <li onclick="Categoryt(this)">奥迪A4L</li>
+                    <li onclick="Categoryt(this)">奥迪A5</li>
+                    <li onclick="Categoryt(this)">奥迪A8</li>
+                    <li onclick="Categoryt(this)">奥迪A8L</li>
+                    <li onclick="Categoryt(this)">奥迪A3</li>
+                    <li onclick="Categoryt(this)">奥迪Q5</li>
+                    <li onclick="Categoryt(this)">奥迪Q7</li>
+                    <li onclick="Categoryt(this)">奥迪TT</li>
+                    <li onclick="Categoryt(this)">奥迪R8</li> -->
+                </ul>
+            </div>
+            <!-- End Category -->
+            <!-- Category -->
+            <div class="Sort-eject Sort-height">
+                <ul class="Sort-Sort" id="Sort-Sort">
+                    <li onclick="Sorts(this)" data-id='0'>全部</li>
+                    <!-- <li onclick="Sorts(this)">智能排序</li>
+                    <li onclick="Sorts(this)">离我最近</li>
+                    <li onclick="Sorts(this)">好评优先</li>
+                    <li onclick="Sorts(this)">最新发布</li>
+                    <li onclick="Sorts(this)">人气优先</li>
+                    <li onclick="Sorts(this)">价格最低</li>
+                    <li onclick="Sorts(this)">价格最高</li> -->
+                </ul>
+            </div>
+            <!-- End Category -->
+        </div>
+        <div class="huodong">
+            <ul class="mui-table-view huodongList">
+                <!-- <li class="mui-table-view-cell mui-media">
+                    <a href="orderinfo.html">
+                        <img class="mui-media-object mui-pull-left" src="images/huodong1.png">
+                        <div class="mui-media-body clearfix">
+                            <h3>中国制陶艺手艺技术研究</h3>
+                            <p class="time f-left">北京文化艺术活动中心</p>
+                            <div class="baomingBtn f-right">我要点单</div>
+                        </div>
+                        <div class="type">舞蹈</div>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </section>
+    <!--回到顶部-->
+    <section class="totop" style="display: none;">
+        <a href="#"><img src="__TMPL__/public/assets/whgcms/wx/images/totop.png" alt=""></a>
+    </section>
+    <include file="public/footer" />
+    <script type="text/javascript">
+    document.write('<script src=\'__TMPL__/public/assets/whgcms/wx/lib/inscroll/iscroll.js?v=' + new Date().getTime() + '\'><\/script>');
+    document.write('<script src=\'__TMPL__/public/assets/whgcms/wx/js/common.js?v=' + new Date().getTime() + '\'><\/script>');
+    document.write('<script src=\'__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js?v=' + new Date().getTime() + '\'><\/script>');
+    document.write('<script src=\'__TMPL__/public/assets/whgcms/wx/js/common.js?v=' + new Date().getTime() + '\'><\/script>');
+    document.write('<script src=\'__TMPL__/public/assets/whgcms/wx/js/culture.js?v=' + new Date().getTime() + '\'><\/script>');
+    </script>
+    <script type="text/javascript">
+        //导航
+        nowActive('.navlist li', 'active');
+        //分类
+        nowActive('.navigation li:not(:first-child)', 'active');
+        //排序
+        nowActive('.screenTj li:not(:first-child)', 'active');
+        //当前选择的nav滚动到可视区域
+        // scrollNav('nav4');
+    </script>
+    <script type="text/template" id="venue">
+        {{#each venue}}
+            {{venue_helper}}
+        {{/each}}
+    </script>
+    <script type="text/template" id="area">
+        {{#each area}}
+            {{area_helper}}
+        {{/each}}
+    </script>
+    <script type="text/template" id="province">
+        {{#each son}}
+            {{pro_helper}}
+        {{/each}}
+    </script>
+    <script type="text/template" id="sort">
+        {{#each data}}
+            {{sort_helper}}
+        {{/each}}
+    </script>
+    <script type="text/template" id="listItem">
+        {{#each list}}
+        <li class="mui-table-view-cell mui-media">
+            <a href="/wx/culture/read/?id={{id}}">
+                {{item_img}}
+                <div class="mui-media-body clearfix">
+                    <h3>{{this.title}}</h3>
+                    <p class="time f-left">{{this.name}}</p>
+                    <div class="baomingBtn f-right">我要点单</div>
+                </div>
+                <div class="type">{{this.tname}}</div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

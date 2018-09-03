@@ -1,0 +1,47 @@
+<include file="public/header"/>
+
+<link rel='stylesheet' type='text/css'
+      href="__TMPL__/public/assets/whgcms/wx2/css/myfindpwd.css?v={$version_list.wx_myfindpwd_css}">
+</head>
+
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">找回密码</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="resetPassword">
+        <form class="mui-input-group" id="resetForm">
+            <div class="mui-input-row">
+                <label>手机号</label>
+                <input type="text" name="mobile" style="font-size: 0.15rem;" id="telphone" placeholder="请输入手机号">
+            </div>
+            <div class="mui-input-row">
+                <label>新密码</label>
+                <input type="password" name="password" id="password" placeholder="填写6～18位的密码">
+            </div>
+            <div class="mui-input-row">
+                <label>确认新密码</label>
+                <input type="password" name="repeat" id="repeat" placeholder="再次填写您的密码">
+            </div>
+            <div class="mui-input-row" style="position: relative;">
+                <label>验证码</label>
+                <input type="text" name="yzm" id="validate" placeholder="填写验证码">
+                <input type="button" class="validateBtn" value="发送验证码">
+            </div>
+        </form>
+        <div class="mui-button-row">
+            <button type="button" class="passport close-btn mui-btn mui-btn-primary reset-btn">确认</button>
+        </div>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/common.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/myfindpwd.js?v={$version_list.wx_myfindpwd_js}"></script>
+
+</body>
+</html>

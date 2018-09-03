@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信息</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="lib/layui/css/layui.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/classedit.css">
+<link rel="stylesheet" href="css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+    <header-all></header-all>
+    <div class="main">
+    	<div class="main-safe">
+        	<div class="main-content">
+            	<div class="class-edit-info clearfix">
+                	<div class="upload-b f-left">
+                    	<div class="layui-upload" id="upimg">
+                          <div class="layui-upload-list">
+                            <img class="layui-upload-img" src="images/newclass.png" id="upload-img" width="430" height="430">
+                            <p id="demoText"></p>
+                          </div>
+                          <p style="text-align:center; color:#9EA7B4; padding-bottom:15px">推荐尺寸：548*548</p>
+                          <span class="upload-btn">上传封面</span>
+                        </div>
+                    </div>
+                    <div class="info-b f-right">
+                    	<div class="layui-form-item">
+                            <label class="layui-form-label ipt-name">课程名</label>
+                            <div class="layui-input-block">
+                              <input class="text-ipt ipt-border" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入课程名" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ipt-name">教师</label>
+                            <div class="layui-input-block">
+                              <input class="text-ipt ipt-border" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入教师" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ipt-name">说明</label>
+                            <div class="layui-input-block textarea-b">
+                               <textarea placeholder="请输入内容" class="ipt-border textarea" maxlength="500"></textarea>
+                               <span class="fontnum">0/500</span>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ipt-name">测试设置</label>
+                            <div class="layui-input-block radio-b">
+                              <div><label><i class="radio-i"></i><input class="test-radio" type="radio" name="test" value="开启" title="开启">开启</label></div>
+                              <div><label><i class="radio-i test-active"></i><input class="test-radio" type="radio" name="test" value="关闭" title="关闭" checked="true">关闭</label></div>
+                            </div>
+                        </div>
+  						<div class="layui-form-item">
+                            <label class="layui-form-label ipt-name">开放设置</label>
+                            <div class="layui-input-block radio-b">
+                              <div><label><i class="radio-i test-active"></i><input class="test-radio date-radio" type="radio" name="open" value="0" title="限时开放" checked="true">限时开放</label></div>
+                              <div><label><i class="radio-i"></i><input class="test-radio date-radio" type="radio" name="open" value="1" title="开放">开放</label></div>
+                              <div><label><i class="radio-i"></i><input class="test-radio date-radio" type="radio" name="open" value="2" title="暂不开放">暂不开放</label></div>
+                            </div>
+                        </div>
+                        <div class="date-b active-date">
+                        	<div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="date" class="choose-date ipt-border" id="begindate" lay-verify="date" placeholder="请选择时间" autocomplete="off" class="layui-input">
+                                    <span>开始</span>
+                                </div>
+                            </div>
+                            <div class="date-line"></div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="date" class="choose-date ipt-border" id="overdate" lay-verify="date" placeholder="请选择时间" autocomplete="off" class="layui-input">
+                                    <span>结束</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-catalog">
+                	<div class="class-catalog-tit clearfix">
+                    	<span class="tit f-left">目录</span>
+                        <span class="edit f-right">编辑</span>
+                    </div>
+                    <table class="catalog-table">
+                    	<tr class="tit-tr">
+                        	<td>第一章  绪论</td>
+                            <td width="135">发放</td>
+                        </tr>
+                        <tr>
+                        	<td>1.1生态学的定义及沿革</td>
+                            <td><img src="images/check.png"></td>
+                        </tr>
+                        <tr>
+                        	<td>1.2生态与人文的关系</td>
+                            <td><img src="images/cross.png"></td>
+                        </tr>
+                        <tr>
+                        	<td>1.3生态理念</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        	<td>1.4生态法则</td>
+                            <td></td>
+                        </tr>
+                        <tr class="tit-tr">
+                        	<td>第一章  绪论</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        	<td>1.1生态学的定义及沿革</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        	<td>1.2生态与人文的关系</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        	<td>1.3生态理念</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        	<td>1.4生态法则</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="show-all">显示全部</div>
+                <div class="save-btn backgroundcolor">保存</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-safe">
+            <div class="footer-content">
+                <ul class="clearfix">
+                    <li class="f-left">
+                        <a href="">技术支持:超星泛雅Copyright © 1993-2018 超星网 </a>
+                    </li>
+                    <li class="f-left">
+                        <a href="">单位编号:1101081827 </a>
+                    </li>
+                    <li class="f-left">
+                        <a href="">京ICP证:060172号 网络 </a>
+                    </li>
+                    <li class="f-left">
+                        <a href="">视听许可证:0110438号 </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="lib/vue2.js"></script>
+<script src="js/header.js"></script>
+<script src="lib/layui/layui.all.js"></script>
+<script src="js/publice.js"></script>
+<script src="js/classedit.js"></script>
+</html>

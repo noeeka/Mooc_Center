@@ -1,0 +1,130 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/live.css?v={$version_list.wx_live_css}'>
+<title>文化直播</title>
+</head>
+
+<body>
+<!--头部-->
+<include file="public/nav" />
+<section style="margin-bottom: 50px;">
+    <div class="classification">
+        <ul class="screenTop clearfix">
+            <li class="Regional venueHot f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>热门场馆</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+            <li class="Brand region f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>区域</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+            <li  <if condition="$switch eq 0"> class="Sort venueType f-left1 mui-col-xs-4 mui-text-center" style="margin:0 auto"<else/>class="Sort venueType f-left mui-col-xs-4 mui-text-center"</if>><a href="#"><span>类型</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        </ul>
+    </div>
+    <div class="zhezhao" style="display: none"></div>
+    <div class="screenContent">
+        <!-- grade -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+            </ul>
+        </div>
+        <!-- End grade -->
+        <!-- Category -->
+        <div class="Category-eject">
+            <ul class="Category-w" id="Categorytw">
+                <!--<li onclick="Categorytw(this)">全部品牌</li>-->
+                <!--<li onclick="Categorytw(this)">奥迪</li>-->
+                <!--<li onclick="Categorytw(this)">丰田</li>-->
+                <!--<li onclick="Categorytw(this)">本田</li>-->
+                <!--<li onclick="Categorytw(this)">大众</li>-->
+                <!--<li onclick="Categorytw(this)">别克</li>-->
+                <!--<li onclick="Categorytw(this)">标志</li>-->
+                <!--<li onclick="Categorytw(this)">东风悦达起亚</li>-->
+                <!--<li onclick="Categorytw(this)">东风</li>-->
+                <!--<li onclick="Categorytw(this)">奔驰</li>-->
+                <!--<li onclick="Categorytw(this)">玛莎拉蒂</li>-->
+                <!--<li onclick="Categorytw(this)">保时捷</li>-->
+                <!--<li onclick="Categorytw(this)">广汽传祺</li>-->
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+                <!--<li onclick="Categoryt(this)">奥迪A6</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A6L</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A4</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A4L</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A5</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A8</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A8L</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪A3</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪Q5</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪Q7</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪TT</li>-->
+                <!--<li onclick="Categoryt(this)">奥迪R8</li>-->
+            </ul>
+        </div>
+        <!-- End Category -->
+        <!-- Category -->
+        <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li onclick="Sorts(this)" data-type="0">全部</li>
+                <li onclick="Sorts(this)" data-type="1">即将开始</li>
+                <li onclick="Sorts(this)" data-type="2">直播中</li>
+                <li onclick="Sorts(this)" data-type="3">直播结束</li>
+            </ul>
+        </div>
+        <!-- End Category -->
+    </div>
+    <div class="huodong">
+        <ul id="live">
+        </ul>
+    </div>
+</section>
+
+
+
+<include file="public/footer" >
+<script src='__TMPL__/public/assets/whgcms/wx/js/live.js?v={$version_list.wx_live_js}'></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js"></script>
+<!--<script src="lib/demoUtils.js"></script>-->
+<script>
+    //导航
+    nowActive('.navlist li', 'active');
+    //分类
+    nowActive('.navigation li:not(:first-child)', 'active');
+    //排序
+    nowActive('.screenTj li:not(:first-child)', 'active');
+    //当前选择的nav滚动到可视区域
+    //scrollNav('nav4');
+</script>
+
+<script type="text/x-handlebars-template" id="live_template">
+    {{#each this}}
+    <li style="background-image: url({{img}});background-size:100% 100%;">
+        <a href="">
+            <div class="introduce">
+                <h3 class="mui-ellipsis">{{live_name}}</h3>
+                <div class="clearfix">
+                    <span class="f-lift">{{date start_time}}~{{date end_time}}</span><span class="liveState f-right">{{status start_time}}</span>
+                </div>
+                <div class="mui-ellipsis" style="line-height:15px;" >{{name}}</div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="venue-template">
+    <li onclick="grade1(this)" onclick="Categorytw(this)" date-venue="0">全部</li>
+    {{#each this}}
+    <li onclick="grade1(this)" data-venue="{{id}}">{{name}}</li>
+    {{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="area-template">
+    <li onclick="Categorytw(this)">全部</li>
+    {{#each this}}
+    <li onclick="Categorytw(this)" data-area="{{id}}">{{name}}</li>
+    {{/each}}
+
+</script>
+    <script type="text/x-handlebars-template" id="son-template">
+        <li onclick="Categoryt(this)" data-area="{{id}}">{{name}}</li>
+        {{#each son}}
+        <li onclick="Categoryt(this)" data-area="{{id}}">{{name}}</li>
+        {{/each}}
+</script>
+</body>
+
+</html>

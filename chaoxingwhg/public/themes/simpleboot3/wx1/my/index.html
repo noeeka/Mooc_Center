@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>我的</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx1/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel='stylesheet' type='text/css' href='/static/js/webuploader/webuploader.css'>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/my.css?v={$version_list.wx_my_css}">
+    <style type="text/css">
+    .photo {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: url(__TMPL__/public/assets/whgcms/wx/images/myphoto.png);
+        /*background-repeat: round;*/
+        margin: 0 auto 0.1rem auto;
+    }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="user-info">
+            <div class="userInfoContent">
+                <!-- <img class="Photo" src="/weixin/images/myPhoto.png" alt=""> -->
+                <div class="photo" id="photo">
+                </div>
+                <!-- <img class="Photo" id='photo' src="/weixin/images/myPhoto.png" alt=""> -->
+                <img class="Photo1" id='photo1' style="display: none" alt="">
+                <input type="file" name="touxiang" id="touxiang" style='display: none' accept="image/*">
+                <a class="loginRegister" href="/wx/login/login">登录 | 注册</a>
+            </div>
+        </div>
+        <div class="user-handle" style="margin-bottom: 50px;margin-top: 2.2rem">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell">
+                    <a href="/wx/my/collect" class="mui-navigate-right shoucang"><img src="__TMPL__/public/assets/whgcms/wx/images/my_shoucang.png" alt="">我的收藏</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="/wx/apply/index" class="mui-navigate-right aboutUs"><img src="__TMPL__/public/assets/whgcms/wx/images/my_yuyue.png" alt="">我的预约</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="/wx/my/mybaoming" class="mui-navigate-right aboutUs"><img src="__TMPL__/public/assets/whgcms/wx/images/mybaoming.png" alt="">我的报名</a>
+                </li>
+                <li class="mui-table-view-cell">
+                <a href="/wx/my/feedback" class="mui-navigate-right aboutUs"><img src="__TMPL__/public/assets/whgcms/wx/images/my_yijian.png" alt="">意见反馈</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="/wx/my/tidings" class="mui-navigate-right aboutUs"><img src="__TMPL__/public/assets/whgcms/wx/images/my_xiaoxi.png" alt="">消息通知</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="/wx/my/about" class="mui-navigate-right aboutUs"><img src="__TMPL__/public/assets/whgcms/wx/images/aboutus.png" alt="">关于我们</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="/wx/my/set" id="set" class="mui-navigate-right aboutUs"><img src="__TMPL__/public/assets/whgcms/wx/images/my_zhanghao.png" alt="">账号设置</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!--底部-->
+    <nav class="mui-bar mui-bar-tab">
+        <div>
+            <a class="mui-tab-item" href="/wx1/index">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+            <a class="mui-tab-item mui-active" href='javascript:;'>
+        <span class="mui-icon mui-icon-my"></span>
+        <span class="mui-tab-label">我的</span>
+    </a>
+        </div>
+    </nav>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+    <script src="/static/js/jquery.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+    <script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+    <script src='/static/js/webuploader/webuploader.js'></script>
+    <script src='__TMPL__/public/assets/whgcms/wx1/js/my.js?v={$version_list.wx_my_js}'></script>
+</body>
+
+</html>

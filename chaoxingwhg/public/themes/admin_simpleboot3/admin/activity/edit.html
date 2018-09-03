@@ -1,0 +1,468 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}"
+               style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('图片上传','#file-{id}','file');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('Activity/index')}">活动管理</a></li>
+        <li class="active"><a href="{:url('Activity/edit')}">编辑活动</a></li>
+    </ul>
+    <form action="{:url('Activity/editPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="110">标题<span class="form-required">*</span></th>
+                        <td>
+                            <input type="hidden" name="post[id]" value="{$activity.id}">
+                            <input class="form-control" type="text" name="post[title]"
+                                   id="title" required value="{$activity.title}" placeholder="请输入标题"/>
+                            <span class="form-required">* 字数最多不能超过100</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>简介<span class="form-required">*</span></th>
+                        <td>
+                            <textarea class="form-control" name="post[abstract]" style="height: 50px;"
+                                      placeholder="请填写简介">{$activity.abstract}</textarea>
+                            <span class="form-required">* 字数最多不能超过200</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>活动电话<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="post[contacts_mobile]"
+                                    required value="{$activity.contacts_mobile}" placeholder="请输入电话"/>
+                            <span class="form-required"></span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th>所属场馆<span class="form-required">*</span></th>
+                        <td>
+                            <div>
+                                <select class="form-control" style="width: 49%;display: inline-block" name="post[area1]" id="area_id">
+                                    {$areas}
+                                </select>
+                                <select class="form-control" style="width: 49%;display: inline-block" name="post[venue]" id="venue_id">
+                                    <php>
+                                    foreach($venues as $v){
+                                        if($v['id'] == $activity['venue']){
+                                            echo  "<option value=".$v['id']." checked >".$v['name'].'</option>';
+                                        }else{
+                                            echo  "<option value=".$v['id']." >".$v['name'].'</option>';
+                                        }
+                                    }
+                                    </php>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>活动类型<span class="form-required">*</span></th>
+                        <td>
+                            <select class="form-control" style="width: 49%;display: inline-block" name="post[type]">
+                                <php>
+                                    foreach($type_list as $v){
+                                        if($v['id'] == $activity['type']){
+                                          echo  "<option value=".$v['id']." selected >".$v['name'].'</option>';
+                                        }else{
+                                          echo  "<option value=".$v['id']." >".$v['name'].'</option>';
+                                        }
+                                    }
+                                </php>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>活动地点<span class="form-required">*</span></th>
+                        <td style="position: relative">
+                            <input class="form-control" type="text" name="post[address]" id="keyword" value="{$activity.address}" placeholder="请输入活动地点">
+                            <div  id="map-container" style="width:calc(100% - 30px);position: absolute;display: none;z-index: 1000">
+                                <div id="map" style="height: 600px; width: 100%;"></div>
+                                <div class='close_map' style="position: absolute;right: 10px;top:10px;"><img width="20px" src="/themes/admin_simpleboot3/public/assets/images/close.png" style="float:right;cursor: pointer"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>周边交通</th>
+                        <td>
+                            <script type="text/plain" id="traffic" name="post[traffic]">{$activity.traffic}</script>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>内容<span class="form-required">*</span></th>
+                        <td>
+                            <script type="text/plain" id="content" name="post[content]">{$activity.content}</script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>是否启用<span class="form-required">*</span></th>
+                        <td>
+                            <input type="radio" name="post[status]"   value="1" <if condition="$activity.status eq 1">checked</if>> 是
+                            <input type="radio" name="post[status]"   value="0" <if condition="$activity.status eq 0">checked</if>> 否
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>开始时间<span class="form-required">*</span></th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="post[start_time]"
+                                   value="{:date('Y-m-d H:i',$activity['start_time'])}"></td>
+                    </tr>
+                    <tr>
+                        <th>结束时间<span class="form-required">*</span></th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="post[end_time]"
+                                   value="{:date('Y-m-d H:i',$activity['end_time'])}"></td>
+                    </tr>
+                    <tr>
+                        <th>是否需要报名<span class="form-required">*</span></th>
+                        <td>
+                            <input type="radio" name="post[need_baoming]"  class="baoming"  value="1" <if condition="$activity.need_baoming eq 1">checked</if>> 是
+                            <input type="radio" name="post[need_baoming]"  class="baoming" value="0" <if condition="$activity.need_baoming eq 0">checked</if>> 否
+                        </td>
+                    </tr>
+                    <tr id="baoming_start_time" class="need_baoming">
+                        <th>报名开始时间<span class="form-required">*</span></th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="post[baoming_start_time]"
+                                   value="{:date('Y-m-d H:i',$activity['baoming_start_time'])}"></td>
+                    </tr>
+                    <tr id="baoming_end_time" class="need_baoming">
+                        <th>报名结束时间<span class="form-required">*</span></th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="post[baoming_end_time]"
+                                   value="{:date('Y-m-d H:i',$activity['baoming_end_time'])}"></td>
+                    </tr>
+                    <tr id="max_num" class="need_baoming">
+                        <th>最大人数<span class="form-required">*</span></th>
+                        <td><input class="form-control " type="text" name="post[max_num]"
+                                   value="{$activity.max_num}"></td>
+                    </tr>
+
+                    <!--签名 start-->
+                    <tr>
+                        <th>是否需要签到<span class="form-required">*</span></th>
+                        <td>
+                            <input type="radio" name="post[need_sign]" class="sign"  value="1"  <if condition="$activity.need_sign eq 1">checked</if>> 是
+                            <input type="radio" name="post[need_sign]" class="sign" value="0" <if condition="$activity.need_sign eq 0">checked</if>> 否
+                        </td>
+                        <input type="hidden" name="post[originSign]" value="{$activity['need_sign']}">
+                    </tr>
+                    <tr id="sign_start_time" class="need_sign">
+                        <th>签到开始时间<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control js-bootstrap-datetime" type="text" name="post[sign_start_time]"
+                                   value="{:date('Y-m-d H:i',$activity['sign_start_time'])}">
+                        </td>
+                    </tr>
+                    <tr id="sign_end_time" class="need_sign">
+                        <th>签到结束时间<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control js-bootstrap-datetime" type="text" name="post[sign_end_time]"
+                                   value="{:date('Y-m-d H:i',$activity['sign_end_time'])}">
+                        </td>
+                    </tr>
+                    <tr class="need_sign">
+                        <th>签到人群<span class="form-required">*</span></th>
+                        <td>
+                            <select id="sign_type" class="form-control" name="post[sign_type]" style="width: 49%;display: inline-block">
+                                <option value="0">请选择</option>
+                                <option value="1">报名用户</option>
+                                <!--<option value="2">系统用户</option>-->
+                                <option value="3">全网用户</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <script>
+                        $('#sign_type').val({$activity.sign_type});
+                    </script>
+                    <!--签名 end-->
+                    <tr>
+                        <th>浏览量</th>
+                        <td><input class="form-control " type="text" name="post[page_view]"
+                                   value="{$activity.page_view}"></td>
+                    </tr>
+                    <tr>
+                        <th>点赞量</th>
+                        <td><input class="form-control " type="text" name="post[like_count]"
+                                   value="{$activity.like_count}"></td>
+                    </tr>
+
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                        <a class="btn btn-default" href="{:url('Activity/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <th><b>缩略图</b><span class="form-required">*</span></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center;">
+                                <input type="hidden" name="post[thumb]" id="thumbnail"
+                                       value="{$activity.thumb|default=''}">
+                                <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#thumbnail');">
+                                    <if condition="empty($activity.thumb)">
+                                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                                             id="thumbnail-preview"
+                                             width="135" style="cursor: pointer"/>
+                                        <else/>
+                                        <img src="{:cmf_get_image_preview_url($activity.thumb)}"
+                                             id="thumbnail-preview"
+                                             width="135" style="cursor: pointer"/>
+                                    </if>
+                                </a>
+                                <input type="button" class="btn btn-sm btn-cancel-thumbnail" value="取消图片">
+                            </div>
+                            <div style="text-align: center;">
+                                <span class="form-required">* 图片最大不能超过3M</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>发布时间</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control js-bootstrap-datetime" type="text" name="post[published_time]"
+                                   value="{:date('Y-m-d H:i:s',$activity.published_time)}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="//webapi.amap.com/maps?v=1.4.6&key=e9beee68c6d0a9a93663f96fdc946656"></script>
+<script type="text/javascript">
+    $(function () {
+
+        editorcontent = new baidu.editor.ui.Editor();
+        editorcontent.render('content');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+        editortraffic = new baidu.editor.ui.Editor();
+        editortraffic.render('traffic');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+
+    var val= $(".baoming:checked").val();
+    if(val==0){
+        $('.need_baoming').hide();
+    }else{
+        $('.need_baoming').show();
+    }
+
+    $('input[name="post[need_baoming]"]').click(function(){
+        var need_baoming=$(this).val();
+        if(need_baoming==0){
+            $('.need_baoming').hide();
+        }else{
+            $('.need_baoming').show();
+        }
+    });
+
+    var val = $(".sign:checked").val();
+    if(val==0){
+        $('.need_sign').hide();
+    }else{
+        $('.need_sign').show();
+    }
+    $('input[name="post[need_sign]"]').click(function(){
+        var need_sign = $(this).val();
+        if(need_sign==0){
+            $('.need_sign').hide();
+        }else{
+            $('.need_sign').show();
+        }
+    });
+
+    //获取区域下的场馆
+    $('#area_id').change(function(){
+        var area_id = $(this).val();
+        bulidVenueOptions(area_id);
+    });
+    function bulidVenueOptions(area_id){
+        $.ajax({
+            'url':"{:url('VolunRecruit/getVenue')}",
+            'type':'post',
+            'data':{'area_id':area_id},
+            'dataType':'json',
+            'success':function (result) {
+                $('#venue_id').html('');
+                if(result.status==1){
+                    var html = "<option value='0'>请选择场馆</option>";
+                    $.each(result.data,function () {
+                        html += "<option value="+this.id+">"+this.name+"</option>";
+                    })
+                    $('#venue_id').html(html);
+                }else{
+                    var html = "<option value='0'>请选择场馆</option>";
+                    $('#venue_id').html(html);
+                }
+            }
+        })
+
+    }
+
+    $('input[name="post[address]"]').focus(function(){
+        console.log(12)
+        $('#map-container').show();
+        var current_location = [117.120872,39.092548];
+        //确认中心点位置
+        var map_real_location = $('input[name="post[address]"]').val();
+        if(map_real_location == ''){
+            mapObj = new AMap.Map('iCenter');
+            mapObj.plugin(['AMap.Geolocation','AMap.Geocoder'], function () {
+                geolocation = new AMap.Geolocation({
+                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                    maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                    convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                    showButton: true,        //显示定位按钮，默认：true
+                    buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                    showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                    showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                    panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                    zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                });
+                mapObj.addControl(geolocation);
+                geolocation.getCurrentPosition(function(e){
+                    console.log(arguments)
+                });
+                AMap.event.addListener(geolocation, 'complete', function(result){
+                    initMap([result.position['lng'], result.position['lat']])
+                });//返回定位信息
+                AMap.event.addListener(geolocation, 'error', function(){
+                    initMap(current_location);
+                });      //返回定位出错信息
+            });
+        }else{
+            AMap.plugin(['AMap.Geocoder'], function(){
+                var geocoder = new AMap.Geocoder({
+                    radius: 1000 //范围，默认：500
+                });
+                //地理编码,返回地理编码结果
+                geocoder.getLocation(map_real_location, function(status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        if(result.geocodes.length == 0){
+                            initMap(current_location);
+                        }else{
+                            initMap([result.geocodes[0].location['lng'], result.geocodes[0].location['lat']]);
+                        }
+                    }else{
+                        initMap(current_location);
+                    }
+                });
+            });
+        }
+
+        //初始化地图
+        function initMap(center){
+            console.log(center);
+            //实例化
+            var map1 = new AMap.Map('map', {
+                resizeEnable: true,
+                zoom: 17,
+                // zooms:[5,17],
+                center: center,
+                showIndoorMap:false
+                // crs:'EPSG3857'
+            });
+            map1.setDefaultCursor("default");
+            //添加覆盖物
+            var marker=new AMap.Marker({
+                position: center,
+                visible:true,
+                map:map1
+            });
+            map1.on('click', function (e) {
+                var geocoder = new AMap.Geocoder({
+                    radius: 1000,
+                    extensions: "all"
+                });
+                geocoder.getAddress(e.lnglat, function(status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        $('input[name="post[address]"]').val(result.regeocode.formattedAddress);
+                        marker.setPosition(e.lnglat);
+                        marker.show();
+                    }
+                });
+            });
+            //提示输出
+            AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+                var autoOptions = {
+                    input: "keyword"//使用联想输入的input的id
+                };
+                autocomplete= new AMap.Autocomplete(autoOptions);
+                var placeSearch = new AMap.PlaceSearch({
+                    map:map1
+                })
+                AMap.event.addListener(autocomplete, "select", function(e){
+                    //TODO 针对选中的poi实现自己的功能
+                    placeSearch.setCity(e.poi.adcode);
+                    placeSearch.search(e.poi.name)
+                });
+            });
+        }
+    });
+
+
+    $('.close_map').click(function(){
+        $('#map-container').hide();
+    });
+</script>
+</body>
+</html>

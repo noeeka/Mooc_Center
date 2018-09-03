@@ -1,0 +1,138 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('TskLive/index')}">所有直播</a></li>
+        <li class="active"><a href="{:url('TskLive/add')}">添加直播</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('TskLive/addPost')}">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="130">直播名称<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="live_name"
+                                   id="title" value="" required placeholder="请输入直播名称"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播区域<span class="form-required">*</span></th>
+                        <td>
+                            <select name="areaid" class="form-control" style="width: 100%;display: inline-block"
+                                    id="area_id">
+                                <option value=0>请选择地区</option>
+                                {$areas}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播单位<span class="form-required">*</span></th>
+                        <td>
+                            <select name="venueid" class="form-control" style="width: 100%;display: inline-block"
+                                    id="venue_id">
+                                <option value=0>请选择场馆</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播开始时间<span class="form-required">*</span></th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="start_time"
+                                   value=""></td>
+                    </tr>
+                    <tr>
+                        <th>直播结束时间<span class="form-required">*</span></th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="end_time"
+                                   value=""></td>
+                    </tr>
+                    <tr>
+                        <th>直播图片<span class="form-required">*</span></th>
+                        <td>
+                            <input type="text" class="form-control" id="input-img" name="img">
+                            <a href="javascript:uploadOneImage('图片上传','#input-img');">上传图片</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PC端直播链接<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control " type="text" name="live_link"
+                                   value=""></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PC端回放链接</th>
+                        <td>
+                            <input class="form-control " type="text" name="playback_link"
+                                   value=""></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>移动端直播链接<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control " type="text" name="wx_live_link"
+                                   value=""></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>移动端回放链接</th>
+                        <td>
+                            <input class="form-control " type="text" name="wx_playback_link"
+                                   value=""></td>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                        <a class="btn btn-default" href="{:url('Activity/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+   /* var venues = {$venues};*/
+    $('#area_id').change(function () {
+        var area_id = $(this).val();
+        bulidVenueOptions(area_id);
+    });
+   function bulidVenueOptions(area_id) {
+       $.ajax({
+           url:'/admin/area/area_venues',
+           type:"post",
+           data:{area_id:area_id},
+           dataType:'json',
+           success:function(res){
+               if(res.status==1){
+                   html = "<option value='0'>请选择场馆</option>";
+                   for(var i in res.data){
+                       var venue = res.data[i];
+                       html += "<option value="+venue['id']+">"+venue['name']+"</option>"
+                   }
+                   $('#venue_id').html(html);
+               }
+           }
+       })
+   }
+    $('#v3').click(function () {
+        var display = $('.custom_preset_time_dialog').css('display');
+        if (display == 'none') {
+            $('.custom_preset_time_dialog').css('display', 'block');
+        } else {
+            $('.custom_preset_time_dialog').css('display', 'none');
+        }
+    });
+    $('.close').click(function () {
+        var display = $('.custom_preset_time_dialog').css('display');
+        if (display == 'none') {
+            $('.custom_preset_time_dialog').css('display', 'block');
+        } else {
+            $('.custom_preset_time_dialog').css('display', 'none');
+        }
+    });
+</script>
+</body>
+</html>

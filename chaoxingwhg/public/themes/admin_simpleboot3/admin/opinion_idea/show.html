@@ -1,0 +1,221 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+    .content img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}"
+               style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('图片上传','#file-{id}','file');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+
+    <form action="{:url('Activity/addPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+
+        <input type="hidden" name="opinionId" value="{$opinionInfo['id']}">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="110">民意标题 </th>
+                        <td>
+                            <span>{$opinionInfo['title']} </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>征集开始时间</th>
+                        <td>
+                            {:date('Y-m-d: H:i' , $opinionInfo["start_time"]) }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>征集结束时间</th>
+                        <td>
+                            {:date('Y-m-d H:i',$opinionInfo['end_time'])}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>所属区域</th>
+                        <td>
+                            {$opinionInfo['areaName']}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>所属场馆</th>
+                        <td>
+                            {$opinionInfo['venueName']}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>征集内容</th>
+                        <td class="content">
+                            {$opinionInfo['content']}
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+
+
+
+            <div  class="col-md-9">
+                <span style="font-weight: bold">活动统计</span>
+                <a href="{:url('opinionIdea/export', array('id' => $opinionInfo['id']))}"type="button" class="btn btn-info btn-sm export" style="float: right">导出</a>
+                <table class="table table-hover table-bordered table-list">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th width="500">内容简介</th>
+                        <th width="150">允许公开</th>
+                        <th>公开状态</th>
+                        <th width="150">提交时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <foreach name="opinionIdes" item="vo"  key="keys" >
+                        <tr>
+                            <td>{++$keys}</td>
+                            <td >{$vo['content']}</td>
+                            <td >
+                                <switch name="$vo['allow_public']">
+                                    <case value="0">
+                                        保留
+                                    </case>
+                                    <case value="1">
+                                        可公开
+                                    </case>
+                                    <case value="2">
+                                        不可公开
+                                    </case>
+                                </switch>
+                            </td>
+                            <td>
+                                <switch name="$vo['public_status']">
+                                    <case value="1">
+                                        未公开
+                                    </case>
+                                    <case value="2">
+                                        公开
+                                    </case>
+                                </switch>
+                            </td>
+                            <td>{:date('Y-m-d H:i:s',$vo['create_time'])}</td>
+                            <td>
+                                <switch name="$vo['status']">
+                                    <case value="0">
+                                        未知
+                                    </case>
+                                    <case value="1">
+                                        未读
+                                    </case>
+                                    <case value="2">
+                                        已读
+                                    </case>
+                                </switch>
+                            </td>
+                            <td>
+                                <a href="{:url('opinionIdea/edit', array('id'=>$vo['id']))}" >编辑</a>
+                                <a  class="js-ajax-delete" href="{:url('opinionIdea/delete', array('id'=>$vo['id'] ,'opinionId' => $opinionInfo['id'] ))}" >删除</a>
+                                <if condition="$vo['status'] == 1">
+                                    <a  class="js-ajax-delete" data-msg="确定要标记已读？" href="{:url('opinionIdea/updateStatus',
+                                    array(
+                                    'id'=>$vo['id'] ,
+                                    'opinionId' => $opinionInfo['id'],
+                                    'key' => 'status' ,
+                                    'value' => 2
+                                     ))}" >标记已读</a>
+
+                                </if>
+                                <if condition="$vo['allow_public'] == 1">
+                                    <switch name="$vo['public_status']">
+                                        <case value="1">
+                                            <a  class="js-ajax-delete" data-msg="是否要公开评论？" href="{:url('opinionIdea/updateStatus',
+                                    array(
+                                    'id'=>$vo['id'] ,
+                                    'opinionId' => $opinionInfo['id'],
+                                    'key' => 'public_status' ,
+                                    'value' => 2
+                                     ))}" >公开</a>
+                                        </case>
+                                        <case value="2">
+                                            <a  class="js-ajax-delete" data-msg="是否要取消公开？" href="{:url('opinionIdea/updateStatus',
+                                    array(
+                                    'id'=>$vo['id'] ,
+                                    'opinionId' => $opinionInfo['id'],
+                                    'key' => 'public_status' ,
+                                    'value' => 1
+                                     ))}" >取消公开</a>
+                                        </case>
+                                    </switch>
+                                </if>
+                            </td>
+                        </tr>
+                    </foreach>
+                </table>
+                <ul class="pagination">{$page|default=''}</ul>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+   /* $('.export').click(function () {
+        $.ajax(
+            {
+                url: "{:url('Activity/export')}",
+                type: "POST",
+                dataType: "json",
+                success:function () {
+
+                }
+            }
+        )
+    })*/
+
+
+</script>
+</body>
+</html>

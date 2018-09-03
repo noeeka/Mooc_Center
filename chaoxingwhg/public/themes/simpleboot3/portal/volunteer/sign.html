@@ -1,0 +1,134 @@
+<include file="public/header" />
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/dist/css/swiper.min.css">
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/application.css'>
+<title>文化志愿者登记申请</title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <h3>文化志愿者登记申请</h3>
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="display: inline-block;line-height: 20px;text-align: center;margin-left: 55px;float: left;margin-top: 4px;font-size: 26px;color:#F40556;">*</span>姓名:</label>
+                    <div class="layui-input-block realname">
+                        <input type="text" name="" placeholder="" autocomplete="off" class="layui-input" id="realname">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别:</label>
+                    <div class="layui-input-block ">
+                        <input type="radio" name="sex" value="1" title="男">
+                        <input type="radio" name="sex" value="2" title="女" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="display: inline-block;line-height: 20px;text-align: center;margin-left: 24px;float: left;margin-top: 4px;font-size: 26px;color:#F40556;">*</span>出生日期:</label>
+                    <div class="layui-input-block birthday">
+                        <input type="text" class="layui-input" id="test1">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">民族:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="" placeholder="" autocomplete="off" class="layui-input" id="nation">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="display: inline-block;line-height: 20px;text-align: center;margin-left: 23px;float: left;margin-top: 4px;font-size: 26px;color:#F40556;">*</span>联系方式:</label>
+                    <div class="layui-input-block mobile">
+                        <input type="text" name="" placeholder="" autocomplete="off" class="layui-input" id="mobile">
+                    </div>
+                </div>
+                <div class="renzhengover">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="display: inline-block;line-height: 20px;text-align: center;margin-left: 23px;float: left;margin-top: 4px;font-size: 26px;color:#F40556;">*</span>身份证号:</label>
+                        <div class="layui-input-block idcard">
+                            <input type="text" name="" placeholder="" autocomplete="off" class="layui-input" id="idcard">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span style="display: inline-block;line-height: 20px;text-align: center;margin-left: 8px;float: left;margin-top: 4px;font-size: 26px;color:#F40556;">*</span>身份证照片:</label>
+                        <div class="layui-input-block yirenzheng clearfix" style="width:390px;height: 109px;">
+                            <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;margin-right: 20px;background-image: url(__TMPL__/public/assets/whgcms/images/application/before.jpg);background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left" id="shenfenzhengbefore">
+                            </div>
+                            <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;background-image: url(__TMPL__/public/assets/whgcms/images/application/after.jpg);background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left" id="shenfenzhengafter">
+                            </div>
+                        </div>
+                        <div class="layui-input-block hide weirenzheng">
+                            <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;margin-right: 20px;background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left upload" id="shenfenzhengbefore1" onclick="uploadOneImage('图片上传','#thumbnail1');">
+                                <input type="hidden" name="post[thumb]" id="thumbnail1" value="">
+                                <img src="__TMPL__/public/assets/whgcms/images/application/before.jpg" id="thumbnail1-preview" style="cursor: pointer;width: 100%;height: 100%;" />
+                                <strong>点击上传</strong>
+                            </div>
+                            <div style="width: 170px;height: 109px;border:1px solid #e6e6e6;margin-right: 20px;background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left upload" id="shenfenzhengafter1" onclick="uploadOneImage('图片上传','#thumbnail2');">
+                                <input type="hidden" name="post[thumb]" id="thumbnail2" value="">
+                                <img src="__TMPL__/public/assets/whgcms/images/application/after.jpg" id="thumbnail2-preview" style="cursor: pointer;width: 100%;height: 100%;" />
+                                <strong>点击上传</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">活动区域:</label>
+                    <div class="layui-input-block">
+                        <select name="city" id="city">
+                            <option value="0">请选择地区</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label" wrap="wrap">特长备注:</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="" class="layui-textarea" id="Speciality"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="display: inline-block;line-height: 20px;text-align: center;margin-left: 23px;float: left;margin-top: 4px;font-size: 26px;color:#F40556;">*</span>才艺照片:</label>
+                    <div class="layui-input-block photos">
+                        <div style="width: 170px;height: 109px;overflow: hidden; border:1px solid #e6e6e6;margin-right: 20px;background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left upload" id="photo1" onclick="uploadOneImage('图片上传','#thumbnai3');">
+                            <input type="hidden" name="post[thumb]" id="thumbnai3" value="">
+                            <img src="__TMPL__/public/assets/whgcms/images/application/talent.jpg" id="thumbnai3-preview" style="cursor: pointer;height: 109px;" />
+                            <strong>点击上传</strong>
+                        </div>
+                        <div style="width: 170px;height: 109px;overflow: hidden; border:1px solid #e6e6e6;margin-right: 20px;background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left upload" id="photo2" onclick="uploadOneImage('图片上传','#thumbnai4');">
+                            <input type="hidden" name="post[thumb]" id="thumbnai4" value="">
+                            <img src="__TMPL__/public/assets/whgcms/images/application/talent.jpg" id="thumbnai4-preview" style="cursor: pointer;height:109px;" />
+                            <strong>点击上传</strong>
+                        </div>
+                        <div style="width: 170px;height: 109px;overflow: hidden; border:1px solid #e6e6e6;margin-right: 20px;background-repeat: no-repeat;background-size: cover;background-position: top center; cursor: pointer;text-align: center;line-height: 160px;color: #2F343B;font-size: 14px;" class="f-left upload" id="photo3" onclick="uploadOneImage('图片上传','#thumbnai5');">
+                            <input type="hidden" name="post[thumb]" id="thumbnai5" value="">
+                            <img src="__TMPL__/public/assets/whgcms/images/application/talent.jpg" id="thumbnai5-preview" style="cursor: pointer;height: 109px;" />
+                            <strong>点击上传</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="margin-top: 39px;color: #1C2438;font-size: 16px;margin-bottom: 59px;">
+                    注：申请提交后请耐心等待文化馆审核，审核通过后会通过预留的联系方式联系您
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <div class="layui-btn activity-active button" lay-submit lay-filter="*">提交</div>
+                        <div type="reset" class="layui-btn layui-btn-primary expire cancel">取消</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script>
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}' /*当前应用名*/
+    };
+    </script>
+    <script src="/static/js/wind.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <script src='__TMPL__/public/assets/whgcms/js/application.js'></script>
+</body>
+
+</html>

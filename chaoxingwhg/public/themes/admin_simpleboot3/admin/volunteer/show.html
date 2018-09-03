@@ -1,0 +1,164 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}"
+               style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('图片上传','#file-{id}','file');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+</head>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('shenhe/index')}">实名认证</a></li>
+        <li class="active"><a>审核页面</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('shenhe/editPost')}">
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">账号信息:</label>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">用户名<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <span>{$user}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">真实姓名<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-link_name" name="realname" value="{$shenhe.realname}"  readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">提交材料:</label>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4 control-label">
+                <input type="hidden" name="img" id="thumbnail"
+                       value="{$imgs.img|default=''}">
+                <a href="javascript:uploadOneImage('图片上传','#thumbnail');">
+                    <if condition="strlen($imgs.img)==0">
+                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                             id="thumbnail-preview"
+                             width="135" style="cursor: pointer"/>
+                        <else/>
+                        <img src="/upload/{$imgs.img}"
+                             id="thumbnail-preview"
+                             width="135" style="cursor: pointer"/>
+                    </if>
+                </a>
+                <input type="button" class="btn btn-sm btn-cancel-thumbnail" value="取消图片">
+            </div>
+            <div class="col-sm-2 control-label">
+                <input type="hidden" name="img1" id="thumbnail1"
+                       value="{$imgs.img1|default=''}">
+                <a href="javascript:uploadOneImage('图片上传','#thumbnail1');">
+                    <if condition="strlen($imgs.img1)==0">
+                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                             id="thumbnail1-preview"
+                             width="135" style="cursor: pointer"/>
+                        <else/>
+                        <img src="/upload/{$imgs.img1}"
+                             id="thumbnail1-preview"
+                             width="135" style="cursor: pointer"/>
+
+                    </if>
+
+                </a>
+                <input type="button" class="btn btn-sm btn-cancel-thumbnail1" value="取消图片">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">审核状态</label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" name="status" style="width: 140px;">
+                    <option value='0' <if condition="$shenhe.status eq 0">selected</if>>待审核</option>
+                    <option value='1' <if condition="$shenhe.status eq 1">selected</if>>未通过</option>
+                    <option value='2' <if condition="$shenhe.status eq 2">selected</if>>通过</option>
+                </select> &nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id" value="{$shenhe.id}">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="{:url('shenhe/index')}">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        editorcontent = new baidu.editor.ui.Editor();
+        editorcontent.render('content');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+        $('.btn-cancel-thumbnail1').click(function () {
+            $('#thumbnail1-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail1').val('');
+        });
+
+        $('#more-template-select').val("{$post.more.template|default=''}");
+    });
+
+    function doSelectCategory() {
+        var selectedCategoriesId = $('#js-categories-id-input').val();
+        openIframeLayer("{:url('AdminCategory/select')}?parent_id=8&ids=" + selectedCategoriesId, '请选择分类', {
+            area: ['700px', '400px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                //do something
+
+                var iframeWin          = window[layero.find('iframe')[0]['name']];
+                var selectedCategories = iframeWin.confirm();
+                if (selectedCategories.selectedCategoriesId.length == 0) {
+                    layer.msg('请选择分类');
+                    return;
+                }
+                $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+                $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+                //console.log(layer.getFrameIndex(index));
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>

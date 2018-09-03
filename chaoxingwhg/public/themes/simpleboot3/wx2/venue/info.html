@@ -1,0 +1,122 @@
+<include file="public/header">
+
+    <link rel='stylesheet' type='text/css'
+          href="__TMPL__/public/assets/whgcms/wx2/css/venueinfo.css?v={$version_list.wx_venueinfo_css}">
+    <style>
+        .banner{
+            width: 100%;
+            height: 1.65rem;
+        }
+        .banner .swiper-container{
+            width: 100%;
+            height: 100%;
+        }
+        .banner img{
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-pagination-bullet{
+            width: 0.05rem;
+            height: 0.05rem;
+            background: #fff;
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active{
+            background: #B93421;
+        }
+        .introduction .jianjie {
+            text-indent: 2em;
+            color: #454444;
+            font-size: 0.15rem;
+            line-height: 0.25rem;
+            margin-bottom: 0;
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <div class="returnHeader">
+        <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+        <h3 class="mui-col-xs-12 mui-text-center">预约详情</h3>
+    </div>
+    <!--<div class="figure" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/1.png);">-->
+        <!--<div class="introduce">-->
+            <!--<script type="text/x-handlebars-template" id="introduce">-->
+                    <!--<h3>{{name}}</h3>-->
+                    <!--<div>-->
+                        <!--<span>{{venue_name}}</span>-->
+                    <!--</div>-->
+            <!--</script>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="banner" style="margin-top: 0.43rem;">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <script type="text/x-handlebars-template" id="banner-list">
+                    {{#each this}}
+                <div class="swiper-slide"><a href="javascript"><img src="{{url}}" alt=""></a></div>
+                    {{/each}}
+                </script>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="detail clearfix">
+        <script type="text/x-handlebars-template" id="detail">
+            <h3 style="font-size:0.18rem;color:#141414;">{{name}}</h3>
+            <ul >
+                <li>场馆名称：{{venue_name}}</li>
+                <li>场馆地点：{{full_address}}</li>
+                <li>联系电话：{{tel}}</li>
+                <li>容纳人数：{{max_people}}人</li>
+                <li>收费标准：{{cost}}</li>
+            </ul>
+
+
+        </script>
+    </div>
+    <div style="height:0.09rem;background:#EEEEEE;"></div>
+    <div class="introduction">
+        <script type="text/x-handlebars-template" id="introduction">
+            <h3>场馆介绍</h3>
+            <p style="display:none">{{abstract}}</p>
+            <span class="jianjie"></span>
+            <span class="btn" style="color:#B93421;"></span>
+        </script>
+    </div>
+    <div style="height:0.09rem;background:#EEEEEE;"></div>
+    <div  class="address">
+        <h3>地址</h3>
+        <p></p>
+    </div>
+    <div style="height:0.09rem;background:#EEEEEE;"></div>
+    <div class="details">
+        <script type="text/x-handlebars-template" id="details">
+            <h3>交通方式</h3>
+            <p>{{cost}}</p>
+        </script>
+    </div>
+    <div style="padding: 0.1rem 0;position: fixed;bottom: 0rem;left: 0rem;width: 100%;text-align:  center;background: #fff;">
+        <button class="yuyuebtn zts-bg">立即预约</button>
+    </div>
+    <script>
+        var id = {$Think.get.id};
+    </script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/handlebars/handlebars-v4.0.10.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/swiper/swiper.min3.0.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/dropload/dropload.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/js/venueinfo.js?v={$version_list.wx_venueinfo_js}"></script>
+    <script>
+
+    </script>
+    </body>
+
+    </html>

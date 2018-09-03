@@ -1,0 +1,461 @@
+<!--头部信息-->
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/activity.css?v={$version_list.wx_activity_css}">
+<title>作品征集</title>
+<style>
+.banner{
+    width: 100%;
+    height: 1.8rem;
+}
+.banner img{
+    width: 100%;
+    height: 100%;
+}
+    .jianjie{
+        overflow: hidden;
+        background-color: #fff;
+        padding: 0.1rem 0.15rem;
+    }
+.jianjie h3{
+    font-size: 0.15rem;
+}
+    .time{
+        margin-top: 0.1rem;
+        background-color: #fff;
+        display: flex;
+        padding: 0.1rem 0;
+    }
+.time li{
+    flex: 1;
+}
+.time li span{
+    display: block;
+    text-align: center;
+    font-size: 0.13rem;
+    color: #625F5F;
+}
+.time li span:first-child{
+    font-size: 0.15rem;
+    color: #000;
+}
+.xiangqing{
+    background-color: #fff;
+    padding: 0.1rem 0.15rem;
+    margin-top: 0.1rem;
+}
+.xiangqing h3{
+    font-size: 0.15rem;
+}
+.xiangqing a{
+    font-size: 0.13rem;
+    color: #625F5F;
+}
+.xiangqing .content{
+    font-size: 0.13rem;
+    color: #625F5F;
+    margin-top: 0.05rem;
+}
+.xiangqing .content.ellipsis2{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5;
+    text-align: justify;
+}
+.xiangqing .content p{
+    font-size: 0.13rem;
+    color: #625F5F;
+    margin-bottom: 0px;
+}
+.zuopin{
+    background-color: #fff;
+    margin-top: 0.1rem;
+    margin-bottom: 50px;
+}
+    .zuopin .btn{
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+.zuopin .btn span{
+    flex: 1;
+    text-align: center;
+    line-height: 0.32rem;
+}
+.zuopin .btn span.active{
+    font-weight: bold;
+}
+.zuopin .btn span.cansaiBtn{
+    border-right: 1px solid #eee;
+}
+.con ul li .photo{
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-top: -0.1rem;
+}
+.con ul li .nick{
+    font-size: 0.13rem;
+    color: #625F5F;
+    display: inline-block;
+    width: 0.8rem;
+}
+.con ul li .time{
+    margin: 0;
+    padding: 0;
+}
+.conData img {
+    width: 0.15rem;
+    margin-right: 0.05rem;
+    margin-top: 0.02rem;
+
+}
+.conData{
+    /*padding-top: 0.05rem;*/
+}
+.conData span{
+    margin-right: 0.1rem;
+    font-size: 0.13rem;
+    color: #625F5F;
+}
+</style>
+</head>
+
+<body style="background: #eee;">
+    <!--导航信息-->
+    <include file="public/nav" />
+        <div class="main-content">
+            <div class="main-top">
+
+            </div>
+            <div class="zuopin">
+                <div class="btn">
+                    <span class="cansaiBtn active">参赛作品</span>
+                    <span class="huojiangBtn">获奖作品</span>
+                </div>
+                <div class="con">
+                    <div class="cansaiCon">
+                        <ul class="mui-table-view huodongList" id="cansaiList">
+                            <!--<li class="mui-table-view-cell mui-media">-->
+                                <!--<a href="/wx/activity/read?id={{id}}">-->
+                                    <!--<img class="mui-media-object mui-pull-left" src="__TMPL__/public/assets/whgcms/images/mainModule-1/listimg01.png">-->
+                                    <!--<div class="mui-media-body clearfix">-->
+                                        <!--<h3 >参赛作品</h3>-->
+                                        <!--<div class="clearfix">-->
+                                            <!--<div class="f-left">-->
+                                                <!--<img class="photo" src="__TMPL__/public/assets/whgcms/images/mainModule-1/listimg01.png" alt="">-->
+                                                <!--<span class="nick mui-ellipsis">昵称昵称</span>-->
+                                            <!--</div>-->
+                                            <!--<p class="time f-right">2018-05-02</p>-->
+                                        <!--</div>-->
+                                        <!--<div class="conData">-->
+                                            <!--<img src="__TMPL__/public/assets/whgcms/images/product_collect/liulan.png" alt="" class="f-left">-->
+                                            <!--<span class="f-left">201115</span>-->
+                                            <!--<img src="__TMPL__/public/assets/whgcms/images/product_collect/pinglun.png" alt="" class="f-left">-->
+                                            <!--<span class="f-left">214</span>-->
+                                            <!--<img src="__TMPL__/public/assets/whgcms/images/product_collect/dianzan.png" alt="" class="f-left">-->
+                                            <!--<span class="f-left">214</span>-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                            <!--<li class="mui-table-view-cell mui-media">-->
+                                <!--<a href="/wx/activity/read?id={{id}}">-->
+                                    <!--<img class="mui-media-object mui-pull-left" src="__TMPL__/public/assets/whgcms/images/mainModule-1/listimg01.png">-->
+                                    <!--<div class="mui-media-body clearfix">-->
+                                        <!--<h3 >参赛作品</h3>-->
+                                        <!--<div class="clearfix">-->
+                                            <!--<div class="f-left">-->
+                                                <!--<img class="photo" src="__TMPL__/public/assets/whgcms/images/mainModule-1/listimg01.png" alt="">-->
+                                                <!--<span class="nick mui-ellipsis">昵称昵称</span>-->
+                                            <!--</div>-->
+                                            <!--<p class="time f-right">2018-05-02</p>-->
+                                        <!--</div>-->
+                                        <!--<div class="conData">-->
+                                            <!--<img src="__TMPL__/public/assets/whgcms/images/product_collect/liulan.png" alt="" class="f-left">-->
+                                            <!--<span class="f-left">201115</span>-->
+                                            <!--<img src="__TMPL__/public/assets/whgcms/images/product_collect/pinglun.png" alt="" class="f-left">-->
+                                            <!--<span class="f-left">214</span>-->
+                                            <!--<img src="__TMPL__/public/assets/whgcms/images/product_collect/dianzan.png" alt="" class="f-left">-->
+                                            <!--<span class="f-left">214</span>-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                    <div class="huojiangCon" style="display: none;">
+                        <ul class="mui-table-view huodongList" id="huojiangList">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- 底部信息-->
+    <include file="public/footer" />
+    <!-- <script src="__TMPL__/public/assets/whgcms/lib/jquery.min.js "></script> -->
+    <!-- <script src="__TMPL__/public/assets/whgcms/lib/layui/layui.all.js "></script> -->
+    <!-- <script src="__TMPL__/public/assets/whgcms/lib/handlebars-v4.0.11.js "></script> -->
+    <script src="__TMPL__/public/assets/whgcms/js/activityread.js"></script>
+    <!-- <script src="__TMPL__/public/assets/whgcms/js/template.js"></script> -->
+    <script type="text/x-handlebars-template" id="mainTop-template">
+        <div class="banner">
+            <img src="{{thumb}}" alt="">
+        </div>
+        <div class="jianjie">
+            <h3 class="mui-ellipsis">{{name}}</h3>
+            <div class="clearfix">
+                <span class="f-lift" style="font-size: 0.13rem; color: #625F5F;">{{format_collect_start_time}}~{{format_choose_end_time}}</span>
+                {{#activity_status activity_status}}{{/activity_status}}
+            </div>
+        </div>
+        <ul class="clearfix time">
+            <li>
+                <span>预告</span>
+                <span>{{format_preview_start_time}}</span>
+                <span>/</span>
+                <span>{{format_preview_end_time}}</span>
+            </li>
+
+            <li>
+                <span>征集</span>
+                <span>{{format_collect_start_time}}</span>
+                <span>/</span>
+                <span>{{format_collect_end_time}}</span>
+            </li>
+            <li>
+                <span>评选</span>
+                <span>{{format_choose_start_time}}</span>
+                <span>/</span>
+                <span>{{format_choose_end_time}}</span>
+            </li>
+            <li>
+                <span>公示</span>
+                <span>{{format_publish_time}}</span>
+            </li>
+        </ul>
+        <div class="xiangqing">
+            <div class="clearfix">
+                <h3 class="f-left">活动详情</h3>
+                <a class="xiangqingBtn f-right" href="javascript:;">展开</a>
+            </div>
+            <div class="content active" style="height:1rem;overflow:hidden;">{{{content}}}</div>
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="cansai-template">
+        {{#each this}}
+        <li class="mui-table-view-cell mui-media">
+            <a href="/wx/product_collect/details?id={{id}}">
+                <img class="mui-media-object mui-pull-left" src="{{thumb}}">
+                <div class="mui-media-body clearfix">
+                    <h3 >{{name}}</h3>
+                    <div class="clearfix">
+                        <div class="f-left">
+                            {{#if has_avatar}}
+                            <img class="photo" src="{{avatar}}" alt="">
+                            {{else}}
+                            <img class="photo" src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="">
+                            {{/if}}
+                            <span class="nick mui-ellipsis">{{user_nickname}}</span>
+                        </div>
+                        <p class="time f-right">{{format_careated_at}}</p>
+                    </div>
+                    <div class="conData">
+                        <img src="__TMPL__/public/assets/whgcms/images/product_collect/liulan.png" alt="" class="f-left">
+                        <span class="f-left">{{page_view}}</span>
+                        <img src="__TMPL__/public/assets/whgcms/images/product_collect/pinglun.png" alt="" class="f-left">
+                        <span class="f-left">{{comments_count}}</span>
+                        <img src="__TMPL__/public/assets/whgcms/images/product_collect/dianzan.png" alt="" class="f-left">
+                        <span class="f-left">{{production_like}}</span>
+                    </div>
+
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="huojiang-template">
+        {{#each this}}
+        <li class="mui-table-view-cell mui-media">
+            <a href="/wx/product_collect/details?id={{id}}">
+                <img class="mui-media-object mui-pull-left" src="{{thumb}}">
+                <div class="mui-media-body clearfix">
+                    <h3 >{{name}}</h3>
+                    <div class="clearfix">
+                        <div class="f-left">
+                            {{#if has_avatar}}
+                            <img class="photo" src="{{avatar}}" alt="">
+                            {{else}}
+                            <img class="photo" src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="">
+                            {{/if}}
+                            <span class="nick mui-ellipsis">{{user_nickname}}</span>
+                        </div>
+                        <p class="time f-right">{{format_careated_at}}</p>
+                    </div>
+                    <div class="conData">
+                        <img src="__TMPL__/public/assets/whgcms/images/product_collect/liulan.png" alt="" class="f-left">
+                        <span class="f-left">{{page_view}}</span>
+                        <img src="__TMPL__/public/assets/whgcms/images/product_collect/pinglun.png" alt="" class="f-left">
+                        <span class="f-left">{{comments_count}}</span>
+                        <img src="__TMPL__/public/assets/whgcms/images/product_collect/dianzan.png" alt="" class="f-left">
+                        <span class="f-left">{{production_like}}</span>
+                    </div>
+
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+
+    <script>
+        //排序当前状态
+        $('.btn>span').click(function(){
+            $('.btn>span').removeClass('active');
+            $(this).addClass('active');
+        })
+        //点击按钮显示对应的内容
+        $('.btn>span').click(function(){
+            $('.con>div').hide();
+            var that = $(this).index();
+                $('.con>div').each(function(j){
+                    if(that==j){
+                        $('.con>div').eq(j).show();
+                    }
+                })
+        })
+        var getid = getUrl('id');
+        activity_detail(getid);
+        //活动详情
+        function activity_detail(activity_id) {
+            request({
+                url: '/api/Productcollect/read',
+                type: 'post',
+                dataType: 'json',
+                data: { 'id': activity_id },
+                async: false,
+                success: function(result) {
+                    if (result.status == 1) {
+
+
+                        Handlebars.registerHelper("activity_status", function(activity_status) {
+                             if(activity_status==1){
+                                     return '<img class="f-right" style="width: 0.8rem;margin-right: -0.15rem;" src="/themes/simpleboot3/public/assets/whgcms/wx/images/product_collect/end.png" alt="">';
+                             }else if(activity_status==2){
+                                     return '<img class="f-right" style="width: 0.8rem;margin-right: -0.15rem;"  src="/themes/simpleboot3/public/assets/whgcms/wx/images/product_collect/pingxuan.png" alt="">';
+                             }else if(activity_status==3){
+                                     return '<img class="f-right" style="width: 0.8rem;margin-right: -0.15rem;"  src="/themes/simpleboot3/public/assets/whgcms/wx/images/product_collect/zhengji.png" alt="">';
+                             }else{
+                                     return '<img class="f-right" style="width: 0.8rem;margin-right: -0.15rem;" src="/themes/simpleboot3/public/assets/whgcms/wx/images/product_collect/yugao.png" alt="">';
+                             }
+                        });
+
+                        Handlebars.registerHelper("compare", function(start_time, end_time, options) {
+                            var timestamp = Date.parse(new Date()) / 1000;
+                            if (timestamp >= start_time && timestamp <= end_time) {
+                                return options.fn(this);
+                            } else {
+                                return options.inverse(this);
+                            }
+                        });
+                        var template = Handlebars.compile($("#mainTop-template").html());
+                        $(".main-top").html(template(result.data));
+                        $('body').on('click','.xiangqingBtn',function(){
+                            if(!$(this).hasClass('active')){
+                                $(this).addClass('active');
+                                $(this).text('展开');
+                                $('.xiangqing .content').css('height','auto');
+                            }else{
+                                $(this).removeClass('active');
+                                $(this).text('收回');
+                                $('.xiangqing .content').css('height','1rem')
+                            }
+                        })
+                        var timestamp = Date.parse(new Date()) / 1000;
+                        if (timestamp >= result.data.collect_start_time) {
+                            cansaiZuopin(getid);
+                        } else {
+                            $('#cansaiList').html('<li style=" text-align: center;padding: 0.1rem 0;">暂无参赛作品，敬请期待！</li>')
+                        }
+                        if (timestamp >= result.data.publish_time) {
+                            huojiangZuopin(getid);
+                        } else {
+                            $('#huojiangList').html('<li style=" text-align: center;padding: 0.1rem 0;">暂无获奖作品，敬请期待！</li>')
+                        }
+
+                    }
+                }
+            }, false);
+        }
+
+        function cansaiZuopin(id){
+            var pg = 1;
+            var dropload=$('.cansaiCon').dropload({
+                scrollArea: window,
+                domDown:{
+                    domNoData : '<div class="dropload-noData">已经到底啦~(>_<)~~</div>'
+                },
+                loadDownFn: function(me) {
+                        // 加载按默认和最新发布排序的数据
+                        $.ajax({
+                            url:'/api/Productcollect/attend_productions',
+                            type:'post',
+                            data:{id:id},
+                            dataType:'json',
+                            success:function (result) {
+                                if(result.status ==1){
+                                    pg++; //页数加1
+                                    if (result.data.list.length < 10){
+                                        // 再往下已经没有数据
+                                        tab1LoadEnd = true;
+                                        // 锁定
+                                        me.lock();
+                                        // 显示无数据
+                                        me.noData();
+                                    }
+                                    $("#cansaiList").html('');
+                                    var template = Handlebars.compile($("#cansai-template").html());
+                                    $("#cansaiList").append(template(result.data.list))
+                                    me.resetload();
+                                }
+                            }
+                        })
+                }
+            })
+        }
+        function huojiangZuopin(id) {
+            $.ajax({
+                url: '/api/Productcollect/publish_award',
+                type: 'post',
+                data: {id: id},
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status == 1) {
+                        var list = [];
+                        var prod = result.data.award_production
+                        for (var i = 0; i < prod.length; i++) {
+                            for (var j = 0; j < prod[i].avard_production_list.length; j++) {
+                                list.push(prod[i].avard_production_list[j]);
+                            }
+                        }
+                        console.log(list)
+                        for (var i = 0; i < list.length; i++) {
+                            list[i].format_careated_at = data_format(list[i].created_at);
+                        }
+
+                        $("#huojiangList").html('');
+                        var template = Handlebars.compile($("#huojiang-template").html());
+                        $("#huojiangList").append(template(list))
+                    }else{
+                        $('#huojiangList').html('<li style=" text-align: center;padding: 0.1rem 0;">暂无获奖作品，敬请期待！</li>')
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

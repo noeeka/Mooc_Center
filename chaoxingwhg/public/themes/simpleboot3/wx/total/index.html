@@ -1,0 +1,128 @@
+<include file="public/header" />
+<title></title>
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/activity.css?v={$version_list.wx_activity_css}">
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/venue.css?v={$version_list.wx_venue_css}">
+
+</head>
+<style>
+    .expire {
+        background-color:#acacac;
+    }
+</style>
+<body>
+
+<include file="public/nav" />
+
+<section style="margin-bottom: 50px;">
+    <div class="classification">
+        <ul class="screenTop clearfix">
+            <li style="width: 50%" class="Brand region f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>区域</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+            <li <if condition="$switch eq 0">class="Sort venueType f-left1 mui-col-xs-4 mui-text-center" style="margin:0 auto"<else/>class="Sort venueType f-left mui-col-xs-4 mui-text-center" </if>><a href="#"><span>类型</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        </ul>
+        <ul class="screenTj">
+            <li>排序:</li>
+            <li class="active">默认</li>
+            <li>最新发布</li>
+            <li>人气最高</li>
+        </ul>
+    </div>
+    <div class="zhezhao"  style="display: none"></div>
+    <div class="screenContent">
+        <!-- grade -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+
+            </ul>
+        </div>
+        <!-- End grade -->
+        <!-- Category -->
+        <div class="Category-eject area">
+            <ul class="Category-w" id="Categorytw">
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+            </ul>
+        </div>
+        <!-- End Category -->
+        <!-- Category -->
+        <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li onclick="Sorts(this)">智能排序</li>
+                <li onclick="Sorts(this)">离我最近</li>
+                <li onclick="Sorts(this)">好评优先</li>
+                <li onclick="Sorts(this)">最新发布</li>
+                <li onclick="Sorts(this)">人气优先</li>
+                <li onclick="Sorts(this)">价格最低</li>
+                <li onclick="Sorts(this)">价格最高</li>
+            </ul>
+        </div>
+        <!-- End Category -->
+    </div>
+    <div class="huodong">
+        <!--<ul class="mui-table-view huodongList">-->
+        <div class="huodongList sourcesList">
+           <script type="text/x-handlebars-template" id="activity_list">
+                {{#each this}}
+                    <!--<li class="mui-table-view-cell mui-media">-->
+                        <!--<a href="/wx/total/read?id={{id}}">-->
+                        <!--<img class="mui-media-object mui-pull-left" src="{{thumb}}">-->
+                        <!--<div class="mui-media-body clearfix">-->
+                        <!--<h3 >{{{title}}}</h3>-->
+
+
+                            <!--<div class="baomingBtn f-right">报名</div>-->
+
+                        <!--</div>-->
+                        <!--</a>-->
+                    <!--</li>-->
+               <div class="mui-card">
+                   <a href="/wx/total/read?id={{id}}">
+                       <div class="mui-card-header mui-card-media"
+                            style="height:55.5vw;background-image:url({{thumb}})"></div>
+                       <div class="mui-card-content">
+                           <div class="mui-card-content-inner">
+                               <h3>{{name}}</h3>
+                               <div style="color:#fff;">{{venue_addr}}</div>
+                               <div style="width:2.6rem;overflow: hidden;">
+                                    <span class="source">浏览量 {{page_view}}</span>
+                                    <span class="source">评论 {{comment_count}}</span>
+                                    <span class="source">点赞 {{dianzan_count}}</span>
+                               </div>
+                           </div>
+                       </div>
+                   </a>
+               </div>
+                {{/each}}
+            </script>
+        </div>
+    </div>
+</section>
+
+<include file="public/footer" >
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/total.js?v={$version_list.wx_activity_js}"></script>
+
+<script>
+    Handlebars.registerHelper("transformat",function(value){
+         return value.substr(0,10);
+    });
+    Handlebars.registerHelper("compare",function(start_time,end_time, options){
+        var timestamp = Date.parse(new Date()) / 1000;
+
+        if(timestamp >= start_time && timestamp <= end_time) {
+            return options.fn(this);
+        } else  {
+            return options.inverse(this);
+        }
+    });
+
+    Handlebars.registerHelper("compare_num",function(apply_people_count,max_num, options){
+        if(apply_people_count == max_num ) {
+            return options.fn(this);
+        } else  {
+            return options.inverse(this);
+        }
+    });
+</script>
+</body>
+</html>

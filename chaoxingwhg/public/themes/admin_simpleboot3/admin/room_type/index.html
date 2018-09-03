@@ -1,0 +1,70 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('RoomType/index')}">所有类型</a></li>
+        <li><a href="{:url('RoomType/add')}">添加类型</a></li>
+    </ul>
+    <form method="post" class="js-ajax-form margin-top-20" action="{:url('RoomType/listOrder')}">
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('RoomType/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('RoomType/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+        <php>$status=array("1"=>lang('DISPLAY'),"0"=>lang('HIDDEN'));</php>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">ID</th>
+                <th>名称</th>
+                <th>状态</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="room_types" item="vo">
+                <tr>
+                    <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}"></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.name}</td>
+                    <td><if condition="$vo.status eq 1">启用<else />禁用</if></td>
+                    <td>
+                        <a href="{:url('RoomType/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('RoomType/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">
+                            {:lang('DELETE')}
+                        </a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">ID</th>
+                <th>名称</th>
+                <th>状态</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('RoomType/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('RoomType/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx2/css/live.css?v={$version_list.wx_live_css}'>
+</head>
+
+<body>
+<!--头部-->
+<include file="public/return"/>
+<div class="classification navmt" style="width: 100%;position: fixed;z-index: 2;" <if condition="$switch eq 0">style="display:none"</if>>
+    <ul class="screenTop clearfix">
+        <li class="Regional venueHot f-left mui-col-xs-4 mui-text-center" style="width: 50%;"><a href="#"><span>热门场馆</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        <li class="Brand region f-left mui-col-xs-4 mui-text-center" style="width: 50%;><a href="#"><span>区域</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        <!-- <li class="Sort venueType f-left mui-col-xs-4 mui-text-center"><a href="#"><span>类型</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li> -->
+    </ul>
+    <div style="width: 100%;height: 0.1rem;background: #EEEEEE;"></div>
+</div>
+<section class="mainmt" style="margin-bottom: 50px;">
+
+    <div class="zhezhao" style="display: none"></div>
+    <div class="screenContent">
+        <!-- grade -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+            </ul>
+        </div>
+        <!-- End grade -->
+        <!-- Category -->
+        <div class="Category-eject">
+            <ul class="Category-w" id="Categorytw">
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+            </ul>
+        </div>
+        <!-- End Category -->
+        <!-- Category -->
+        <!-- <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li onclick="Sorts(this)" data-type="0">全部</li>
+                <li onclick="Sorts(this)" data-type="1">即将开始</li>
+                <li onclick="Sorts(this)" data-type="2">直播中</li>
+                <li onclick="Sorts(this)" data-type="3">直播结束</li>
+            </ul>
+        </div> -->
+        <!-- End Category -->
+    </div>
+    <div class="huodong">
+        <ul id="live">
+        </ul>
+    </div>
+</section>
+
+
+
+<include file="public/footer" >
+<script src='__TMPL__/public/assets/whgcms/wx2/js/vr.js?v={$version_list.wx_live_js}'></script>
+    <script src="__TMPL__/public/assets/whgcms/wx2/lib/screen/demo.js"></script>
+<!--<script src="lib/demoUtils.js"></script>-->
+<script>
+    //导航
+    nowActive('.navlist li', 'active');
+    //分类
+    nowActive('.navigation li:not(:first-child)', 'active');
+    //排序
+    nowActive('.screenTj li:not(:first-child)', 'active');
+    //当前选择的nav滚动到可视区域
+    //scrollNav('nav4');
+</script>
+
+<script type="text/x-handlebars-template" id="live_template">
+    {{#each this}}
+    <li style="background-image: url({{thumb}});background-size:100% 100%;">
+        <a href="/wx/Readiframe/index?srcid={{link}}&title=全景展示" >
+            <div class="introduce">
+                <h3 class="mui-ellipsis">{{title}}</h3>
+                <div class="clearfix">
+                    <span class="f-lift">{{date time}}</span>
+                </div>
+                <div class="mui-ellipsis" style="line-height:15px;" >{{venue_name}}</div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="venue-template">
+    <li onclick="grade1(this)" onclick="Categorytw(this)" date-venue="0">全部</li>
+    {{#each this}}
+    <li onclick="grade1(this)" data-venue="{{id}}">{{name}}</li>
+    {{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="area-template">
+    <li onclick="Categorytw(this)">全部</li>
+    {{#each this}}
+    <li onclick="Categorytw(this)" data-area="{{id}}">{{name}}</li>
+    {{/each}}
+
+</script>
+    <script type="text/x-handlebars-template" id="son-template">
+        <li onclick="Categoryt(this)" data-area="{{id}}">{{name}}</li>
+        {{#each son}}
+        <li onclick="Categoryt(this)" data-area="{{id}}">{{name}}</li>
+        {{/each}}
+</script>
+</body>
+
+</html>

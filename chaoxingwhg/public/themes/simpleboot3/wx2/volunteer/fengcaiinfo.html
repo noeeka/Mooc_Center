@@ -1,0 +1,53 @@
+<include file="public/header"/>
+
+<!--<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/venue.css?v={$version_list.wx_venue_css}">-->
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/fengcaiinfo.css?v={$version_list.wx_fengcaiinfo_css}'>
+<title>风采展示详情</title>
+</head>
+<body>
+<div class="returnHeader" style="border-bottom: 1px solid #D2D2D2;">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">风采展示详情</h3>
+</div>
+<section class="fengcaiinfo" style="margin-top: 0.43rem;">
+    <h3>关于志愿者<span class="name"></span>风采展示详情</h3>
+    <div class="jianjie">
+        <h4>人物简介</h4>
+        <!--<p>王晓晨，1988年7月25日出生于山东省青岛市，2008年毕业于上海戏剧学院，中国内地女演员。2006年，在校期间的王晓晨参演个人首部电视剧作品《现代美女》，自此开始演艺事业。2007年，出演古装历史剧《苏东坡》。-->
+            <!--</p>-->
+        <!--<p>2011年，获得第三届中国品牌与传播大会年度品牌传播新锐奖。2013年，在都市情感剧《我爱男闺蜜》中饰演方依依，为观众所熟知。同年领衔主演当代都市剧《二胎时代》。</p>-->
+        <p></p>
+    </div>
+    <div class="photo">
+        <h4>风采照片</h4>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!--<div class="swiper-slide"><a href="#"><img src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png" alt=""></a></div>-->
+                <!--<div class="swiper-slide"><a href="#"><img src="__TMPL__/public/assets/whgcms/wx/images/banner-2.png" alt=""></a></div>-->
+                <!--<div class="swiper-slide"><a href="#"><img src="__TMPL__/public/assets/whgcms/wx/images/banner-3.png" alt=""></a></div>-->
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/inscroll/iscroll.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/fengcaiinfo.js?v={$version_list.wx_fengcaiinfo_js}"></script>
+<script type="text/template" id="fcinfo-item">
+    {{#each this}}
+    <div class="swiper-slide">
+        <a href="javascript:;">
+            <img src="{{this}}" alt="">
+        </a>
+    </div>
+    {{/each}}
+</script>
+</body>
+</html>

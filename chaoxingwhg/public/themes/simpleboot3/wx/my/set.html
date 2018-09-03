@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>账号设置</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet"
+          href="__TMPL__/public/assets/whgcms/wx/css/myaccountSets.css?v={$version_list.wx_myaccountSets_css}">
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="/wx/my/index" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">账号设置</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="accountSet">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="/wx/my/personalinfo" class="mui-navigate-right">个人信息</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="/wx/my/password" class="mui-navigate-right">修改密码</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="/wx/my/attestation" class="mui-navigate-right">实名认证</a>
+            </li>
+        </ul>
+        <div class="mui-button-row">
+            <button type="button" class="passport close-btn mui-btn mui-btn-primary">退出当前账号</button>
+        </div>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/myaccountSets.js?v={$version_list.wx_myaccountSets_js}'></script>
+</body>
+</html>

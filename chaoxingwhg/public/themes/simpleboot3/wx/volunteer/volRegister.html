@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>志愿者注册</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel='stylesheet' type='text/css' href='/static/js/webuploader/webuploader.css'>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/volRegister.css?v={$version_list.wx_volRegister_css}">
+    <style>
+        .date_btn_box{
+            background-color: #fff !important;
+        }
+        .date_ctrl{
+            background-color: #fff !important;
+        }
+        .ym_roll, .date_roll, .datetime_roll, .time_roll{
+            font-weight: normal !important;
+        }
+         .webuploader-pick{
+             width: 100%;
+             height: 100%;
+             background: rgba(0,0,0,0);
+         }
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">志愿者注册</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="personalinfo">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <!--<a href="/wx/my/volDataSet">-->
+                    <span>姓名</span>
+                    <!--<span>王晓晨</span>-->
+                    <input type="text" name="name" id="name" placeholder="请输入姓名">
+                <!--</a>-->
+
+            </li>
+            <li class="mui-table-view-cell">
+                <!--<a href="#">-->
+                    <span style="margin-top: 0.03rem;">性别</span>
+                    <!--<span id="sex">选择性别</span>-->
+                    <div class="f-right" style="width: 75%;padding-left: 0.25rem;">
+                        <div class="mui-radio sex f-left" style="margin-right: 50px">
+                            <input name="sex" type="radio" id="man" value="1">男
+                        </div>
+                        <div class="mui-radio sex f-left">
+                            <input name="sex" type="radio" id="woman" value="2">女
+                        </div>
+                    </div>
+
+                <!--</a>-->
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="#">
+                    <span>出生日期</span>
+                    <!--<span id="birthday">1991-08-31</span>-->
+                    <input type="button" id="birthday" value="选择生日日期" class="kbtn" name="birthday">
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                    <span>民族</span>
+                    <input type="text" placeholder="请输入民族(选填)" value="" id="minzu">
+            </li>
+            <li class="mui-table-view-cell">
+                    <span>联系方式</span>
+                    <input type="text" placeholder="请输入联系方式" value="" id="mobile">
+            </li>
+            <li class="mui-table-view-cell" id="sfzhao">
+                <span>身份证号</span>
+                <input type="text" placeholder="请输入身份证号" value="" id="sfzid">
+            </li>
+            <li class="mui-table-view-cell" id="sfzphotos">
+                <span style="line-height: 0.56rem;" class="f-left">身份证照片</span>
+                <input type="hidden" name="ft_sfzimg" value="">
+                <input type="hidden" name="bd_sfzimg" value="">
+                <div class="sfzphoto" id="ft_sfzimg" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/sfzphoto.png);"></div>
+                <div class="sfzphoto" id="bd_sfzimg" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/sfzphoto.png);"></div>
+            </li>
+            <li class="mui-table-view-cell">
+                <span>活动区域</span>
+                <!--<input type="text"  placeholder="请输入活动区域" value="">-->
+                <span id="quyu">请选择活动区域</span>
+            </li>
+            <li class="mui-table-view-cell">
+                <span>特长备注</span>
+                <input id="techang" type="text" placeholder="请输入特长(选填)" value="">
+            </li>
+            <li class="mui-table-view-cell clearfix">
+                    <span style="line-height: 0.56rem;" class="f-left">才艺照片</span>
+                    <div class="f-right" style="width: 75%;">
+                        <input type="hidden" name="cyimg1" value="">
+                        <input type="hidden" name="cyimg2" value="">
+                        <input type="hidden" name="cyimg3" value="">
+                        <div class="caiyiphoto" id="cyimg1" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/voladdPhoto.png);"></div>
+                        <div class="caiyiphoto" id="cyimg2" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/voladdPhoto.png);"></div>
+                        <div class="caiyiphoto" id="cyimg3" style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/voladdPhoto.png);"></div>
+                    </div>
+
+            </li>
+            <!--<li class="mui-table-view-cell">-->
+                <!--<a href="#" class="mui-navigate-right">-->
+                    <!--<span>特长备注</span>-->
+                    <!--<span class="address">天津市津南区尚康路3号天回小区天津市津南区尚康路3号天回小区天津市津南区尚康路3号天回小区</span>-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+        <div class="subBtn">提交</div>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/jquery/jquery-3.0.0.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='/static/js/webuploader/webuploader.min.js'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/volRegister.js?v={$version_list.wx_volRegister_js}'></script>
+</body>
+</html>

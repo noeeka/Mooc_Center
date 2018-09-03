@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>我的预约</title>
+
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.css">
+
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/reset.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/lib/swiper/homepage_swiper.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/reservation.css">
+
+    <style>
+        .grade-eject, .Category-eject, .Sort-eject{
+            top: 0.93rem;
+        }
+        #date-wrapper h3{
+            background: #3F97F0;!important;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return">
+        <span class="mui-icon mui-icon-arrowleft"></span>
+    </a>
+    <h3 class="mui-col-xs-12 mui-text-center">我的预约</h3>
+    <a id="refresh" href="/wx/apply/index" style="display: none">refresh</a>
+</div>
+<section style="margin-bottom: 50px;margin-top: 0.43rem;">
+    <div class="classification">
+        <ul class="screenTop clearfix">
+            <li class="Regional reservationHot f-left mui-col-xs-4 mui-text-center">
+                <a><span>场馆</span>
+                    <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt="">
+                </a>
+            </li>
+            <li class="Brand region f-left mui-col-xs-4 mui-text-center">
+                <a >
+                    <span>区域</span>
+                    <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt="">
+                </a>
+            </li>
+            <li class="Sort reservationType f-left mui-col-xs-4 mui-text-center">
+                <a><span>状态</span>
+                    <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt="">
+                </a>
+            </li>
+        </ul>
+        <div class="screenTj">
+            <input type="text" id="date2" value="" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088}" placeholder="开始时间">
+            <input type="text" id="date3" value="" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088}" placeholder="结束时间">
+            <div class="button" id="search">查找</div>
+        </div>
+    </div>
+    <div class="zhezhao" style="display: none"></div>
+    <div class="screenContent">
+        <!-- 场馆 -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+            </ul>
+        </div>
+        <!-- End 场馆 -->
+        <!-- 区域 -->
+        <!--<div class="Category-eject" id="status">-->
+            <!--<ul class="Category-w" id="Categorytw">-->
+            <!--</ul>-->
+            <!--<ul class="Category-t" id="Categoryt">-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div class="Category-eject">
+            <ul class="Category-w" id="Categorytw">
+
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+
+            </ul>
+        </div>
+
+
+
+        <!-- End 区域 -->
+        <!-- 类型 -->
+        <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li data-value="0" onclick="Sorts(this)">全部</li>
+                <li data-value="1" onclick="Sorts(this)">已完成</li>
+                <li data-value="2" onclick="Sorts(this)">已预约</li>
+            </ul>
+        </div>
+        <!-- End 类型 -->
+    </div>
+    <div class="sources" >
+        <div id="lib">
+
+        </div>
+    </div>
+
+
+    <!--列表-->
+    <script type="text/x-handlebars-template" id="list">
+        {{#each this}}
+        <div class="list">
+            <div class="listtop clearfix">
+                <img src="__TMPL__/public/assets/whgcms/wx/images/appointment.png" alt="" class="f-left">
+                <span class="f-left child1">{{apply_time}} {{start_time}} ～ {{end_time}}</span>
+                <span class="f-right child2">{{status}}</span>
+            </div>
+            <hr style="opacity: 0.2;margin-left: 18px;"/>
+            <div class="listbottom">
+                <ul >
+                    <li>名称：<a href="/wx/venue/read?id={{room_id}}" style="color:#0059e5">{{name}}</a></li>
+                    <li>场馆地址：{{full_address}}</li>
+                    <li class="clearfix">
+                        <div class="f-left">所属场馆：<span >{{venue_name}}</span></div>
+                        {{#compare status 1}}
+                        <div class="f-right active2 button cancelApply2" data-id="{{id}}">
+                            已完成
+                        </div>
+                        {{/compare}}
+
+                        {{#compare status 2}}
+                        <div class="f-right active1 button cancelApply" data-id="{{id}}">
+                            取消预约
+                        </div>
+                        {{/compare}}
+                    </li>
+                </ul>
+
+
+
+            </div>
+        </div>
+        {{/each}}
+    </script>
+</section>
+
+
+<!--<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>-->
+<script src="__TMPL__/public/assets/whgcms/wx/lib/jquery/jquery-3.0.0.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/lib/layui/layui.js "></script>
+<!--<script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js"></script>-->
+<!--<script src="__TMPL__/public/assets/whgcms/lib/layui/layui.all.js "></script>-->
+<script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo-recruiting.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/jquery.date.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/reservation.js?v=1.0"></script>
+
+</body>
+
+</html>

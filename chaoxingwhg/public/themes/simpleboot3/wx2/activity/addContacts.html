@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>添加联系人</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/myaccset-password.css?v={$version_list.wx_password_css}">
+    <style>
+        .closeBtn {
+            font-size: 0.14rem;
+            position: absolute;
+            top: 50%;
+            right: 0.15rem;
+            transform: translate(0,-50%);
+        }
+        .contList .mui-row{
+            padding: 0 0.15rem;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        .mui-checkbox input[type='checkbox']{
+            position: static;
+            width: auto;
+            height: auto;
+        }
+        .mui-radio input[type='radio']:before, .mui-checkbox input[type='checkbox']:before{
+            font-size: 0.18rem;
+        }
+        .mui-radio input[type='radio']:checked:before, .mui-checkbox input[type='checkbox']:checked:before{
+            color: #B93421;
+        }
+        button.yuyuebtn {
+            width: 90%;
+            height: 0.45rem;
+            font-size: 0.18rem;
+            border-radius: 0.6rem;
+            background-color: #B93421;
+            border: 0;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">添加联系人</h3>
+    <a class="closeBtn" href="/wx2/my/addContacts">添加</a>
+</div>
+<section style="margin-top: 0.43rem;">
+    <div class="contList">
+        <!--<div class="mui-row">-->
+            <!--<span class="mui-col-xs-1 mui-checkbox"><input type="checkbox"></span>-->
+            <!--<span class="mui-col-xs-3 mui-ellipsis">王琦</span>-->
+            <!--<span class="mui-col-xs-2">成年人</span>-->
+            <!--<span class="mui-col-xs-6">131081198902231241</span>-->
+        <!--</div>-->
+
+    </div>
+    <div style="padding: 0.1rem 0;margin-top: 1rem;width: 100%;text-align:  center;background: #fff;">
+        <button class="yuyuebtn zts-bg selectBtn">确定</button>
+    </div>
+</section>
+
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script type="text/javascript" src="__TMPL__/public/assets/whgcms/wx/js/jquery.cookie.js"></script>
+
+
+<script>
+    var id = {$Think.get.id};
+    getContacts();
+    function getContacts(){
+        request({
+            url: '/api/contacts/getContacts',
+            type: 'post',
+            dataType: 'json',
+            data :{'page':1 , size:20},
+            async: false,
+            success: function (res) {
+                if (res.status == 1 && res.data.length> 0) {
+                    var html = "";
+                    for (var i =0 ;i < res.data.length; i ++) {
+
+                        var type = ['未知','成年人' ,'未成年人'];
+                        var data = res.data[i];
+
+                        html += ' <div class="mui-row">' +
+                            '            <span class="mui-col-xs-1 mui-checkbox">' +
+                            '               <input name="selectContacts" type="checkbox" value="'+data['id']+'">' +
+                            '            </span>' +
+                            '            <span class="mui-col-xs-3 mui-ellipsis">'+data['name']+'</span>' +
+                            '            <span class="mui-col-xs-2">'+ type[data['type']]+'</span>' +
+                            '            <span class="mui-col-xs-6">'+data['id_card']+'</span>' +
+                            '     </div>';
+                    }
+
+                    $('.contList').append(html);
+                }
+
+                if (res.status == 0 && res.code == 13006) {
+                    window.location.href = "/wx2/login/login"
+                }
+            },
+            error: function (res) {
+                console.log(res);
+                if (res.status == 0 && res.code == 13006) {
+                    window.location.href = "/wx2/login/login"
+                }
+
+            }
+        }, true);
+    }
+
+    $('.selectBtn').on('click' , function () {
+        var users = [];
+        $("input[name='selectContacts']:checked").each(function(j) {
+            var userInfo = {};
+            userInfo.id = $(this).val();
+            userInfo.name =  $(this).parent().siblings()[0].innerHTML;
+            userInfo.type =  $(this).parent().siblings()[1].innerHTML;
+            userInfo.idCard =  $(this).parent().siblings()[2].innerHTML;
+            users.push(userInfo)
+        });
+
+        if (users.length > 0) {
+            setCookie("userContacts:"+id ,JSON.stringify(users) , 60 * 5)
+            window.location.href = "/wx2/activity/baoming?id="+id
+        }
+
+    })
+
+</script>
+
+</body>
+</html>

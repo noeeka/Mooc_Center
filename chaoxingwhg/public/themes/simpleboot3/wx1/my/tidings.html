@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>消息通知</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/mytidings.css?v={$version_list.wx_mytidings_css}">
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">消息通知</h3>
+</div>
+<section style="margin-top: 0.43rem;" class="tidings">
+    <ul class="mui-table-view tidingsContent mould1-list" id="tidingsContent">
+        <!--<li class="mui-table-view-cell mui-media">-->
+            <!--<a href="hcomments.html">-->
+                <!--<div class="mui-media-body">-->
+                    <!--<h3>青年志愿者采集造血干细胞弘扬红十字精神青年志愿者采集造血干细胞弘扬红十字精神</h3>-->
+                    <!--<span class="time"> 2017-6-27</span>-->
+                <!--</div>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+</section>
+
+<!--搜索内容模板-->
+<script type="text/x-handlebars-template" id="tidings-template">
+    {{#each this}}
+    <li class="mui-table-view-cell mui-media">
+        <a href="/wx/my/tidingsinfo?id={{id}}">
+            <div class="mui-media-body">
+                <h3>{{title}}</h3>
+                <span class="time">{{create_time}}</span>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/mytidings.js?v={$version_list.wx_mytidings_js}'></script>
+
+</body>
+</html>

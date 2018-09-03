@@ -1,0 +1,113 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:;">所有活动类型</a></li>
+        <li><a href="{:url('ActivityType/add')}">添加活动</a></li>
+    </ul>
+    <form class="js-ajax-form" action="" method="post">
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="50">ID</th>
+                <th>名称</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td><b>{$vo.id}</b></td>
+                    <td>{$vo.name}</td>
+                    <td>
+                        <notempty name="vo.status">
+                            <a data-toggle="tooltip" title="启用"><i class="fa fa-check"></i></a>
+                            <else/>
+                            <a data-toggle="tooltip" title="禁用"><i class="fa fa-close"></i></a>
+                        </notempty>
+                    </td>
+                    <td>
+                        <a href="{:url('ActivityType/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('ActivityType/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
+                    </td>
+                </tr>
+            </foreach>
+            <tfoot>
+            <tr>
+                <th width="50">ID</th>
+                <th>名称</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+    function reloadPage(win) {
+        win.location.reload();
+    }
+
+    $(function () {
+        setCookie("refersh_time", 0);
+        Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+            //批量复制
+            $('.js-articles-copy').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选信息，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" + ids, {
+                    title: "批量复制",
+                    width: "300px"
+                });
+            });
+            //批量移动
+            $('.js-articles-move').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选信息，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" + ids, {
+                    title: "批量移动",
+                    width: "300px"
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

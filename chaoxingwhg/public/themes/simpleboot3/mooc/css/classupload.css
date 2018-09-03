@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+.border-active{ border:solid 1px #EC6D3A!important; border-color:#EC6D3A!important;}
+.all-step{ position: relative; right: -50px; margin-top:50px;}
+.all-step li{ width:353px; height:42px; background:url(../images/nctab2.png) no-repeat center center; position:relative; text-align:center; line-height:42px; font-size:18px; color:#fff;}
+.all-step .step1{ width:334px; background:url(../images/nctabactive.png) no-repeat center center; right:-50px;}
+.all-step .step2{ right:-25px;}
+.all-step2 .step1,.all-step3 .step1{ width:334px; background:url(../images/nctab.png) no-repeat center center; right:-50px;}
+.all-step2 .step2,.all-step3 .step3{ background:url(../images/nctabactive2.png) no-repeat center center;}
+.upload-b{ text-align:center; margin:0 auto; margin-top:60px;}
+.layui-upload-list{ margin-bottom:40px;}
+.upload-btn{ cursor:pointer; color:#464C5B; font-size:18px;}
+.link-b{ text-align:center; margin-top:60px;}
+.link-b .btn{ display:inline-block; width:100px; height:40px; border-radius:4px; line-height:40px; font-size:16px; color:#fff; margin:0 70px; cursor:pointer;}
+.info-b{ margin-top:75px;}
+.layui-form-label{ width:100px;}
+.layui-input-block{ margin-left:130px;}
+.layui-form-item{ width:630px; margin:0 auto; margin-bottom:40px;}
+.layui-form-item .text-ipt{ width:500px; height:40px; border-radius:4px; border:solid 1px #9EA7B4; box-sizing:border-box; padding-left:10px;}
+.layui-form-item textarea{ resize:none; width:100%; height:170px; border-radius:4px; border:solid 1px #9EA7B4; box-sizing:border-box; padding:6px 10px; padding-bottom:30px;}
+.textarea-b{ position:relative; width:500px;}
+.textarea-b .fontnum{ position:absolute; right:18px; bottom:20px; line-height:1;color: #9EA7B4;}
+.ipt-name{ color:#464C5B; font-size:18px;}
+.layui-input-block{ line-height:36px;}
+.radio-b{ width:500px; font-size:0; box-sizing:border-box; padding-left:80px;}
+.radio-b div{ font-size:16px; display:inline-block; width:33.3%;}
+.radio-b label{ cursor:pointer;}
+.radio-b label input{ display:none;}
+.radio-b label .radio-i{ box-sizing:border-box; display:inline-block; margin-right:5px; width:12px; height:12px; border-radius:50%; border:solid 1px #464C5B;}
+.radio-b label .test-active{ border:solid 4px #EC6D3A;}
+.choose-date{ width:170px; height:30px; border-radius:4px; border:solid 1px #9EA7B4; padding-left:10px; box-sizing:border-box;}
+.date-b{ display:none; padding-left:485px;}
+.active-date{ display:block;}
+.date-b .layui-input-inline{ position:relative;}
+.date-b .layui-input-inline span{ position:absolute; right:8px; top:0; font-size:14px; color:#9EA7B4; line-height:30px;}
+.date-line{ display:inline-block; vertical-align:middle; width:30px; height:1px; background:#9EA7B4;}
+.chaper-num{ line-height:38px; font-size:16px; color:#464C5B; padding-left:10px;}
+.layui-form-radio{ display:none!important;}
+.main-content{ display:none;}
+.main-content-active{ display:block;}
+input,textarea{ background:none;}

@@ -1,0 +1,100 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('venue_comments/index')}">评论管理</a></li>
+    </ul>
+    <p style="textindent:15px; color:red;font-style: italic;margin-top: 15px;">*代表管理员</p>
+    <form method="post" class="js-ajax-form margin-top-20" action="{:url('feedback/listOrder')}">
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('venue_comments/toggle',['display'=>1])}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('venue_comments/toggle',['hide'=>1])}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+        <php>$status=array("1"=>lang('DISPLAY'),"0"=>lang('HIDDEN'));</php>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th>ID</th>
+                <th >用户名</th>
+                <th>评论</th>
+                <th>来源</th>
+                <th>时间</th>
+                <th>状态</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="endArr" id="v">
+                <tr>
+                    <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$v.id}"></td>
+                    <td class="control-label" >{$v.id}</td>
+                    <td>{$v.user_nickname}</td>
+                    <td>{$v.comment}</td>
+                    <td>{$v.title}</td>
+                    <th>{:date('Y-m-d H:i:s',$v.updatetime)}</th>
+                    <td><?php if($v['status']==1){echo '显示';}else{echo '隐藏';}?></td>
+                    <td>
+                        <a href="{:url('venue_comments/update',['id'=>$v.id])}">修改</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{:url('venue_comments/reply',['id'=>$v.id])}">回复</a>
+                    </td>
+                </tr>
+                <volist name="v.son" id="v1">
+                    <tr>
+                        <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                                   value="{$v1.id}"></td>
+                        <td class="control-label">{$v1.id}</td>
+                        <td>{$v1.user_nickname}</td>
+                        <td><if condition="$v1.is_admin eq 1"> <span class="form-required">*</span><else/>&nbsp;&nbsp;</if>{$v1.comment}</td>
+                        <td>{$v1.title}</td>
+                        <th>{:date('Y-m-d H:i:s',$v.updatetime)}</th>
+                        <td><?php if($v1['status']==1){echo '显示';}else{echo '隐藏';}?></td>
+                        <td>
+                            <a href="{:url('venue_comments/edit',['id'=>$v1.id])}">修改</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <if condition="$v1.is_admin eq 0">
+                            <a href="{:url('venue_comments/reply',['id'=>$v1.id])}">回复</a>
+                                &nbsp;&nbsp;&nbsp;
+                            </if>
+                            <a href="{:url('venue_comments/delete',['id'=>$v1.id])}" class="js-ajax-delete">删除</a>
+                        </td>
+                    </tr>
+                </volist>
+            </volist>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th>ID</th>
+                <th >用户名</th>
+                <th>评论</th>
+                <th>来源</th>
+                <th>时间</th>
+                <th>状态</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('comments/update',['display'=>1])}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('comments/update',['display'=>0])}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+    </form>
+    <ul class="pagination">{$page|default=''}</ul>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

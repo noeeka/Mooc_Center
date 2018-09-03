@@ -1,0 +1,270 @@
+<include file="public@header"/>
+<script src="__STATIC__/js/code-mirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="__STATIC__/js/code-mirror/lib/codemirror.css">
+<script src="__STATIC__/js/code-mirror/mode/javascript/javascript.js"></script>
+<style>
+    .CodeMirror{
+        border:1px solid #dce4ec
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('WeixinHomePageContent/index')}">内容管理</a></li>
+        <li><a href="{:url('WeixinHomePageContent/add')}">添加模块</a></li>
+        <li class="active"><a href="javascript:;">编辑模块</a></li>
+    </ul>
+    <div class="row margin-top-20">
+        <form class="js-ajax-form" action="{:url('WeixinHomePageContent/editPost')}" method="post">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="input-title"><span class="form-required">*</span>标题</label>
+                    <div>
+                        <input type="text" class="form-control" required id="input-title" name="title" value="{$title|default=''}">
+                    </div>
+                </div>
+
+                <!--<div class="form-group">
+                    <label for="block_css" style="width:100%">模块样式
+                        <if condition="$parent_id neq 0">
+                            <button type="button" class="tips btn btn-default" style="float: right;clear: both;margin-right: 10px; padding:2px 4px;border-radius: 2px;font-size: 12px;">默认样式</button>
+                            <else />
+                            <button type="button" class="tips btn btn-default" style="display:none;float: right;clear: both;margin-right: 10px; padding:2px 4px;border-radius: 2px;font-size: 12px;">默认样式</button>
+                        </if>
+                    </label>
+                    <div>
+                        <textarea class="form-control" name="block_css" id="block_css" cols="30" rows="10">{$block_css|default=''}</textarea>
+                    </div>
+                </div>-->
+
+                <div class="form-group">
+                    <label for="header_css">标题样式</label>
+                    <div>
+                        <textarea class="form-control" name="header_css" id="header_css" cols="30" rows="10">{$header_css|default=''}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="header_css">更多样式</label>
+                    <div>
+                        <textarea class="form-control" name="more_css" id="more_css" cols="30" rows="10">{$more_css|default=''}</textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                    <div class="sub_input">
+
+                <div class="form-group">
+                    <label for="resource_id">资源</label>
+                    <div>
+                        <select class="form-control" name="resource_id" id="resource_id">
+                            {$resources}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="start"><span class="form-required">*</span>开始位置<span style="color:red;font-style: italic">（从第几条获取资源）</span></label>
+                    <div>
+                        <input class="form-control" required name="start" id="start" value="{$start|default=''}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="len"><span class="form-required">*</span>数量<span style="color:red;font-style: italic">（获取资源的条数）</span></label>
+                    <div>
+                        <input class="form-control" required name="len" id="len" value="{$len|default=''}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tpl_id">模板</label>
+                    <div>
+                        <select class="form-control" name="tpl_id" id="tpl_id">
+                            {$tpls}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="more_url">更多链接</label>
+                <div>
+                    <input class="form-control" type="text" name="more_url" id="more_url" value="{$more_url|default=''}">
+                </div>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<label for="more_target">更多打开方式</label>-->
+                <!--<div>-->
+                    <!--<select class="form-control" name="more_target" id="more_target">-->
+                        <!--<option value="_self" <if condition="$more_target eq '_self'">selected</if>>当前页打开</option>-->
+                        <!--<option value="_blank" <if condition="$more_target eq '_blank'">selected</if>>新开页打开</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <label for="status">状态</label>
+                <div>
+                    <select class="form-control" name="status" id="status">
+                        <option value="1" <if condition="$status eq '1'">selected</if>>显示</option>
+                        <option value="0" <if condition="$status eq '0'">selected</if>>隐藏</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" name="id" value="{$id|default=0}">
+                <button type="submit" class="btn btn-primary js-ajax-submit" id="edit">{:lang('EDIT')}</button>
+                <a class="btn btn-default" href="{:url('WeixinHomePageContent/index')}">{:lang('BACK')}</a>
+            </div>
+    </div>
+    </form>
+    <div id="default-css" style="height:100%;width: 100%;display: none;">
+        <textarea class="form-control" name="css" id="css" cols="30" rows="30"></textarea>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js"></script>
+
+<script>
+  /*  $('#parent_id').change(function(){
+        if($(this).val() == '0'){
+            $('.sub_input').hide();
+            $('.tips').hide();
+        }else{
+            $('.sub_input').show();
+            $('.tips').show();
+        }
+    });*/
+   /* var block_css1 = CodeMirror.fromTextArea(document.getElementById('block_css'), {
+        mode:  "css",
+        lineNumbers:true,
+        theme:'default'
+    });*/
+    var header_css = CodeMirror.fromTextArea(document.getElementById('header_css'), {
+        mode:  "css",
+        lineNumbers:true,
+        theme:'default'
+    });
+    var more_css =CodeMirror.fromTextArea(document.getElementById('more_css'), {
+        mode:  "css",
+        lineNumbers:true,
+        theme:'default'
+    });
+
+    $('#edit').click(function(){
+     /*   var blockcss_val = block_css.getValue();
+        console.log(blockcss_val);
+        $('#block_css').val(blockcss_val);
+*/
+        var headercss_val = header_css.getValue();
+        console.log(headercss_val);
+        $('#header_css').val(headercss_val);
+
+        var more_css_val = more_css.getValue();
+        console.log(more_css_val);
+        $('#more_css').val(more_css_val)
+    });
+
+    // getTplid();
+
+    function ajax(tplid,url, func){
+        $.ajax({
+            url:url,
+            type: 'GET',
+            dataType: 'json',
+            data:{id:tplid},
+            success:function(res){
+                func(res);
+            }
+        });
+    }
+
+    function getTplid(){
+        var options=$('#tpl_id option:selected')
+        var tplid = options.val();
+        ajax(tplid,'/api/Homepage/getTpl',function(res){
+            if(res.status == 1){
+                $('#len').val(res.data.len);
+            }
+        })
+    }
+
+
+    $('#tpl_id').change(function(){
+        var tplid = $(this).val();
+        ajax(tplid,'/api/Homepage/getTpl', function(res){
+            if(res.status == 1){
+                $('#len').val(res.data.len);
+            }
+        });
+
+
+    });
+
+    $('.tips').click(function(){
+        var options=$('#tpl_id option:selected')
+        var tplid = options.val();
+        ajax(tplid,'/api/Homepage/getTpl',function(res){
+            if(res.status == 1){
+                $('#css').html(res.data.css);
+                CodeMirror.fromTextArea(document.getElementById('css'), {
+                    mode:  "css",
+                    lineNumbers:true,
+                    theme:'default',
+                    readOnly:true
+                });
+
+            }
+        });
+
+        layer.open({
+            type:1,
+            content:$('#default-css'),
+            title:'默认样式',
+            area:['520px', '400px'],
+            btn:['确认']
+        });
+
+
+    });
+
+
+
+    $('.parent_tips').click(function(){
+        var id = $('input[name=id]').val();
+        ajax(id,'/api/Homepage/getBlockCss',function(res){
+            if(res.status == 1){
+                $('#css').html(res.data.block_css);
+
+                CodeMirror.fromTextArea(document.getElementById('css'), {
+                    mode:  "css",
+                    lineNumbers:true,
+                    theme:'default',
+                    readOnly:true
+                });
+
+            }
+        });
+
+        layer.open({
+            type:1,
+            content:$('#default-css'),
+            title:'默认样式',
+            area:['520px', '400px'],
+            btn:['确认']
+        });
+
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/recruite.css'>
+<title>活动招募</title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="f-left" style="width: 830px;">
+                <ul class="list" id="recurite">
+                </ul>
+                <div id="test1" class="page"></div>
+            </div>
+            <div style="width: 320px;" class="f-right">
+                <div>
+                    <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                    <ul id="Hot">
+                    </ul>
+                </div>
+                <!--<div style="margin-top: 50px;">-->
+                    <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+                    <!--<ul id="read">-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/recruite.js'></script>
+    <!-- 列表 -->
+    <script type="text/x-handlebars-template" id="recurite-template">
+        {{#each this}}
+        <li class="clearfix" style="position: relative">
+            <a href="{{buildSecondUrl '/portal/volunteer/recruiteread?id=' id}}">
+                    <img src="{{thumb}}" alt="" class="f-left">
+                    <div class="list-time f-right">
+                        <h3 class="ellipsis">{{title}}</h3>
+                        <div>
+                            <span style="display: block;margin-bottom: 10px;">活动时间：{{start_time}} ~ {{end_time}}</span>
+                            <span style="display: block; ">{{venue_name}}</span>
+                        </div>
+                        <div class="layui-btn activity-active f-right">报名</div>
+                    </div>
+                    {{#if is_top}}
+                <img class="zhiding1" src="/themes/simpleboot3/public/assets/whgcms/images/zhiding1.png" alt="" style="
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width:  70px;
+    height:  70px;
+">
+                    {{/if}}
+                </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each this}}
+        <li style="margin-top: 20px;">
+            <a href="{{buildSecondUrl '/portal/volunteer/recruiteread?id=' id}}">
+                <div class="bg100" style="background-image: url({{thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

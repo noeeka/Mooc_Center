@@ -1,0 +1,32 @@
+<include file="public/header"/>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/hcomments.css?v={$version_list.wx_hcomments_css}'>
+<title></title>
+</head>
+<style>
+    .figure{
+        border-bottom: none;
+    }
+</style>
+<body>
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">内容详情</h3>
+</div>
+<div class="figure">
+</div>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/hcomments.js?v={$version_list.wx_hcomments_js}"></script>
+<script type="text/template" id="figure">
+    <h3>{{title}}</h3>
+    <ul class="clearfix">
+        <li>{{date time}}</li>
+    </ul>
+    <p>{{{content}}}</p>
+</script>
+</body>
+</html>

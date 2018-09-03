@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+		<title>首页</title>
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/index/base.css">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/index/news.css">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/index/index.css">
+		<style>
+			.iconFlax {
+				/*display: flex;*/
+				padding: 0.1rem 0.05rem;
+				width: 400rem;
+				clear: both;
+				background: #ffffff;
+				overflow: hidden;
+			}
+			
+			.wrap::-webkit-scrollbar {
+				display: none;
+			}
+			
+			.iconFlax li {
+				width: 0.7rem;
+			}
+			
+			.iconFlax li span:before {
+				display: none;
+			}
+			
+			.iconFlax li span {
+				display: inline-block;
+				width: 0.38rem;
+				height: 0.38rem;
+			}
+			
+			.iconFlax li img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.homeNav {
+				font-size: 12px;
+			}
+			
+			.wrap {
+				width: 100%;
+				overflow-x: scroll;
+				overflow-y: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="header">
+			<!-- <img src="/weixin/images/home-header.png" class="homeHeader" alt=""> -->
+			<!-- <input type="text" placeholder="请输入您所要搜索的关键字" class="search"> -->
+			<a class="search" href="/wx/search">
+				请输入您所要搜索的关键词
+				<span class="home-searchIcon"></span>
+			</a>
+		</header>
+		<a href="/wx/index/test">邀请码</a>
+		<!--  <div onclick="jsBridge.postNotification(" CLIENT_CHANGE_CODE ", opts);">
+        测试
+    </div> -->
+		<input type="button" value="加入小组-不需要验证" onclick="return addGroup1()" />
+		<input type="button" value="退出app" onclick="return exit()" />
+		<!--<input type="button" value="打开条码扫描" onclick="return barcode()">-->
+		<input type="button" value="打开条码扫描" onclick="return barcode()" />
+		<input type="button" value="打开课程" onclick="return resOpenCourse()">
+		<input type="button" value="用户信息" onclick="return getUserInfo()">
+		<br />
+		<br />
+		<!--导航-->
+		<section>
+			<!-- <ul class="mui-table-view mui-grid-view iconFlax"> -->
+			<div id="wrapper" class="wrap">
+				<ul class=" iconFlax">
+					<!--  <li class="mui-table-view-cell mui-media mui-col-xs-2"><a href="/wx/index/more_article">
+                <span class="mui-icon mui-icon-new"></span>
+                <div class="mui-media-body">新闻动态</div></a></li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-2"><a href="/weixin/resourceShow.html">
+                <span class="mui-icon mui-icon-resource"></span>
+                <div class="mui-media-body">资源展示</div></a></li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-2"><a href="./panorama.html">
+                <span class="mui-icon mui-icon-panorama"></span>
+                <div class="mui-media-body">全景浏览</div></a></li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-2"><a href="/weixin/worksAppreciation.html">
+                <span class="mui-icon mui-icon-production"></span>
+                <div class="mui-media-body">作品欣赏</div></a></li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-2"><a href="/weixin/muke.html">
+                <span class="mui-icon mui-icon-muke"></span>
+                <div class="mui-media-body">慕课平台</div></a></li> -->
+					<!--<li class="mui-text-center"><a href="/wx/site/news">-->
+					<!--<span class="mui-icon-new"></span>-->
+					<!--<div class="homeNav">新闻动态</div></a></li>-->
+					<!--<li class=" mui-text-center"><a href="/wx/site/resourceShow">-->
+					<!--<span class="mui-icon-resource"></span>-->
+					<!--<div class="homeNav">资源展示</div></a></li>-->
+					<!--<li class=" mui-text-center"><a href="/wx/site/huodong">-->
+					<!--<span class="mui-icon-huodong"></span>-->
+					<!--<div class="homeNav">活动展示</div></a></li>-->
+					<!--<li class=" mui-text-center"><a href="/wx/site/panorama">-->
+					<!--<span class="mui-icon-panorama"></span>-->
+					<!--<div class="homeNav">全景浏览</div></a></li>-->
+					<!--<li class="mui-text-center"><a href="/wx/site/worksAppreciation">-->
+					<!--<span class="mui-icon-production"></span>-->
+					<!--<div class="homeNav">作品欣赏</div></a></li>-->
+					<!-- <li class=" mui-text-center"><a href="/weixin/muke.html">
+                <span class="mui-icon-muke"></span>
+                <div class="">慕课平台</div></a></li>
+     -->
+				</ul>
+			</div>
+		</section>
+		<!--新闻动态-->
+		<section class="news">
+			<div class='title'>
+				<h1>新闻动态</h1>
+				<a href="/wx/articles/161" class="more">
+					更多
+					<img src="__TMPL__/public/assets/whgcms/wx/images/more.png" alt="">
+				</a>
+			</div>
+			<!--<div class="mui-card">-->
+			<!--<a href="./newsParticulars.html">-->
+			<!--<div class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/newscard.png)"></div>-->
+			<!--<div class="mui-card-content">-->
+			<!--<div class="mui-card-content-inner">-->
+			<!--<p>定西文化馆提前免费向公众开放</p>-->
+			<!--<p class="time">2017-09-12</p>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</a>-->
+			<!--</div>-->
+			<!--<div class="mui-card">-->
+			<!--<div class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/newscard.png)"></div>-->
+			<!--<div class="mui-card-content">-->
+			<!--<div class="mui-card-content-inner">-->
+			<!--<p>定西文化馆提前免费向公众开放</p>-->
+			<!--<p style="color: #333;">2017-09-12</p>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</div>-->
+			<div class="news-notice" style="margin-bottom: 50px;">
+				<ul class="mui-table-view" id="news">
+				</ul>
+			</div>
+		</section>
+		<!--底部-->
+		<!--底部-->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="/wx/site/">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href='/wx/my'>
+				<span class="mui-icon mui-icon-my"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<!--最新新闻模板-->
+		<!--老版老接口-->
+		<script type="text/x-handlebars-template" id="news-template">
+			{{#each this}}
+			<li class="mui-table-view-cell mui-media newsNotice-item">
+				<a href="/wx/site/particulars?id={{id}}&cid={{category}}">
+					{{#if thumb}}
+					<img class="mui-media-object mui-pull-left" src="{{thumb}}"> {{/if}}
+					<div class="mui-media-body">
+						<p class='mui-ellipsis'> {{title}} </p>
+						<div class="mui-row clearfix">
+							<p class='f-left'> {{published_at_str}} </p>
+							<div class='f-right'><img class="eye" src="/weixin/images/eye.png" alt="">{{page_view}} </div>
+						</div>
+					</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		<!--新版新接口-->
+		<script type="text/x-handlebars-template" id="news-template2">
+			{{#each this}}
+			<li class="mui-table-view-cell mui-media">
+				<a href="/wx/category/read/?id={{id}}">
+					<div class="mui-media-body">
+						<h3>{{title}}</h3>
+						<span class="zhiding">置顶</span>
+						<span class="source">{{source}}</span>
+						<span class="time"> {{published_time}}</span>
+					</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		<!--老版新接口-->
+		<script type="text/x-handlebars-template" id="news-template3">
+			{{#each this}}
+			<li class="mui-table-view-cell mui-media newsNotice-item">
+				<a href="/wx/category/read/?id={{id}}">
+					{{#if thumb}}
+					<img class="mui-media-object mui-pull-left" src="{{thumb}}"> {{/if}}
+					<div class="mui-media-body">
+						<p class='mui-ellipsis'> {{title}} </p>
+						<div class="mui-row clearfix">
+							<p class='f-left'> {{published_time}} </p>
+							<div class='f-right'><img class="eye" src="__TMPL__/public/assets/whgcms/wx/images/eye.png" alt="">{{hits}} </div>
+						</div>
+					</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		<!-- 旧导航模板 -->
+		<script type="text/x-handlebars-template" id="nav-template">
+			{{!
+			<li id="navindex">
+				<a href="/wx/index?navid=navindex">精选</a>
+			</li> }} {{#each this}}
+			<li class="mui-text-center f-left" id="nav{{id}}">
+				<a href="javascript:;" onclick="jsBridge.postNotification('CLIENT_OPEN_URL', {'title':'{{name}}','loadType':1,'webUrl':'https://demo-szwhg.chaoxing.com/wx/articles/167','toolbarType':'2'});">
+					<span class="mui-icon-new">
+                    <img src="{{background}}">
+                </span>
+					<div class="homeNav">{{title}}</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.11.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/js/index/config.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/js/index/common.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/js/json2.js"></script>
+		<script src="https://apps.chaoxing.com/res/js/CXJSBridge.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/js/index/index.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/lib/inscroll/iscroll.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/js/common.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/wx/js/indexNav.js"></script>
+		<script>
+			//    $('.mui-tab-item').click(function(){
+			//        $(this).siblings().removeClass('mui-active');
+			//        $(this).addClass('mui-active');
+			//    })
+			if(!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+				window.location.href = "/portal";
+			}
+			//底部添加active
+			nowActive('.mui-tab-item', 'mui-active')
+		</script>
+		<script>
+			var ewm = 'szwhg2017';
+			// var opts = { incode: 'szwhg2017', showInput: 0 };
+			//			var opts = {
+			//				needInput: 1,
+			//				incode: ewm,
+			//				showInput: 0
+			//			};
+			var opts = {};
+
+			function addGroup1() {
+				try {
+					jsBridge.postNotification("CLIENT_CHANGE_CODE", opts);
+				} catch(e) {}
+			}
+
+			function exit() {
+				jsBridge.postNotification('CLIENT_EXIT_WEBAPP', {});
+			}
+			//打开条码扫描
+			try {
+				jsBridge.bind('CLIENT_BARCODE_SCANNER', function(object) {
+					//					alert("msg=" + object.message);
+					ewm = object.message;
+//					alert(123)
+					resOpenCourse();
+					return false;
+				});
+			} catch(e) {}
+
+			function barcode() {
+				jsBridge.postNotification('CLIENT_BARCODE_SCANNER', {});
+			}
+
+			function resOpenCourse() {
+				opts = {
+						"studentcount": 57,
+						"chatid": "31026817597441",
+						"isFiled": 0,
+						"isthirdaq": 0,
+						"isstart": true,
+						"isretire": 0,
+						"name": "默认班级别气我",
+						"course": {
+							"data": [{
+								"teacherfactor": "宋佳琪",
+								"imageurl": "http://p.ananas.chaoxing.com/star3/origin/4d0f33f26062b6f78be644765b370509.png",
+								"name": "2",
+								"defaultShowCatalog": 0,
+								"id": ewm,
+								"appData": 0
+							}]
+						},
+						"information": 1,
+						"roletype": 3,
+						"id": ewm,
+						"state": 0,
+						"bbsid": "e1f740cbc31d484c728e5379e45ab418",
+						"discuss": 1
+					};
+				jsBridge.postNotification('CLIENT_OPEN_RES', {
+					"cataid": 100000002,
+					"key": 2505984,
+					"content": opts,
+					"cataName": "课程"
+				});
+			}
+
+			//打开条码扫描  --end
+
+            //获取用户信息
+            try{
+                jsBridge.bind('CLIENT_GET_USERINFO', function(object){
+                    alert(object.uid+"   "+object.name + "  "+object.puid+"  "+object.email);
+                });
+            }catch(e){}
+
+            function getUserInfo(){
+                jsBridge.postNotification("CLIENT_GET_USERINFO", {"accountKey":"" } ) ;
+            }
+		</script>
+	</body>
+
+</html>

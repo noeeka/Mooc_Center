@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="button" value="切换到cxhome邀请码,0" onclick="return changeCode('cxhome',0)" />
+		<input type="button" value="打开条码扫描" onclick="return barcode()" />
+		<script src="https://apps.chaoxing.com/res/js/CXJSBridge.js"></script>
+		<script type="text/javascript">
+			var ewm = 'szwhg2017';
+			var opts = {};
+
+			function changeCode(incode, showInput) {
+				var opts = {
+					needInput: 1,
+					incode: incode,
+					showInput: showInput
+				};
+				jsBridge.postNotification("CLIENT_CHANGE_CODE", opts);
+			}
+			//打开条码扫描
+			try {
+				jsBridge.bind('CLIENT_BARCODE_SCANNER', function(object) {
+					//					alert("msg=" + object.message);
+					ewm = object.message;
+					resOpenCourse();
+					return false;
+				});
+			} catch(e) {}
+
+			function barcode() {
+				jsBridge.postNotification('CLIENT_BARCODE_SCANNER', {});
+			}
+
+			function resOpenCourse() {
+				var opts = {
+					"studentcount": 57,
+					"chatid": "31026817597441",
+					"isFiled": 0,
+					"isthirdaq": 0,
+					"isstart": true,
+					"isretire": 0,
+					"name": "默认班级别气我",
+					"course": {
+						"data": [{
+							"teacherfactor": "宋佳琪",
+							"imageurl": "http://p.ananas.chaoxing.com/star3/origin/4d0f33f26062b6f78be644765b370509.png",
+							"name": "3",
+							"defaultShowCatalog": 0,
+							"id": ewm,
+							"appData": 0
+						}]
+					},
+					"information": 1,
+					"roletype": 3,
+					"id": 2505984,
+					"state": 0,
+					"bbsid": "e1f740cbc31d484c728e5379e45ab418",
+					"discuss": 1
+				};
+				jsBridge.postNotification('CLIENT_OPEN_RES', {
+					"cataid": 100000002,
+					"key": 2505984,
+					"content": opts,
+					"cataName": "课程"
+				});
+			}
+		</script>
+	</body>
+
+</html>

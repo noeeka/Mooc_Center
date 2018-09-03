@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <link rel="stylesheet" href="login-xxt.css">
+    <title>首页</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+<section>
+    <div class="returnHeader">
+        <a href="javascript:history.back(-1)" class="return">
+            <span class="mui-icon mui-icon-arrowleft"></span>
+        </a>
+        <h3 class="mui-col-xs-12 mui-text-center" style="text-align: center;">扫码登录</h3>
+    </div>
+    <div style="margin-top: 1.5rem;">
+        <p style="text-align: center;">登录确认</p>
+    </div>
+    <div style="margin-top: 2rem;text-align: center;">
+        <a id="login" href="javascript:;" style="display:block;margin:0 auto;margin-bottom: 0.2rem;text-align:center;color:#fff;line-height:0.4rem;width: 3rem;height: 0.4rem;border-radius: 0.2rem;background: #B93421">登录</a>
+        <a id="cancel" href="javascript:;">取消登录</a>
+    </div>
+</section>
+
+<script src="/themes/simpleboot3/public/assets/whgcms/lib/jquery.min.js "></script>
+<script src="/themes/simpleboot3/public/assets/whgcms/wx/js/json2.js"></script>
+<script src="https://apps.chaoxing.com/res/js/CXJSBridge.js"></script>
+
+<script>
+
+    var uid='';
+
+    //获取地址栏参数
+    function getParam(k, def) {
+        return getUrlVal(location.href, k, def);
+    }
+
+    //获取某个url中参数的值
+    function getUrlVal(url, key, def) {
+        def = def == undefined ? null : def;
+        var search = url.split('?')[1] == undefined ? "" : url.split('?')[1];
+        var search = search.match("(^|&)" + key + "=([^&]*)(&|$)");
+        return search == null ? def : decodeURI(search[2]);
+    }
+
+    //获取用户信息
+    try{
+        jsBridge.bind('CLIENT_GET_USERINFO', function(object){
+         // alert(object.uid+"   "+object.name + "  "+object.puid+"  "+object.email);
+            uid=object.puid;
+        });
+    }catch(e){}
+
+    function getUserInfo(){
+        jsBridge.postNotification("CLIENT_GET_USERINFO", {"accountKey":"" } ) ;
+    }
+
+    var opts = {};
+
+    function changeCode(incode, showInput) {
+        var opts = {
+            needInput: 1,
+            incode: incode,
+            showInput: showInput
+        };
+        jsBridge.postNotification("CLIENT_CHANGE_CODE", opts);
+    }
+
+    $(function () {
+       var sign=getParam('sign');
+
+       getUserInfo();
+       api_user();
+
+       $("#login").click(function () {
+           $.ajax({
+               url:'/api/qrsign/api_login',
+               type:'post',
+               dataType:'json',
+               data:{'qruuid':sign,'uid':uid},
+               success:function () {
+                   //获取邀请码，跳转到相应的文化馆
+                   changeCode('000000',0);
+
+               }
+           })
+       })
+
+       function api_user() {
+           $.ajax({
+               url:'/api/qrsign/qruser',
+               type:'post',
+               dataType:'json',
+               data:{'qruuid':sign,'uid':uid},
+               success:function (res) {
+                     if(res.status==1){
+                         if(res.code==13101){
+                             //扫描成功
+
+                         }
+                     }
+               }
+           })
+       }
+   })
+
+</script>
+</body>
+
+</html>

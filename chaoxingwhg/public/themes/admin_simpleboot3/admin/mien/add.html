@@ -1,0 +1,191 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+        display: inline-block;
+        width: 24%;
+        text-align: center;
+    }
+    #photos img{
+        width:100px;
+        height:100px;
+    }
+    #photos input{
+        width: 100px;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <img id="photo-{id}-preview" src="{url}" onclick="imagePreviewDialog(this.src);">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}" title="图片名称">
+        <div>
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+        </div>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}"
+               style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('图片上传','#file-{id}','file');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('Mien/index')}">所有风采展示</a></li>
+        <li class="active"><a href="{:url('Mien/add')}">添加风采展示</a></li>
+    </ul>
+    <form action="{:url('Mien/addPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="100">标题<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="post[title]"
+                                   id="title"  value="" placeholder="请输入标题"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">简介<span class="form-required">*</span></th>
+                        <td>
+                            <textarea class="form-control" name="post[abstract]" style="height: 50px;"
+                                      placeholder="请填写简介"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">内容详情</th>
+                        <td>
+                            <script type="text/plain" id="content" name="post[content]"></script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">内容链接</th>
+                        <td>
+                            <input class="form-control" type="text" name="post[url]"
+                                   id="url"  value="" placeholder="请输入内容链接"/>
+                            <span class="form-required">注：优先使用链接内容，无链接内容则使用本页面内容详情填写的内容</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">照片墙</th>
+                        <td>
+                            <ul id="photos" class="pic-list list-unstyled form-inline"></ul>
+                            <a href="javascript:uploadMultiImage('图片上传','#photos','photos-item-tpl');"
+                               class="btn btn-default btn-sm" style="margin-left: 20px;">选择图片</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                        <a class="btn btn-default" href="{:url('Mien/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <th><b>缩略图</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="text-align: center;">
+                                <input type="hidden" name="post[thumb]" id="thumbnail" value="">
+                                <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#thumbnail');">
+                                    <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                                         id="thumbnail-preview"
+                                         width="135" style="cursor: pointer"/>
+                                </a>
+                                <!--<input type="button" class="btn btn-sm btn-cancel-thumbnail" value="取消图片">-->
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>发布时间</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control js-bootstrap-datetime" type="text" name="post[publish_time]"
+                                   value="{:date('Y-m-d H:i:s',time())}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>状态</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="post[status]" value="1" checked>发布</label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<div class="checkbox">-->
+                                <!--<label><input type="checkbox" name="post[recommended]" value="1">推荐</label>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        editorcontent = new baidu.editor.ui.Editor();
+        editorcontent.render('content');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+    });
+
+    function doSelectCategory() {
+        var selectedCategoriesId = $('#js-categories-id-input').val();
+        openIframeLayer("{:url('AdminCategory/select')}?parent_id=8&ids=" + selectedCategoriesId, '请选择分类', {
+            area: ['700px', '400px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+                //do something
+
+                var iframeWin          = window[layero.find('iframe')[0]['name']];
+                var selectedCategories = iframeWin.confirm();
+                if (selectedCategories.selectedCategoriesId.length == 0) {
+                    layer.msg('请选择分类');
+                    return;
+                }
+                $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
+                $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
+                //console.log(layer.getFrameIndex(index));
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

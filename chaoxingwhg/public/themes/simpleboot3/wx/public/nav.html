@@ -1,0 +1,21 @@
+<!--头部-->
+<header class="header" style="height: 0.98rem;">
+<!--<header class="header" style="height: 0.38rem;">-->
+    <div class="search">
+        <a href="/wx/search/index"><img class="searchicon" src="__TMPL__/public/assets/whgcms/wx/images/searchicon.png">搜索关键字</a>
+    </div>
+    <div class="nav" id="wrapper" style="display: block">
+        <div id="scroller">
+            <ul class="navlist" id="navlist">
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- 模板 -->
+<script type="text/x-handlebars-template" id="nav-template">
+    <li id="navindex"><a href="/wx/index?navid=navindex">精选</a></li>
+    {{#each this}}
+        <li id="nav{{id}}"><a href="{{url}}?navid=nav{{id}}">{{title}}</a></li>
+    {{/each}}
+</script>

@@ -1,0 +1,53 @@
+<include file="public/header"/>
+
+<link rel='stylesheet' type='text/css'
+      href="__TMPL__/public/assets/whgcms/wx/css/myregister.css?v={$version_list.wx_myregister_css}">
+</head>
+
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">注册</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px; overflow: hidden;">
+    <div class="login">
+        <div class="logo">
+            <img src="__TMPL__/public/assets/whgcms/wx/images/loginlogo.png" alt="">
+        </div>
+        <form class="mui-input-group" id="registForm">
+            <div class="mui-input-row loginTel">
+                <img src="__TMPL__/public/assets/whgcms/wx/images/loginnameicon.png" alt="">
+                <input type="text" name="mobile" id="mobile" placeholder="请输入手机号">
+            </div>
+            <div class="mui-input-row loginPassword">
+                <img src="__TMPL__/public/assets/whgcms/wx/images/loginpasswordicon.png" alt="">
+                <input type="password" name="password" id="password" placeholder="请输入密码">
+            </div>
+            <div class="mui-input-row confirmPwd">
+                <img src="__TMPL__/public/assets/whgcms/wx/images/querenpwd.png" alt="">
+                <input type="password" name="confirm_psd" id="confirm_psd" placeholder="请确认密码">
+            </div>
+            <div class="mui-input-row validate">
+                <input type="text" class="valText" name="verify_code" id="verify_code" placeholder="请输入验证码">
+                <input type="button" class="valBtn verification-btn" id="verification-btn" value="发送验证码">
+            </div>
+        </form>
+    </div>
+    <div class="mui-button-row">
+        <button type="button" class="passport close-btn feedback mui-btn mui-btn-primary register-btn">注册</button>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/myregister.js?v={$version_list.wx_myregister_js}"></script>
+
+<script>
+
+</script>
+</body>
+</html>

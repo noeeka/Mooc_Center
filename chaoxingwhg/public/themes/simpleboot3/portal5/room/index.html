@@ -1,0 +1,65 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/venues.css?v={$version_list.pc_venues_css}'>
+<title></title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main-nav">
+        <div class="screening-nav">
+            <div <if condition="$switch eq 0">class="clearfix"<else/>class="hot clearfix"</if> <if condition="$switch eq 0">style="display:none"</if>>
+                <div class="classification f-left">热门场馆:</div>
+                <ul class="f-right level"></ul>
+            </div>
+            <div <if condition="$switch eq 0">class="clearfix"<else/>class="area clearfix"</if>  <if condition="$switch eq 0">style="display:none"</if>>
+                <div class="classification f-left">区域:</div>
+                <ul class="f-right level"></ul>
+            </div>
+            <div class="type clearfix" <if condition="$switch eq 0">style="margin-top:40px"</if>>
+                <div class="classification f-left">类型:</div>
+                <ul class="f-right level"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="main-list">
+                <ul class="tab1">
+                    <!--<li style="margin-left: 6px;" class="active1" data-index="3">智能排序</li>-->
+                    <li data-index="4" class="active1 new">最新发布</li>
+                    <li data-index="5" class="hight">人气最高</li>
+                </ul>
+                <div style="display: inline-block;text-align: center;width: 100%;margin-top:100px;display: none;" class="no">
+                    <img src="__TMPL__/public/assets/whgcms/images/no.png" alt="">
+                    <span style="font-size: 18px;color: #000000;display: block;margin-top: 16px;">暂无数据</span>
+                </div>
+                <ul class="list clearfix">
+                </ul>
+                <div id="test1" class="page"></div>
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/venues.js?v={$version_list.pc_venues_js}'></script>
+    <script type="text/template" id="item">
+        {{#each this}}
+        <li>
+            <a href="{{buildSecondUrl '/portal/room/read/?id=' id}}">
+                <div class="image" style="background-image: url(/upload/{{thumb}});"></div>
+                <div class="text">
+                    <h3>{{name}}</h3>
+                    <p>地点：{{full_address}}</p>
+                    <p>容纳人数：{{max_people}}</p>
+                    <div class="source">
+                        <img src="__TMPL__/public/assets/whgcms/images/venues/7.png" alt="" class="f-left">
+                        <span class="f-left">{{venue_name}}</span>
+                    </div>
+                    <button class="layui-btn">预约</button>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

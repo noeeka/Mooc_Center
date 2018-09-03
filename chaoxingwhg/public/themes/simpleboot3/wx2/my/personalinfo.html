@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/myaccset-personalinfo.css?v={$version_list.wx_mycollect_css}">
+</head>
+<style>
+    .date_btn_box{
+        background-color: #fff !important;
+    }
+    .date_ctrl{
+        background-color: #fff !important;
+    }
+    .ym_roll, .date_roll, .datetime_roll, .time_roll{
+        font-weight: normal !important;
+    }
+</style>
+<body>
+<!--头部-->
+<div class="returnHeader">
+    <a href="/wx2/my/set" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">个人信息</h3>
+</div>
+<section style="margin-top: 0.43rem;">
+    <div class="personalinfo">
+        <ul class="mui-table-view" id="personalinfo">
+            <li class="mui-table-view-cell">
+                <a href="/wx2/my/infoset" class="mui-navigate-right">
+                    <span>昵称</span>
+                    <span id="nickname"></span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="/wx2/my/nameset" class="mui-navigate-right">
+                    <span>真实姓名</span>
+                    <span id="name"></span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="#" class="mui-navigate-right">
+                    <span>性别</span>
+                    <span id="sex" data-id="1"></span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="#" class="mui-navigate-right">
+                    <span>出生日期</span>
+                    <!--<span id="birthday">1991-08-31</span>-->
+                    <input type="button" id="birthday" value="1991-08-31" class="kbtn" name="birthday">
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="/wx2/my/addressset" class="mui-navigate-right">
+                    <span>家庭住址</span>
+                    <span class="address" id="address"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx2/js/myaccset-personalinfo.js?v={$version_list.wx_mycollect_js}'></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+
+</head>
+<div class="wrap">
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('VolunArticle/verifyDo')}">
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">图片信息:</label>
+        </div>
+        <input type="hidden" name="id" value="{$photo['id']}">
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">照片<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+
+                <img src="{:cmf_get_image_preview_url($photo['img'])}"
+                     id="photo"
+                     width="135" style="cursor: pointer"/>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">上传人</label>
+            <div class="col-md-6 col-sm-10">
+                <span>{$photo['realname']}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">审核状态</label>
+            <div class="col-md-6 col-sm-10">
+                <switch name="$photo['status']">
+                    <case value="0">
+                        审核中
+                    </case>
+                    <case value="1">
+                        通过
+                    </case>
+                    <case value="2">
+                        没通过
+                    </case>
+                </switch>
+            </div>
+        </div>
+
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" name="status" value="1" class="btn btn-primary js-ajax-submit">通过</button>
+            <button type="submit" name="status" value="2" class="btn btn-primary js-ajax-submit">不通过</button>
+            <a class="btn btn-default" href="{:url('volun_article/photo_wall',['id'=>$id])}">{:lang('BACK')}</a>
+        </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+
+
+
+
+
+</body>
+</html>

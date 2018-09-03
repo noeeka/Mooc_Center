@@ -1,0 +1,34 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('version/index')}">所有版本文件</a></li>
+        <li><a href="{:url('version/add')}">添加版本文件</a></li>
+        <li class="active"><a>编辑版本文件</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('version/editPost')}">
+        <div class="form-group">
+            <label for="input-key" class="col-sm-2 control-label">文件名<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-key" name="key" value="{$version.key}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-value" class="col-sm-2 control-label">版本号<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-value" name="value" value="{$version.value}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id" value="{$version.id}">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="{:url('version/index')}">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

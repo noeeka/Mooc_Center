@@ -1,0 +1,154 @@
+<include file="public/header" />
+<title></title>
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/activity.css?v={$version_list.wx_activity_css}">
+</head>
+<style>
+    .expire {
+        background-color:#acacac;
+    }
+</style>
+<body>
+
+<include file="public/nav" />
+
+<section style="margin-bottom: 50px;">
+    <div class="classification">
+        <ul class="screenTop clearfix">
+            <li class="Regional venueHot f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>热门场馆</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+            <li class="Brand region f-left mui-col-xs-4 mui-text-center" <if condition="$switch eq 0">style="display:none"</if>><a href="#"><span>区域</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+            <li <if condition="$switch eq 0">class="Sort venueType f-left1 mui-col-xs-4 mui-text-center" style="margin:0 auto"<else/>class="Sort venueType f-left mui-col-xs-4 mui-text-center" </if>><a href="#"><span>类型</span> <img src="__TMPL__/public/assets/whgcms/wx/images/shaixuanicon.png" alt=""></a></li>
+        </ul>
+        <ul class="screenTj">
+            <li>排序:</li>
+            <li class="active">默认</li>
+            <li>最新发布</li>
+            <li>人气最高</li>
+        </ul>
+    </div>
+    <div class="zhezhao"  style="display: none"></div>
+    <div class="screenContent">
+        <!-- grade -->
+        <div class="grade-eject">
+            <ul class="grade-w" id="gradew">
+
+            </ul>
+        </div>
+        <!-- End grade -->
+        <!-- Category -->
+        <div class="Category-eject area">
+            <ul class="Category-w" id="Categorytw">
+            </ul>
+            <ul class="Category-t" id="Categoryt">
+            </ul>
+        </div>
+        <!-- End Category -->
+        <!-- Category -->
+        <div class="Sort-eject Sort-height">
+            <ul class="Sort-Sort" id="Sort-Sort">
+                <li onclick="Sorts(this)">智能排序</li>
+                <li onclick="Sorts(this)">离我最近</li>
+                <li onclick="Sorts(this)">好评优先</li>
+                <li onclick="Sorts(this)">最新发布</li>
+                <li onclick="Sorts(this)">人气优先</li>
+                <li onclick="Sorts(this)">价格最低</li>
+                <li onclick="Sorts(this)">价格最高</li>
+            </ul>
+        </div>
+        <!-- End Category -->
+    </div>
+    <div class="huodong">
+        <ul class="mui-table-view huodongList">
+            <script type="text/x-handlebars-template" id="activity_list">
+                {{#each this}}
+                <li class="mui-table-view-cell mui-media">
+                    <a href="/wx/activity/read?id={{id}}">
+                        <img class="mui-media-object mui-pull-left" src="{{thumb}}">
+                        <div class="mui-media-body clearfix">
+                            <h3 >{{{title}}}</h3>
+
+                            {{#if need_baoming}}
+                            <p class="person">报名人数：{{apply_people_count}}/{{max_num}}</p>
+                            {{/if}}
+                            <p class="time f-left">时间：{{transformat format_start_time}}</p>
+
+                            {{#test this}}
+
+                            {{/test}}
+
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </script>
+        </ul>
+    </div>
+</section>
+
+<include file="public/footer" >
+
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/js/activity.js?v={$version_list.wx_activity_js}"></script>
+
+    <script>
+
+        Handlebars.registerHelper("test", function(attr, options) {
+            var timestamp = Date.parse(new Date()) / 1000;
+
+            if(attr['need_baoming'] == 0 && attr['start_time'] <= timestamp && timestamp <= attr['end_time'] ) {
+                return "<div class=\"baomingBtn f-right\">直接参加</div>";
+            }
+
+            if(attr['need_baoming'] == 0 && attr['start_time'] >= timestamp &&  attr['end_time'] >= timestamp  ) {
+                return "<div class=\"baomingBtn f-right\" style=\"background-color: #acacac\">未开始</div>";
+            }
+
+            if(attr['need_baoming'] == 1 &&
+                timestamp >= attr['baoming_start_time'] &&
+                timestamp <= attr['baoming_end_time'] &&
+                attr['apply_people_count'] != attr['max_num']
+            )
+                return " <div class=\"baomingBtn f-right\">报名</div>";
+
+            if(attr['need_baoming'] == 1 &&
+                timestamp >= attr['baoming_start_time'] &&
+                timestamp <= attr['baoming_end_time'] &&
+                attr['apply_people_count'] == attr['max_num']
+            )
+                return " <div class=\"baomingBtn f-right\"  style=\"background-color: #acacac\">已订满</div>";
+
+
+            if(attr['need_baoming'] == 1 &&
+                attr['baoming_start_time'] >= timestamp &&
+                attr['baoming_end_time'] >= timestamp
+            )
+                return "<div class=\"baomingBtn f-right\" style=\"background-color: #acacac\">未开始</div>";
+
+
+            return "<div class=\"baomingBtn f-right\" style=\"background-color: #acacac\">已过期</div>";
+        });
+
+        Handlebars.registerHelper("transformat",function(value){
+            return value.substr(0,10);
+        });
+        Handlebars.registerHelper("compare",function(start_time,end_time, options){
+            var timestamp = Date.parse(new Date()) / 1000;
+            // console.log(start_time);
+            // console.log(end_time);
+            // console.log(timestamp);
+            if(timestamp >= start_time && timestamp <= end_time) {
+                return options.fn(this);
+            } else  {
+                return options.inverse(this);
+            }
+        });
+
+        Handlebars.registerHelper("compare_num",function(apply_people_count,max_num, options){
+            if(apply_people_count == max_num ) {
+                return options.fn(this);
+            } else  {
+                return options.inverse(this);
+            }
+        });
+    </script>
+</body>
+</html>

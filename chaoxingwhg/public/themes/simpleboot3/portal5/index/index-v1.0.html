@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/css/reset.css">
+    <!-- <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/css/swiper.min.css"> -->
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/dist/idangerous.swiper.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/css/homepage_swiper.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/module4/style.css">
+    <link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/index.css'>
+    <title class="site_title"></title>
+    <style>
+    .mainModule-1-more {
+        right: 0;
+    }
+
+    .swiper-pagination3 {
+        position: absolute;
+        z-index: 20;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .swiper-pagination-switch {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background: #555;
+        margin: 0 5px;
+        opacity: 0.8;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
+
+    .swiper-active-switch {
+        background: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="load" style="width: 100%;height: 300px;display: inline-block;text-align: center;line-height: 300px;">
+        <img src="__TMPL__/public/assets/whgcms/images/read/load.gif" alt="" style="display: inline-block;">
+    </div>
+    <div class="header" id="header">
+        <div class="headerModule-4 hide" style="background-color: #d2d6dd;">
+            <div class="headerModule-4-safety" style="background-image: url(__TMPL__/public/assets/whgcms/images/headerModule-4/1.png);">
+                <div class="headerModule-4-content">
+                    <div class="header-top clearfix">
+                        <img src="__TMPL__/public/assets/whgcms/images/logo.png" alt="" class="f-left logo" style="height: 53px;">
+                        <div class="search f-right clearfix">
+                            <input type="text" class="f-left" placeholder="请输入搜索内容" id="sousuoinput">
+                            <div class="sousuo f-left" style="background-color: #5269B9;">搜索</div>
+                        </div>
+                    </div>
+                    <div class="header-nav" style="background-color: #5269B9;">
+                        <ul class="nav f-left">
+                            <li><a href="">首页</a></li>
+                            <li><a href="">信息资讯</a><img src="__TMPL__/public/assets/whgcms/images/headerModule-4/top.png" alt="" class="arrowtop">
+                                <ul class="slide">
+                                    <li><a href="">党建工作</a></li>
+                                    <li><a href="">本馆介绍</a></li>
+                                    <li><a href="">什么工作</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">资源展示</a><img src="__TMPL__/public/assets/whgcms/images/headerModule-4/bottom.png" alt="" class="arrowbottom"></li>
+                            <li><a href="">非遗文化</a></li>
+                            <li><a href="">活动</a></li>
+                            <li><a href="">免费开放</a></li>
+                            <li><a href="">关于我们</a></li>
+                        </ul>
+                        <div class="denglu f-right">
+                            <a href="/portal/login/login">登录注册</a>
+                        </div>
+                        <div class="login-reg hide zhuce f-left" style="">
+                            <ul class="xx clearfix">
+                                <li class="tlogin">
+                                    <a href="javascript:;" style="">
+                                        <img src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="" style="" class="avatar">
+                                    </a>
+                                </li>
+                                <li class="treg">
+                                    <a href="javascript:;" style=""></a>
+                                </li>
+                            </ul>
+                            <div class="out hide">
+                                <div style="">
+                                    <a href="/portal/my/index" style="border-bottom: 1px solid #c6c6c6;">个人中心</a>
+                                    <a href="javascript:;" class="exit">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="headerModule-4-hr" style="background-color: #5269B9;"></div>
+        </div>
+        <div class="headerModule-5" style="background-color: #d2d6dd;">
+            <div class="headerModule-5-safety" style="background-image: url(__TMPL__/public/assets/whgcms/images/headerModule-5/1.png);">
+                <div class="headerModule-5-content">
+                    <div class="denglu">
+                        <a href="/portal/login/login">登录注册</a>
+                    </div>
+                    <div class="login-reg hide zhuce" style="">
+                        <ul class="xx clearfix">
+                            <li class="tlogin f-left">
+                                <a href="javascript:;" style="">
+                                        <img src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="" style="" class="avatar">
+                                    </a>
+                            </li>
+                            <li class="treg f-left">
+                                <a href="javascript:;" style=""></a>
+                            </li>
+                        </ul>
+                        <div class="out hide">
+                            <div style="">
+                                <a href="/portal/my/index" style="border-bottom: 1px solid #c6c6c6;">个人中心</a>
+                                <a href="javascript:;" class="exit">退出</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-top f-right clearfix">
+                        <img src="__TMPL__/public/assets/whgcms/images/logo.png" alt="" class="logo f-left" style="height: 53px;">
+                        <div class="search f-right clearfix">
+                            <input type="text" class="f-left" placeholder="请输入搜索内容" value="" id="sousuoinput">
+                            <div class="sousuo f-left" style="background-color: #131313;">搜索</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-nav">
+                    <div class="clearfix" style="width: 1200px;margin:0 auto;">
+                        <ul class="nav clearfix f-right">
+                            <li><a href="">首页</a></li>
+                            <li><a href="">信息资讯</a></li>
+                            <li><a href="">资源展示</a><img src="__TMPL__/public/assets/whgcms/images/headerModule-5/bottom.png" alt="" class="arrowbottom"></li>
+                            <li><a href="">非遗文化</a></li>
+                            <li><a href="" class="navactive">全景展示</a>
+                                <img src="__TMPL__/public/assets/whgcms/images/headerModule-5/top.png" alt="" class="arrowtop">
+                                <ul class="slide">
+                                    <img src="__TMPL__/public/assets/whgcms/images/headerModule-4/top.png" alt="">
+                                    <li><a href="">活动信息</a></li>
+                                    <li><a href="">本馆介绍</a></li>
+                                    <li><a href="">党建工作</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">志愿者报名</a></li>
+                            <li><a href="">文化配送</a></li>
+                            <li><a href="">关于我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="headerModule-5-hr" style="background-color: #131313;"></div>
+        </div>
+    </div>
+    <div class="banner" id="banner">
+    </div>
+    <div class="main" id="main">
+    </div>
+    <div id="aboutus">
+        <!--<div class="concerning" style="background-color: #d2d6dd; ">-->
+        <!--<div class="concerning-security " style="background-image:url(__TMPL__/public/assets/whgcms/images/concerning/concerning.png) ">-->
+        <!--<div class="concerning-content ">-->
+        <!--<div class="content ">-->
+        <!--<span>关于我们</span>-->
+        <!--<img src="__TMPL__/public/assets/whgcms/images/concerning/1.png " alt=" " style="margin-left: 41px; ">-->
+        <!--<div class="about ">-->
+        <!--<p>点亮一盏残灯，挥袖而坐，剪一寸摇曳的烛影，手捧前朝典藉，借着飘乎的灯火，嗅着幽幽的书香，畅游神思间，凝眸慨叹那些湮灭在滚滚红尘里的雕梁画栋和六朝金粉。凭栏遥望处，残红满目，荠麦青青，几声鸿雁的哀鸣震落了断壁残垣上经年昏睡的尘埃。</p>-->
+        <!--<p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>-->
+        <!--<p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>-->
+        <!--</div>-->
+        <!--<img src="__TMPL__/public/assets/whgcms/images/concerning/2.png " alt=" " style="margin-left: 629px; ">-->
+        <!--<em><a href="">查看更多</a></em>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!--header模板1-->
+    <script type="text/template" id="headerModule1-temeplate">
+        <div class="headerModule-1" style="display: block;background: {{background_color}};">
+            <div class="headerModule-1-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px 100%;">
+                <div class="headerModule-1-content">
+                    <div style="height: 80px;">
+                        <div class="logo f-left" style="margin-top:21px;">
+                            <img src="{{logo}}" alt="" style="cursor: pointer;">
+                        </div>
+                        <hr>
+                        <div class="login f-right clearfix" style="position: relative;">
+                            <div class="search searchIcon f-left" style="position: relative;">
+                                <div class="close f-left "></div>
+                                <input type="text " placeholder="请输入搜索内容" id="sousuoinput" class="sousuoinput" value="" style="position: absolute; ">
+                                <div class="sousuo f-right "></div>
+                            </div>
+                            <ul class="logo-reg clearfix f-left denglu">
+                                <li class="f-left"><a href="/portal/login/login">登录<span style="margin-right: 5px;"></span>|<span style="margin-left: 5px;"></span></a></li>
+                                <li class="f-left"><a href="/portal/login/login">注册</a></li>
+                            </ul>
+                            <div class="login-reg hide zhuce f-left" style="margin-left:28px; margin-top:-2px;position: relative;">
+                                <ul class="xx clearfix">
+                                    <li class="tlogin f-left">
+                                        <a href="javascript:;" style="right: 69px;top:4px;">
+                                        <img src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="" style="width:20px;height:20px;margin-right:10px;margin-top: 2px;border-radius: 50%">
+                                    </a>
+                                    </li>
+                                    <li class="treg f-left">
+                                        <a href="javascript:;" style="color:#000;font-size:12px;line-height:24px;"></a>
+                                    </li>
+                                </ul>
+                                <div class="out" style="width: 140px;position: absolute;z-index: 99;top:26px;right: 0;display: none;">
+                                    <div style="width:100%;height: 20px;"></div>
+                                    <div style="box-shadow: 0px 10px 20px -7px #535f6f;">
+                                        <a href="/portal/my/index" style="border-bottom: 1px solid #c6c6c6;">个人中心</a>
+                                        <a href="javascript:;" class="exit">退出</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav clearfix" style="margin-top:26px;margin-bottom: 59px;">
+                        <!--<li><a href="#" class="active">首页</a></li>-->
+                        <!--<li><a href="#">信息展示</a></li>-->
+                        <!--<li><a href="#">资源展示</a></li>-->
+                        <!--<li><a href="#">活动展示</a></li>-->
+                        <!--<li><a href="#">全景展示</a></li>-->
+                        <!--<li><a href="#">慕课平台</a></li>-->
+                        <!--<li><a href="#">关于我们</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--header模板2-->
+    <script type="text/template" id="headerModule2-temeplate">
+        <div class="headerModule-2" style="display: block;background: {{background_color}};">
+            <hr>
+            <div class="headerModule-2-safety" style="background: url('{{background_image}}') no-repeat top center;background-size:1920px 100%;">
+                <div class="headerModule-2-content">
+                    <div class="login">
+                        <!--<img class="searchIcon" src="__TMPL__/public/assets/whgcms/images/headerModule-1/searchIcon.png" alt="">-->
+                        <div class="search searchIcon f-right" style="position: relative;">
+                            <div class="close f-left "></div>
+                            <input type="text " placeholder="请输入搜索内容" id="sousuoinput" class="sousuoinput" value="" style="position: absolute; ">
+                            <div class="sousuo f-right "></div>
+                        </div>
+                        <a href="/portal/login/login" style="top:0" class="denglu">登录|注册</a>
+                        <div class="login-reg hide zhuce" style="margin-left:28px; margin-top:5px;position: relative;">
+                            <ul class="xx clearfix">
+                                <li class="tlogin f-left">
+                                    <a href="javascript:;" style="right: 69px;top:4px;">
+                                        <img src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="" style="width:20px;height:20px;margin-right:10px;margin-top: 2px;border-radius: 50%">
+                                    </a>
+                                </li>
+                                <li class="treg f-left">
+                                    <a href="javascript:;" style="color:#000;font-size:12px;line-height:24px;right: 13px;"></a>
+                                </li>
+                            </ul>
+                            <div class="out" style="width: 140px;position: absolute;z-index: 99;top:26px;right: 0;display: none;">
+                                <div style="width:100%;height: 20px;"></div>
+                                <div style="box-shadow: 0px 10px 20px -7px #535f6f;">
+                                    <a href="/portal/my/index" style="border-bottom: 1px solid #c6c6c6;border-bottom: 1px solid #c6c6c6;background: #fff;top: 26px;height: 46px;width: 112px;text-align: center;z-index: 1;line-height: 46px;">个人中心</a>
+                                    <a href="javascript:;" class="exit" style="top: 72px;width: 112px;text-align: center;background: #fff;height: 46px;line-height: 46px;">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix logoNav">
+                        <div class="logo f-left">
+                            <img src="{{logo}}" alt="">
+                        </div>
+                        <ul class="nav f-right">
+                            <!--<li><a href="#" class="active">首页</a></li>-->
+                            <!--<li><a href="#">信息展示</a></li>-->
+                            <!--<li><a href="#">资源展示</a></li>-->
+                            <!--<li><a href="#">活动展示</a></li>-->
+                            <!--<li><a href="#">全景展示</a></li>-->
+                            <!--<li><a href="#">慕课平台</a></li>-->
+                            <!--<li><a href="#">关于我们</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--header模板3-->
+    <script type="text/template" id="headerModule3-temeplate">
+        <div class="headerModule-3" style="display: block;background: #fff;">
+            <div class="headerModule-3-safety">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                    <div class="swiper-pagination3"></div>
+                </div>
+            </div>
+            <div class="top">
+                <div class="top-content">
+                    <div class="search">
+                        <span class="searchicon sousuo" style="background-image: url('__TMPL__/public/assets/whgcms/images/headerModule-3/searchicon3.png')"></span>
+                        <input type="text " placeholder="请输入搜索内容" class="sousuoinput" id="sousuoinput" value="">
+                    </div>
+                    <div class="logo">
+                        <img style="height: 100%;" src="{{logo}}" alt="">
+                    </div>
+                    <div class="denglu clearfix" style=" position: absolute;top: 50%; right: 0;transform: translate(0,-50%);line-height: 48px;">
+                        <a href="/portal/login/login">
+                            <!-- <img class="f-left" src="__TMPL__/public/assets/whgcms/images/loginicon.png" alt="" style="margin: 12px;"> -->
+                            <span class="f-right" style="color: #ffffff;">登录 | 注册</span>
+                        </a>
+                    </div>
+                    <div class="login-reg hide zhuce f-right" style="margin-left:28px; margin-top:-46px;position: relative;">
+                        <ul class="xx clearfix">
+                            <li class="tlogin f-left">
+                                <a href="javascript:;" style="right: 69px;top:4px;">
+                                <img src="__TMPL__/public/assets/whgcms/images/my/whiteavatar.png" alt="" style="width:20px;height:20px;margin-right:10px;margin-top: 2px;border-radius: 50%">
+                            </a>
+                            </li>
+                            <li class="treg f-left">
+                                <a href="javascript:;" style="color:#fff;font-size:12px;line-height:24px;"></a>
+                            </li>
+                        </ul>
+                        <div class="out" style="position: absolute;z-index: 99;top:26px;right: 0;display: none;">
+                            <div style="width:100%;height: 20px;"></div>
+                            <div style="box-shadow: 0px 10px 20px -7px #535f6f;">
+                                <a href="/portal/my/index" style="display:block;font-size:16px;border-bottom: 1px solid #c6c6c6;border-bottom: 1px solid #c6c6c6;background: #fff;top: 26px;height: 46px;width: 112px;text-align: center;z-index: 1;line-height: 46px;">个人中心</a>
+                                <a href="javascript:;" class="exit" style="display:block;font-size:16px;top: 72px;width: 112px;text-align: center;background: #fff;height: 46px;line-height: 46px;">退出</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbox">
+                <!--<ul class="nav clearfix" style="margin-top:26px;margin-bottom: 59px;">-->
+                <ul class="nav clearfix">
+                    <!--<li><a href="#" class="active">首页</a></li>-->
+                    <!--<li><a href="#">信息展示</a></li>-->
+                    <!--<li><a href="#">资源展示</a></li>-->
+                    <!--<li><a href="#">活动展示</a></li>-->
+                    <!--<li><a href="#">全景展示</a></li>-->
+                    <!--<li><a href="#">慕课平台</a></li>-->
+                    <!--<li><a href="#">关于我们</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </script>
+    <!-- <script type="text/x-handlebars-template" id="pic">
+    <li class="tlogin f-left">
+        <a href="javascript:;" style="right: 69px;top:4px;">
+            <img src="{{avatar_url}}" alt="" style="width:20px;height:20px;margin-right:10px;margin-top: 2px;border-radius: 50%">
+        </a>
+    </li>
+    <li class="treg f-left">
+        <a href="javascript:;" style="color:#fff;font-size:12px;line-height:24px;">{{user_nickname}}</a>
+    </li>
+</script> -->
+    <!--banner模板1-->
+    <script type="text/template" id="bannerModule1-temeplate">
+        <div class="bannerModule-1" style="background:{{background_color}};">
+            <div class="bannerModule-1-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px 100% ;">
+                <div class="bannerModule-1-content pc-banner">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper" id="banner-imgs-list">
+                            {{#each listdata}}
+                            <div class="swiper-slide swiper-slide-center none-effect">
+                                <a href="{{url}}"><img src="{{thumb}}" ></a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--banner模板2-->
+    <script type="text/template" id="bannerModule2-temeplate">
+        <div class="bannerModule-2" style="background: {{background_color}};">
+            <div class="bannerModule-2-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px 100% ;">
+                <div class="bannerModule-2-content">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {{#each listdata}}
+                            <div class="swiper-slide">
+                                <a href="{{url}}">
+                                <img src="{{thumb}}">
+                            </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <!-- 如果需要导航按钮 -->
+                        <div class="swiper-button-prev" style="display: none"></div>
+                        <div class="swiper-button-next" style="display: none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--banner模板3-->
+    <script type="text/template" id="bannerModule3-temeplate">
+        <div class="bannerModule-3" style="background:{{background_color}};">
+            <div class="bannerModule-3-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px 100%;">
+                <div class="bannerModule-3-content pc-banner">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {{#each listdata}}
+                            <div class="swiper-slide swiper-slide-center none-effect">
+                                <a href="{{url}}"><img src="{{thumb}}"></a>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板1-->
+    <script type="text/template" id="mainModule1-temeplate">
+        <div class="mainModule-1" style="background: {{background_color}};">
+            <div class="mainModule-1-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px;">
+                <div class="mainModule-1-content mainModule">
+                    <div class="mainModule-1-title" style="color: {{font_color}};">{{title}}</div>
+                    {{#each listdata}}
+                    <div class="list clearfix" style="position: relative;">
+                        {{#if target}}
+                        <a href="{{url}}" target="_blank">
+                    {{else}}
+                    <a href="{{url}}">
+                    {{/if}}
+                        <div class="listImg f-left" style="background: url('{{thumb}}') no-repeat;"></div>
+                        <div class="listContent f-left">
+                            <h3>{{title}}</h3>
+                            <p>{{abstract}}</p>
+                            <span class="time">{{time}}</span>
+                        </div>
+                        {{#if is_top}}
+                        <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                        {{/if}}
+                    </a>
+                    </div>
+                    {{/each}}
+                    <div class="mainModule-1-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板2-->
+    <script type="text/template" id="mainModule2-temeplate">
+        <div class="mainModule-2" style="background: {{background_color}};">
+            <div class="mainModule-2-safety" style="background: url('{{background_image}}') no-repeat top center;background-size:1920px;">
+                <div class="mainModule-2-content mainModule">
+                    <div class="mainModule-2-title" style="color: {{font_color}};">{{title}}</div>
+                    <div class="layui-row clearfix">
+                        {{#each listdata}}
+                        <!--<div class="layui-col-md3 list">-->
+                        <div class="f-left list" style="position: relative;">
+                            {{#if target}}
+                            <a href="{{url}}" target="_blank">
+                        {{else}}
+                        <a href="{{url}}">
+                        {{/if}}
+                            <div class="listImg">
+                                <img src="{{thumb}}" alt="">
+                            </div>
+                            <h3>{{title}}</h3>
+                            <!--<p class="ellipsis">{{abstract}}</p>-->
+                            <hr>
+                            {{#if is_top}}
+                            <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                            {{/if}}
+                        </a>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="mainModule-2-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板3-->
+    <script type="text/template" id="mainModule3-temeplate">
+        <div class="mainModule-3" style="background: {{background_color}};">
+            <div class="mainModule-3-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px;">
+                <div class="mainModule-3-content mainModule">
+                    <div class="mainModule-3-title" style="color: {{font_color}};">{{title}}</div>
+                    <div class="layui-row layui-col-space12">
+                        {{#each listdata}}
+                        <div class="layui-col-xs6 list" style="position: relative;">
+                            {{#if target}}
+                            <a href="{{url}}" target="_blank">
+                        {{else}}
+                        <a href="{{url}}">
+                        {{/if}}
+                            <div class="listImg">
+                                <img src="{{thumb}}" alt="">
+                            </div>
+                            <div class="listContent">
+                                <span class="bt">{{title}}</span>
+                                <span class="jianjie">{{abstract}}</span>
+                            </div>
+                            {{#if is_top}}
+                            <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                            {{/if}}
+                        </a>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="mainModuurlle-3-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板4-->
+    <script type="text/template" id="mainModule4-temeplate">
+        <div class="mainModule-4" style="background-color: {{background_color}};">
+            <div class="mainModule-4-security" style="position: relative;background-image: url({{background_image}});background-size:1920px ;">
+                <div class="mainModule-4-content mainModule">
+                    <div class="mainModule-4-title">
+                        <span style="color:{{font_color}}">{{title}}</span>
+                    </div>
+                    <div id="featured-area">
+                        <ul>
+                            {{#each listdata}}
+                            <li style="position: relative;">
+                                {{#if target}}
+                                <a href="{{url}}" target="_blank">
+                            {{else}}
+                            <a href="{{url}}">
+                            {{/if}}
+                                <img src="{{thumb}}" alt="" /><strong>{{title}}</strong>
+                                {{#if is_top}}
+                                <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                                {{/if}}
+                            </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="mainModule-4-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板5-->
+    <script type="text/template" id="mainModule5-temeplate">
+        <div class="mainModule-5" style="background-color:{{background_color}};">
+            <div class="mainModule-5-security" style="background-color: #d2d8dd;background:url('{{background_image}}') no-repeat top center;background-size:1920px;">
+                <div class="mainModule-5-content mainModule">
+                    <div class="mainModule-5-title">
+                        <span style="color:{{font_color}};">{{title}}</span>
+                    </div>
+                    <ul class="clearfix">
+                        {{#each listdata}}
+                        <li style="position: relative;">
+                            {{#if target}}
+                            <a href="{{url}}" target="_blank">
+                        {{else}}
+                        <a href="{{url}}">
+                        {{/if}}
+                            <div style="background-image:url({{thumb}});" class="img"></div>
+                            <div class="content">
+                                <h3 class="ellipsis">{{title}}</h3>
+                            </div>
+                            {{#if is_top}}
+                            <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                            {{/if}}
+                        </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <div class="mainModule-5-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板6-->
+    <script type="text/template" id="mainModule6-temeplate">
+        <div class="mainModule-6" style="background-color: {{background_color}};">
+            <div class="mainModule-6-security" style="background-image:url({{background_image}});background-size:1920px ;">
+                <div class="mainModule-6-content mainModule">
+                    <div class="mainModule-6-title">
+                        <span style="color:{{font_color}}">{{title}}</span>
+                    </div>
+                    <div class="content clearfix">
+                        {{#if target}}
+                        <a class="inline" href="{{url}}" style="display: inline-block;" target="_blank">
+                    {{else}}
+                    <a class="inline" href="{{url}}" style="display: inline-block;">
+                    {{/if}}
+                        <div class="amplification f-left" style="position: relative;">
+                            <div class="introduce ">
+                                <span class="introduce1"></span>
+                                <span class="introduce2"></span>
+                            </div>
+                            <img class="zhiding1 zhidingactive" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                        </div>
+                    </a>
+                        <ul class="f-right contentRight">
+                            {{#each listdata}}
+                            <li style="background-image:url({{thumb}}); position: relative;" data-url="{{url}}">
+                                <span style="display: none;" class="title1">{{title}}</span>
+                                <span style="display: none;" class="title2">{{abstract}}</span> {{#if is_top}}
+                                <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt=""> {{/if}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="mainModule-6-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--main模板7-->
+    <script type="text/template" id="mainModule7-temeplate">
+        <div class="mainModule-7" style="background: {{background_color}};">
+            <div class="mainModule-7-safety" style="background:url('{{background_image}}') no-repeat top center;background-size:1920px;">
+                <div class="mainModule-7-content mainModule">
+                    <div class="mainModule-7-title" style="color: {{font_color}};">{{title}}</div>
+                    <div class="list content clearfix" id="article-content-list">
+                        <div class="list-left f-left">
+                            {{#if target}}
+                            <a href="{{url}}" target="_blank">
+                        {{else}}
+                        <a href="{{url}}">
+                        {{/if}}
+                            <img class="thumb" src="" alt="">
+                            <div class="listLeft-jianjie">
+                                <h3 class="ellipsis"></h3>
+                                <p class="jianjie"></p>
+                                <p class="time"></p>
+                            </div>
+                            <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                        </a>
+                        </div>
+                        <ul class="list-right f-right" id="list-right">
+                            {{#each listdata}}
+                            <li>
+                                {{#if target}}
+                                <a class="clearfix" href="{{url}}" target="_blank">
+                            {{else}}
+                            <a class="clearfix" href="{{url}}">
+                            {{/if}}
+                                <img class="f-left" src="{{thumb}}" alt="">
+                                <div class="listRight-jianjie f-left" style="width: 359px;">
+                                    <h3 class="ellipsis">{{title}}</h3>
+                                    <p>{{time}}</p>
+                                </div>
+                                {{#if is_top}}
+                                    <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+                                {{/if}}
+                            </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="mainModule-7-more mainMore">
+                        <a href="{{url}}" target="{{target}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!--关于我们模板-->
+    <!--<script type="text/template" id="aboutus-temeplate">-->
+    <!--<div class="concerning" style="background-color: #d2d6dd; ">-->
+    <!--<div class="concerning-security " style="background-image:url(__TMPL__/public/assets/whgcms/images/concerning/concerning.png);background-size:100% ;">-->
+    <!--<div class="concerning-content ">-->
+    <!--<div class="content ">-->
+    <!--<span>关于我们</span>-->
+    <!--<img src="__TMPL__/public/assets/whgcms/images/concerning/1.png " alt=" " style="margin-left: 41px; ">-->
+    <!--<div class="about ">-->
+    <!--<p>点亮一盏残灯，挥袖而坐，剪一寸摇曳的烛影，手捧前朝典藉，借着飘乎的灯火，嗅着幽幽的书香，畅游神思间，凝眸慨叹那些湮灭在滚滚红尘里的雕梁画栋和六朝金粉。凭栏遥望处，残红满目，荠麦青青，几声鸿雁的哀鸣震落了断壁残垣上经年昏睡的尘埃。</p>-->
+    <!--<p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>-->
+    <!--<p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>-->
+    <!--</div>-->
+    <!--<img src="__TMPL__/public/assets/whgcms/images/concerning/2.png " alt=" " style="margin-left: 629px; ">-->
+    <!--<em><a href="">查看更多</a></em>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</script>-->
+    <script type="text/template" id="aboutus-temeplate">
+        <div class="concerning" style="background-color: {{background_color}};display: none ">
+            <div class="concerning-security " style="background-image:url({{background_image}});background-size: 1920px 100% ;">
+                <div class="concerning-content mainModule">
+                    <div class="mainModule-7-title" style="color:{{font_color}};">关于我们</div>
+                    <div class="content ">
+                        <!--<span>关于我们</span>-->
+                        <!--<img src="__TMPL__/public/assets/whgcms/images/concerning/1.png " alt=" " style="margin-left: 41px; ">-->
+                        <div class="about ">
+                            <p>点亮一盏残灯，挥袖而坐，剪一寸摇曳的烛影，手捧前朝典藉，借着飘乎的灯火，嗅着幽幽的书香，畅游神思间，凝眸慨叹那些湮灭在滚滚红尘里的雕梁画栋和六朝金粉。凭栏遥望处，残红满目，荠麦青青，几声鸿雁的哀鸣震落了断壁残垣上经年昏睡的尘埃。</p>
+                            <p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>
+                            <p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>
+                            <p> 踏上苍苔满布的古老石阶，于烟尘四起的阡陌尽处遥望戎马倥偬的金戈岁月，回首诸朝古都盛极一时的繁华美景，低诉那些永载史册，彪炳千古的英雄与巾帼用智慧谱写的传世佳话。</p>
+                        </div>
+                        <!--<img src="__TMPL__/public/assets/whgcms/images/concerning/2.png " alt=" " style="margin-left: 629px; ">-->
+                        <!--<em><a href="">查看更多</a></em>-->
+                    </div>
+                    <div class="mainModule-7-more mainMore">
+                        <a href="{{url}}" style="color: {{font_color}};">+更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- <include file="public/footer" /> -->
+    <!-- <script src="__TMPL__/public/assets/whgcms/lib/swiper/js/swiper.min.js"></script> -->
+    <script src="__TMPL__/public/assets/whgcms/lib/dist/idangerous.swiper.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/bannerxzmm/js/jquery.roundabout-1.0.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/bannerxzmm/js/jquery.easing.1.3.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/module4/jquery.roundabout-1.0.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/js/templatenew.js "></script>
+    <script src="__TMPL__/public/assets/whgcms/js/index1.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

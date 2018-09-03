@@ -1,0 +1,248 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/repository.css'>
+<title>资源库</title>
+</head>
+<body>
+<include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="main-nav">
+                <div class="hot clearfix">
+                    <div class="classification f-left">热门场馆</div>
+                    <ul class="f-right level"   id="venue">
+
+                    </ul>
+                </div>
+                <div class="area clearfix">
+                    <div class="classification f-left">区域</div>
+                    <ul class="f-right level" id="area">
+
+                    </ul>
+                </div>
+                <div class="type clearfix">
+                    <div class="classification f-left">类型</div>
+                    <ul class="f-right level" id="perform_type">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="main-list"  id="main-list" >
+
+                <ul class="list clearfix" id ="lib">
+
+                </ul>
+                <div id="test1" class="page"></div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/x-handlebars-template" id="venue_list">
+    <li style="font-weight: bold">全部</li>
+    {{#each this}}
+    <li data-venue="{{id}}">{{name}}</li>
+    {{/each}}
+</script>
+
+
+
+<script type="text/x-handlebars-template" id="area_list">
+    <li style="font-weight:bold">全部</li>
+    {{#each this}}
+    <li data-area="{{id}}">{{name}}</li>
+    {{/each}}
+    {{#each this}}
+    <ul class="level2 clearfix" style="display: none">
+        {{#each son}}
+        <li  data-area="{{id}}">{{name}}</li>
+        {{/each}}
+    </ul>
+    {{/each}}
+</script>
+
+
+
+<script type="text/x-handlebars-template" id="perform_type_list">
+    <li style="font-weight: bold">全部</li>
+    {{#each this}}
+    <li data-performtype="{{id}}">{{name}}</li>
+    {{/each}}
+</script>
+
+
+<script type="text/x-handlebars-template" id="repository_list">
+
+        {{#each this}}
+        <li>
+            <a href="{{url}}">
+                <div class="image bg100" style="background-image: url({{thumb}});"></div>
+                <div class="text">
+                    <h3 class="ellipsis">{{title}}</h3>
+                    <div class="source">
+                        <img src="__TMPL__/public/assets/whgcms/images/repository/7.png" alt="" class="f-left">
+                        <span class="f-left">{{name}}</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+
+</script>
+
+<include file="public/footer" />
+<script src="__TMPL__/public/assets/whgcms/js/repository.js"></script>
+<script>
+    var venue =0;//场馆id
+    var area =0;//区域id
+    var perform_type=0;//活动类型id
+    var page =1;
+    $(function () {
+        selectNav(33);
+        fiter(venue,area,perform_type);
+        get_repository();
+
+
+        //获取活动列表
+        function get_repository() {
+            $.ajax({
+                url:'/api/culture',
+                type:'post',
+                dataType:'json',
+                data:{'page':page,'venue':venue,'area':area,'typeid':perform_type,'type':2,'len':6},
+                success:function(res){
+                    var count=res.data.count;
+                        if(count !=0){
+                            $("#test1").show();
+                        layui.use('laypage', function () {
+                            var laypage = layui.laypage;
+                            //执行一个laypage实例
+                            laypage.render({
+                                elem: 'test1', //注意，这里的 test1 是 ID，不用加 # 号
+                                count: count, //数据总数，从服务端得到
+                                limit: 6,
+                                next: '>',
+                                jump: function (obj, first) {
+                                    page = obj.curr;
+                                    pages();
+                                }
+                            });
+                        });
+                        }else {
+                            pages();
+                            $("#test1").hide();
+                        }
+                }
+            })
+        }
+        //获取当前页活动
+        function pages(){
+            $.ajax({
+                url:'/api/culture',
+                type:'post',
+                dataType:'json',
+                data:{'page':page,'venue':venue,'area':area,'typeid':perform_type,'type':2,'len':6},
+                success:function (res){
+                    if(res.status==1){
+                        var myTemplate = Handlebars.compile($("#repository_list").html());
+                        $("#lib").html(myTemplate(res.data.list));
+                    }
+                }
+            })
+        }
+
+
+        //    场馆、区域
+        function fiter(){
+            $.ajax({
+                url:'/api/resourcelib',
+                type:'post',
+                dataType:'json',
+                data:{},
+                success:function(res){
+                    if(res.status ==1){
+                        //场馆
+                        var venueTemplate = Handlebars.compile($("#venue_list").html());
+                        $("#venue").html(venueTemplate(res.data.venue));
+                        var height1 = $('.hot ul').height() + 57;
+                        $('.hot .classification').css('height', height1);
+
+                        //区域
+                        var areaTemplate = Handlebars.compile($("#area_list").html());
+                        $("#area").html(areaTemplate(res.data.area));
+                        var height2 = $('.area ul').height() + 57;
+                        $('.area .classification').css('height', height2);
+
+                        //类型
+                        var activityTypeTemplate = Handlebars.compile($("#perform_type_list").html());
+                        $("#perform_type").html(activityTypeTemplate(res.data.perform_type));
+                        var height3 = $('.type ul').height() + 57;
+                        $('.type .classification').css('height', height3);
+
+                        //    场馆选中
+                        $('#venue').children('li').each(function(){
+                            $(this).click(function(){
+                                $("#venue").children('li').css("font-weight","normal")
+                                $(this).css("font-weight","bold");
+                                venue = $(this).data("venue");
+                                page = 1;
+                                get_repository();
+                                // console.log(venue)
+                            })
+                        })
+                        //区域筛选
+                        $("#area").children('li').each(function () {
+                            $(this).click(function () {
+
+                                area =$(this).data('area');
+                                $("#area").children('li').css("font-weight","normal");
+                                $(this).css("font-weight","bold");
+                                $index= $(this).index();
+
+                                //点击二级区域
+                                if($index==0){
+                                    $(this).nextAll('ul').hide();
+                                }else{
+                                    $(this).nextAll('ul').hide();
+                                    $(this).nextAll('ul').eq($index-1).show();
+                                    $area_level2= $(this).nextAll('ul').eq(($index-1));
+                                    $area_level2.children('li').each(function () {
+                                        $area_level2.children('li').css("font-weight","normal");
+                                        $(this).click(function () {
+                                            $area_level2.children('li').css("font-weight","normal");
+                                            $(this).css("font-weight","bold");
+                                            area =$(this).data('area');
+                                            page=1;
+                                            get_repository();
+                                        })
+                                    })
+                                }
+
+                                //区域
+                                var height2 = $('.area ul').height() + 57;
+                                $('.area .classification').css('height', height2);
+
+                                page=1;
+                                get_repository();
+                            })
+                        })
+
+                        //    类型选中
+                        $('#perform_type').children('li').each(function(){
+                            $(this).click(function(){
+                                $("#perform_type").children('li').css("font-weight","normal")
+                                $(this).css("font-weight","bold");
+                                perform_type = $(this).data("performtype");
+                                // console.log(perform_type)
+                                get_repository();
+                            })
+                        })
+
+
+                    }
+                }
+            })
+        }
+    })
+</script>
+</body>
+
+</html>

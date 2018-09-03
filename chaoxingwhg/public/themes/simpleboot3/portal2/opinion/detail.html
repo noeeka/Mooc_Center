@@ -1,0 +1,116 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/opinionread.css'>
+<title></title>
+<style>
+#commentForm {
+    display: none;
+}
+
+#comments {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <script type="text/template" id="commentlist">
+        {{#each comment_list}}
+        <li class="clearfix">
+            <div class="portrait f-left" style="background-image: url({{avatar}});"></div>
+            <div class="f-left" style="width: 728px;">
+                <ul class="clearfix">
+                    <li style="color: #1C2438;font-size: 14px;margin-right: 15px;font-weight: bold;">{{user_nickname}}</li>
+                    <li style="color:#A2A1A1;font-size: 14px;margin-top:1px;margin-right: 15px;">{{create_time}}</li>
+                </ul>
+                <p style="color:#1C2438;margin-top:18px;font-size: 14px;">{{content}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </script>
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div style="width: 830px; background-color: #fff;" class="f-left">
+                <div class="details">
+                    <script id="info" type="text/x-handlebars-template">
+                        <div class="title ellipsis">{{title}}</div>
+                        <ul class="number clearfix" style="padding-bottom: 20px;border-bottom:1px solid #DDDEE1;">
+                            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px;"><span>{{create_time}}</span></li>
+                            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px; ">阅读：<span>{{views_count}}</span>次</li>
+                            <li style="margin-right: 9px;display: inline-block; ">{{venue_name}}</li>
+                        </ul>
+                        <div style="margin-top:37px;margin-bottom: 37px; ">
+                            {{{ content }}}
+                        </div>
+                        <!--<div style="width: 100%;text-align: right;margin-top: 36px;line-height: 28px;color: #000000;font-size: 16px;">黑龙江省中央环境保护督察整改工作领导小组 </div>-->
+                        <div style="width: 100%;text-align: right;line-height: 28px;color: #1C2438;font-size: 14px;">
+                            征集时间：<span>{{start_time}}</span> ~ <span>{{end_time}}</span>
+                        </div>
+                    </script>
+                </div>
+                <div class="comments" id="comments">
+                    <div class="clearfix">
+                        <form id="commentForm" class="layui-form">
+                            <input type="hidden" name="opinion_id" value="0">
+                            <!--<div style="width:1200px;padding:15px 0;text-align: left;color:#2F343A;font-size: 18px;margin-bottom: 24px; ">我的意见</div>-->
+                            <textarea name="content" type="text" placeholder="我的意见……"></textarea>
+                            <div class="clearfix" style="margin-bottom:45px;margin-top: 21px;">
+                                <div class="layui-form-item f-left" style="width: 175px;margin-bottom:0;display: inline-block;margin-left:515px;">
+                                    <div class="layui-input-block" style="margin-left:0;">
+                                        <input type="radio" class="allow_radio" name="allow_public" value="1" title="公开" checked>
+                                        <input type="radio" class="allow_radio" name="allow_public" value="2" title="不公开">
+                                    </div>
+                                </div>
+                                <button type="button" class="f-left" style="display: inline-block;">提交</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="border-bottom:1px solid #D9D9D9;color: #1C2438;font-size: 16px;padding-bottom: 8px;">意见汇总</div>
+                    <ul class="section">
+                    </ul>
+                    <div id="test1" class="page"></div>
+                </div>
+            </div>
+            <div style="width: 320px;" class="f-right">
+                <div>
+                    <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                    <ul id="Hot">
+                    </ul>
+                </div>
+                <!--<div style="margin-top: 50px;">-->
+                    <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+                    <!--<ul id="read">-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/opinionread.js'></script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each list}}
+        <li style="margin-top: 20px;">
+            <a href="/portal/category/read/?nid=6&id={{id}}">
+            <!--<a href="{{buildSecondUrl '/portal/opinion/detail?id=' id}}">-->
+                <div class="bg100" style="background-image: url({{thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

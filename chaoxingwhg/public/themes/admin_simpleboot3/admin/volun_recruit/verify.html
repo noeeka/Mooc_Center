@@ -1,0 +1,259 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <form class="well form-inline margin-top-20" method="post" action="{:url('VolunRecruit/verify')}">
+        <!--  时间:
+          <input type="text" class="form-control js-bootstrap-datetime" name="start_time"
+                 value="{$start_time|default=''}"
+                 style="width: 140px;" autocomplete="off">-
+          <input type="text" class="form-control js-bootstrap-datetime" name="end_time"
+                 value="{$end_time|default=''}"
+                 style="width: 140px;" autocomplete="off"> &nbsp; &nbsp;-->
+        关键字:
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{$keyword|default=''}" placeholder="请输入关键字...">
+        <input type="hidden" name="id" value="{$activity_id}"/>
+        <input type="submit" class="btn btn-primary" value="搜索"/>
+        <a class="btn btn-danger" href="{:url('VolunRecruit/verify',['id'=>$activity_id])}">清空</a>
+    </form>
+    <form class="js-ajax-form" action="" method="post">
+        <div class="table-actions">
+            <!--<notempty name="category">-->
+                <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"-->
+                        <!--data-action="{:url('AdminArticle/listOrder')}">{:lang('SORT')}-->
+                <!--</button>-->
+            <!--</notempty>-->
+            <!--   <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                       data-action="{:url('Activity/publish',array('yes'=>1))}" data-subcheck="true">发布
+               </button>
+               <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                       data-action="{:url('Activity/publish',array('no'=>1))}" data-subcheck="true">取消发布
+               </button>-->
+            <!--<button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/top',array('yes'=>1))}" data-subcheck="true">置顶
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/top',array('no'=>1))}" data-subcheck="true">取消置顶
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('yes'=>1))}" data-subcheck="true">推荐
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('no'=>1))}" data-subcheck="true">取消推荐
+            </button>-->
+            <!--
+            <notempty name="category">
+                <button class="btn btn-primary btn-sm js-articles-move" type="button">批量移动</button>
+            </notempty>
+            <button class="btn btn-primary btn-sm js-articles-copy" type="button">批量复制</button>
+            -->
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunRecruit/volun_verify',array('yes'=>1))}" data-subcheck="true" data-msg="您确定通过吗？">
+                 通过
+            </button>
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunRecruit/volun_verify',array('no'=>1))}" data-subcheck="true" data-msg="您确定不通过吗？">
+               不通过
+            </button>
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunRecruit/volun_delete')}" data-subcheck="true" data-msg="您确定删除吗？">
+                {:lang('DELETE')}
+            </button>
+
+        </div>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="15">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th width="50">ID</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>活动区域</th>
+                <th>联系方式</th>
+                <th>审核状态</th>
+                <th width="200px">操作</th>
+            </tr>
+            </thead>
+            <foreach name="user_list" item="vo">
+                <tr>
+                    <td>
+                        <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}" title="ID:{$vo.id}">
+                    </td>
+                    <td><b>{$vo.id}</b></td>
+                    <td>{$vo.realname}</td>
+                    <td>
+                        <if condition="$vo.sex eq 0">
+                            保密
+                            <elseif condition="$vo.sex eq 1" />
+                            男
+                            <else>
+                                女
+                        </if>
+                    </td>
+                    <td>{$activity_area}</td>
+                    <td>{$vo.mobile}</td>
+                    <td>
+                        <if condition="$vo.status eq 1">
+                            已通过
+                            <else />
+                            未通过
+                        </if>
+                    </td>
+                    <td width="120">
+                        <a href="{:url('VolunRecruit/info',array('user_id'=>$vo['user_id'],'activity_id'=>$activity_id,'type'=>2))}">查看</a>
+                        <a href="{:url('VolunRecruit/volun_delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
+                    </td>
+                </tr>
+            </foreach>
+            <tfoot>
+            <tr>
+                <th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">ID</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>活动区域</th>
+                <th>联系方式</th>
+                <th>审核状态</th>
+                <th width="200px">操作</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <notempty name="category">
+                <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                        data-action="{:url('VolunRecruit/listOrder')}">{:lang('SORT')}
+                </button>
+            </notempty>
+            <!--   <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                       data-action="{:url('Activity/publish',array('yes'=>1))}" data-subcheck="true">发布
+               </button>
+               <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                       data-action="{:url('Activity/publish',array('no'=>1))}" data-subcheck="true">取消发布
+               </button>-->
+            <!--button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/top',array('yes'=>1))}" data-subcheck="true">置顶
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/top',array('no'=>1))}" data-subcheck="true">取消置顶
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('yes'=>1))}" data-subcheck="true">推荐
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('AdminArticle/recommend',array('no'=>1))}" data-subcheck="true">取消推荐
+            </button>-->
+            <!--
+            <notempty name="category">
+                <button class="btn btn-primary btn-sm js-articles-move" type="button">批量移动</button>
+            </notempty>
+            <button class="btn btn-primary btn-sm js-articles-copy" type="button">批量复制</button>
+            -->
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunRecruit/volun_verify',array('yes'=>1))}" data-subcheck="true" data-msg="您确定通过吗？">
+               通过
+            </button>
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunRecruit/volun_verify',array('no'=>1))}" data-subcheck="true" data-msg="您确定不通过吗？">
+                不通过
+            </button>
+            <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunRecruit/volun_delete')}" data-subcheck="true" data-msg="您确定删除吗？">
+                {:lang('DELETE')}
+            </button>
+        </div>
+        <ul class="pagination">{$page|default=''}</ul>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+    function reloadPage(win) {
+        win.location.reload();
+    }
+
+    $(function () {
+        setCookie("refersh_time", 0);
+        Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+            //批量复制
+            $('.js-articles-copy').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选信息，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" + ids, {
+                    title: "批量复制",
+                    width: "300px"
+                });
+            });
+            //批量移动
+            $('.js-articles-move').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选信息，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" + ids, {
+                    title: "批量移动",
+                    width: "300px"
+                });
+            });
+        });
+    });
+    $(".score").click(function () {
+        var score=$(this).prev('select').val();
+        var uid=$(this).next().val();
+        var a_id=$(this).next().next().val();
+        $.ajax({
+            url:"{:url('VolunRecruit/score')}",
+            type:'post',
+            dataType:'json',
+            data:{'score':score,user_id:uid,activity_id:a_id},
+            success:function (result) {
+                if(result.status==1){
+                    alert(123)
+                    $(this).val('已派发');
+                    $(this).html('已派发');
+                }
+            }
+
+        })
+    })
+</script>
+</body>
+</html>

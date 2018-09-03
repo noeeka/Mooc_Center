@@ -1,0 +1,223 @@
+<include file="public@header" />
+<script src="__STATIC__/js/code-mirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="__STATIC__/js/code-mirror/lib/codemirror.css">
+<script src="__STATIC__/js/code-mirror/mode/javascript/javascript.js"></script>
+<style>
+    .CodeMirror{
+        border:1px solid #dce4ec
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('weixin_home_page_list_tpl/index')}">微信模板管理</a></li>
+        <li><a href="{:url('weixin_home_page_list_tpl/add')}">添加模板</a></li>
+        <li class="active"><a>编辑模板</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('weixin_home_page_list_tpl/editPost')}" id="form">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">模板名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-name" name="name" value="{$moban_msg['name']}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-html" class="col-sm-2 control-label">html<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <!--<input type="text" class="form-control" id="input-url" name="url">-->
+                <textarea class="form-control" name="html"  id="html" cols="30" rows="10">{$moban_msg['html']}</textarea>
+                <button type="button" class="setdefault_html btn btn-default" style="float: right;clear: both;margin-right: 5px; margin-top:10px;padding:2px 4px;border-radius: 2px;font-size: 12px;">设为默认值</button>
+                <button type="button" class="recover_html btn btn-info" style="float: right;margin-right: 5px; margin-top:10px;padding:2px 4px;border-radius: 2px;font-size: 12px;">恢复默认值</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-css" class="col-sm-2 control-label">css</label>
+            <div class="col-md-6 col-sm-10">
+                <!--<input type="text" class="form-control" id="input-url" name="url">-->
+                <textarea class="form-control" name="css" id="css" cols="30" rows="10">{$moban_msg['css']}</textarea>
+                <button type="button" class="setdefault_css btn btn-default" style="float: right;clear: both;margin-right: 5px; margin-top:10px;padding:2px 4px;border-radius: 2px;font-size: 12px;">设为默认值</button>
+                <button type="button" class="recover_css tips btn btn-info" style="float: right;margin-right: 5px; margin-top:10px;padding:2px 4px;border-radius: 2px;font-size: 12px;">恢复默认值</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-image" class="col-sm-2 control-label">示例图<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="hidden" class="form-control" id="input-image" name="exam_img" value="{$moban_msg['exam_img']}">
+                <a href="javascript:uploadOneImage('图片上传','#input-image');">
+                    <img src="/upload/{$moban_msg['exam_img']}" style="display: block" id="input-image-preview" alt="" width="150" height="75" >
+                </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-desc" class="col-sm-2 control-label">描述</label>
+            <div class="col-md-6 col-sm-10">
+                <!--<input type="text" class="form-control" id="input-url" name="url">-->
+                <textarea class="form-control" name="desc" id="input-description">{$moban_msg['desc']}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">长度<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control"  name="len" value="{$moban_msg['len']}">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit" id="edit">{:lang('EDIT')}</button>
+                <button type="button" class="btn btn-primary js-ajax-submit" id="btn">另存为</button>
+                <a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{$moban_msg['id']}" />
+    </form>
+    <div  id="name" style="display:none;">
+        <label>模板名称</label>
+        <div>
+            <input type="text" name="new_name" value="" />
+        </div>
+    </div>
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js"></script>
+
+<script>
+    var html = CodeMirror.fromTextArea(document.getElementById('html'), {
+        mode:  "htmlmixed",
+        lineNumbers:true
+    });
+
+    var css = CodeMirror.fromTextArea(document.getElementById('css'), {
+        mode:  "css",
+        lineNumbers:true
+    });
+
+    $('#edit').click(function(){
+        var html_val = html.getValue();
+        $('#html').val(html_val);
+
+         var css_val = css.getValue();
+        $('#css').val(css_val);
+
+    });
+
+
+    $('#btn').click(function(){
+        var id = $('input[name=id]').val();
+        layer.prompt({title: '请填写模板名称', formType: 0}, function(name, index){
+            layer.close(index);
+            $.ajax({
+                url:'/api/Homepage/Saveas',
+                type:'GET',
+                data:{id:id,name:name},
+                beforeSend:function(){
+                    if(name == ''){
+                        layer.msg('模板名称不能为空');
+                        return false;
+                    }
+                },
+                success:function(res){
+                    if(res.status == 1){
+                        var data = res.data;
+                        console.log(data);
+                        layer.confirm('是否留在当前页', {
+                            btn: ['当前页面','新页面'] //按钮
+                        }, function(index){
+                            layer.close(index);
+                        }, function(){
+                            window.location.href = data.url;
+                        });
+                    }else{
+                        layer.msg('另存为失败');
+                    }
+                }
+
+            })
+
+        });
+
+    })
+
+    $('.recover_html').click(function(){
+        var id = $('input[name=id]').val();
+        var tablename = 'home_page_tpl'
+        var field = 'html'
+        var key = tablename+';'+field+';'+id;
+
+        $.ajax({
+            url:'/api/Homepagelog/getDefault',
+            data:{key:key},
+            success:function(res){
+                if(res.status == 1){
+                    html.setValue(res.data.value);
+                }
+            }
+        })
+    });
+
+    $('.setdefault_html').click(function(){
+        var tablename = 'home_page_tpl';
+        var field = 'html';
+        var id = $('input[name=id]').val();
+        var key = tablename+';'+field+';'+id;
+        var value = html.getValue();
+
+        $.ajax({
+            url:'/api/Homepagelog/setDefaultLog',
+            data:{key:key,value:value},
+            success:function(res){
+                if(res.status == 1){
+                    layer.msg('设置默认值成功');
+                }else{
+                    layer.msg('设置默认值失败');
+                }
+            }
+        })
+    });
+
+    $('.recover_css').click(function(){
+        var id = $('input[name=id]').val();
+        var tablename = 'home_page_tpl'
+        var field = 'css'
+        var key = tablename+';'+field+';'+id;
+
+        $.ajax({
+            url:'/api/Homepagelog/getDefault',
+            data:{key:key},
+            success:function(res){
+                if(res.status == 1){
+                    console.log(res.data.value)
+                    css.setValue(res.data.value);
+                }
+            }
+        })
+    });
+
+    $('.setdefault_css').click(function(){
+        var tablename = 'home_page_tpl';
+        var field = 'css';
+        var id = $('input[name=id]').val();
+        var key = tablename+';'+field+';'+id;
+        var value = css.getValue();
+
+        $.ajax({
+            url:'/api/Homepagelog/setDefaultLog',
+            data:{key:key,value:value},
+            success:function(res){
+                if(res.status == 1){
+                    layer.msg('设置默认值成功');
+                }else{
+                    layer.msg('设置默认值失败');
+                }
+            }
+        })
+    });
+
+
+
+</script>
+</body>
+</html>

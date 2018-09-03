@@ -1,0 +1,76 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('feedback/index')}">所有意见</a></li>
+    </ul>
+    <form method="post" class="js-ajax-form margin-top-20" action="{:url('feedback/listOrder')}">
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('feedback/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('feedback/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+        <php>$status=array("1"=>lang('DISPLAY'),"0"=>lang('HIDDEN'));</php>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="50">{:lang('SORT')}</th>
+                <th width="60">排名</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>活跃度</th>
+                <th width="90">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="feedbacks" item="vo">
+                <tr>
+                    <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}"></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.user_realname}</td>
+                    <td><?php if($vo['sex']==0){echo '保密';}elseif($vo['sex']==1){echo '男';}else{echo '女';}?></td>
+                    <td>{$vo.score}</td>
+                    <td>
+                        <a href="{:url('feedback/edit',array('id'=>$vo['id']))}">查看</a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="16">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th width="50">{:lang('SORT')}</th>
+                <th width="50">ID</th>
+                <th>用户名</th>
+                <th>电话</th>
+                <th>意见详情</th>
+                <th>时间</th>
+                <th width="120">{:lang('ACTIONS')}</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="pagination">{$page}</div>
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('feedback/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('feedback/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

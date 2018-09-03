@@ -1,0 +1,223 @@
+.hide{
+	display: none;
+}
+/*头部*/
+.header {
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.header-safe {
+	min-width: 1200px;
+	max-width: 1920px;
+	margin: 0 auto;
+}
+
+.header-content {
+	width: 1200px;
+	height: 108px;
+	margin: 0 auto;
+}
+
+
+/*登录注册*/
+
+.header-content .login-reg {
+	margin-top: 44px;
+}
+
+.header-content .login-reg a {
+	color: #464C5B;
+	font-size: 14px;
+}
+
+.header-content .nickname {
+	position: relative;
+	margin-top: 5px;
+	margin-top: 44px;
+}
+
+.header-content .nickname img {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+
+.header-content .nickname .nike {
+	font-size: 14px;
+	color: #464C5B;
+	width:85px;
+	box-sizing: border-box;
+	padding:0 9px;
+	text-align:center;
+	cursor:pointer;
+}
+
+.header-content .nickname ul {
+	position: absolute;
+	top: 20px;
+	right: 0;
+	background-color: #2F3030;
+	width: 80px;
+	padding: 6px 0;
+	z-index: 1;
+	display:none;
+}
+
+.header-content .nickname ul a {
+	color: #fff;
+	font-size: 14px;
+}
+
+.header-content .nickname ul li {
+	text-align: center;
+	line-height: 20px;
+}
+
+.logo {
+	width: 270px;
+	height: 37px;
+	/*background-color: #EC6D3A;*/
+	margin-top: 30px;
+}
+
+
+/*搜索*/
+
+.search {
+	margin-left: 330px;
+	margin-top: 42px;
+}
+
+.search .select {
+	line-height: 30px;
+	margin-right: 20px;
+}
+
+.search select {
+	border: 0;
+	color: #2F3030;
+	font-size: 16px;
+	width: auto;
+	padding: 0 2%;
+	margin: 0;
+	text-align: center;
+	text-align-last: center;
+	background-color: transparent;
+}
+
+.sousuo {
+	position: relative;
+	width: 300px;
+	height: 30px;
+	border: 1px solid #1C2438;
+	border-radius: 5px;
+}
+
+.sousuo input {
+	width: 200px;
+	height: 30px;
+	border: 0;
+	border-radius: 5px;
+	margin-left: 22px;
+	background-color: transparent;
+}
+
+.sousuo .search-btn {
+	position: absolute;
+	top: 8px;
+	right: 2px;
+	width: 74px;
+	height: 15px;
+	border-left: 1px solid #9EA7B4;
+	color: #464C5B;
+	font-size: 12px;
+	text-align: center;
+	line-height: 15px;
+	cursor: pointer;
+}
+/*主题*/
+
+.main {
+	width: 100%;
+}
+
+.main-safe {
+	max-width: 1920px;
+	min-width: 1200px;
+	margin: 0 auto;
+}
+
+.main-content {
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+/*分页*/
+.page{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin-top: 50px;
+}
+.page a{
+	background-color: #F8F8F9;
+	margin-right: 12px;
+}
+.page span{
+	margin-right: 12px;
+}
+.layui-laypage a, .layui-laypage span{
+	padding: 0 16px;
+	height: 38px;
+	line-height: 38px;
+	color: #9EA7B4;
+}
+/*底部*/
+.footer {
+    width: 100%;
+    margin-top: 65px;
+    margin-bottom: 50px;
+}
+
+.footer-safe {
+    min-width: 1200px;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content ul {
+    display: inline-block;
+}
+
+.footer-content ul li {
+    font-size: 14px;
+    color: #464C5B;
+    margin-right: 10px;
+}
+/*评分*/
+.layui-inline {
+    font-size: 12px;
+}
+.layui-rate li i.layui-icon {
+    font-size: 12px;
+}
+.layui-btn{
+	height: 40px;
+	line-height: 40px;
+	width: 100px;
+	border-radius:4px;
+	font-size: 18px;
+	padding: 0;
+	text-align: center;
+}
+
+.layui-rate li,.layui-icon-rate-half{ font-size:12px!important;}
+.edui-default .edui-editor{ box-sizing:border-box;}

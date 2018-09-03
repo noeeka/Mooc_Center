@@ -1,0 +1,228 @@
+<include file="public/header"/>
+<!--<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/activityinfo.css?v={$version_list.wx_activityinfo_css}">-->
+<!--<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/venueinfo.css?v={$version_list.wx_venueinfo_css}">-->
+<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/activity-baoming.css?v={$version_list.wx_venueinfo_css}">
+<title>报名详情</title>
+</head>
+
+<body>
+
+<div class="returnHeader">
+    <a class="return">
+        <span class="mui-icon mui-icon-arrowleft"></span>
+    </a>
+    <!--<a href="/wx/activity/index?navid=nav16" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>-->
+    <h3 class="mui-col-xs-12 mui-text-center">报名详情</h3>
+</div>
+<div class="content mt43">
+    <div class="jieshao">
+        <script type="text/x-handlebars-template" id="introduction">
+        <h3>{{title}}</h3>
+        <div class="card">
+            <div class="clearfix" style="border-bottom: 1px solid #DCDCDC;">
+                <span class="f-left">场馆：{{venue_name}}</span>
+                <span class="f-right">{{cnum}}/{{max_num}}</span>
+            </div>
+            <ul style="margin-top: 0.2rem;">
+                <li>报名时间：{{format_baoming_start_time}} ～ {{format_baoming_end_time}}</li>
+                <li>活动时间：{{format_start_time}} ～ {{format_end_time}}</li>
+                <li>地点：{{address}}</li>
+            </ul>
+        </div>
+        </script>
+    </div>
+
+
+    <div class="contacts">
+        <div class="contacts-list">
+            <script type="text/x-handlebars-template" id="contacts">
+            {{#each this}}
+                <div class="mui-row">
+                    <span class="mui-col-xs-3 mui-ellipsis">{{name}}</span>
+                    <span class="mui-col-xs-2">{{type}}</span>
+                    <span class="mui-col-xs-6">{{idCard}}</span>
+                    <span class="mui-col-xs-1 delcontacts"  data-id="{{id}}">
+                        <img src="http://img-szwhg.chaoxing.com:9334/7,0a9cc3643d38" style="width: 0.13rem;" alt="">
+                    </span>
+                </div>
+            {{/each}}
+            </script>
+        </div>
+        <div class="add">
+            <span class="zts-border zts-ftcolor addbtn">添加联系人</span>
+        </div>
+    </div>
+</div>
+<div style="padding: 0.1rem 0;margin-top: 0.7rem;width: 100%;text-align:  center;background: #fff;">
+    <button class="yuyuebtn zts-bg applybtn">报名</button>
+</div>
+<!--<a href="#" id="refresh_a" style="display: none">刷新页面</a>-->
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib//layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}"></script>
+
+<script>
+    var id = {$Think.get.id};
+
+    Handlebars.registerHelper("convert", function(attr, options) {
+        switch (attr) {
+            case 1 :
+                return "成年人";
+            case 2:
+                return "未成年人";
+            default:
+                return "未知";
+        }
+    });
+
+    request({
+        url: '/api/activity/read/id/' + id,
+        type: 'post',
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            if (result.status == 1) {
+                var template1 = Handlebars.compile($("#introduction").html());
+                $(".jieshao").html(template1(result.data));
+            }
+        }
+    }, true);
+
+    $('.addbtn').on('click' , function () {
+        window.location.href="/wx2/activity/addcontacts?id="+id
+    });
+
+    $('.return').on('click' , function () {
+        window.location.href="/wx2/activity/read?id="+id
+    });
+
+    var userInfo = getCookie("userContacts:"+id)
+    if (userInfo != "") {
+        var user = JSON.parse(userInfo)
+        var template1 = Handlebars.compile($("#contacts").html());
+        $(".contacts-list").html(template1(user));
+    }
+
+    $(document).on('click' ,'.mui-row span',function () {
+        var id = $(this).attr('data-id');
+        layer.open({
+            title: [
+                '提示',
+                'font-size:0.21rem'
+            ],
+            yes: function (index) {
+                delContacts(id)
+                layer.close(index);
+            },
+            no:function(){
+                layer.closeAll();
+            },
+            content:'是否删除联系人',
+            btn: ['确认','取消'],
+            style: 'font-size:0.18rem;border-radius:0.18rem;height:23%'
+        });
+    });
+
+    function delContacts(delid) {
+        $('.delcontacts').each(function () {
+            if ($(this).attr('data-id') == delid) {
+                $(this).parent().remove()
+            }
+        });
+
+        var users = [];
+        $('.mui-row').each(function () {
+            var userInfo = {};
+            userInfo.id = $($(this).find("span")[3]).attr('data-id')
+            userInfo.name = $(this).find("span")[0].innerHTML;
+            userInfo.type =  $(this).find("span")[1].innerHTML;
+            userInfo.idCard =  $(this).find("span")[2].innerHTML;
+            users.push(userInfo)
+        });
+
+        if (users.length > 0) {
+            setCookie("userContacts:"+id , JSON.stringify(users) ,  60 * 5)
+        } else {
+            setCookie("userContacts:"+id , null)
+        }
+    }
+
+
+    $(".applybtn").click(function () {
+        queren(enroll , id , $(this),'确定报名吗？');
+    });
+
+    function enroll(activity_id) {
+
+        var contacts = '';
+        request({
+            url: '/api/activity/apply',
+            type: 'post',
+            dataType: 'json',
+            data: {'activity_id': activity_id , 'contacts_id' : collectContactsId()},
+            success: function (result) {
+                if (result.status == 1) {
+                    layer.open({
+                        title: [
+                            '提示',
+                            'font-size:0.21rem'
+                        ],
+                        yes: function (index, layero) {
+                            // alert(1111);
+                            window.location.reload();
+                            layer.closeAll();
+                            setCookie("userContacts:"+id , null)
+                        },
+                        content:'报名成功',
+                        btn: '确定',
+                        style: 'font-size:0.18rem;border-radius:18px;'
+                    });
+
+                } else {
+                    var regex = /^1000[4-9]$/;
+                    if(regex.test(result.code)){
+                        alert('未登录，请先登录且实名认证后方可报名！','/wx/login/login');
+                    }else{
+                        if (result.code == 13003) {
+                            //已报名
+                            $('.baoming').css('background-color', '#acacac');
+                            $('.baoming').addClass('yibaoming');
+                            alert(result.msg);
+                        }else if(result.code == 13004) {
+                            //未认证
+                            alert(result.msg,'/wx/my/attestation');
+                        }else if(result.code == 13005) {
+                            //人数已满
+                            $('.baoming').css('background-color', '#acacac');
+                            $('.baoming').addClass('yibaoming');
+                            alert(result.msg);
+                        }else{
+                            alert(result.msg);
+                        }
+                    }
+                }
+            }
+        }, true)
+    }
+
+
+    function collectContactsId() {
+        var contacts_id = [];
+        $('.delcontacts').each(function () {
+            var id = $(this).attr('data-id');
+            contacts_id.push(id)
+        });
+
+       return contacts_id;
+    }
+
+
+</script>
+
+</body>
+</html>

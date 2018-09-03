@@ -1,0 +1,628 @@
+
+@font-face
+{
+	font-family: "number";
+	src:url(../font/SF-UI-Display-Medium.otf);
+}
+.ml-num{ font-family:"number"; font-size:24px;font-style: italic; padding-right:10px;}
+.class {
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.class-safe {
+	min-width: 1200px;
+	max-width: 1920px;
+	margin: 0 auto;
+}
+
+.class-content {
+	width: 1200px;
+	margin: 0 auto;
+	padding-bottom: 34px;
+}
+
+.layui-breadcrumb a {
+	color: #9EA7B4!important;
+}
+
+.content {
+	margin-top: 27px;
+}
+
+.content-left>img {
+	width: 548px;
+	height: 282px;
+}
+
+.content-left>div {
+	margin: 10px 0;
+	width: 344px;
+	height: 262px;
+	padding-left: 29px;
+	border-right: 1px dashed #DCDEE2;
+}
+
+.content-left>div h3 {
+	font-size: 24px;
+	color: #464C5B;
+	margin-bottom: 21px;
+}
+
+.content-left>div .time {
+	display: block;
+	font-size: 14px;
+	color: #9EA7B4;
+}
+
+#class {
+	margin-top: 12px;
+}
+
+.content-left .see {
+	line-height: 18px;
+	vertical-align: middle;
+	color: #9EA7B4;
+	font-size: 14px;
+	margin-bottom: 51px;
+	margin-top:12px;
+}
+
+.content-left .see img {
+	display: inline-block;
+	margin-right: 12px;
+}
+
+.content-left .see span:first-child {
+	margin-right: 37px;
+}
+
+
+/*content-right*/
+
+.content-right {
+	margin-top: 10px;
+	padding: 0 27px;
+	width: 224px;
+}
+
+.content-right h3 {
+	color: #464C5B;
+	font-size: 20px;
+	padding-bottom: 22px;
+	border-bottom: 1px solid #DCDEE2;
+	text-align: center;
+}
+
+
+/*收藏分享*/
+
+.content-right>div {
+	margin-top: 39px;
+}
+
+.content-right>div div {
+	width: 112px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.content-right>div span {
+	display: block;
+	font-size: 16px;
+	color: #464C5B;
+}
+
+.bdsharebuttonbox {
+	margin-top: 21px;
+}
+
+
+/*main*/
+
+.main-content>div:first-child {
+	width: 820px;
+	background-color: #FFFFFF;
+	padding: 28px 20px;
+}
+
+
+/*课程介绍*/
+
+.tab {
+	width: 820px;
+	border-bottom: 1px solid #DCDEE2;
+}
+
+.tab li {
+	margin-right: 42px;
+	cursor: pointer;
+	padding-bottom: 18px;
+	position:relative;
+	bottom:-1px;
+	font-size:18px;
+}
+
+.tab-content {
+	margin-top: 35px;
+}
+
+.introduce h3 {
+	margin-top: 35px;
+	color: #464C5B;
+	font-size: 18px;
+	margin-bottom: 18px;
+}
+
+.introduce h3 img {
+	margin-right: 12px;
+}
+
+.introduce p {
+	color: #657180;
+	font-size: 14px;
+	line-height: 22px;
+}
+
+
+/*课程目录*/
+
+.directory dt {
+	color: #464C5B;
+	font-size: 18px;
+	margin-bottom: 20px;
+	padding-left: 10px;
+}
+
+.directory dl dd {
+	position: relative;
+	line-height: 38px;
+	margin-bottom: 10px;
+	color: #657180;
+	font-size: 14px;
+	padding: 0 10px;
+}
+
+.directory dl dd a {
+	display: inline-block;
+}
+
+.directory dl dd:last-child {
+	margin-bottom: 27px;
+}
+
+.directory dl dd button {
+	position: absolute;
+	top: 8px;
+	right: 10px;
+}
+
+.btn {
+	width: 70px!important;
+	height: 22px!important;
+	line-height: 22px!important;
+	font-size: 12px!important;
+	border-radius: 11px!important;
+}
+
+
+/*笔记*/
+
+
+/*问答*/
+
+.notes-list>li,
+.qanda-list>li,
+.evaluation-list>li {
+	margin-top: 30px;
+	padding-bottom: 39px;
+	border-bottom: 1px solid #E8EAEC;
+}
+
+.notes-list li:last-child,
+.qanda-list li:last-child,
+.evaluation-list li:last-child {
+	border-bottom: 0;
+}
+
+.notes-list li>img,
+.evaluation-list li>img,.evaluation-list li>a>img,.notes-list li>a>img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.notes-list li>a>img,.qanda-list li>a>img,.evaluation-list li>a>img{ opacity:0.8; transition:all ease 0.3s;}
+.notes-list li>a>img:hover,.qanda-list li>a>img:hover,.evaluation-list li>a>img:hover{ opacity:1;}
+
+.notes-list li>div,
+.evaluation-list li>div {
+	width: 760px;
+}
+
+.notes-list li>div>h3 {
+	font-size: 16px;
+	color: #464C5B;
+	margin-bottom: 12px;
+}
+
+.notes-list li>div>.form {
+	margin-bottom: 24px;
+}
+
+.notes-list li>div span {
+	font-size: 12px;
+	color: #9EA7B4;
+}
+.notes-list li>div span a{
+	color: #9EA7B4;
+}
+.notes-list li>div span:first-child {
+	margin-right: 34px;
+}
+
+.notes-list li>div>p,
+.qanda-list li>div>p,
+.evaluation-list li>div>p {
+	color: #464C5B;
+	font-size: 18px;
+	line-height: 28px;
+	margin-bottom: 10px;
+}
+
+.notes-list li>div .zan,
+.evaluation-list li>div .evaluation-zan {
+	line-height: 19px;
+	color: #9EA7B4;
+	font-size: 14px;
+}
+
+.notes-list li>div>div {
+	cursor: pointer;
+}
+
+.notes-list li>div .zan img,
+.evaluation-list li>div .evaluation-zan img {
+	margin-right: 12px;
+}
+
+.notes-list li>div .zan div:last-child,
+.evaluation-list li>div .evaluation-zan div:last-child {
+	margin-right: 51px;
+}
+
+.all {
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 49px;
+}
+
+.all>div {
+	width: 138px;
+	height: 28px;
+	line-height: 28px;
+	background-color: #FBF3EF;
+	border-radius: 14px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.all>div a {
+	font-size: 14px;
+}
+
+
+/*问答*/
+
+.tab2 {
+	margin-top: -10px;
+	height: 42px;
+	background-color: #F8F8F9;
+}
+
+.tab2 li {
+	line-height: 42px;
+	font-size: 14px;
+	color: #464C5B;
+	padding: 0 19px;
+	cursor: pointer;
+}
+
+.qanda-list>li>span {
+	color: #FFFFFF;
+	font-size: 12px;
+	width: 48px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	border-radius: 4px;
+	margin-right: 17px;
+}
+
+.qanda-list li>img,.qanda-list li>a>img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 26px;
+}
+
+.qanda-list li>div {
+	width: 679px;
+}
+
+.qanda-list li .button {
+	width: 100px;
+	height: 40px;
+	color: #3192E0;
+	font-size: 14px;
+	line-height: 40px;
+	text-align: center;
+	margin-right: 30px;
+	cursor: pointer;
+}
+
+.qanda-list li .time {
+	color: #9EA7B4;
+	font-size: 12px;
+	line-height: 40px;
+}
+
+.qanda-list li .info {
+	margin-top: 25px;
+}
+
+.qanda-list li .info span {
+	font-size: 12px;
+	color: #9EA7B4;
+	margin-right: 33px;
+}
+
+.q-list li {
+	padding-left: 9px;
+	border-left: 1px solid #657180;
+	margin-top: 30px;
+	padding-bottom: 0;
+	font-size: 14px;
+	color: #657180;
+	line-height: 22px;
+	border-bottom: 0;
+}
+
+.q-list li .reply {
+	font-size: 12px;
+	padding: 2px 5px;
+	border-radius: 4px;
+	margin-left: 14px;
+	cursor: pointer;
+}
+
+.q-list li .user {
+	cursor: pointer;
+}
+
+.slide,
+.slide2 {
+	width: 540px;
+	height: 36px;
+	margin-top: 19px;
+	font-size: 14px;
+	color: #9EA7B4;
+	text-align: center;
+	display: inline-block;
+	line-height: 36px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.slide img,
+.slide2 img {
+	width: 10px;
+	margin-left: 20px;
+}
+
+.list-content {
+	font-size: 16px;
+	color: #657180;
+	line-height: 24px;
+	margin-bottom: 30px;
+	position:relative;
+}
+
+
+/*评价*/
+
+.evaluation-list li>div h3 {
+	font-size: 16px;
+	color: #464C5B;
+	margin-bottom: 12px;
+}
+
+.evaluation .slide,
+.evaluation .slide2 {
+	width: 684px;
+	margin-bottom: 34px;
+}
+
+
+/*问答弹窗*/
+
+#evaluation-reply {
+	width: 600px;
+	height: 327px;
+	background-color: #FFFFFF;
+	overflow: hidden;
+}
+
+#evaluation-reply textarea {
+	position: relative;
+	display: block;
+	width: 510px;
+	height: 200px;
+	border: 1px solid #DCDEE2;
+	margin: 0 auto;
+	padding: 15px;
+}
+
+#evaluation-reply>div {
+	display: inline-block;
+	text-align: right;
+	padding: 0 29px;
+	margin-top: 30px;
+	width: 542px;
+}
+
+#evaluation-reply span {
+	color: #657180;
+	font-size: 18px;
+	margin-right: 50px;
+	cursor: pointer;
+}
+
+#evaluation-reply .huifu {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	border-radius: 4px;
+	color: #FFFFFF;
+	font-size: 18px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.layui-layer-title {
+	border: 0!important;
+	background-color: #FFFFFF!important;
+	color: transparent!important;
+}
+
+#evaluation-reply em {
+	position: absolute;
+	right: 40px;
+	bottom: 108px;
+	font-size: 16px;
+	color: #9EA7B4;
+}
+
+
+/*main-right*/
+
+.main-content>div:last-child {
+	width: 320px;
+}
+
+.main-content>div:last-child>div {
+	background-color: #FFFFFF;
+}
+.main-content>div:last-child>div dl{
+	padding:0 10px;	
+}
+.main-content>div:last-child dt {
+	padding: 27px 0 18px;
+	border-bottom: 1px solid #DCDEE2;
+}
+
+.main-content>div:last-child dt>h3 {
+	color: #464C5B;
+	font-size: 18px;
+	margin-left: 9px;
+	padding-left: 9px;
+	line-height: 18px;
+}
+
+.main-content>div:last-child .shouke {
+	height: 336px;
+	overflow: hidden;
+}
+
+.main-content>div:last-child .shouke dd,.main-content>div:last-child .tuijian dd {
+	margin-top: 20px;
+}
+
+.main-content>div:last-child .shouke .img-b{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	margin-right: 24px;
+	overflow:hidden;
+	border-radius:50%;
+}
+
+.main-content>div:last-child .shouke img {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	transition:all ease 0.3s;
+	opacity:0.8;
+}
+
+.hover-b dd .title{
+	transition:all ease 0.3s;
+}
+
+.hover-b dd:hover .img-b img{
+	opacity:1;
+}
+
+.main-content>div:last-child .shouke dd h3 ,.main-content>div:last-child .tuijian dd h3{
+	font-size: 18px;
+	color: #464C5B;
+}
+
+.main-content>div:last-child .shouke dd span,.main-content>div:last-child .tuijian dd span {
+	font-size: 14px;
+	color: #9EA7B4;
+	margin-right: 5px;
+}
+
+.slidedown {
+	margin-top: 40px;
+	cursor: pointer;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	padding:10px 0;
+	transition:all ease 0.3s;
+}
+.slidedown:hover{
+	background:rgba(158, 167, 180, 0.3);
+}
+.slidedown img {
+	display: inline-block;
+}
+
+.tuijian {
+	margin-top: 19px;
+	padding-bottom:14px!important;
+}
+.main-content>div:last-child .tuijian .img-b{
+	width: 98px;
+	height: 74px;
+	overflow:hidden;
+}
+.main-content>div:last-child .tuijian img {
+	width: 98px;
+	height: 74px;
+	transition:all ease 0.3s;
+	
+}
+.main-content>div:last-child .tuijian dd:hover img{ transform:scale(1.2);}
+.sc-b{ padding-top:37px; background:url(../images/collection.png) no-repeat top center; transition:all ease 0.3s;}
+.sc-b span{ transition:all ease 0.3s;}
+.sc-b:hover{ background:url(../images/collectionon.png) no-repeat top center;}
+.sc-b:hover span{ color:#EC6D3A;}
+.sc-b.active{ background:url(../images/collectionon.png) no-repeat top center;}
+.sc-b.active span{ color:#EC6D3A;}
+
+.share{ padding-top:37px; background:url(../images/share.png) no-repeat top center; transition:all ease 0.3s;}
+.share .color{ transition:all ease 0.3s;}
+.share:hover{ background:url(../images/shareon.png) no-repeat top center;}
+.share:hover .color{ color:#EC6D3A;}
+.share.active{ background:url(../images/shareon.png) no-repeat top center;}
+.share.active .color{ color:#EC6D3A;}
+
+.bh-list{ overflow:hidden;}
+.layui-breadcrumb a:hover{ color:#EC6D3A!important;}
+.evaluation-list .slide{ display:none;}
+
+.reply{ background:#F8F8F9; color:#9EA7B4; transition:all ease 0.3s;}

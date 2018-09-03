@@ -1,0 +1,153 @@
+<include file="public/header" />
+<title></title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/venuesinfonew.css?v={$version_list.pc_venuesinfo_css}'>
+<style>
+.venuesinfo-r p>span:first-child {
+    width: 90px;
+    display: inline-block;
+    text-align: right;
+}
+</style>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="venues-content f-left">
+                <div class="venuesinfo clearfix">
+                </div>
+                <div class="changguan">
+                    <div class="title">
+                        <span class="yuyuebtn zhutise">场馆预约</span>
+                        <span class="jieshaobtn">场馆介绍</span>
+                        <!-- <span class="xiangqingbtn">场馆详情</span> -->
+                    </div>
+                    <div class="venuesyuyue">
+                        <div class="content">
+                            <div class="yuyue">
+                                <div class="datebtn clearfix">
+                                    <span class="f-left" style="margin-top: 6px;">日期</span>
+                                    <div class="leftbtn f-left" style="cursor: pointer;">
+                                        <img class="" src="__TMPL__/public/assets/whgcms/images/venues/leftbtn.png" alt="">
+                                    </div>
+                                    <div class="rightbtn f-right" style="cursor: pointer;margin-right: -19px;">
+                                        <img class="" src="__TMPL__/public/assets/whgcms/images/venues/rightbtn.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <ul class="am">
+                                        <!--<li>08:00</li>-->
+                                        <!--<li>09:00</li>-->
+                                        <!--<li>10:00</li>-->
+                                        <!--<li>11:00</li>-->
+                                        <!--<li>12:00</li>-->
+                                    </ul>
+                                    <ul class="pm">
+                                        <!--<li>14:00</li>-->
+                                        <!--<li>15:00</li>-->
+                                        <!--<li>16:00</li>-->
+                                        <!--<li>17:00</li>-->
+                                        <!--<li>18:00</li>-->
+                                    </ul>
+                                </div>
+                                <div class="yuyuemain">
+                                    <div class="yuyueContent">
+                                        <table id='table' border=1>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="changuanjieshao" style="margin-bottom: 36px;">
+                                    <div><span style="display: inline-block;width: 40px;height: 1px;background-color: #2F343B;margin-right: 15px;margin-bottom: 5px;"></span>场馆简介<span style="display: inline-block;width: 656px;height: 1px;background-color: #2F343B;margin-left: 15px;margin-bottom: 5px;"></span></div>
+                                    <p class="jianjie" style="padding-top: 29px;"></p>
+                                </div>
+                                <!-- <div class="changuanjieshao">
+                                    <div><span style="display: inline-block;width: 40px;height: 1px;background-color: #2F343B;margin-right: 15px;margin-bottom: 5px;"></span>场馆详情<span style="display: inline-block;width: 656px;height: 1px;background-color: #2F343B;margin-left: 15px;margin-bottom: 5px;"></span></div>
+                                    <ul class="xiangqing" style="padding-top: 29px;">
+                                        <li>面积: <span>987</span>平米</li>
+                                        <li>音响: <span>987</span>个</li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="venuesjieshao" style="display: none">
+                        <p>北京天文馆坐落于北京市西城区西直门外大街138号，占地面积20,000平方米，建筑面积26,000平方米，于1957年正式对外开放，是我国第一座大型天文馆，也是当时亚洲大陆第一座大型天文馆。五十多年来，北京天文馆以其独特的演示手段，吸引了一代又一代的观众。现为国家AAAA级旅游景区。 北京天文馆包含A、B两馆，共4个科普剧场。A馆天象厅是我国大陆地区最大的地平式天象厅，内部设备处于世界领先水平。其中，蔡司九型光学天象仪和世界上分辨率最高的全天域数字投影系统，不仅能为场内400名观众逼真还原地球上肉眼可见的9,000余颗恒星，高达8K分辨率的球幕影像，还能实现虚拟天象演示、三维宇宙空间模拟、数字节目播放等多项功能。 B馆于2004年底正式建成开放，内有宇宙剧场、4D剧场、3D剧场3个科普剧场，以及天文展厅、太阳观测台、大众天文台、天文教室等各类科普教育设施。其中，半径为18米的宇宙剧场拥有标准半球全天域银幕，能同时为200名观众呈现出气势恢宏的立体天幕效果，这在我国大陆地区独一无二。 4D剧场和3D剧场分别拥有200席和116席座位，两个剧场均采用最先进的播放设备和特效设备。4D剧场不仅能够呈现栩栩如生的立体影像，还能根据科普节目情节发展产生喷水、喷风、拍腿等多种特效，为观众带来身临其境的奇妙科普体验。3D剧场拥有宽12米、高9米的金属银幕，配以45度偏振立体眼镜，以逼真绚丽的立体效果为观众们呈现科普知识，真正做到了寓教于乐。 除播放科普节目外，北京天文馆举办的各项展览、天文科普讲座、天文夏（冬）令营等各项活动同样引人入胜，“星星是我的好朋友”、“天文馆里过大年”等活动早已成为备受公众瞩目的品牌活动。北京天文馆集展示与教学于一体，通过举办天文知识展览，组织中学生天文奥赛，编辑出版和发行天文科普书刊《天文爱好者》，组织公众观测等众多科普活动，不失时机地向公众宣传普及天文知识，让北京天文馆真正成为了孩子们没有围墙的学校。 2007年，国际小行星中心发布公告通知国际社会，第59000号小行星永久命名为“北馆星”，即北京天文馆星。这是对北京天文馆成长足迹的肯定，也将鼓舞天文馆日益完善发展。 享誉中外的北京古观象台是明清两代皇家天文台，隶属于北京天文馆。北京古观象台是国家重点文物保护单位，台顶展出的八件古天文仪器是国家一级文物，堪称中国天文国宝，每年吸引着来自世界各地游客络绎不绝前来参观。</p>
+                    </div>
+                    <ul class="venuesxiangqing" style="display: none;">
+                        <li>面积: <span>987</span>平米</li>
+                        <li>音响: <span>987</span>个</li>
+                    </ul>
+                </div>
+                <div class="map">
+                    <div class="address"><span>地址：</span>天津市和平区小白楼</div>
+                    <div id="map"></div>
+                    <div class="traffic clearfix"><span class="f-left">交通方式：</span>
+                        <div class="f-left">1、乘坐公交777、888、666 2、乘坐地铁1路 3、打车到XXX
+                            <div>1、乘坐公交777、888、666 2、乘坐地铁1路 3、打车到XXX</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 320px;" class="f-right">
+                <div>
+                    <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                    <ul id="Hot">
+                    </ul>
+                </div>
+                <!--<div style="margin-top: 50px;">-->
+                <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+                <!--<ul id="read">-->
+                <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <include file="public/footer" />
+    <script src="https://api.map.baidu.com/api?v=2.0&ak=A1LU7iHS0avqQwPLAxbhKn0UYSQCuRVH"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/jquery.baiduMap.min.js"></script>
+    <script src='__TMPL__/public/assets/whgcms/js/venuesinfonew.js?v={$version_list.pc_venuesinfo_js}'></script>
+    <script type="text/template" id="venuesinfo">
+        <h3>{{name}}</h3>
+        <div class="venuesinfo-l f-left">
+            <img src="{{thumb_url}}" width="100%" height="100%">
+        </div>
+        <div class="venuesinfo-r f-left" style="width: 296px;">
+            <p><img src="__TMPL__/public/assets/whgcms/images/venues/time.png" alt="" class="f-left"><span class="f-left">时间：</span><span id="open_date" style="display: inline-block;">每天</span>
+                <br><span style="margin-left: 70px;">上午：</span><span id="open_start"></span>
+                <br><span style="margin-left: 70px;">下午：</span><span id="open_end"></span></p>
+            <p><img src="__TMPL__/public/assets/whgcms/images/venues/address.png" alt="" class="f-left"><span style="display: inline-block;" class="f-left">地点：</span><span style="display: inline-block;width: 222px;">{{full_address}}</span></p>
+            <p><img src="__TMPL__/public/assets/whgcms/images/venues/phone.png" alt="" class="f-left"><span>电话：</span>{{tel}}</p>
+            <p><img src="__TMPL__/public/assets/whgcms/images/venues/money.png" alt="" class="f-left"><span>收费：</span>{{fee}}</p>
+            <p><img src="__TMPL__/public/assets/whgcms/images/venues/people.png" alt="" class="f-left"><span>人数：</span>{{max_people}}</p>
+            <!--<p>地点：{{full_address}}</p>-->
+            <!--<p>联系电话：{{tel}}</p>-->
+            <!--<p>收费标准：{{fee}}</p>-->
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each list}}
+        <li style="margin-top: 20px;">
+            <a href="{{buildSecondUrl '/portal/room/read/?id=' id}}">
+                <div class="bg100" style="background-image: url({{thumb_url}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{name}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

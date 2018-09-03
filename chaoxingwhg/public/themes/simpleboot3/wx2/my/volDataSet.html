@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>设置资料</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <style>
+        .personalinfoSet input{
+            border: none;
+            height: 0.5rem;
+            font-size: 0.17rem;
+            color: #282828;
+        }
+        .closeBtn{
+            font-size: 0.14rem;
+            position: absolute;
+            top: 50%;
+            right: 0.15rem;
+            transform: translate(0,-50%);
+        }
+    </style>
+</head>
+<body style="background: #f8f8f8;">
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">设置</h3>
+    <span class="closeBtn">完成</span>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="personalinfoSet">
+        <input type="text" value="" id="val">
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/volDataSet.js?v={$version_list.wx_volDataSet_js}'></script>
+</body>
+</html>

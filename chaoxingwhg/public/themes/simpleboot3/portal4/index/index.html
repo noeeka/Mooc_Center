@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/layui/css/layui.css">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/css/reset.css">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/css/swiper.min.css">
+		<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/dist/idangerous.swiper.css">
+		<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/repository4.css'>
+		<title class="site_title">文化场馆资源库</title>
+	</head>
+
+	<body>
+		<div class="load" style="width: 100%;height: 300px;display: inline-block;text-align: center;line-height: 300px;">
+			<img src="__TMPL__/public/assets/whgcms/images/read/load.gif" alt="" style="display: inline-block;">
+		</div>
+		<div class="body hide">
+			<div class="body-content clearfix">
+				<div class="f-left">
+					<div class="logo f-left" style="margin-top: 71px;">
+						<img src="__TMPL__/public/assets/whgcms/images/web4/logo.png" style="height: 100%" alt="">
+					</div>
+				</div>
+				<div class="f-right">
+					<!--header部分-->
+					<div class="header" id="header">
+						<div class="headerModule-8">
+							<div class="headerModule-8-bot">
+								<div class="headerModule-8-botSafety">
+									<div class="headerModule-8-botContent clearfix">
+										<div class="login clearfix f-right">
+											<div>
+												<ul class="logo-reg clearfix denglu clearfix">
+													<li class="f-left">
+														<a href="/portal4/login/login">登录|</a>
+													</li>
+													<li class="f-left">
+														<a href="/portal4/login/login">注册</a>
+													</li>
+
+												</ul>
+												<div class="login-reg hide zhuce" style="position: relative;z-index: 2;">
+													<div class="xx clearfix">
+														<div class="tlogin f-left" style="margin-right: 10px;">
+															<a href="javascript:;">
+																<img src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="" style="width:20px;height:20px;border-radius: 50%; vertical-align: middle;margin-bottom: 5px;">
+															</a>
+														</div>
+														<div class="treg f-left">
+															<a href="javascript:;" style="color:#1D1C1B;font-size:12px;line-height:24px;"></a>
+														</div>
+													</div>
+													<div class="out" style="width: 140px;position: absolute;z-index: 99;top:16px;right: -40px;display: none;">
+														<div style="width:100%;height: 17px;"></div>
+														<div style="box-shadow: 0px 10px 20px -7px #535f6f;background-color: #FFFFFF;">
+															<a href="/portal/my/index" style="border-bottom: 1px solid #c6c6c6;display: block;line-height: 40px;">个人中心</a>
+															<a href="javascript:;" class="exit" style="display: block;line-height: 40px;">退出</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<ul class="nav clearfix f-left">
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="headerModule-8-top">
+								<div class="headerModule-8-topSafety">
+									<div class="headerModule-8-topContent">
+										<div class="search searchIcon clearfix f-right">
+											<div class="sousuo f-right">搜索</div>
+											<input type="text " placeholder="请输入搜索内容" id="sousuoinput" class="sousuoinput f-right" value="">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--list部分-->
+					<div class="main" id="main">
+						<div class="main-safe">
+							<div class="main-content clearfix">
+								<div class="zg">
+									<div class="title">
+										<a href="/portal4/room/index?nid=72&type=1"></a>
+									</div>
+									<ul class="list clearfix">
+									</ul>
+								</div>
+								<div class="fg">
+									<div class="title">
+										<a href="/portal4/room/index?nid=73&type=2"></a>
+									</div>
+									<ul class="list clearfix">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--footer部分-->
+					<div class="footer " id="footer"></div>
+				</div>
+			</div>
+		</div>
+		<!--footer模板-->
+		<script type="text/template" id="footer1-temeplate">
+			<div class="footer-security ">
+				<div class="footer-content ">
+					<ul class="info clearfix ">
+						<li>版权所有:</li>
+						<li class="banquan"></li>
+						<li>热线:</li>
+						<li class="venue_tel"></li>
+						<li>地址:</li>
+						<li class="venue_addr"></li>
+						<li>访问量:</li>
+						<li class="pcaccess_count"></li>
+					</ul>
+					<div style="text-align: center;">
+						<div class="clearfix" style="display:inline-block;margin:15px 0 19px 0; font-size: 12px;color:#1D1C1B; ">
+							<!--<span style="margin-top:15px; font-size: 12px;color:#000; ">友情链接:</span>-->
+							<p class="f-left" style="margin-right: 8px;font-size: 14px;">友情链接:</p>
+							<ul class="friendly clearfix f-left ">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script src="__TMPL__/public/assets/whgcms/lib/jquery.min.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/lunbotu/js/jquery-1.8.2.min.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/jquery.SuperSlide.2.1.1.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/layui/layui.all.js "></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/handlebars-v4.0.11.js "></script>
+		<script src="__TMPL__/public/assets/whgcms/js/sha1.js "></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/swiper/js/swiper.min.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/dist/idangerous.swiper.min.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/lib/require.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/js/repository4.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/js/ziyuan4.js"></script>
+		<script src="__TMPL__/public/assets/whgcms/js/footer.js"></script>
+	</body>
+
+</html>

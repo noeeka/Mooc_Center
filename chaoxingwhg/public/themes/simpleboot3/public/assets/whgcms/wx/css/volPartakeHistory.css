@@ -1,0 +1,54 @@
+.classification {
+    padding: 0.1rem 0 0 0;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.screenTop {
+    /*display: inline-block;*/
+    /*border-bottom: 1px solid #D2D2D2;*/
+    padding-bottom: 0.1rem;
+}
+
+.screenTop li {
+    border-right: 1px solid #959595;
+    width: 50%;
+    font-size: 0.14rem;
+    color: #595757;
+}
+
+.screenTop li:last-child {
+    border-right: none;
+}
+.list .main{
+    margin: 12px 0px;
+    background-color: #E5E5E5;
+    padding: 0.17rem 0 0.17rem 0.53rem;
+    font-size: 0.14rem;
+    color: #141414;
+}
+.list .seeBtn,.list .status{
+    width: 0.56rem;
+    height: 0.28rem;
+    border: 1px solid #EB6877;
+    border-radius: 0.05rem;
+    font-size: 0.13rem;
+    color: #EB6877;
+    display: block;
+    text-align: center;
+    line-height: 0.28rem;
+}
+.list .status{
+    border: 1px solid #D2D2D2;
+    color: #6B6A6A;
+    margin-right: 0.15rem;
+}
+.mui-table-view-cell:after{
+    left: 0px;
+}
+.mui-table-view-cell > a:not(.mui-btn){
+    font-size: 0.13rem;
+    color: #57585A;
+}
+.mui-navigate-right:after, .mui-push-right:after{
+    font-size: 0.16rem;
+}

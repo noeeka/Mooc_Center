@@ -1,0 +1,340 @@
+
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/activity.css'>
+<title></title>
+<style>
+    .list .productData img {
+        width: 15px;
+        margin-right: 5px;
+    }
+    .list .productData{
+        padding: 5px 19px 30px;
+    }
+    .list .productData span{
+        margin-right: 10px;
+        font-size: 14px;
+        color: #A0A4AA;
+    }
+    .list .status{
+        width: 96px;
+        /*height: 30px;*/
+        position: absolute;
+        right: 0;
+        top: 48px;
+    }
+    .list .status>img{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+</head>
+<body>
+<include file="public/nav" />
+<div class="main-nav">
+    <div class="screening-nav">
+        <div <if condition="$switch eq 0">class="clearfix"
+        <else/>class="hot clearfix"</if>
+        <if condition="$switch eq 0">style="margin:10px;display:none"</if>>
+        <div class="classification f-left">热门场馆:</div>
+        <ul class="f-right level hotvenus" id="venue">
+            <!--热门场馆列表模板start-->
+            <script type="text/x-handlebars-template" id="venue_list">
+                <li data-venue="0" class="activity-active">全部</li>
+                {{#each this}}
+                <li data-venue="{{id}}">{{name}}</li>
+                {{/each}}
+            </script>
+            <!--热门场馆列表模板end-->
+        </ul>
+    </div>
+    <div <if condition="$switch eq 0">class="clearfix"
+    <else/>class="area clearfix"</if>
+    <if condition="$switch eq 0">style="display:none"</if>>
+    <div class="classification f-left">区域:</div>
+    <ul class="f-right level areavenus" id="area">
+        <!--区域列表模板start-->
+        <script type="text/x-handlebars-template" id="area_list">
+            <li class="activity-active">全部</li>
+            {{#each this}}
+            <li data-area="{{id}}">{{name}}</li>
+            {{/each}} {{#each this}}
+            <ul class="level2 clearfix" style="display: none">
+                {{#each son}}
+                <li data-area="{{id}}">{{name}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </script>
+        <!--区域列表模板end-->
+    </ul>
+</div>
+<div class="type clearfix" <if condition="$switch eq 0">style="margin-top:40px"</if>>
+<div class="classification f-left">类型:</div>
+<ul class="f-right level typevenus" id="activity_type">
+    <!--活动类型列表模板start-->
+    <script type="text/x-handlebars-template" id="activity_type_list">
+        <li data-activitytype="0" class="activity-active">全部</li>
+        {{#each this}}
+        <li data-activitytype="{{id}}">{{name}}</li>
+        {{/each}}
+    </script>
+    <!--活动类型列表模板end-->
+</ul>
+</div>
+</div>
+</div>
+<div class="main clearfix">
+    <div class="main-content clearfix">
+        <div class="main-list">
+            <ul class="tab1">
+                <!--<li class="active1" data-index="3">智能排序</li>-->
+                <li class="active1 new" data-index="1">最新发布</li>
+                <li data-index="2" class="hight">人气最高</li>
+            </ul>
+            <div style="display: inline-block;text-align: center;width: 100%;margin-top:100px;display: none;" class="no">
+                <img src="__TMPL__/public/assets/whgcms/images/no.png" alt="">
+                <span style="font-size: 18px;color: #000000;display: block;margin-top: 16px;">暂无数据</span>
+            </div>
+            <ul class="list clearfix" id="activity">
+            </ul>
+            <div id="test1" class="page"></div>
+        </div>
+    </div>
+</div>
+<include file="public/footer" />
+<!--活动列表模板start-->
+<script type="text/x-handlebars-template" id="activity_list">
+    {{#each this}}
+    <li>
+        <a href="{{buildSecondUrl '/portal/product_collect/read?id=' id}}" target="_blank">
+            <div class="image bg100" style="background-image: url({{thumb}});"></div>
+            <div class="text" style="position:relative;">
+                <h3 class="ellipsis">{{name}}</h3>
+                <p>{{format_start_time}}～{{format_end_time}}
+                </p>
+                <div class="source">
+                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/cgicon.png" alt="" class="f-left">
+                    <span class="f-left">{{venue_name}}</span>
+
+                </div>
+                <div class="productData">
+                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/browse.png" alt="" class="f-left">
+                    <span class="f-left">{{page_view}}</span>
+                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/csnums.png" alt="" class="f-left">
+                    <span class="f-left">{{pnumber}}</span>
+                    <img src="__TMPL__/public/assets/whgcms/images/product_collect/works.png" alt="" class="f-left">
+                    <span class="f-left">{{zuopin_number}}</span>
+                </div>
+                <div class="status">
+                    {{#compare status}}{{/compare}}
+                </div>
+
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<!--活动列表模板end-->
+<script>
+    var venue = 0; //场馆id
+    var area = 0; //区域id
+    var activity_type = 0; //活动类型id
+    var order = 'id'; //published_time:按发布时间排序,page_view:按人气排序
+    var page = 1;
+    var len = 8;
+
+
+    Handlebars.registerHelper("compare",function (status,options) {
+        if(status == 1){
+            return '<img src="__TMPL__/public/assets/whgcms/images/product_collect/yugao.png" alt="">';
+        }else if(status == 2){
+            return '<img src="__TMPL__/public/assets/whgcms/images/product_collect/zhengji.png" alt="">';
+        }else if(status == 3){
+            return '<img src="__TMPL__/public/assets/whgcms/images/product_collect/pingxuan.png" alt="">';
+        }else{
+            return ' <img src="__TMPL__/public/assets/whgcms/images/product_collect/end.png" alt="">';
+        }
+    })
+
+    $(function() {
+        //导航选中
+        selectNav(16);
+        title1();
+        //获取场馆，区域
+        filter();
+        //获取征集类型
+        types()
+        //获取活动
+        get_activity();
+        //排序方式
+        $('.tab1 li').click(function() {
+            $('.tab1 li').removeClass('active1');
+            $(this).addClass('active1');
+            var index = $(this).data('index');
+            if (index == 2) {
+                order = 'page_view'; //按人气排序
+            } else {
+                order = 'id'; //按最新发布排序
+            }
+            pages();
+        });
+    })
+    //获取活动列表
+    function get_activity() {
+        $.ajax({
+            url: '/api/Productcollect',
+            type: 'post',
+            dataType: 'json',
+            data: { page: page, venue_id: venue, area_id: area, activity_type_id: activity_type, order: order, len: len },
+            success: function(res) {
+                if (res.status == 1) {
+
+                    var myTemplate = Handlebars.compile($("#activity_list").html());
+                    $("#activity").html(myTemplate(res.data.list));
+                    //分页
+                    var count = res.data.count;
+                    layui.use('laypage', function() {
+                        var laypage = layui.laypage;
+                        //执行一个laypage实例
+                        laypage.render({
+                            elem: 'test1', //注意，这里的 test1 是 ID，不用加 # 号
+                            count: count, //数据总数，从服务端得到
+                            limit: 8,
+                            next: '>',
+                            jump: function(obj, first) {
+                                if (!first) {
+                                    page = obj.curr;
+                                    pages();
+                                }
+                            }
+                        });
+                    });
+                    if ($('.list li').length == 0) {
+                        $('.layui-laypage-next').hide();
+                        $('.no').show();
+                    } else {
+                        $('.no').hide();
+                    }
+
+                }
+            }
+        })
+    }
+    //获取当前页活动
+    function pages() {
+        $.ajax({
+            url: '/api/Productcollect',
+            type: 'post',
+            dataType: 'json',
+            data: { page: page, venue_id: venue, area_id: area, activity_type_id: activity_type, order: order, len: len },
+            success: function(res) {
+                if (res.status == 1) {
+                    var myTemplate = Handlebars.compile($("#activity_list").html());
+                    $("#activity").html(myTemplate(res.data.list));
+                }
+            }
+        })
+    }
+    //获取热门场馆，区域，及类型
+    function filter() {
+        $.ajax({
+            url: '/api/filter',
+            type: 'post',
+            dataType: 'json',
+            data: { venue_id: venue, area_id: area, activity_type_id: activity_type },
+            success: function(res) {
+                if (res.status == 1) {
+                    //场馆
+                    var venueTemplate = Handlebars.compile($("#venue_list").html());
+                    $("#venue").html(venueTemplate(res.data.venue));
+                    var height1 = $('.hot ul').height() + 57;
+                    $('.hot .classification').css('height', height1);
+                    $('.hotvenus li').eq(0).css('margin-bottom', height1 - 61);
+                    //区域
+                    var areaTemplate = Handlebars.compile($("#area_list").html());
+                    $("#area").html(areaTemplate(res.data.area));
+                    $("#area").children('li').eq(0).addClass('activity-active')
+                    var height2 = $('.area ul').height() + 57;
+                    $('.area .classification').css('height', height2);
+                    if ($('.areavenus li').eq(0).hasClass('activity-active')) {
+                        $('.areavenus li').eq(0).css('margin-bottom', height2 - 61);
+                    }
+
+                    //场馆筛选
+                    $("#venue").children('li').each(function() {
+                        $(this).click(function() {
+                            $("#venue").children('li').removeClass('activity-active');
+                            $(this).addClass('activity-active');
+                            venue = $(this).data('venue');
+                            page = 1;
+                            get_activity();
+                        })
+                    })
+                    //区域筛选
+                    $("#area").children('li').each(function() {
+                        $(this).click(function() {
+                            area = $(this).data('area');
+                            $("#area").children('li').removeClass('activity-active');
+                            $(this).addClass('activity-active');
+                            $index = $(this).index();
+                            //点击二级区域
+                            if ($index == 0) {
+                                $(this).nextAll('ul').hide();
+                            } else {
+                                $(this).nextAll('ul').hide();
+                                $(this).nextAll('ul').eq($index - 1).show();
+                                $area_level2 = $(this).nextAll('ul').eq(($index - 1));
+                                $area_level2.children('li').each(function() {
+                                    $area_level2.children('li').removeClass('activity-active1');
+                                    $(this).click(function() {
+                                        $area_level2.children('li').removeClass('activity-active1');
+                                        $(this).addClass('activity-active1');
+                                        area = $(this).data('area');
+                                        page = 1;
+                                        get_activity();
+                                    })
+                                })
+                            }
+                            //区域
+                            var height2 = $('.area ul').height() + 57;
+                            $('.area .classification').css('height', height2);
+                            page = 1;
+                            get_activity();
+                        })
+                    })
+
+                }
+            }
+        })
+    }
+    //征集类型
+    function types() {
+           $.ajax({
+               url:'/api/Productcollect/production_collect_type',
+               type: 'post',
+               dataType: 'json',
+               success: function(res) {
+                   //类型
+                   var activityTypeTemplate = Handlebars.compile($("#activity_type_list").html());
+                   $("#activity_type").html(activityTypeTemplate(res.data));
+                   var height3 = $('.type ul').height() + 57;
+                   $('.type .classification').css('height', height3);
+                   $('.typevenus li').eq(0).css('margin-bottom', height3 - 61);
+
+                   //类型筛选
+                   $("#activity_type").children('li').each(function() {
+                       $(this).click(function() {
+                           $("#activity_type").children('li').removeClass('activity-active');
+                           $(this).addClass('activity-active');
+                           activity_type = $(this).data('activitytype');
+                           page = 1;
+                           get_activity();
+                       })
+                   })
+               }
+
+           })
+    }
+</script>
+</body>
+</html>

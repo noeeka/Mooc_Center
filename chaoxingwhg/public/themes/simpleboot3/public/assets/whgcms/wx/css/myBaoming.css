@@ -1,0 +1,150 @@
+/*筛选*/
+
+.classification {
+    padding: 0.1rem 0 0 0;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.screenTop {
+    /*display: inline-block;*/
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 0.1rem;
+}
+
+.screenTop li {
+    border-right: 1px solid #959595;
+    width: 50%;
+}
+
+.screenTop li:last-child {
+    border-right: none;
+}
+
+.screenTop li img {
+    width: 0.11rem;
+    height: 0.07rem;
+}
+
+
+
+
+
+
+
+
+
+/*筛选条件*/
+
+.screenTj input {
+    width: 1.15rem;
+    height: 0.27rem;
+    float: left;
+    display: inline-block;
+    margin-left: 0.17rem;
+    font-size: 0.11rem;
+    /*padding: 0.02rem 0.14rem;*/
+    border: 1px solid #434343;
+    border-radius: 0.3rem;
+    color: #141414;
+    text-align: center;
+}
+
+
+
+.screenTj {
+    margin-top: 0.15rem;
+    display: inline-block;
+}
+
+.screenTj .button {
+    float: left;
+    width: 0.7rem;
+    height: 0.27rem;
+    line-height: 0.25rem;
+    margin-left: 0.15rem;
+    font-size: 0.11rem;
+    border: 1px solid #434343;
+    border-radius: 0.3rem;
+    color: #141414;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* **************列表**************** */
+
+.listtop {
+    padding: 0.1rem 0.17rem;
+   /* border-bottom: 1px solid #D2D2D2;*/
+}
+
+.listtop img {
+    width: 0.18rem;
+    height: 0.18rem;
+    margin-right: 0.15rem;
+}
+
+.listtop .child1 {
+    font-size: 0.14rem;
+    color: #141414;
+}
+
+.listtop .child2 {
+    font-size: 0.13rem;
+    color: #57585A;
+}
+
+.listbottom {
+    padding: 0 0.17rem;
+    padding-bottom: 0.1rem;
+    padding-top: 0.1rem;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.listbottom span {
+    display: inline-block;
+    margin-left: 0.08rem;
+}
+
+.listbottom li {
+    /*width: 2.5rem;*/
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.14rem;
+    color: #141414;
+    line-height: 0.25rem;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.listbottom .button {
+    width: 0.84rem;
+    height: 0.26rem;
+    text-align: center;
+    line-height: 0.26rem;
+    font-size: 0.13rem;
+    color: #FFFFFF;
+    border-radius: 0.13rem;
+    border: 0;
+    /*margin-top: 0.15rem;*/
+}
+
+.listbottom .active1 {
+    background-color: #EC6941;
+}
+
+.listbottom .active2 {
+    background-color: #B5B5B5;
+}

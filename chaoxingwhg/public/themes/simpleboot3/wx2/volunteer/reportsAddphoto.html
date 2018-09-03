@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>上传照片</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="/static/js/webuploader/webuploader.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <style>
+        .photo{
+            padding: 0.25rem 0.15rem 0.25rem;
+            background: #fff;
+        }
+        .photo img{
+            width: 1.62rem;
+            height: 0.95rem;
+            margin-right: 0.05rem;
+            margin-bottom: 0.14rem;
+        }
+        .photo img:nth-child(2n){
+            margin-right: 0;
+        }
+        .closeBtn{
+            font-size: 0.14rem;
+            position: absolute;
+            top: 50%;
+            right: 0.15rem;
+            transform: translate(0,-50%);
+        }
+        .webuploader-pick{
+            background-color: #fff;
+            padding:0;
+        }
+    </style>
+</head>
+<body style="background: #f8f8f8;">
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">上传照片</h3>
+    <span class="closeBtn">完成</span>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="photo clearfix">
+        <!--<img class="f-left" src="__TMPL__/public/assets/whgcms/wx/images/active01.png" alt="">-->
+        <!--<img class="f-left" src="__TMPL__/public/assets/whgcms/wx/images/active01.png" alt="">-->
+        <!--<img class="f-left" src="__TMPL__/public/assets/whgcms/wx/images/active01.png" alt="">-->
+        <!--<img class="f-left" src="__TMPL__/public/assets/whgcms/wx/images/active01.png" alt="">-->
+        <!--<img class="f-left" src="__TMPL__/public/assets/whgcms/wx/images/active01.png" alt="">-->
+        <div class="f-left" id="addphoto" class="addphoto"><img src="__TMPL__/public/assets/whgcms/wx/images/voladdPhoto.png" alt=""></div>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src="/static/js/webuploader/webuploader.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/reportsDataPhoto.js?v={$version_list.wx_reportsDataPhoto_js}'></script>
+</body>
+</html>

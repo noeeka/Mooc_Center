@@ -1,0 +1,76 @@
+/*模板3*/
+
+
+/*.mould3-list {*/
+
+
+/*margin-top: 0.13rem;*/
+
+
+/*}*/
+
+.mould3-list li {
+    width: 100%;
+    padding: 0.18rem 0.15rem;
+    height: 1.15rem;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.mould3-list a {
+    display: block;
+    display: flex;
+}
+
+
+.mould3-list h3 {
+    color: #141414;
+    font-size: 0.15rem;
+    font-weight: normal;
+    line-height: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 2rem;
+}
+
+.mould3-list .thumbnail {
+    width: 1.42rem;
+    height: 0.8rem;
+    /*margin-left: 0.1rem;*/
+    /*flex: 1;*/
+}
+
+.mould3-list .source {
+    width: 0.39rem;
+    white-space: nowrap;
+    color: #969494;
+    font-size: 0.13rem;
+    margin-right: 0.02rem;
+    overflow: hidden;
+}
+
+.mould3-list .time {
+    width: 0.73rem;
+    white-space: nowrap;
+    color: #969494;
+    font-size: 0.13rem;
+    margin-right: 0.02rem;
+    overflow: hidden;
+}
+
+.mould3-list .browse img {
+    width: 0.16rem;
+    height: 0.09rem;
+    margin-right: 0.02rem;
+    margin-top: 0.05rem;
+}
+
+.mould3-list .browse span {
+    width: 0.45rem;
+    white-space: nowrap;
+    color: #969494;
+    font-size: 0.13rem;
+    overflow: hidden;
+}

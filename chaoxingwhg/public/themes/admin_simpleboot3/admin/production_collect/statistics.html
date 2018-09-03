@@ -1,0 +1,148 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+
+    <form class="well form-inline margin-top-20" method="post" action="{:url('Activity/statistics')}">
+        参与人群:
+        <select class="form-control" name="type" id="type" style="width: 140px;">
+            <if condition="$type == 1">
+                <option value='1' selected  >报名人群统计</option>
+                <option value='2' >签到人群统计</option>
+            <else>
+                    <option value='1' >报名人群统计</option>
+                    <option value='2' selected>签到人群统计</option>
+            </else>
+            </if>
+        </select> &nbsp;
+
+        用户名:
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{$keyword|default=''}" placeholder="请输入关键字...">
+        <input type="submit" class="btn btn-primary" value="搜索"/>
+        <a class="btn btn-danger" href="{:url('Activity/statistics' , array('id'=>$id))}">清空</a>
+        <a class="btn btn-info export">导出</a>
+        <input type="hidden" name="id" value="{$id}">
+    </form>
+    <form class="js-ajax-form" action="" method="post">
+        <div class="table-actions">
+            <if condition="$type == 1">
+                <span>
+                已报名人数：{$count}
+                </span>
+            </if>
+
+            <if condition="$type == 2">
+                <span>签到人群:<php>
+                        switch($act['sign_type']) {
+                            case 1:
+                                echo "报名用户";break;
+                            case 2:
+                                echo "系统用户";break;
+                            case 3:
+                                echo "全网用户";break;
+                            default:
+                                echo "";break;
+                        }
+                    </php>
+                </span><br/>
+                <span>
+                已签到人数:{$count}
+                </span>
+            </if>
+            <br/>
+
+        </div>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="15">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th>用户名</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>出生日期</th>
+                <th >家庭住址</th>
+                <th >是否签到</th>
+                <th >签到时间</th>
+            </tr>
+            </thead>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>
+                        <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}" title="ID:{$vo.id}">
+                    </td>
+                    <td>
+                        <php>
+                            if(!empty($vo['sign_mobile']))
+                                echo $vo['sign_mobile'];
+                            else if(!empty($vo['user_login']))
+                                echo $vo['user_login'];
+                            else
+                                echo "";
+                        </php>
+                    </td>
+                    <td>
+                        <php>
+                            if(!empty($vo['realname']))
+                                echo $vo['realname'];
+                            else if(!empty($vo['user_realname']))
+                                echo $vo['user_realname'];
+                            else
+                                echo "";
+                        </php>
+                    </td>
+                    <td>
+                        <switch name="$vo.sex">
+                            <case value="0">保密</case>
+                            <case value="1">男</case>
+                            <case value="2">女</case>
+                        </switch>
+                    </td>
+                    <td>
+                        <php>
+                            if(!empty($vo['birthday']))
+                                echo date('Y-m-d H:i' , $vo['birthday']);
+                        </php>
+
+
+
+                    </td>
+                    <td>{$vo.address}</td>
+                    <td><php>
+                        echo empty($vo['create_time']) ? "否": "是";
+                    </php></td>
+                    <td>{:date('Y-m-d H:i',$vo['create_time'])}</td>
+
+
+                </tr>
+            </foreach>
+
+        </table>
+        <ul class="pagination">{$page|default=''}</ul>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+    function reloadPage(win) {
+        win.location.reload();
+    }
+
+    $(function () {
+
+        $('.export').on('click' , function () {
+           var type = $('#type').val();
+           var id = $('input[name="id"]').val();
+           window.location.href = '/admin/activity/exportStatistics/id/'+id +'/type/'+type;
+        });
+
+    })
+
+</script>
+</body>
+</html>

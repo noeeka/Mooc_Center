@@ -1,0 +1,359 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信息</title>
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/css/reset.css">
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/lib/layui/css/layui.css">
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/lib/slick-1.8.1/slick.css">
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/lib/slick-1.8.1/slick-theme.css">
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/css/color.css">
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/css/pcstudent.css">
+<link rel="stylesheet" href="/themes/simpleboot3/mooc/css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+    <header-all></header-all>
+    <div class="personal main">
+    	<div class="personal-safe">
+        	<div class="personal-content">
+            	<div class="user-main">
+                	<img class="user-img" v-bind:src="userinfo.avatar == '' ? 'images/xstx.png' : userinfo.avatar">
+                    <div class="user-name" v-text="userinfo.nick_name"></div>
+                    <div class="user-info">
+                    	<span>性别：{{userinfo.sex}}</span>
+                        <span>地区：{{userinfo.area}}</span>
+                        <span>关注：{{userinfo.follow_num}}</span>
+                        <span>粉丝：{{userinfo.fans_num}}</span>
+                    </div>
+                </div>
+                <div class="study-main layui-tab">
+                	<div class="link-b">
+                    	<ul class="link-m layui-tab-title">
+                            <li class="layui-this">个人信息</li>
+                            <li class="line-li wdkc-btn">我的课程</li>
+                            <li class="wdsc-btn">我的收藏</li>
+                        </ul>
+                    </div>
+                    <div class="layui-tab-content">
+                    	<!--个人信息-->
+                        <div class="layui-tab-item layui-form layui-show">
+                        	<div class="form-m">
+                                <form>
+                                    <ul class="form-ul">
+                                       <li class="clearfix">
+                                           <p class="ipt-name">昵称：<span v-text="userinfo.nick_name"></span></p>
+                                           <label>
+                                               <input class="ipt-style ipt-border name-ipt" type="text" maxlength="16">
+                                           </label>
+                                           <span class="tip f-right fontcolor">
+                                               不超过16字符<br>支持中英文字符、数字、_
+                                           </span>
+                                       </li>
+                                       <li class="clearfix radio-b radio-sex-b">
+                                           <p class="ipt-name">
+                                               性别：
+                                               <label style="font-size:16px;">
+                                                   <i class="radio-i" style="margin-right:10px;"></i><input type="radio" name="sex" value="0" lay-ignore>男
+                                               </label>
+                                               <label style="font-size:16px;">
+                                                   <i class="radio-i" style="margin-right:10px;"></i><input type="radio" name="sex" value="1" lay-ignore>女
+                                               </label>
+                                               <label style="font-size:16px;">
+                                                   <i class="radio-i" style="margin-right:10px;"></i><input type="radio" name="sex" value="2" lay-ignore>保密
+                                               </label>
+                                           </p>
+                                           
+                                       </li>
+                                       <li class="clearfix">
+                                           <p class="ipt-name">地区：<span v-text="userinfo.area"></span></p>
+                                           <label>
+                                               <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                           </label>
+                                       </li>
+                                       <li class="clearfix">
+                                           <p class="ipt-name">邮箱：<span v-text="userinfo.email"></span></p>
+                                           <label>
+                                               <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                           </label>
+                                       </li>
+                                       <li class="clearfix">
+                                           <p class="ipt-name">电话：<span v-text="userinfo.mobile"></span></p>
+                                           <label>
+                                               <input class="ipt-style ipt-border" type="text" maxlength="16">
+                                           </label>
+                                       </li>
+                                    </ul>
+                                    <div class="btn-b">
+                                        <button class="btn sub-btn">确定</button>
+                                        <button class="btn cz-btn" type="reset">重置</button>
+                                    </div>
+                                </form>
+                                <div class="upload-b">
+                                    <div class="layui-upload">
+                                      <div class="layui-upload-list">
+                                        <img class="layui-upload-img" v-bind:src="userinfo.avatar == '' ? 'images/xstx.png' : userinfo.avatar" id="upload-img">
+                                        <p id="demoText"></p>
+                                      </div>
+                                      <span class="upload-btn backgroundcolor" id="upimg">修改头像</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--我的课程-->
+                    	<div class="layui-tab-item layui-tab">
+                            <ul class="layui-tab-title class-tab-tit">
+                                <li class="layui-this">课程表</li>
+                                <li>笔记</li>
+                                <li>问答</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                            	<!--我的课程-课程表-->
+                                <div class="layui-tab-item layui-show">
+                                    <div class="study-tit bordercolor">最近学习</div>
+                                    <div class="study-slick">
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    <p class="tit">《周易》的奥秘</p>
+                                                    <p class="date">2018.12.12 到期</p>
+                                                    <div class="layui-progress">
+                                                        <div class="layui-progress-bar" lay-percent="24%"></div>
+                                                    </div>
+                                                    <p>学习进度：<span>24%</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="img-b">
+                                                <img src="images/pic/01.jpg">
+                                                <div class="lb-del">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="study-tit bordercolor all-class">全部课程</div>
+                                    <table class="class-list" style="margin-bottom:10px;">
+                                    	<tr class="tr-tit">
+                                            <td>课程</td>
+                                            <td class="tac" width="280">状态</td>
+                                            <td class="tac" width="200">操作</td>
+                                        </tr>
+                                    </table>
+                                    <table class="class-list all-class-list qbkc-table">
+                                        <tr>
+                                            <td>
+                                                <img class="f-left" src="images/index2.jpg" width="320">
+                                                <div class="f-left class-info">
+                                                    <p class="class-tit">重说中国近代史</p>
+                                                    <p>2018.12.09 到期</p>
+                                                    <div class="clearfix progress-b">
+                                                    	<div class="layui-progress f-left">
+                                                            <div class="layui-progress-bar backgroundcolor" lay-percent="24%"></div>
+                                                        </div>
+                                                        <span class="f-right study-jd">学习进度：<span>24%</span></span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="tac" width="240">学习中</td>
+                                            <td class="tac" width="160"><span class="qx-btn kcpj">课程评价</span><br><br><span class="qx-btn qxsc">取消报名</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="f-left" src="images/index2.jpg" width="320">
+                                                <div class="f-left class-info">
+                                                    <p class="class-tit">重说中国近代史</p>
+                                                    <p>2018.12.09 到期</p>
+                                                </div>
+                                            </td>
+                                            <td class="tac">学习中</td>
+                                            <td class="tac"><span class="qx-btn kcpj">课程评价</span><br><br><span class="qx-btn qxsc">取消报名</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="f-left" src="images/index2.jpg" width="320">
+                                                <div class="f-left class-info">
+                                                    <p class="class-tit">重说中国近代史</p>
+                                                    <p>2018.12.09 到期</p>
+                                                </div>
+                                            </td>
+                                            <td class="tac">学习中</td>
+                                            <td class="tac"><span class="qx-btn kcpj">课程评价</span><br><br><span class="qx-btn qxsc">取消报名</span></td>
+                                        </tr>
+                                    </table>
+                                    <div class="load-more-b">
+                                        <span class="load-more fontcolor class-load-more">加载更多</span>
+                                    </div>
+                                        
+                                </div>
+                                <!--我的课程-笔记-->
+                                <div class="layui-tab-item">
+                                    <div class="clearfix">
+                                        <div class="study-tit bordercolor f-left">全部笔记共计<span>324</span>条</div>
+                                        <div class="search-b f-right">
+                                        	<input class="search-ipt" placeholder="输入笔记内容关键字" type="search"><img class="search-btn" src="images/cross.png" width="16">
+                                        </div>
+                                    </div>
+                                    <ul class="notes-list">
+                                        <li class="clearfix">
+                                            <a href="#"><img src="images/gotop.png" alt="" / class="f-left"></a>
+                                            <div class="f-right">
+                                                <h3>灰色袈裟</h3>
+                                                <div class="form">
+                                                    <a href="#" class="all-link-a" style="color:#9EA7B4; padding-right:20px;">源自：第二章 2.13</a><span>16小时前</span>
+                                                </div>
+                                                <p class="o2">“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入 增长显著，百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+                                                </p>
+                                                <div class="clearfix zan">
+                                                    <a class="f-left" class="all-link-a" style="color:#9EA7B4;">查看全文>></a>
+                                                    <div class="f-right clearfix">
+                                                        <div class="f-left evaluationicon"><img src="images/yuedu.png" alt="" />10</div>
+                                                        <div class="f-right" style="margin-right: 0;margin-left: 35px;"><img src="images/zan1.png" alt="" />23</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--我的课程-问答-->
+                                <div class="layui-tab-item layui-tab">
+                                    <ul class="layui-tab-title wd-tit">
+                                        <li class="layui-this">我的提问</li>
+                                        <li>我的回答</li>
+                                    </ul>
+                                    <div class="layui-tab-content" style="padding:10px 0;">
+                                        <!--我的提问-->
+                                        <div class="layui-tab-item layui-show">
+                                        	<ul class="my-questions">
+                                            	<li class="clearfix" v-for="(item,index) in twdata">
+                                                    <div class="f-left tit">
+                                                        问题{{index+1}}：
+                                                    </div>
+                                                    <div class="f-left">
+                                                        <p class="tit" v-text="item.content"></p>
+                                                        <div class="info">
+                                                            <a :href="'video.html?courseid='+item.course_id" class="all-link-a" style="color:#9EA7B4;">源自：第二章 2.13</a>
+                                                            <span class="date" v-text="item.create_time"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!--我的回答-->
+                                        <div class="layui-tab-item">
+                                        	<ul class="my-answer">
+                                            	<li class="clearfix" v-for="(item,index) in hddata">
+                                                    <div class="f-left tit">
+                                                        问题{{index+1}}：
+                                                    </div>
+                                                    <div class="f-left">
+                                                        <p class="tit" v-text="item.question_content"></p>
+                                                        <p class="answer">我的回答：<span v-text="item.content"></span></p>
+                                                        <div class="info">
+                                                            <a :href="'video.html?courseid='+item.course_id" class="all-link-a" style="color:#9EA7B4;">源自：{{item.chapter_title}} {{item.section_title}}</a>
+                                                            <span class="date" v-text="item.create_time"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--我的收藏-->
+                    	<div class="layui-tab-item">
+                        	<table class="class-list" style="margin-bottom:10px;">
+                            	<tr class="tr-tit">
+                                    <td>课程</td>
+                                    <td class="tac" width="280">状态</td>
+                                    <td class="tac" width="200">操作</td>
+                                </tr>
+                            </table>
+                        	<table class="class-list wdsc-table" style="margin-top:0;">
+                                <tr>
+                                    <td>
+                                        <img class="f-left" v-bind:src="userinfo.avatar == '' ? 'images/xstx.png' : userinfo.avatar" width="320">
+                                        <div class="f-left class-info">
+                                            <p class="class-tit">重说中国近代史</p>
+                                            <p>2018.12.09 到期</p>
+                                        </div>
+                                    </td>
+                                    <td class="tac" width="240">学习中</td>
+                                    <td class="tac" width="160"><span class="qx-btn qxsc">取消收藏</span></td>
+                                </tr>
+                            </table>
+                            <!-- <div class="load-more-b">
+                                <span class="load-more fontcolor">加载更多</span>
+                            </div> -->
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer-all></footer-all>
+</div>
+</body>
+<script src="/themes/simpleboot3/mooc/lib/jquery-3.2.1.min.js"></script>
+<script src="/themes/simpleboot3/mooc/js/store.js"></script>
+<script src="/themes/simpleboot3/mooc/lib/date.js"></script>
+<script src="/themes/simpleboot3/mooc/lib/vue2.js"></script>
+<script src="/themes/simpleboot3/mooc/js/header.js"></script>
+<script src="/themes/simpleboot3/mooc/lib/slick-1.8.1/slick.min.js"></script>
+<script src="/themes/simpleboot3/mooc/lib/layui/layui.all.js"></script>
+<script src="/themes/simpleboot3/mooc/js/publice.js"></script>
+<script src="/themes/simpleboot3/mooc/js/pcstudent.js"></script>
+</html>

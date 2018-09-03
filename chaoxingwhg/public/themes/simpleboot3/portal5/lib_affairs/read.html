@@ -1,0 +1,49 @@
+<include file="public/header" />
+
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/read.css'>
+<title></title>
+</head>
+<body>
+<include file="public/nav" />
+<div class="main clearfix">
+    <div class="main-content clearfix">
+        <div class="details"></div>
+        <div class="comments hide">
+            <div style="border-bottom: 1px solid #D9D9D9;" class="clearfix">
+                <!--<div style="width:1200px;padding:15px 0;text-align: left;color:#2F343A;font-size: 18px;border-bottom:1px solid #D9D9D9;margin-bottom: 24px; ">全部评论</div>-->
+                <input type="text " name="newContent" placeholder="写点评论…… ">
+                <button class="button" id="newBtn">发表评论</button>
+            </div>
+            <div class="comment-list">
+                <ul class="section">
+                </ul>
+                <div id="test1" class="page"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="pid" value="{$pid|default=8}">
+<include file="public/footer" />
+<script type="text/template" id="detail">
+    <div class="title">{{title}}</div>
+    <ul class="number clearfix">
+        <li style="margin-right: 9px;display: inline-block; "><img src="__TMPL__/public/assets/whgcms/images/read/time.png " alt=" " style="width: 14px;height: 13px;margin-right: 6px;margin-top: 1px; " class="f-left "><span>{{date time}}</span></li>
+    <li style="margin-right: 9px;display: inline-block; "><img src="__TMPL__/public/assets/whgcms/images/read/look.png " alt=" " style="width: 17px;height: 9px;margin-right: 6px;margin-top: 3px; " class="f-left "><span>{{hits}}</span>次</li>
+        <li style="display: inline-block; "><img src="__TMPL__/public/assets/whgcms/images/read/like3.png" alt=" " style="width: 14px;height: 13px;margin-right: 6px; margin-top:2px; cursor: pointer;" class="f-left "><span class="collect_num">{{collect}}</span>次</li>
+        <li style="margin-right: 9px;display: inline-block; margin-left:12px;">{{venue_name}}</li>
+    </ul>
+    <img src="{{image thumb}}" alt=" " style="margin-top:37px;margin-bottom: 37px; ">
+        <p>{{{content}}}</p>
+    <div  id="collectBtn" style="margin-top: 114px; text-align: right;margin-bottom:20px;">
+
+     <div style="padding:10px 24px;display: inline-block;border-radius: 19px;cursor: pointer;">
+
+    <img src="__TMPL__/public/assets/whgcms/images/read/{{is_collect is_collect}}" alt="" style="width:16px;height: 14px;cursor: pointer;display: inline-block;">
+        <span style="color:#2F343A;font-size: 16px;margin-left:5px;display: inline-block;margin-right: 2px;">收藏</span>
+     </div>   <!--<div style="background-image:url(__TMPL__/public/assets/whgcms/images/read/{{is_collect is_collect}}); width:16px;height: 14px;cursor: pointer;background-repeat: no-repeat;background-size: cover;display: inline-block;"></div>-->
+
+    </div>
+</script>
+<script src='__TMPL__/public/assets/whgcms/js/read.js'></script>
+</body>
+</html>

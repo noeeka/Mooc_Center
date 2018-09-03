@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>笔记</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="lib/layui/css/layui.css">
+		<link rel="stylesheet" href="css/color.css">
+		<link rel="stylesheet" href="css/notes.css">
+		<link rel="stylesheet" href="css/publice.css" />
+	</head>
+
+	<body>
+    <div id="app" style="width:100%; height:100%;">
+		<header-all></header-all>
+		<div class="main" style="overflow: hidden;">
+			<div class="main-safe">
+				<div class="main-content clearfix" style="margin-top: 30px;">
+					<div class="f-left">
+						<img src="images/xstx.png" />
+						<div>小浣熊干脆面</div>
+						<div class="follow backgroundcolor clearfix" v-bind:class="{'ygz':gz == '已关注'}" @click="gzfun" v-text="gz"></div>
+					</div>
+					<div class="f-right">
+						<div>
+							<h3>块级元素特点</h3>
+							<p>1、每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行）</p>
+							<p> 2、元素的高度、宽度、行高以及顶和底边距都可设置。</p>
+							<p> 3、元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。</p>
+							<img src="images/pic/12.jpg" alt="" />
+							<div class="info">
+								<span class="dz">10</span>
+								<span class="cj">采集 34</span>
+								<span><a href="#">课程名称：人文视野中的生态学</a></span>
+								<span><a href="#">课程章节：4.1数量还是质量？——种群生态对策</a></span>
+							</div>
+						</div>
+						<div class="pinglun">
+							<div class="clearfix">
+								<span class="f-left">评论<em>(447)</em></span>
+								<div class="layui-btn f-right bj-pl-btn">评论</div>
+							</div>
+							<ul>
+								<li class="clearfix">
+									<a href="#"><img src="images/xstx.png" alt="" class="f-left" /></a>
+									<div class="f-right">
+										<div class="clearfix">
+											<h3 class="f-left">灰色袈裟</h3>
+											<span class="f-right">16小时前</span>
+										</div>
+										<p>“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入增长显著， 百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+									</div>
+								</li>
+								<li class="clearfix">
+									<a href="#"><img src="images/xstx.png" alt="" class="f-left" /></a>
+									<div class="f-right">
+										<div class="clearfix">
+											<h3 class="f-left">灰色袈裟</h3>
+											<span class="f-right">16小时前</span>
+										</div>
+										<p>“通过AI驱动的变现能力，以及信息流业务流量和商业化增长的良好势头，我们的搜索业务收入增长显著， 百度二季度表现依旧强劲。”百度董事长兼CEO李彦宏表示，“关于DuerOS业务，
+										</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-safe">
+				<div class="footer-content">
+					<ul class="clearfix">
+						<li class="f-left">
+							<a href="">技术支持:超星泛雅Copyright © 1993-2018 超星网 </a>
+						</li>
+						<li class="f-left">
+							<a href="">单位编号:1101081827 </a>
+						</li>
+						<li class="f-left">
+							<a href="">京ICP证:060172号 网络 </a>
+						</li>
+						<li class="f-left">
+							<a href="">视听许可证:0110438号 </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</div>
+
+<div class="evaluation-reply hide" id="evaluation-reply">
+    <textarea name="" rows="" cols="" placeholder="请输入文字……"></textarea>
+    <em>0/200</em>
+    <div>
+        <span>取消</span>
+        <div class="huifu backgroundcolor">评论</div>
+    </div>
+</div>
+		<script src="lib/jquery-3.2.1.min.js"></script>
+        <script src="lib/date.js"></script>
+        <script src="lib/vue2.js"></script>
+        <script src="js/header.js"></script>
+		<script src="lib/layui/layui.all.js"></script>
+		<script src="js/notes.js"></script>
+		<script src="js/publice.js"></script>
+        <script src="lib/Require.js"></script>
+	</body>
+
+</html>

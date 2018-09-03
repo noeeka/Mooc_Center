@@ -1,0 +1,191 @@
+.main {
+    max-width: 1920px;
+    height: auto;
+    padding-top: 40px;
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *******************详情内容****************** */
+
+.details {
+    width: 1200px;
+    text-align: center;
+    margin-bottom: 114px;
+    background: #fff;
+}
+
+.details .title {
+    width: 100%;
+    color: #1C2438;
+    height: 24px;
+    font-size: 24px;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 18px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.details .img {
+    width: 100%;
+    margin-bottom: 37px;
+}
+
+.details p {
+    color: #000000;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: left;
+}
+
+.details h3 {
+    font-size: 24px;
+    color: #1C2438;
+    text-align: left;
+    margin-top: 23px;
+    margin-bottom: 6px;
+}
+
+.details .fengcai img {
+    width: 250px;
+    height: 140px;
+
+    cursor: pointer;
+}
+
+.details .fengcai>div:nth-child(3n+2) {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ************************轮播图***************************** */
+
+.hide {
+    display: none;
+}
+
+#swiper {
+    position: relative;
+    width: 1200px;
+    height: 447px;
+}
+
+.swiper-container {
+    width: 798px;
+    height: 447px;
+}
+
+.layui-layer-content {
+    height: 447px!important;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    /*width: 100%;*/
+    height: 447px;
+}
+
+.layui-layer {
+    background: transparent!important;
+    box-shadow: 1px 1px 50px transparent!important;
+}
+
+
+/* ************************轮播图***************************** */
+
+
+/*
+.hide {
+    display: none;
+}
+
+#swiper {
+    width: 1200px;
+    height: 447px;
+}
+
+
+.carousel-item {
+    position: relative;
+    width: 798px!important;
+    height: 447px!important;
+    margin: 0 auto;
+}
+
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 447px;
+}
+
+.layui-carousel {
+    background-color: transparent;
+}
+
+.layui-carousel>[carousel-item]>* {
+    background-color: transparent;
+}
+
+
+.layui-carousel-arrow:hover,
+.layui-carousel-ind ul:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+*/

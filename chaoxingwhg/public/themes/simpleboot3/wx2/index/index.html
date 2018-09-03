@@ -1,0 +1,374 @@
+<include file="public/header"/>
+<title>精选</title>
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/lib/swiper4/swiper.css">
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/information.css?v={$version_list.wx_index_css}">
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/index.css?v={$version_list.wx_index_css}">
+<style>
+    .mui-card-content-inner {
+        padding: 0px 15px;
+        top: 50%;
+        left: 0;
+        transform: translate(0,-50%);
+    }
+</style>
+<style id="global-css">
+
+</style>
+</head>
+
+<body>
+<section class="header1">
+    <h3 class="title headerTitle"></h3>
+    <div class="search">
+        <a href="/wx2/search/index"><img class="searchicon" src="__TMPL__/public/assets/whgcms/wx/images/searchicon.png">搜索</a>
+    </div>
+</section>
+<!--banner-->
+<section class="banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper" id="swiper-wrapper">
+            <!--<div class="swiper-slide swiper-slide-center none-effect"><a href="#"><img src="images/banner-1.png" ></a></div>-->
+            <!--<div class="swiper-slide"><a href="#"><img src="images/banner-2.png" ></a></div>-->
+            <!--<div class="swiper-slide"><a href="#"><img src="images/banner-3.png" ></a></div>-->
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+<section class="nav">
+    <div class="navHead">
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="swiper-wrapper1" style="padding: 0.2rem 0px;">
+                <!--<div class="swiper-slide">-->
+                    <!--<a href="/wx1/category/info">-->
+                        <!--<span class="mui-icon-new"><img style="width: 100%;height: 100%;" src="__TMPL__/public/assets/whgcms/wx2/images/news.png" alt=""></span>-->
+                        <!--<div class="homeNav">信息咨询</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="swiper-slide">-->
+                    <!--<a href="/wx1/category/info">-->
+                        <!--<span class="mui-icon-new"></span>-->
+                        <!--<div class="homeNav">信息咨询</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="swiper-slide">-->
+                    <!--<a href="/wx1/category/info">-->
+                        <!--<span class="mui-icon-new"></span>-->
+                        <!--<div class="homeNav">信息咨询</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="swiper-slide">-->
+                    <!--<a href="/wx1/category/info">-->
+                        <!--<span class="mui-icon-new"></span>-->
+                        <!--<div class="homeNav">信息咨询</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="swiper-slide">-->
+                    <!--<a href="/wx1/category/info">-->
+                        <!--<span class="mui-icon-new"></span>-->
+                        <!--<div class="homeNav">信息咨询</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div class="spacing gray"></div>
+    <div class="navmore">
+        <div class="nav2 mui-row clearfix" id="nav2">
+            <!--<a href="/wx1/category/resource" class="clearfix f-left mui-col-xs-6" style="display: block;height: 100%;">-->
+                <!--<div class="f-left">-->
+                    <!--<h3>资源展示</h3>-->
+                    <!--<p>征集人民…</p>-->
+                <!--</div>-->
+                <!--<img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png"  alt="">-->
+            <!--</a>-->
+            <!--<a href="/wx1/live/index" class="clearfix f-left mui-col-xs-6" style="display: block;height: 100%;">-->
+                <!--<div class="f-left">-->
+                    <!--<h3>文化直播</h3>-->
+                    <!--<p>征集人民…</p>-->
+                <!--</div>-->
+                <!--<img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png" alt="">-->
+            <!--</a>-->
+            <!--<a href="/wx1/category/quanjing" class="clearfix f-left mui-col-xs-6" style="display: block;height: 100%;">-->
+                <!--<div class="f-left">-->
+                    <!--<h3>全景展示</h3>-->
+                    <!--<p>征集人民…</p>-->
+                <!--</div>-->
+                <!--<img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png"  alt="">-->
+            <!--</a>-->
+            <!--<a href="/wx1/opinion/info" class="clearfix f-left mui-col-xs-6" style="display: block;height: 100%;">-->
+                <!--<div class="f-left">-->
+                    <!--<h3>民意征集</h3>-->
+                    <!--<p>征集人民…</p>-->
+                <!--</div>-->
+                <!--<img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png" alt="">-->
+            <!--</a>-->
+        </div>
+        <div class="nav3 b-top" style="display: none;">
+            <a href="/wx1/Readiframe/index?srcid=http://www.baidu.com&title=特色库" class="clearfix" style="display: block;height: 100%;">
+                <div class="f-left">
+                    <h3>特色库</h3>
+                    <p>征集人民…</p>
+                </div>
+                <img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png" alt="">
+            </a>
+            <a href="/wx1/Readiframe/index?srcid=http://www.baidu.com&title=资源库" class="clearfix" style="display: block;height: 100%;">
+                <div class="f-left">
+                    <h3>资源库</h3>
+                    <p>征集人民…</p>
+                </div>
+                <img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png"  alt="">
+            </a>
+            <a href="/wx1/lib_Affairs/index" class="clearfix" style="display: block;height: 100%;">
+                <div class="f-left">
+                    <h3>馆务公开</h3>
+                    <p>征集人民…</p>
+                </div>
+                <img class="f-right" src="__TMPL__/public/assets/whgcms/wx1/images/ziyuan.png" alt="">
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<section style="margin-bottom: 50px;" id="main">
+    <!--最新动态-->
+    <!--<div class="spacing gray"></div>-->
+    <!--<section class="news">-->
+        <!--<div class="newsTitle clearfix">-->
+            <!--<h2 class="" style="margin-top: -13px;margin-bottom: -5px;">-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/left.png" alt="">-->
+                <!--<span>最新动态</span>-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/right.png" alt="">-->
+                <!--<a class="" href="/wx/category/info?navid=nav8&active_id=24">-->
+                    <!--<img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt="">-->
+                <!--</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+        <!--<ul class="mui-table-view newsContent mould3-list" id="newsContent">-->
+        <!--</ul>-->
+    <!--</section>-->
+    <!--&lt;!&ndash;资源展示&ndash;&gt;-->
+    <!--<div class="spacing gray"></div>-->
+    <!--<section class="sources">-->
+        <!--<div class="sourcesTitle clearfix">-->
+            <!--&lt;!&ndash;<h2 class="f-left">资源展示</h2>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="f-right" href="#"><img src="images/moreicon.png" alt=""></a>&ndash;&gt;-->
+            <!--<h2 class="" style="margin-top: -13px;margin-bottom: -5px;">-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/left.png" alt="">-->
+                <!--<span>资源展示</span>-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/right.png" alt="">-->
+                <!--<a class="" href="/wx/category/resource?navid=nav12">-->
+                    <!--<img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt="">-->
+                <!--</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+        <!--<ul class="mui-table-view mui-grid-view sourcescontent">-->
+            <!--&lt;!&ndash;<li class="mui-table-view-cell mui-media mui-col-xs-6">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#">&ndash;&gt;-->
+            <!--&lt;!&ndash;<img class="mui-media-object" src="images/banner-1.png">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="mui-media-body">幸福就是可以一起睡觉</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="mui-table-view-cell mui-media mui-col-xs-6">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#">&ndash;&gt;-->
+            <!--&lt;!&ndash;<img class="mui-media-object" src="images/banner-1.png">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+        <!--</ul>-->
+    <!--</section>-->
+    <!--&lt;!&ndash;活动信息&ndash;&gt;-->
+    <!--<div class="spacing gray"></div>-->
+    <!--<section class="activity">-->
+        <!--<div class="activityTitle clearfix">-->
+            <!--<h2 class="">-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/left.png" alt="">-->
+                <!--<span>活动信息</span>-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/right.png" alt="">-->
+                <!--<a class="" href="/wx/activity/index?navid=nav16">-->
+                    <!--<img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt="">-->
+                <!--</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+        <!--<div class="activityList" id="activityList">-->
+        <!--</div>-->
+    <!--</section>-->
+    <!--&lt;!&ndash;文化点单&ndash;&gt;-->
+    <!--<div class="spacing gray"></div>-->
+    <!--<section class="activity culture sources">-->
+        <!--<div class="activityTitle clearfix">-->
+            <!--<h2 class="">-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/left.png" alt="">-->
+                <!--<span>文化点单</span>-->
+                <!--<img src="__TMPL__/public/assets/whgcms/wx/images/right.png" alt="">-->
+                <!--<a class="" href="/wx/culture/index?navid=nav31">-->
+                    <!--<img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt="">-->
+                <!--</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="activityList cultureList" id="cultureList">&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<ul class="mui-table-view mui-grid-view activityList" id="cultureList">-->
+        <!--</ul>-->
+    <!--</section>-->
+    <!--志愿者-->
+    <!--<section class="activity">-->
+    <!--<div class="activityTitle clearfix">-->
+    <!--<h2 class="f-left">志愿者</h2>-->
+    <!--<a class="f-right" href="volunteers.html" style=""><img src="images/moreicon.png" alt=""></a>-->
+    <!--</div>-->
+    <!--<div class="activityList">-->
+    <!--<div class="mui-card">-->
+    <!--<a href="#">-->
+    <!--<div class="mui-card-header mui-card-media" style="height:55.5vw;background-image:url(images/active01.png)"></div>-->
+    <!--<div class="mui-card-content">-->
+    <!--<div class="mui-card-content-inner">-->
+    <!--<h3>定西市举行“保护文化遗产”大型图片联展活动大型图片联展活动</h3>-->
+    <!--<div style="height:0.17rem;overflow: hidden;">-->
+    <!--<span class="source">河西区文化馆</span>-->
+    <!--<span class="time"> 2017-09-12</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="mui-card">-->
+    <!--<a href="#">-->
+    <!--<div class="mui-card-header mui-card-media" style="height:55.5vw;background-image:url(images/active01.png)"></div>-->
+    <!--<div class="mui-card-content">-->
+    <!--<div class="mui-card-content-inner">-->
+    <!--<h3>定西市举行“保护文化遗产”大型图片联展活动</h3>-->
+    <!--<div style="height:0.17rem;overflow: hidden;">-->
+    <!--<span class="source">河西区文化馆</span>-->
+    <!--<span class="time"> 2017-09-12</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</section>-->
+</section>
+<!-- 导航模板1 -->
+<script type="text/x-handlebars-template" id="nav1-tpl">
+    <div class="swiper-slide">
+        <a href="{{url}}">
+            <span class="mui-icon-new"><img style="width: 100%;height: 100%;" src="{{background}}" alt=""></span>
+            <div class="homeNav">{{name}}</div>
+        </a>
+    </div>
+</script>
+<!-- 导航模板2 -->
+<script type="text/x-handlebars-template" id="nav2-tpl">
+
+    <a href="{{url}}" class="clearfix mui-col-xs-6" style="display: inline-block;height: 100%;">
+        <div class="f-left">
+            <h3 class="mui-ellipsis">{{name}}</h3>
+            <p class="mui-ellipsis">{{abstract}}</p>
+        </div>
+        <img class="f-right" src="{{background}}"  alt="">
+    </a>
+
+</script>
+<!-- banner模板 -->
+<script type="text/x-handlebars-template" id="banner-template">
+    {{#each this}}
+    <div class="swiper-slide"><a href="{{murl}}"><img src="{{wx_img}}"></a></div>
+    {{/each}}
+</script>
+<!-- 最新动态模板 -->
+<script type="text/x-handlebars-template" id="news-template">
+    {{#each this}}
+    <li class="clearfix">
+        <a href="/wx/category/read/?id={{id}}" class="clearfix">
+            <div class="f-left">
+                <h3>{{title}}</h3>
+                <div style="margin-top:0.12rem;">
+                    {{#if is_top}}
+                    <span class="zhiding">置顶</span>
+                    <span class="source"> {{venue_name}}</span>
+                    {{else}}
+                    <span class="source" style="margin-left: 0">{{venue_name}}</span>
+                    {{/if}}
+                </div>
+            </div>
+            <img src="{{thumb}}" alt="" class="f-right thumbnail">
+        </a>
+    </li>
+    {{/each}}
+</script>
+<!-- 资源展示模板 -->
+<script type="text/x-handlebars-template" id="sources-template">
+    {{#each this}}
+    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+        <a href="/wx/category/read/?id={{id}}">
+            <img class="mui-media-object" src="{{thumb}}">
+            <div class="mui-media-body">{{title}}</div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<!-- 活动信息模板 -->
+<script type="text/x-handlebars-template" id="activity-template">
+    {{#each this}}
+    <div class="mui-card">
+        <a href="/wx/activity/read?id={{id}}">
+            <div class="mui-card-header mui-card-media"
+                 style="height:1.75rem;background:url({{thumb}}) top center;background-size:100%;"></div>
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>
+                    <h3 style="margin-top:0.2rem;">{{{title}}}</h3>
+                    <div style="height:0.17rem;overflow: hidden;margin-bottom: 0.2rem;text-align: center;">
+                        <div style="display:inline-block;">
+                            <span class="source">{{venue_name}}</span>
+                            <span class="time"> {{format_start_time}} ~ {{format_end_time}}</span>
+                        </div>
+
+                    </div>
+                    <div style="width:1.92rem;height:1px;background:#fff;margin:0 auto;"></div>
+                </div>
+            </div>
+            <img src="__TMPL__/public/assets/whgcms/wx/images/baomingState.png" class="baomingState"
+                 style="display:none;" alt="">
+        </a>
+    </div>
+    {{/each}}
+</script>
+<!-- 文化点单模板 -->
+<script type="text/x-handlebars-template" id="culture-template">
+    {{#each this}}
+    <!--<div class="mui-card">-->
+    <!--<a href="/wx/culture/read/?id={{id}}">-->
+    <!--<div class="mui-card-header mui-card-media"-->
+    <!--style="height:55.5vw;background:url({{thumb}}) top center;background-size:100% 100%;"></div>-->
+    <!--<div class="mui-card-content">-->
+    <!--<div class="mui-card-content-inner">-->
+    <!--<h3>{{title}}</h3>-->
+    <!--<div style="height:0.17rem;overflow: hidden;">-->
+    <!--<span class="source">{{vname}}</span>-->
+    <!--<span class="time"> {{acreate_time}}</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+        <a href="/wx/culture/read/?id={{id}}">
+            <img class="mui-media-object" src="{{thumb}}">
+            <div class="mui-media-body" style="height:18px;">{{title}}</div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<include file="public/footer"/>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/swiper4/swiper.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/index.js?v={$version_list.wx_index_js}"></script>
+</body>
+
+</html>

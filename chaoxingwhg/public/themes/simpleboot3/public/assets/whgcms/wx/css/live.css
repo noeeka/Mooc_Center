@@ -1,0 +1,75 @@
+/*筛选*/
+
+.screenTop {
+    /*display: inline-block;*/
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 0.1rem;
+}
+
+.screenTop li {
+    border-right: 1px solid #959595;
+}
+
+.screenTop li:last-child {
+    border-right: none;
+}
+
+.screenTop li img {
+    width: 0.11rem;
+    height: 0.07rem;
+}
+/*内容*/
+
+.huodong li {
+    position: relative;
+    width: 100%;
+    height: 2.08rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin-bottom: 0.1rem;
+}
+
+.huodong .introduce {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.8rem;
+    background-color: RGBA(0, 0, 0, .5)
+}
+
+.introduce h3 {
+    margin: 0.1rem 0.15rem 0rem;
+    font-size: 0.15rem;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.introduce div {
+    margin: 0 0.15rem;
+    font-size: 0.13rem;
+    color: #FFFFFF;
+}
+
+.introduce div span:nth-child(1) {
+    display: inline-block;
+    margin-right: 0.15rem;
+}
+.liveState{
+    /*display: inline-block;*/
+    /* margin-left: 0.52rem; */
+    border: 1px solid #FFFFFF;
+    border-radius: 0.09rem;
+    padding: 0 0.1rem;
+    /*position: absolute;*/
+    /*bottom: 0.06rem;*/
+    /*right: 0.15rem;*/
+}
+
+#live a{
+    display:block;
+    height:100%;
+}

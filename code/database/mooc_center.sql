@@ -13,7 +13,9 @@ File Encoding         : 65001
 Date: 2018-08-28 16:04:23
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+DROP DATABASE IF EXISTS `mooc_center`;
+CREATE DATABASE `mooc_center` character set utf8;
+USE `mooc_center`;
 
 -- ----------------------------
 -- Table structure for answer

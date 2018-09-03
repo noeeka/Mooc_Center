@@ -1,0 +1,144 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('TskLive/index')}">所有直播</a></li>
+        <li><a href="{:url('TskLive/add')}">添加直播</a></li>
+        <li class="active"><a href="{:url('TskLive/edit')}">编辑直播</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('TskLive/editPost')}">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="120">直播名称<span class="form-required">*</span></th>
+                        <td>
+                            <input class="form-control" type="text" name="live_name"
+                                   id="input-title" required value="{$lives.live_name}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播区域</th>
+                        <td>
+                            <select name="areaid" class="form-control" required
+                                    style="width: 100%;display: inline-block" id="area_id">
+                                {$areas}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播单位</th>
+                        <td>
+                            <select name="venueid" class="form-control" required
+                                    style="width: 100%;display: inline-block" id="venue_id">
+                                <php>
+                                    foreach($venue_inaddress as $v){
+                                    if($v['id'] == $lives['venueid']){
+                                    echo "
+                                    <option value=".$v['id']." selected>".$v['name'].'</option>
+                                    ';
+                                    }else{
+                                    echo 123;
+                                    echo "
+                                    <option value=".$v['id'].">".$v['name'].'</option>
+                                    ';
+                                    }
+                                    }
+                                </php>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播开始时间</th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="start_time"
+                                   value="{:date('Y-m-d H:i:s',$lives.start_time)}"></td>
+                    </tr>
+                    <tr>
+                        <th>直播结束时间</th>
+                        <td><input class="form-control js-bootstrap-datetime" type="text" name="end_time"
+                                   value="{:date('Y-m-d H:i:s',$lives.end_time)}"></td>
+                    </tr>
+                    <tr>
+                        <th>直播图片</th>
+                        <td>
+                            <input type="text" class="form-control" id="input-img" name="img" value="{$lives.img}">
+                            <a href="javascript:uploadOneImage('图片上传','#input-img');">上传图片</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>直播链接</th>
+                        <td>
+                            <input class="form-control " type="text" name="live_link"
+                                   value="{$lives.live_link}"></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>回放链接</th>
+                        <td>
+                            <input class="form-control " type="text" name="playback_link"
+                                   value="{$lives.playback_link}"></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>微信端直播链接</th>
+                        <td>
+                            <input class="form-control " type="text" name="wx_live_link"
+                                   value="{$lives.wx_live_link}"></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>微信端回放链接</th>
+                        <td>
+                            <input class="form-control " type="text" name="wx_playback_link"
+                                   value="{$lives.wx_playback_link}"></td>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="hidden" name="id" value="{$id}">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                        <a class="btn btn-default" href="{:url('TskLive/index')}">{:lang('BACK')}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+
+   /* var venues = {$venues};*/
+    var v_id = "{$lives.venueid}";
+
+    $('#area_id').change(function () {
+        var area_id = $(this).val();
+        console.log(area_id);
+        bulidVenueOptions(area_id);
+    });
+   function bulidVenueOptions(area_id) {
+       $.ajax({
+           url:'/admin/area/area_venues',
+           type:"post",
+           data:{area_id:area_id},
+           dataType:'json',
+           success:function(res){
+               if(res.status==1){
+                   html = "<option value='0'>请选择场馆</option>";
+                   for(var i in res.data){
+                       var venue = res.data[i];
+                       html += "<option value="+venue['id']+">"+venue['name']+"</option>"
+                   }
+                   $('#venue_id').html(html);
+               }
+           }
+       })
+   }
+</script>
+</body>
+</html>

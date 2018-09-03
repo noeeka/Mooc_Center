@@ -1,0 +1,22 @@
+.aboutus .jianjie{
+    margin-top: 0.26rem;
+    padding: 0 15px;
+}
+.aboutus .jianjie h3,.aboutus .contact h3{
+    font-size: 0.16rem;
+    margin-bottom: 0.19rem;
+    font-weight: bold;
+}
+.aboutus .jianjie p{
+    font-size: 0.16rem;
+    color: #454444;
+    text-indent:2em;
+}
+.aboutus .contact{
+    margin-top: 0.32rem;
+    padding: 0 15px;
+}
+.aboutus .contact p{
+    font-size: 0.14rem;
+    color: #969494;
+}

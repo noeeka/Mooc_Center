@@ -1,0 +1,237 @@
+<!--头部信息-->
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='/static/js/webuploader/webuploader.css'>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/my.css'>
+
+<title>我要参加</title>
+<style>
+    .main {
+        max-width: 1920px;
+        min-width: 1200px;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+    .main-content{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .layui-btn{
+        margin-right: 10px;
+    }
+    .webuploader-pick{
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        padding: 0;
+        color: #2F343B;
+    }
+    .main-content form{
+        width: 850px;
+    }
+    #edui1_iframeholder{
+        height: 300px !important;
+    }
+</style>
+</head>
+
+<body>
+<!--导航信息-->
+<include file="public/nav" />
+<div class="main clearfix">
+    <div class="main-content">
+        <form class="layui-form login" action="post" id="ajaxForm4" onsubmit="return false">
+            <div class="layui-form-item">
+                <label class="layui-form-label">作品名称:</label>
+                <div class="layui-input-block">
+                    <input type="text" id="zuopin_name"  placeholder="请填入作品名称" autocomplete="off" class="layui-input" style="width: 290px;">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">封面:</label>
+                <div class="layui-input-block">
+                    <div class='ft_sfzimg' id="ft_sfzimg" style="display: inline-block;width: 170px;height: 109px;background-color: #dcdcdc;margin-right: 20px;;background-repeat: no-repeat;background-size: contain;background-position:center; cursor: pointer;text-align: center;line-height: 109px;color: #2F343B;font-size: 14px;" class="f-left">
+                        点击上传图片
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">作品:</label>
+                <div class="layui-input-block" style="padding-left: 18px;">
+                    <script type="text/plain" id="content" name="content"> </script>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block clearfix">
+                    <input type="hidden" name="ft_sfzimg" id="fengmian" value="">
+                    <button class="layui-btn f-left upload" lay-submit lay-filter="*">提交</button>
+                    <button class="layui-btn f-right" lay-submit lay-filter="*">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- 底部信息-->
+<include file="public/footer" />
+<script src='/static/js/webuploader/webuploader.min.js'></script>
+<script>
+    //全局变量
+    var GV = {
+        HOST: "{$_SERVER['HTTP_HOST']}",
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/"
+    };
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script>
+    $(function () {
+
+
+        editorcontent = new baidu.editor.ui.Editor();
+        editorcontent.render('content');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+
+        $('.btn-cancel-thumbnail').click(function () {
+            $('#thumbnail-preview').attr('src', '__TMPL__/public/assets/images/default-thumbnail.png');
+            $('#thumbnail').val('');
+        });
+
+        var activity_id = {$Request.get.id};
+        $(".upload").click(function () {
+            var zuopin_name = $('#zuopin_name').val();
+            var thumb=$("#fengmian").val();
+            var content=editorcontent.getContent();
+            if(zuopin_name.length <=0){
+                alert("作品名称不能为空");
+                return false;
+            }
+            if(thumb.length <=0){
+                alert("封面不能为空");
+                return false;
+            }
+            if(content.length<=0){
+                alert("作品内容不能为空");
+                return false;
+            }
+            request({
+                url: '/api/Productcollect/upload_production',
+                data: {
+                    zuopin_name: zuopin_name,
+                    thumb: thumb,
+                    content: content,
+                    activity_id:activity_id
+                },
+                dataType: 'json',
+                type: 'post',
+                success: function(result) {
+                    if (result.status == 1) {
+                        getdialog('提交成功','/portal/product_collect/read?id='+activity_id+'&nid=49');
+                    } else {
+                        var regex = /^1000[4-9]$/;
+                        if (regex.test(result.code)) {
+                            getdialog('未登录，请先登录方可参加！');
+                        } else{
+                            if(result.code==13004){
+                                getdialog('未认证，请先实名认证后方可参加！', '/portal/my/index/');
+                            }else{
+                                getdialog('提交失败！');
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }, true);
+        })
+
+
+    });
+
+    //上传封面图
+    var ftSfzimgUploader = new uploader(
+        '#ft_sfzimg',
+        function (file, res) {
+            if (res.code == 1) {
+                $('#ft_sfzimg').css({'background-image': 'url(' + res.data.preview_url + ')','background-size': '100% 100%'});
+                $("input[name=ft_sfzimg]").val(res.data.filepath);
+                $("#ft_sfzimg>.webuploader-pick>span").css("display","none");
+                $("#bd_sfzimg>.webuploader-pick>span").css("display","none");
+                $('.webuploader-pick').text('');
+            } else {
+                alert("上传图片失败了")
+            }
+            this.reset();
+        },
+        function (res) {
+            alert('上传图片失败了');
+        },
+        null,
+        null,
+        function(){
+            $('.webuploader-pick').text('');
+            $('#ft_sfzimg').css({'background-image':"url(/themes/simpleboot3/public/assets/whgcms/wx/images/load.gif)",'background-size': '10%,10%', 'background-repeat': 'no-repeat', 'background-position': 'center center'});
+        }
+    );
+    function uploader(id, successFun, errorFun, uploadId, previewId, fileQueuedFun) {
+        var uploader = {};
+        var auto = uploadId == undefined ? true : false;
+        if (uploadId != undefined) {
+            $(uploadId).click(function () {
+                uploader.webuploder.upload();
+            });
+        }
+        uploader.webuploder = WebUploader.create({
+            pick: {
+                id: id,
+                label: '',
+                multiple: false,
+            },
+            timeout: 0,
+            formData: {
+                app: 'portal',
+                filetype: 'image'
+            },
+            accept: {
+                extensions: 'png,jpg'
+            },
+            swf: '/static/js/webuploader/Uploader.swf',
+            chunked: true,//开启分片
+            auto: auto,
+            chunkSize: 2 * 1024 * 1024,// 单位B
+            compress: false,
+            server: "/user/asset/webuploader?_ajax=1",
+            // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
+            disableGlobalDnd: true,
+            fileNumLimit: 1,
+            runtimeOrder: 'html5,flash',
+            //fileSizeLimit: 200 * 1024 * 1024,    // 200 M
+            fileSingleSizeLimit: 200 * 1024 * 1024      // 单位B
+        });
+        uploader.webuploder.on('uploadSuccess', successFun);
+        uploader.webuploder.on('uploadError', errorFun);
+        uploader.webuploder.on('fileQueued', fileQueuedFun);
+        if (previewId != undefined) {
+            uploader.webuploder.on('fileQueued', function (file) {
+                uploader.webuploder.makeThumb(file, function (error, src) {   //webuploader方法
+                    if (error) {
+                        ('图片预览失败');
+                    } else {
+                        $(previewId).attr('src', src);
+                    }
+                });
+            });
+        }
+    }
+
+
+</script>
+
+</body>
+
+</html>

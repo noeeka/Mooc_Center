@@ -1,0 +1,63 @@
+<include file="public@header" />
+        </head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('venue_comments/index')}">所有评论</a></li>
+        <li class="active"><a>修改回复</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('venue_comments/editDo')}">
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">作品标题<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-link_name" value="{$array.title}"  readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_content" class="col-sm-2 control-label">评论人<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-link_content"  value="{$commer.user_nickname}"  readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_reply_content" class="col-sm-2 control-label">评论<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <textarea style="width: 480px;" name="comment">{$commer.comment}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-link_reply_content" class="col-sm-2 control-label">我的回复<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <textarea name="reply" style="width: 480px;">{$array.comment}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  for="input-link_reply_content"  class="col-sm-2 control-label">{:lang('STATUS')}</label>
+            <div class="col-md-6 col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="status" <if condition="$array.status eq 1">checked</if> value="1"> 显示
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="status" <if condition="$array.status eq 0">checked</if> value="0"> 隐藏
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id" value="{$array.id}">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="{:url('venue_comments/index')}">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

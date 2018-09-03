@@ -1,0 +1,68 @@
+<include file="public/header">
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx2/css/venueinfoYuyue.css?v={$version_list.wx_venueinfo_css}">
+
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader">
+    <a href="/wx/" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">预约详情</h3>
+</div>
+<section style="margin-top: 0.43rem">
+    <div class="yuyueDate">
+        <div class="title ym" ></div>
+        <ul class="datelist clearfix">
+
+        </ul>
+        <p class="zhuyi">【注意】：灰色点是不可预约时间，红色点是可预约时间</p>
+    </div>
+    <div class="yuyueTime" style="margin-bottom: 0.65rem;">
+        <h3>预约时间段</h3>
+        <div class="times amtime clearfix">
+            <p class="f-left">上午</p>
+            <ul class="f-left am">
+
+            </ul>
+        </div>
+        <div class="times pmtime clearfix">
+            <p class="f-left">下午</p>
+            <ul class="f-left pm">
+
+            </ul>
+        </div>
+        <div class="con">
+            <div class="mui-row" style="height: 0.52rem;line-height: 0.52rem;text-align: center;border-bottom: 1px solid #DCDCDC;">
+                <div class='mui-col-xs-3'>时段1</div>
+                <div class='mui-col-xs-6'>09:00 ～ 12:00</div>
+                <div class='mui-col-xs-3'>
+                    <span class="btn" style="display:inline-block;border-radius:0.2rem;width: 0.68rem;height: 0.26rem;text-align: center;line-height: 0.26rem;background: #A0A0A0;color: #fff;font-size: 0.12rem;">无法预约</span>
+                </div>
+            </div>
+            <div class="mui-row" style="height: 0.52rem;line-height: 0.52rem;text-align: center;border-bottom: 1px solid #DCDCDC;">
+                <div class='mui-col-xs-3'>时段2</div>
+                <div class='mui-col-xs-6'>09:00 ～ 12:00</div>
+                <div class='mui-col-xs-3'>
+                    <span class="btn" style="display:inline-block;border-radius:0.2rem;width: 0.68rem;height: 0.26rem;text-align: center;line-height: 0.26rem;background: #A0A0A0;color: #fff;font-size: 0.12rem;">无法预约</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 0.1rem 0;position: fixed;bottom: 0rem;left: 0rem;width: 100%;text-align:  center;background: #fff;">
+        <button class="quedingbtn zts-bg" style="">确定预约</button>
+    </div>
+</section>
+<script>
+    var id = {$Think.get.id};
+</script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib//layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/venueinfoYuyue.js?v={$version_list.wx_venueinfoYuyue_js}"></script>
+
+</body>
+</html>

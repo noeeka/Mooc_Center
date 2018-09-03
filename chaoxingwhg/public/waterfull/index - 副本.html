@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery响应式Pinterest样式无限动态加载图片瀑布流特效|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<style>
+	* { margin:0; }
+	#div1 { margin:auto; position:relative; }
+	.box { float:left; padding:10px; border:1px solid #ccc; background:#f7f7f7; box-shadow:0 0 8px #ccc; }
+	.box:hover { box-shadow:0 0 10px #999; }
+	.box img { width:200px; }
+	p { width:200px; }
+	.htmleaf-content p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.65em;
+}
+	</style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<header class="htmleaf-header">
+			<h1>jQuery响应式Pinterest样式无限动态加载图片瀑布流特效 <span>A Dynaimc Pinterest-Style Grid Layout with Endless Scrolling</span></h1>
+			<div class="htmleaf-links">
+				<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
+				<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/jQuery/pubuliuchajian/201506061981.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
+			</div>
+		</header>
+		<div class="htmleaf-content bgcolor-3">
+			<div id="div1">
+			    <div class="box">
+					<img src="img/01.jpg" alt="">
+					<p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。立刻撒旦解放了。十大科技</p>
+				</div>
+			    <div class="box"><img src="img/02.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/03.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。立刻撒</p>
+				</div>
+			    <div class="box"><img src="img/04.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。立刻撒旦解放了。十大科技大家好，社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/05.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。立刻撒旦解放了大家好，社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/06.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。家好，社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/07.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。立刻撒旦大科技大家好，社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/01.jpg" alt=""><p style="width: 200px;">大家好，社会上离开时间的浪费，是快递放假了看。立刻社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/02.jpg" alt=""><p style="width: 200px;">递放假了看。立刻撒旦解放了。十大科技大家好，社会上离开时间的浪费，是快递放假了看。</p>
+				</div>
+			    <div class="box"><img src="img/03.jpg" alt=""></div>
+			    <div class="box"><img src="img/04.jpg" alt=""></div>
+			    <div class="box"><img src="img/05.jpg" alt=""></div>
+			    <div class="box"><img src="img/06.jpg" alt=""></div>
+			    <div class="box"><img src="img/07.jpg" alt=""></div>
+			    <div class="box"><img src="img/01.jpg" alt=""></div>
+			    <div class="box"><img src="img/02.jpg" alt=""></div>
+			    <div class="box"><img src="img/03.jpg" alt=""></div>
+			    <div class="box"><img src="img/04.jpg" alt=""></div>
+			    <div class="box"><img src="img/05.jpg" alt=""></div>
+			    <div class="box"><img src="img/06.jpg" alt=""></div>
+			    <div class="box"><img src="img/07.jpg" alt=""></div>
+			    <div class="box"><img src="img/01.jpg" alt=""></div>
+			    <div class="box"><img src="img/02.jpg" alt=""></div>
+			    <div class="box"><img src="img/03.jpg" alt=""></div>
+			    <div class="box"><img src="img/04.jpg" alt=""></div>
+			    <div class="box"><img src="img/05.jpg" alt=""></div>
+			    <div class="box"><img src="img/06.jpg" alt=""></div>
+			    <div class="box"><img src="img/07.jpg" alt=""></div>
+			    <div class="box"><img src="img/01.jpg" alt=""></div>
+			    <div class="box"><img src="img/02.jpg" alt=""></div>
+			    <div class="box"><img src="img/03.jpg" alt=""></div>
+			    <div class="box"><img src="img/04.jpg" alt=""></div>
+			    <div class="box"><img src="img/05.jpg" alt=""></div>
+			    <div class="box"><img src="img/06.jpg" alt=""></div>
+			    <div class="box"><img src="img/07.jpg" alt=""></div>
+			</div>
+		</div>
+		<div class="related">
+		    <h3>如果你喜欢这个插件，那么你可能也喜欢:</h3>
+		    <a href="http://www.htmleaf.com/jQuery/pubuliuchajian/201505081796.html">
+			  <img src="related/1.jpg" width="300" alt="仿Pinterest超酷jQuery瀑布流动态网格布局插件"/>
+			  <h3>仿Pinterest超酷jQuery瀑布流动态网格布局插件</h3>
+			</a>
+			<a href="http://www.htmleaf.com/jQuery/pubuliuchajian/201505221883.html">
+			  <img src="related/2.jpg" width="300" alt="高度可定制的jQuery瀑布流网格布局插件"/>
+			  <h3>高度可定制的jQuery瀑布流网格布局插件</h3>
+			</a>
+		</div>
+	</div>
+	
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery.waterfall.js"></script>
+	<script>
+	$("#div1").waterfall({
+	    itemClass: ".box",
+	    minColCount: 2,
+	    spacingHeight: 10,
+	    resizeable: true,
+	    ajaxCallback: function(success, end) {
+	        var data = {"data": [
+	            { "src": "03.jpg" }, { "src": "04.jpg" }, { "src": "02.jpg" }, { "src": "05.jpg" }, { "src": "01.jpg" }, { "src": "06.jpg" }
+	        ]};
+	        var str = "";
+	        var templ = '<div class="box" style="opacity:0;filter:alpha(opacity=0);"><div class="pic"><img src="img/{{src}}" /><div></div></div>'
+
+	        for(var i = 0; i < data.data.length; i++) {
+	            str += templ.replace("{{src}}", data.data[i].src);
+	        }
+	        $(str).appendTo($("#div1"));
+	        success();
+	        end();
+	    }
+	});
+	</script>
+</body>
+</html>

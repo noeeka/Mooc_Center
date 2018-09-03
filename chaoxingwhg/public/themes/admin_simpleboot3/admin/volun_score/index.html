@@ -1,0 +1,81 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('VolunScore/index')}">活跃度管理</a></li>
+    </ul>
+    <form class="well form-inline margin-top-20" method="post" action="{:url('admin/VolunScore/index')}">
+        关键字：
+        <input class="form-control" type="text" name="keyword" style="width: 200px;" value="{:input('request.keyword')}"
+               placeholder="姓名/性别/活跃度">
+        <input type="submit" class="btn btn-primary" value="搜索"/>
+        <a class="btn btn-danger" href="{:url('admin/VolunScore/index')}">清空</a>
+    </form>
+    <form method="post" class="js-ajax-form margin-top-20" >
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunScore/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunScore/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+        <php>$status=array("1"=>lang('DISPLAY'),"0"=>lang('HIDDEN'));</php>
+
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x"
+                                             data-checklist="js-check-x"></label></th>
+                <th width="60">排名</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>活跃度</th>
+                <th width="90">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo" >
+                <tr>
+                    <td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                               value="{$vo.id}"></td>
+                    <td>{$key+1}</td>
+                    <td>{$vo.realname}</td>
+                    <td><?php if($vo['sex']==0){echo '保密';}elseif($vo['sex']==1){echo '男';}else{echo '女';}?></td>
+                    <td>{$vo.score}</td>
+                    <td>
+                        <a href="{:url('VolunScore/info',array('id'=>$vo['id']))}">查看</a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="16">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th width="60">排名</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>活跃度</th>
+                <th width="90">{:lang('ACTIONS')}</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunScore/toggle',array('display'=>1))}" data-subcheck="true">{:lang('DISPLAY')}
+            </button>
+            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('VolunScore/toggle',array('hide'=>1))}" data-subcheck="true">{:lang('HIDE')}
+            </button>
+        </div>
+        <div class="pagination">{$page}</div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

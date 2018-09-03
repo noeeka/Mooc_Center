@@ -1,0 +1,122 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('WeixinHomePageContent/index')}">内容管理</a></li>
+        <li><a href="{:url('WeixinHomePageContent/add')}">添加模块</a></li>
+    <!--    <li><a href="{:url('WeixinHomePageContent/config')}">编辑基本配置</a></li>-->
+    </ul>
+    <form method="post" class="js-ajax-form" action="{:url('WeixinHomePageContent/listOrder')}">
+        <div class="table-actions">
+            <button type="submit" class="btn btn-primary btn-sm js-ajax-submit">排序</button>
+            <button class="btn btn-info btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('WeixinHomePageContent/toggle',array('status'=>1))}" data-subcheck="true">显示
+            </button>
+            <button class="btn btn-default btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('WeixinHomePageContent/toggle',array('status'=>0))}" data-subcheck="true">隐藏
+            </button>
+        </div>
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="15">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th width="50">排序</th>
+                <th width="50">ID</th>
+                <th>标题</th>
+                <th>模板名</th>
+                <th>资源名</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th width="180">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              <foreach name="contents" item="vo">
+                  <tr>
+                      <td>
+                          <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                                 value="{$vo.id}" title="ID:{$vo.id}">
+                      </td>
+                      <td>
+                          <input name="list_orders[{$vo.id}]" type="text" size="3" value="{$vo.list_order}" class="input-order" autocomplete="off">
+                      </td>
+                      <td>
+                          {$vo.id}
+                      </td>
+                      <td>
+                          {$vo.title}
+                      </td>
+                      <td>
+                          {$vo.tpl_name}
+                      </td>
+                      <td>
+                          {$vo.resource_name}
+                      </td>
+                      <td>
+                          <notempty name="vo.status">
+                              显示
+                              <else/>
+                              隐藏
+                          </notempty>
+                      </td>
+                      <td>
+                          {:date('Y-m-d H:i',$vo['create_time'])}
+                      </td>
+                      <td>
+                          {:date('Y-m-d H:i',$vo['update_time'])}
+                      </td>
+                      <td width="120">
+                          <a href="{:url('WeixinHomePageContent/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                          <a href="{:url('WeixinHomePageContent/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
+                      </td>
+                  </tr>
+              </foreach>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th width="15">
+                    <label>
+                        <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                    </label>
+                </th>
+                <th width="50">排序</th>
+                <th width="50">ID</th>
+                <th>标题</th>
+                <th>模板名</th>
+                <th>资源名</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th width="180">操作</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="table-actions">
+            <button type="submit" class="btn btn-primary btn-sm js-ajax-submit">排序</button>
+            <button class="btn btn-info btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('WeixinHomePageContent/toggle',array('status'=>1))}" data-subcheck="true">显示
+            </button>
+            <button class="btn btn-default btn-sm js-ajax-submit" type="submit"
+                    data-action="{:url('WeixinHomePageContent/toggle',array('status'=>0))}" data-subcheck="true">隐藏
+            </button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+    $('input.js-check-all').click(function () {
+        if ($(this).prop('checked')) {
+            $('.js-check,.js-check-all').prop('checked', true);
+        } else {
+            $('.js-check,.js-check-all').prop('checked', false);
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:;">所有馆务</a></li>
+        <li><a href="{:url('LibAffairs/add')}">添加馆务</a></li>
+    </ul>
+    <form class="js-ajax-form" action="" method="post">
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="50">ID</th>
+                <th>标题</th>
+                <th width="65">点击量</th>
+                <th width="130">更新时间</th>
+                <th width="130">发布时间</th>
+                <th width="70">状态</th>
+                <th width="90">操作</th>
+            </tr>
+            </thead>
+            <foreach name="articles" item="vo">
+                <tr>
+                    <td><b>{$vo.id}</b></td>
+                    <td>{$vo.post_title}</td>
+                    <td>{$vo.post_hits|default=0}</td>
+                    <td>
+                        <notempty name="vo.update_time">
+                            {:date('Y-m-d H:i',$vo['update_time'])}
+                        </notempty>
+
+                    </td>
+                    <td>
+                        <empty name="vo.published_time">
+                            未发布
+                            <else/>
+                            {:date('Y-m-d H:i',$vo['published_time'])}
+                        </empty>
+
+                    </td>
+                    <td>
+                        <notempty name="vo.post_status">
+                            <a data-toggle="tooltip" title="已发布"><i class="fa fa-check"></i></a>
+                            <else/>
+                            <a data-toggle="tooltip" title="未发布"><i class="fa fa-close"></i></a>
+                        </notempty>
+                        <!--<notempty name="vo.recommended">-->
+                            <!--<a data-toggle="tooltip" title="已推荐"><i class="fa fa-thumbs-up"></i></a>-->
+                            <!--<else/>-->
+                            <!--<a data-toggle="tooltip" title="未推荐"><i class="fa fa-thumbs-down"></i></a>-->
+                        <!--</notempty>-->
+                    </td>
+                    <td>
+                        <a href="{:url('LibAffairs/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('LibAffairs/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
+                    </td>
+                </tr>
+            </foreach>
+            <tfoot>
+            <tr>
+                <th width="50">ID</th>
+                <th>标题</th>
+                <th width="65">点击量</th>
+                <th width="130">更新时间</th>
+                <th width="130">发布时间</th>
+                <th width="70">状态</th>
+                <th width="90">操作</th>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+    function reloadPage(win) {
+        win.location.reload();
+    }
+
+    $(function () {
+        setCookie("refersh_time", 0);
+        Wind.use('ajaxForm', 'artDialog', 'iframeTools', function () {
+            //批量复制
+            $('.js-articles-copy').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选馆务，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=copy&ids=" + ids, {
+                    title: "批量复制",
+                    width: "300px"
+                });
+            });
+            //批量移动
+            $('.js-articles-move').click(function (e) {
+                var ids = [];
+                $("input[name='ids[]']").each(function () {
+                    if ($(this).is(':checked')) {
+                        ids.push($(this).val());
+                    }
+                });
+
+                if (ids.length == 0) {
+                    art.dialog.through({
+                        id: 'error',
+                        icon: 'error',
+                        content: '您没有勾选馆务，无法进行操作！',
+                        cancelVal: '关闭',
+                        cancel: true
+                    });
+                    return false;
+                }
+
+                ids = ids.join(',');
+                art.dialog.open("__ROOT__/index.php?g=portal&m=AdminArticle&a=move&old_term_id={$term.term_id|default=0}&ids=" + ids, {
+                    title: "批量移动",
+                    width: "300px"
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<include file="public/header"/>
+
+<!--<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/venue.css?v={$version_list.wx_venue_css}">-->
+<link rel='stylesheet' type='text/css'
+      href='__TMPL__/public/assets/whgcms/wx/css/reports.css?v={$version_list.wx_reports_css}'>
+<title>活动报道</title>
+</head>
+<body>
+<div class="returnHeader" style="border-bottom: 1px solid #D2D2D2;">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">活动报道</h3>
+</div>
+<section style="margin-top: 0.43rem;">
+    <div class="infContent" style="margin-top: 0.13rem;margin-bottom: 50px;">
+        <div class="mould3">
+            <ul class="mould3-list">
+            </ul>
+        </div>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/inscroll/iscroll.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script type="text/template" id="item">
+    {{#each list}}
+        <li class="clearfix">
+            <a href="/wx/volunteer/reportsinfo?id={{id}}">
+                <div class="leftContent">
+                    <h3>{{post_title}}</h3>
+                    <div style="margin-top:0.15rem;">
+                        <span style="display: inline-block;" class="source">{{name}}</span>
+                        <span style="display: inline-block;" class="time">{{date published_time}}</span>
+                    </div>
+                </div>
+                <div style="width: 1.42rem;height: 100%;">
+                    <img src="{{thumb}}" alt="" class="thumbnail">
+                </div>
+            </a>
+        </li>
+    {{/each}}
+</script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/reports.js?v={$version_list.wx_reports_js}"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信息</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="lib/layui/css/layui.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/personalstudent.css">
+<link rel="stylesheet" href="css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+    <header-all></header-all>
+    <div class="personal main">
+    	<div class="personal-safe">
+        	<div class="personal-content">
+            	<div class="user-main">
+                	<img class="user-img" src="images/xstx.png">
+                    <div class="user-name" v-text="userinfo.nick_name"></div>
+                    <div class="user-info">
+                    	<span>性别：<span v-text="userinfo.sex"></span></span>
+                        <span>地区：<span v-text="userinfo.area"></span></span>
+                        <span>关注：<span v-text="userinfo.follow_num"></span></span>
+                        <span>粉丝：<span v-text="userinfo.Fans_num"></span></span>
+                    </div>
+                    <div class="follow backgroundcolor clearfix" v-bind:class="{'ygz':gz == '已关注'}" @click="gzfun" v-text="gz"></div>
+                </div>
+                <div class="study-main">
+                	<div class="study-tit bordercolor">最近学习</div>
+                    <ul class="study-content clearfix">
+                		<li class="f-left" v-for="(item,index) in classes">
+                        	<a :href="read.html?id">
+                            	<div class="img_b">
+                                	<img src="images/index2.jpg">
+                                </div>
+                                <p class="tit" v-text="item.course_title"></p>
+                                <p class="date" v-text="item.end_time"></p>
+                            </a>
+                        </li>
+                	</ul>
+                    <!-- <div class="study-more-b">
+                    	<span class="study-more fontcolor">加载更多</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer-all></footer-all>
+</div>
+</body>
+<script src="/mooc/lib/jquery-3.2.1.min.js"></script>
+<script src="/mooc/lib/date.js"></script>
+<script src="/mooc/lib/vue2.js"></script>
+<script src="/mooc/js/header.js"></script>
+<script src="/mooc/js/publice.js"></script>
+<script src="/mooc/js/personalstudent.js"></script>
+</html>

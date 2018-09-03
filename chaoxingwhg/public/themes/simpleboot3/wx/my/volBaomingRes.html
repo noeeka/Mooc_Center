@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>报名结果</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/volPartakeHistory.css?v={$version_list.wx_volPartakeHistory_css}">
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">报名结果</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <!--<div class="classification">-->
+        <!--<ul class="screenTop clearfix ">-->
+            <!--<li class="baoming f-left mui-col-xs-4 mui-text-center">-->
+                <!--共参加活动：20场-->
+            <!--</li>-->
+            <!--<li class="baoming f-left mui-col-xs-4 mui-text-center">-->
+                <!--共获得积分：82分-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <div class="list">
+        <ul class="mui-table-view" id="baomingList">
+            <!--<li class="mui-table-view-cell">-->
+                <!--<a href="#" class="mui-navigate-right">-->
+                    <!--<span>活动名称：</span>-->
+                    <!--<span class="mui-ex">锦林街道文化魅力锦林活动</span>-->
+                <!--</a>-->
+                <!--<div class="main">-->
+                    <!--<div>报名日期：2018.2.28 -2018.3.2</div>-->
+                    <!--<div style="margin-top: 0.03rem">活动日期：2018.3.10 - 2018.3.15</div>-->
+                <!--</div>-->
+                <!--<div class="clearfix">-->
+                    <!--<a class="seeBtn f-right" href="#">查看</a>-->
+                    <!--<span class="status f-right">已通过</span>-->
+                <!--</div>-->
+            <!--</li>-->
+
+        </ul>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/volBaomingRes.js?v={$version_list.wx_volBaomingRes_js}'></script>
+<script type="text/template" id="baoming-item">
+    {{#each this}}
+    <li class="mui-table-view-cell">
+        <a href="/wx/volunteer/zhaomuinfo?id={{activity_id}}" class="mui-navigate-right">
+            <span>活动名称：</span>
+            <span class="mui-ex">{{title}}</span>
+        </a>
+        <div class="main">
+            <div>报名日期：{{created_at}}</div>
+            <div style="margin-top: 0.03rem">活动日期：{{start_time}} - {{end_time}}</div>
+        </div>
+        <div class="clearfix">
+            <a class="seeBtn f-right" href="/wx/volunteer/zhaomuinfo?id={{activity_id}}">查看</a>
+            <span class="status f-right"></span>
+        </div>
+    </li>
+    {{/each}}
+</script>
+</body>
+</html>

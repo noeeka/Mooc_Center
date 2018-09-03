@@ -1,0 +1,170 @@
+body {
+    background-color: #f5f6f8;
+}
+
+
+.main {
+    max-width: 1920px;
+    height: auto;
+    padding-top: 49px;
+    background-image: url(../images/bg.png);
+    background-position: top center;
+    background-size: 100% 1006px;
+    background-repeat: no-repeat;
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 左 */
+
+.mian-left {
+    width: 210px;
+    height: 100%;
+}
+
+.program {
+    display: inline-block;
+    width: 208px;
+    height: 58px;
+    background-color: #F3F6F9;
+    color: #494949;
+    font-size: 14px;
+    border: 1px solid #80848B;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.program span {
+    display: inline-block;
+    line-height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 右 */
+
+.main-right {
+    width: 930px;
+    height: 100%;
+}
+
+.tab1 {
+    width: 100%;
+    height: 60px;
+}
+
+.tab1 li {
+    margin-top: 10px;
+    margin-right: 28px;
+    width: 90px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    float: left;
+    color: #2F343B;
+    border: 1px solid #2F343B;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.tab1 .active1 {
+    background-color: #2F343B;
+    color: #FFFFFF;
+}
+
+.list li {
+    width: 302px;
+    height: 260px;
+    margin-left: 12px;
+    margin-bottom: 11px;
+    float: left;
+    overflow: hidden;
+}
+
+.list li:nth-child(3n+1) {
+    margin-left: 0;
+}
+
+
+.list li:hover {
+    box-shadow: 0px 10px 20px -7px #535f6f;
+}
+
+.list li .image {
+    width: 100%;
+    height: 170px;
+}
+
+.list li a {
+    text-decoration: none;
+}
+
+.list li .text {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    background-color: #F9FAFD;
+    padding-bottom: 9px;
+}
+
+.list li h3 {
+    width: 262px;
+    height: 18px;
+    margin: 20px 21px 20px;
+    color: #4B5562;
+    font-size: 18px;
+    line-height: 18px;
+    overflow: hidden;
+}
+
+.list .number {
+    padding: 0 19px;
+    height: 21px;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 19px;
+}
+
+.list .number img {
+    width: 21px;
+    height: 19px;
+    margin-right: 7px;
+}
+
+.list .number span {
+    height: 21px;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 12px;
+    color: #A0A4AA;
+    line-height: 19px;
+}

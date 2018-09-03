@@ -1,0 +1,150 @@
+.news-title {
+    height: 0.44rem;
+    line-height: 0.44rem;
+    /*position: relative;*/
+    border-bottom: 1px solid #616364;
+}
+
+.search-icon {
+    width: 0.16rem;
+    height: 0.16rem;
+    background: url("../images/newsSearch.png") no-repeat;
+    background-repeat: round;
+    position: absolute;
+    left: 0.08rem;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.news-title ul li {
+    font-size: 0.16rem;
+    color: #616364;
+}
+
+.news-title ul li a.active {
+    display: inline-block;
+    line-height: 0.4rem;
+    border-bottom: 0.02rem solid #1B1A1F;
+    font-weight: bold;
+}
+
+
+/*通知公告\文化咨询*/
+
+.mui-table-view:before {
+    height: 0px;
+}
+
+.mui-table-view-cell {
+    padding: 0.16rem 0.16rem;
+}
+
+.mui-table-view .mui-media-object {
+    line-height: 1.2rem;
+    max-width: 1.2rem;
+    min-width: 1.2rem;
+    height: 0.8rem;
+}
+
+.mui-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+    font-size: 0.14rem;
+    /*line-height: 0.16rem;*/
+    margin-bottom: 0.22rem;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+    /*white-space:normal;*/
+}
+
+.mui-table-view-cell p {
+    margin-bottom: 0.21rem;
+}
+
+.eye {
+    width: 0.12rem;
+    height: 0.07rem;
+    margin-right: 0.05rem;
+}
+
+.mui-row {
+    color: #81858F;
+    /*margin-top: 0.26rem;*/
+}
+
+.mui-row p,
+p.time,
+.browse {
+    color: #81858F;
+}
+
+.mui-media-body {
+    height: 0.8rem;
+}
+
+.mui-table-view-cell:after {
+    right: 15px;
+}
+
+.news-information .mui-card {
+    margin: 0px;
+    margin-top: 0.1rem;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.news-information .mui-card:first-child {
+    margin-top: 0;
+}
+
+
+/*党建工作*/
+
+.news-partyBuild .mui-card {
+    margin: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.news-partyBuild .mui-card .line {
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 1px;
+    background-color: #F0F2F6;
+}
+
+.news-partyBuild .mui-card .title {
+    /*overflow:hidden;*/
+    /*text-overflow:ellipsis;*/
+    /*display:-webkit-box;*/
+    /*-webkit-box-orient:vertical;*/
+    /*-webkit-line-clamp:1;*/
+    /*white-space:normal;*/
+}
+
+.news-partyBuild .carBody {
+    padding: 0 8px 0 15px;
+}
+
+.news-partyBuild .carBody img {
+    padding-right: 7px;
+}
+
+.news-partyBuild .mui-card-content-inner p,
+.news-partyBuild .browse {
+    font-size: 0.12rem;
+    margin-bottom: 0;
+}
+
+.news-item {
+    display: none;
+}
+
+.news-notice.news-item {
+    display: block;
+}

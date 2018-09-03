@@ -1,0 +1,170 @@
+.main {
+    max-width: 1920px;
+    height: auto;
+    padding-top: 40px;
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 600px;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *************内容**************** */
+
+h3 {
+    font-size: 24px;
+    color: #1C2438;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 439px;
+}
+
+.layui-form-label {
+    width: 110px;
+    font-size: 16px;
+    color: #2F343B;
+}
+
+.layui-input-block {
+    margin-left: 139px;
+}
+
+.layui-input,
+.layui-select,
+.layui-textarea {
+    border: 1px solid #e6e6e6;
+    width: 315px;
+    background-color: transparent;
+}
+
+.layui-form-radio i {
+    font-size: 16px;
+}
+
+.layui-form-radio span {
+    font-size: 16px;
+}
+
+form {
+    width: 716px;
+    margin: 0 auto;
+}
+
+.layui-form-select .layui-edge {
+    right: 265px;
+}
+
+.layui-textarea {
+    width: 497px;
+}
+
+.layui-btn {
+    width: 110px;
+    height: 39px;
+    border-radius: 19px;
+    padding: 0;
+    margin-right: 100px;
+    margin-top: 24px;
+    margin-bottom: 34px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.layui-form-radio i:hover,
+.layui-form-radioed i {
+    color: #F40556;
+}
+
+.layui-btn-primary:hover {
+    border-color: #ACACAC;
+    color: #FFFFFF;
+}
+
+.hide {
+    display: none;
+}
+
+.layui-form-select dl dd.layui-this {
+    background-color: #2F343B !important;
+}
+
+.upload {
+    position: relative;
+}
+
+.upload strong {
+    display: block;
+    position: absolute;
+    width: 56px;
+    height: 16px;
+    left: 35%;
+    bottom: 15%;
+    line-height: 16px;
+}
+
+.layui-form-select dl {
+    min-width: 315px!important;
+    left: 10px!important;
+}
+
+
+
+
+
+
+
+
+/*
+.layui-form-item {
+    margin-bottom: 0!important;
+}
+*/
+
+.prompt {
+    display: inline-block;
+    margin-top: 10px;
+    /*margin-left: 25px;*/
+    color: rgb(244, 5, 86);
+    font-size: 12px;
+}

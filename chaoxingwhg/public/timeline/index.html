@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>iScroll demo: Event Passthrough</title>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src=".js/demoUtils.js"></script>
+
+<script type="text/javascript">
+    var  page={};
+    var cricle_height=30;
+    $(function(){
+        page.width=$(window).width();
+        page.height=$(window).height();
+
+        console.log(page.width,page.height);
+
+
+        $('#wrapper').css('height',page.height+'px');
+        $('#scroller li').css('height',page.height+'px');
+        $('.box .part1').css('height',(page.height-cricle_height)/2+'px');
+        $('.box .part3').css('height',(page.height-cricle_height)/2+'px');
+
+    });
+
+var myScroll;
+
+var position;
+
+var timer;
+
+function updatePosition () {
+	position.innerHTML = this.x>>0;
+	console.log(this);
+}
+
+function loaded () {
+	position = document.getElementById('position');
+
+	myScroll = new IScroll('#wrapper', {
+        eventPassthrough: true,
+        scrollX: true,
+        scrollY: false,
+        preventDefault: false,
+        indicators: [{
+            el: document.getElementById('starfield1'),
+            resize: false,
+            ignoreBoundaries: true,
+            speedRatioY: 0.4
+        }, {
+            el: document.getElementById('starfield2'),
+            resize: false,
+            ignoreBoundaries: true,
+            speedRatioY: 0.2
+        }]
+    });
+	myScroll.scrollTo(-4800,0, 10000);
+	
+	myScroll.on('beforeScrollStart',function(){
+		console.log('beforeScrollStart');
+			
+	});
+	
+	myScroll.on('scrollCancel',function(){
+		console.log('scrollCancel');
+
+
+			
+	});
+	
+	myScroll.on('scrollStart',function(){
+		console.log('scrollStart');
+        window.clearTimeout(timer);//去掉定时器
+			
+	});
+	
+//	myScroll.on('scroll',updatePosition);
+
+//	myScroll.on('scrollEnd',updatePosition);
+
+    myScroll.on('scroll',function(){
+        console.log('scroll');
+
+    });
+    myScroll.on('scrollEnd',function(){
+        console.log('scrollEnd');
+        timer=setTimeout(autoMove,5000);
+
+    });
+
+	
+	myScroll.on('flick',function(){
+		console.log('flick');
+		timer=setTimeout(autoMove,5000);
+			
+	});
+	
+	
+	
+}
+
+function autoMove(){
+	var	x=myScroll.x;
+    console.log('X=',x);
+    var len=-3764;
+    if(x>len/2){
+        //myScroll.scrollTo(len,0, 10000);
+    }else{
+        //myScroll.scrollTo(0,0, 10000);
+    }
+}
+
+
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
+	capture: false,
+	passive: false
+} : false);
+
+</script>
+
+<style type="text/css">
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: ubuntu, helvetica, arial;
+}
+
+#header {
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	background: #CD235C;
+	padding: 0;
+	color: #eee;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+    display: none;
+}
+
+#wrapper {
+	position: relative;
+	z-index: 3;
+	height: 160px;
+	width: 100%;
+	/*background: #ccc;*/
+	overflow: hidden;
+	-ms-touch-action: none;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 3;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 4800px;
+	height: 160px;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+    /*background: url(../parallax/galaxies1.png);*/
+}
+
+#scroller ul {
+	list-style: none;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#scroller li {
+	width: 480px;
+	height: 160px;
+	float: left;
+	/*line-height: 160px;*/
+	/*border-right: 1px solid #ccc;*/
+	/*border-bottom: 1px solid #ccc;*/
+	/*background-color: #fafafa;*/
+	font-size: 14px;
+	overflow: hidden;
+	/*text-align: center;*/
+	position: relative;
+}
+
+p {
+	font-size: 16px;
+	padding: 1.2em;
+	line-height: 200%;
+}
+.starfield {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.starfield div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+#starfield1 {
+    z-index: 2;
+}
+
+#stars1 {
+    z-index: 2;
+    /*height: 3000px;*/
+    /*background: url(star.jpg);*/
+
+	height: 8px;
+	background: #CD235C;
+	top: 50%;
+
+
+}
+
+#starfield2 {
+    z-index: 1;
+}
+
+#stars2 {
+    z-index: 1;
+    height: 2000px;
+    background: url(star.jpg);
+}
+
+    .box{
+        display: flex;
+        justify-content:center;
+        flex-direction:column;
+        align-items:center;
+    }
+    .reverse{
+        flex-direction:column-reverse !important;
+    }
+    .box .part1{
+        display: flex;
+        flex-direction:column;
+    }
+    .box .part2{
+        height: 30px;
+    }
+    .box .part3{
+        display: flex;
+        flex-direction:column;
+    }
+    .box .info{
+        background-color: white;
+        box-shadow: 0 6px 12px rgba(0,0,0,.2);
+        padding: 10px;
+        margin: 20px;
+
+    }
+    .box .info .thumb{
+        width: 100%;
+    }
+    .box .date{
+        /* background-color: white; */
+        font-size: 40px;
+        font-family: 宋体;
+        padding: 10px 20px;
+        border-radius: 6px;
+        margin: 10px;
+        font-weight: bold;
+        color: white;
+        text-shadow:2px 2px 4px #000000;
+    }
+    .box .cricle{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #CD235C;
+    border: 5px solid #777777;
+    }
+    .box  .sanjiao{
+        border-style: solid;
+        border-width: 0px 20px 20px 20px;
+        border-color: transparent transparent blue transparent;
+        width: 0px;
+        height: 0px;
+        display: inline-block;
+    }
+
+</style>
+</head>
+<body onload="loaded()">
+<div id="header">iScroll</div>
+
+<div id="wrapper">
+	<div id="scroller">
+		<ul>
+			<li>
+                <div class="box">
+                    <div class="part1 reverse">
+                        <div class="info">
+                            <img class="thumb" src="images/1.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+
+                        </div>
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3"><div class="date">2014年</div> </div>
+                </div>
+			</li>
+            <li>
+                <div class="box reverse">
+                    <div class="part1">
+                        <div class="info ">
+                            <img class="thumb" src="images/2.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+                        </div>
+
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3 reverse"><div class="date">2014年</div> </div>
+                </div>
+            </li>
+            <li>
+                <div class="box">
+                    <div class="part1 reverse">
+                        <div class="info">
+                            <img class="thumb" src="images/1.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+
+                        </div>
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3"><div class="date">2014年</div> </div>
+                </div>
+            </li>
+            <li>
+                <div class="box reverse">
+                    <div class="part1">
+                        <div class="info ">
+                            <img class="thumb" src="images/2.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+                        </div>
+
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3 reverse"><div class="date">2014年</div> </div>
+                </div>
+            </li><li>
+            <div class="box">
+                <div class="part1 reverse">
+                    <div class="info">
+                        <img class="thumb" src="images/1.jpg">
+                        <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+
+                    </div>
+                </div>
+                <div class="part2"><div class="cricle"></div> </div>
+                <div class="part3"><div class="date">2014年</div> </div>
+            </div>
+        </li>
+            <li>
+                <div class="box reverse">
+                    <div class="part1">
+                        <div class="info ">
+                            <img class="thumb" src="images/2.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+                        </div>
+
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3 reverse"><div class="date">2014年</div> </div>
+                </div>
+            </li><li>
+            <div class="box">
+                <div class="part1 reverse">
+                    <div class="info">
+                        <img class="thumb" src="images/1.jpg">
+                        <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+
+                    </div>
+                </div>
+                <div class="part2"><div class="cricle"></div> </div>
+                <div class="part3"><div class="date">2014年</div> </div>
+            </div>
+        </li>
+            <li>
+                <div class="box reverse">
+                    <div class="part1">
+                        <div class="info ">
+                            <img class="thumb" src="images/2.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+                        </div>
+
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3 reverse"><div class="date">2014年</div> </div>
+                </div>
+            </li><li>
+            <div class="box">
+                <div class="part1 reverse">
+                    <div class="info">
+                        <img class="thumb" src="images/1.jpg">
+                        <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+
+                    </div>
+                </div>
+                <div class="part2"><div class="cricle"></div> </div>
+                <div class="part3"><div class="date">2014年</div> </div>
+            </div>
+        </li>
+            <li>
+                <div class="box reverse">
+                    <div class="part1">
+                        <div class="info ">
+                            <img class="thumb" src="images/2.jpg">
+                            <h2>新疆维吾尔木卡姆艺术_非物质文化遗产_民间音乐</h2>
+                        </div>
+
+                    </div>
+                    <div class="part2"><div class="cricle"></div> </div>
+                    <div class="part3 reverse"><div class="date">2014年</div> </div>
+                </div>
+            </li>
+
+		</ul>
+	</div>
+</div>
+<div class="starfield" id="starfield1">
+    <div id="stars1"></div>
+</div>
+
+<div class="starfield" id="starfield2">
+    <div id="stars2"></div>
+</div>
+</body>
+</html>

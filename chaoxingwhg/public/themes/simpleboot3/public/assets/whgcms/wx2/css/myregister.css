@@ -1,0 +1,102 @@
+html{
+    height: 100%;
+}
+body{
+    width: 100%;
+    background-color: #F7F6F5;
+    background-image: url(../images/login.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.returnHeader,.mui-input-group{
+    background: none;
+}
+.close-btn{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.18rem;
+    border-radius: 0.6rem;
+    margin-top: 0.12rem;
+}
+.mui-input-group:before{
+    height: 0px;
+}
+.feedbackContent{
+    margin: 0.27rem;
+}
+.mui-input-group input{
+    border: 1px solid #B7B7B7;
+    border-radius: 0.06rem;
+    font-size: 0.16rem;
+}
+.mui-input-group .mui-input-row:after{
+    height: 0px;
+}
+.mui-input-group:after{
+    height: 0px;
+}
+.logo{
+    width: 1.18rem;
+    margin: 0.53rem auto;
+}
+.logo img{
+    width: 100%;
+}
+.login {
+    margin-top:1.17rem;
+}
+.mui-input-group .mui-input-row{
+    height: 0.47rem;
+    text-align: center;
+    margin-bottom: 0.12rem;
+}
+.loginTel input,.loginPassword input,.confirmPwd input,.confirmPwd input,.validate .valText{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.16rem;
+    padding-left: 0.84rem;
+    background: #fff;
+    border-radius: 1rem;
+    border: none;
+    margin: 0 auto;
+    border:1px solid #E7E6E6;
+    /* box-shadow:1px 0px 5px rgba(70,71,71,1); */
+}
+.validate .valText{
+    width: 66%;
+    padding-left: 0.5rem;
+    margin-right: 34%;
+}
+.loginTel,.loginPassword,.confirmPwd{
+    position: relative;
+}
+.loginTel img,.loginPassword img,.confirmPwd img{
+    width: 0.18rem;
+    height: 0.19rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translate(0 , -50%);
+}
+.validate{
+    position: relative;
+    margin: 0 5%;
+}
+.validate .valBtn{
+    /*width: 1.05rem;*/
+    width: 32%;
+    height: 0.42rem;
+    background: #B93421;
+    position: absolute;
+    top: 50%;
+    right:0;
+    transform: translate(0,-50%);
+    border-radius: 0.5rem;
+    text-align: center;
+    line-height: 0.3rem;
+    color: #FFFFFF;
+    padding: 0;
+    font-size: 0.13rem;
+    border: none;
+    /*margin-top: 0.02rem;*/
+}

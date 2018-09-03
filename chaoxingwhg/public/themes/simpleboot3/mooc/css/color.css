@@ -1,0 +1,98 @@
+.fontcolor {
+    color: #EC6D3A!important;
+}
+.fontcolor2 {
+    color: #3192E0!important;
+}
+.bordercolor {
+    border-left: 2px solid #EC6D3A;
+}
+/*主题背景色*/
+.backgroundcolor {
+    background-color: #EC6D3A;
+}
+/*圆形边框*/
+.border50{
+    border-radius: 50%;
+	border:2px solid #EC6D3A!important;
+}
+/*按钮颜色*/
+.layui-btn{
+	background-color: #3192E0!important;
+}
+.ks .layui-btn{
+	background-color: #60CB55!important;
+}
+/*分数颜色*/
+.layui-inline {
+    color: #EC6D3A!important;
+    display: inline-block!important;
+}
+
+
+/*最新课程颜色：鼠标悬停*/
+.new-list>li:hover h3 {
+    color: #EC6D3A;
+}
+/*经典课程颜色*/
+.classic-list>li:hover .info h3 {
+    color: #EC6D3A;
+}
+/*经典课程颜色*/
+.classic-list>li .info .score {
+    color: #EC6D3A;
+}
+/*首页轮播图颜色*/
+.baner-content .swiper-active-switch {
+    background: #EC6D3A;
+}
+/*分页颜色*/
+.layui-laypage .layui-laypage-curr .layui-laypage-em{
+	background-color: #EC6D3A;
+}
+.layui-laypage a:hover{
+	color: #EC6D3A;
+}
+/*课程详情页tab*/
+.active1{
+	color: #EC6D3A;
+	border-bottom: 2px solid #EC6D3A;
+}
+/*课程目录*/
+.active2{
+	background-color: #E7F4FE;
+}
+.active2-2{
+	background-color: #DEF7DC;
+}
+/*问答*/
+.active3{
+	background-color: #EC6D3A;
+	color: #FFFFFF!important;
+}
+.q-list li .reply:hover{
+	background-color: #FBE4DB;
+	color: #EC6D3A;
+}
+.q-list li .user:hover{
+	color: #EC6D3A;
+}
+/*问答下拉颜色*/
+.active4{
+	background-color: #F8F8F9;
+}
+.swiper-active-switch{ background:#EC6D3A!important;}
+
+/*课程详情划过变色*/
+.hover-b dd:hover .title{
+	color:#EC6D3A!important;
+}
+/*教师个人中心*/
+.gxrq-btn:hover{ color:#EC6D3A;}
+.gxrq-btn.active{ color:#EC6D3A;}
+/*read页面a链接*/
+.notes-list li>div span a:hover{ color:#EC6D3A;}
+/*各种a链接划过变色*/
+.all-link-a:hover{ color:#EC6D3A!important;}
+/*报名*/
+.ybm,.ygz{ background:#9EA7B4!important;}

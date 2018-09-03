@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>志愿者管理</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet"
+          href="__TMPL__/public/assets/whgcms/wx/css/myaccountSets.css?v={$version_list.wx_myaccountSets_css}">
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="/wx/my/index" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">志愿者管理</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="accountSet">
+        <ul class="mui-table-view zyzSet">
+            <li class="mui-table-view-cell">
+                <a href="/wx/my/volData" class="mui-navigate-right">资料管理</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="/wx/my/volPartakeHistory" class="mui-navigate-right">参与历史</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="/wx/my/volBaomingRes" class="mui-navigate-right">报名结果</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<!--<script src='__TMPL__/public/assets/whgcms/wx/js/myaccountSets.js?v={$version_list.wx_myaccountSets_js}'></script>-->
+<script>
+    $(function(){
+        request({
+            url: '/api/volunteer/is_volun',
+            type: 'post',
+            dataType: 'json',
+            async: false,
+            success: function (res) {
+                console.log(res);
+                if(res.status == 1){
+                    $('.zyzSet').show()
+                }else{
+                    $('.zyzSet').hide();
+                    $('.accountSet').text('还未成为志愿者...').css({'text-align':'center','padding-top':'0.3rem'});
+
+                }
+            }
+        },true)
+    })
+</script>
+</body>
+</html>

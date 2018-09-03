@@ -1,0 +1,188 @@
+/*分类*/
+
+.classification {
+    padding: 0.17rem 0 0.17rem 0;
+    background: url("../images/fenleibg.png") no-repeat;
+    background-size: 100%;
+}
+
+.navigation {
+    width: 100%;
+    display: inline;
+    white-space: nowrap;
+    overflow-x: scroll;
+    float: left;
+    overflow-y: hidden;
+}
+
+.navigation li,
+.screenTj li {
+    display: inline-block;
+    font-size: 0.13rem;
+    margin-left: 0.15rem;
+}
+
+.navigation li:last-child {
+    margin-right: 0.15rem;
+}
+
+.navigation li:not(:first-child),
+.screenTj li:not(:first-child) {
+    font-size: 0.11rem;
+    padding: 0.02rem 0.14rem;
+    border: 1px solid #434343;
+    border-radius: 0.3rem;
+}
+
+.navigation li:not(:first-child).active,
+.screenTj li:not(:first-child).active {
+    border: 1px solid #EB6877;
+    color: #EB6877;
+}
+
+.navigation::-webkit-scrollbar {
+    width:0;
+    height:0;
+    display: none;
+}
+
+/*筛选条件*/
+
+.screenTj {
+    margin-top: 0.15rem;
+    display: inline-block;
+}
+
+/* ***************列表***************** */
+/*模板1*/
+.newsTitle,.sourcesTitle,.activityTitle{
+    padding: 0 15px;
+}
+.newsTitle h2,.sourcesTitle h2,.activityTitle h2{
+    font-size: 0.16rem;
+}
+.newsTitle a img,.sourcesTitle a img,.activityTitle a img{
+    width: 50%;
+}
+.newsTitle a,.sourcesTitle a,.activityTitle a{
+    display:inline-block;height:28px;line-height: 28px;
+}
+.newsContent h3{
+    font-size: 0.15rem;
+    margin-top: 0.07rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.newsContent span{
+    display: inline-block;
+    font-size: 0.13rem;
+    color: #969494;
+    margin-top: 0.05rem;
+    margin-right: 0.1rem;
+}
+.infContent .zhiding{
+    font-size: 0.1rem;
+    color: #EB6877;
+    padding:0 0.06rem;
+    border: 1px solid #EB6877;
+    border-radius: 0.04rem;
+    margin-right: 0.1rem;
+    height: 0.17rem;
+    line-height: 0.15rem;
+}
+.mui-table-view:before{
+    height: 0px;
+}
+.mui-table-view-cell:after{
+    left: 0px;
+}
+/*模板2*/
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object{
+    height: 0.82rem;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+    font-size: 0.15rem;
+    line-height: 0.15rem;
+    color: #141414;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell{
+    text-align: left;
+}
+.mould2 .mui-table-view:after{
+    height: 0px;
+}
+
+/*模板3*/
+/*.mould3-list {*/
+    /*margin-top: 0.13rem;*/
+/*}*/
+
+.mould3-list li {
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+    height: 1.15rem;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.mould3-list a {
+    display: block;
+}
+
+
+.mould3-list h3 {
+    width: 1.6rem;
+    color: #141414;
+    font-size: 0.15rem;
+    font-weight: normal;
+    line-height: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+@media screen and (min-width:320px) and (max-width:359px) and (orientation:portrait) {
+    .mould3-list h3 {
+        width: 1.5rem;
+    }
+
+}
+.mould3-list .thumbnail {
+    width: 1.42rem;
+    height: 0.8rem;
+    margin-left: 0.1rem;
+}
+
+.mould3-list .source {
+    width: 0.39rem;
+    white-space: nowrap;
+    color: #969494;
+    font-size: 0.13rem;
+    margin-right: 0.02rem;
+    overflow: hidden;
+}
+
+.mould3-list .time {
+    width: 0.73rem;
+    white-space: nowrap;
+    color: #969494;
+    font-size: 0.13rem;
+    margin-right: 0.02rem;
+    overflow: hidden;
+}
+
+.mould3-list .browse img {
+    width: 0.16rem;
+    height: 0.09rem;
+    margin-right: 0.02rem;
+    margin-top: 0.05rem;
+}
+
+.mould3-list .browse span {
+    width: 0.45rem;
+    white-space: nowrap;
+    color: #969494;
+    font-size: 0.13rem;
+    overflow: hidden;
+}

@@ -1,0 +1,58 @@
+.mui-table-view-cell>a:not(.mui-btn) {
+    font-size: 0.17rem;
+    color: #282828;
+}
+
+.mui-table-view-cell {
+    padding: 15px 15px;
+}
+
+.mui-table-view-cell:after {
+    left: 0px;
+}
+
+.personalinfo ul li span:first-child {
+    float: left;
+    font-size: 0.16rem;
+    color: #282828;
+    display: inline-block;
+    width: 25%;
+}
+
+.personalinfo ul li span:last-child {
+    font-size: 0.14rem;
+    color: #727070;
+    display: inline-block;
+    width: 75%;
+}
+
+.personalinfo ul li input {
+    font-size: 0.14rem;
+    color: #727070;
+    display: inline-block;
+    width: 75%;
+    border: 0;
+    height: auto;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.personalinfo .zhu {
+    display: inline-block;
+    color: #727070;
+    font-size: 0.1rem;
+    margin: 0.17rem 0 0.45rem 0.15rem;
+}
+
+.button {
+    width: 1.5rem;
+    height: 0.4rem;
+    background: #EC6941;
+    margin: 0 30%;
+    color: #fff;
+    font-size: 0.18rem;
+    border-radius: 40px;
+    border: 0;
+    line-height: 0.4rem;
+    text-align: center;
+}

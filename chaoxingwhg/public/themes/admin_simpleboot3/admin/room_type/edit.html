@@ -1,0 +1,37 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('RoomType/index')}">所有类型</a></li>
+        <li class="active"><a href="{:url('RoomType/add')}">添加类型</a></li>
+        <li class="active"><a>编辑类型</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('RoomType/editPost')}">
+        <div class="form-group">
+            <label for="input-link_name" class="col-sm-2 control-label">名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-link_name" name="name" value="{$room_type.name}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="status" class="col-sm-2 control-label">状态</label>
+            <div class="col-md-6 col-sm-10">
+                <select name="status" class="form-control" id="status">
+                    <option value="1" <if condition="$room_type.status eq 1">selected</if>>启用</option>
+                    <option value="0" <if condition="$room_type.status eq 0">selected</if>>禁用</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id" value="{$room_type.id}">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="{:url('RoomType/index')}">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

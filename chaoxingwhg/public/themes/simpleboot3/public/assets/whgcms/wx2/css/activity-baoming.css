@@ -1,0 +1,52 @@
+button.yuyuebtn {
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.18rem;
+    border-radius: 0.6rem;
+    background-color: #B93421;
+    border: 0;
+    color: #FFFFFF;
+}
+.jieshao{
+    padding: 0 0.15rem;
+}
+.jieshao h3{
+    font-size: 0.16rem;
+    color: #101111;
+    padding: 0.22rem 0 0.17rem 0;
+}
+.card{
+    /*height: 1.62rem;*/
+    background: #EEEEEE;
+    border-radius: 0.1rem;
+    padding: 0.14rem 0.2rem;
+    padding-bottom: 0.25rem;
+}
+.card span{
+    color:#A97D5D;
+    font-size: 0.13rem;
+    margin-bottom: 0.1rem;
+}
+.card ul li{
+    font-size: 0.14rem;
+    color: #625F5F;
+    margin-top: 0.05rem;
+}
+.contacts-list .mui-row{
+    padding: 0 0.15rem;
+    line-height: 0.44rem;
+    border-bottom: 1px solid #E5E5E5;
+}
+.add{
+    /*line-height: 0.53rem;*/
+    text-align: center;
+    border-bottom: 1px solid #D2D2D2;
+}
+.add span{
+    display: inline-block;
+    width: 0.95rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    border-radius: 0.4rem;
+    margin: 0.12rem 0;
+}

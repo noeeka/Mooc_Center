@@ -1,0 +1,44 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/read.css'>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/information.css'>
+<title></title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="main-left f-left">
+                <div class="program">
+                    <div class="program-child">
+                        <span style="margin-right: 5px;">{$title}</span>/<span style="margin-left: 5px;display: none" class="title"></span>
+                    </div>
+                </div>
+                <ul class="layui-nav layui-nav-tree" id="left-menu" lay-filter="test"></ul>
+            </div>
+            <div class="main-right f-right">
+                <div class="details" style="width: 890px!important;"></div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$id|default=0}">
+    <script type="text/template" id="left-slide">
+        {{#each list}}
+        <li class="layui-nav-item">
+            <a href="javascript:;" data-id="{{id}}" style="font-size: 14px;">{{title}}</a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/template" id="detail">
+        <div class="title" style="text-align: center;">{{title}}</div>
+        <!-- <ul class="number clearfix" style="margin-bottom: 37px;">
+            <li style="margin-right: 9px;display: inline-block; "><img src="__TMPL__/public/assets/whgcms/images/read/time.png " alt=" " style="width: 14px;height: 13px;margin-right: 6px;margin-top: 1px; " class="f-left "><span>{{date time}}</span></li>
+        </ul> -->
+        <p>{{{content}}}</p>
+        </div>
+    </script>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/lib_affairs.js?v={$version_list.pc_lib_affairs_js}'></script>
+</body>
+
+</html>

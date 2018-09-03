@@ -1,0 +1,127 @@
+.mui-table-view-cell>a:not(.mui-btn) {
+    font-size: 0.17rem;
+    color: #282828;
+}
+
+.mui-table-view-cell {
+    padding: 15px 15px;
+}
+
+.mui-btn-primary {
+    border: none;
+    background-color: #3f97f0;
+}
+
+.mui-btn-primary:enabled:active {
+    border: none;
+    background-color: #3f97f0;
+}
+
+.mui-table-view-cell:after {
+    left: 0px;
+}
+
+.personalinfo ul li span:first-child {
+    font-size: 0.16rem;
+    color: #282828;
+    display: inline-block;
+    width: 25%;
+}
+
+.personalinfo ul li span:last-child {
+    font-size: 0.15rem;
+    color: #727070;
+    display: inline-block;
+    width: 68%;
+}
+
+.personalinfo ul li span.address {
+    overflow-x: scroll;
+    position: absolute;
+    top: 50%;
+    width: 65%;
+    transform: translate(0, -50%);
+}
+
+.address::-webkit-scrollbar {
+    display: none;
+}
+
+#birthday {
+    width: 68%;
+    border: none;
+    font-size: 0.15rem;
+    color: #727070;
+    text-align: left;
+    padding: 0;
+}
+
+#birthday:active {
+    background: #FFFFFF;
+}
+
+.mui-table-view-cell .caiyiphoto,.mui-table-view-cell .sfzphoto{
+    display: inline-block;
+    width: 0.52rem;
+    height: 0.56rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 0.09rem;
+}
+.mui-table-view-cell .sfzphoto{
+    width: 0.95rem;
+    height: 0.54rem;
+}
+
+.subBtn{
+    display: block;
+    width: 2.5rem;
+    height: 0.44rem;
+    background: #3F97F0;
+    color: #fff;
+    font-size: 0.18rem;
+    text-align: center;
+    line-height: 0.44rem;
+     margin: 0.36rem auto;
+    /*position: fixed;*/
+    /*left: 50%;*/
+    /*bottom: 0.36rem;*/
+    /*transform: translate(-50%,0);*/
+    border-radius: 0.3rem;
+}
+input[type='text']{
+    display: inline-block;
+    border: none;
+    width: auto;
+    height: auto;
+    margin-bottom: 0;
+    padding: 6px 0;
+    line-height: normal;
+    font-size: 0.15rem;
+}
+.sex input {
+    appearance: button;
+    -webkit-appearance: button;
+}
+
+.sex {
+    /*color: #81858F;*/
+}
+
+.sex.mui-radio input[type='radio']:before {
+    font-size: 15px;
+}
+
+.sex.mui-radio input[type='radio']:checked:before {
+    color: #1B1B20;
+}
+
+.sex.mui-radio {
+    line-height: 30px;
+    /*margin-top: 4px;*/
+}
+
+.sex.mui-radio input[type='radio'] {
+    right: 12px;
+}

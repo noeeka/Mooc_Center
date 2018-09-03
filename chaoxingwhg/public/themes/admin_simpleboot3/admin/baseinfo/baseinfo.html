@@ -1,0 +1,200 @@
+<include file="public@header"/>
+<style>
+    .thumbnail-preview {
+        height: 135px;
+    }
+
+    .del-img {
+        background-image: url(/themes/admin_simpleboot3/public/assets/images/close.png);
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        right: -1px;
+        top: -3px;
+        text-align: center;
+        line-height: 18px;
+        color: #666;
+        cursor: pointer;
+        border-radius: 50%;
+        background-size: contain;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li>{:lang('WEB_SITE_INFOS')}</li>
+    </ul>
+    <form class="form-horizontal js-ajax-form margin-top-20" role="form" action="{:url('baseinfo/baseinfo')}"
+          method="post">
+        <fieldset>
+            <div class="table">
+                <div class="tab-content">
+                    <div>
+                        <div class="form-group">
+                            <label for="input-site-title" class="col-sm-2 control-label"><span
+                                    class="form-required">*</span>网站标题</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-site-title" name="site_title"
+                                       value="{$site_info.site_title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-venue_tel" class="col-sm-2 control-label">场馆电话</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-venue_tel" name="venue_tel"
+                                       value="{$site_info.venue_tel}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-venue_addr" class="col-sm-2 control-label">场馆地址</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-venue_addr" name="venue_addr"
+                                       value="{$site_info.venue_addr}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-copyright" class="col-sm-2 control-label">版权所有</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-copyright" name="copyright"
+                                       value="{$site_info.copyright}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-copyright" class="col-sm-2 control-label">PC显示访问量</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-copyright" name="pcaccess_count"
+                                       value="{$site_info.pcaccess_count}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-copyright" class="col-sm-2 control-label">微信显示访问量</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-copyright" name="wxaccess_count"
+                                       value="{$site_info.wxaccess_count}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-copyright" class="col-sm-2 control-label">PC真实访问量</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-copyright" name="pctrue_count"
+                                       value="{$site_info.pctrue_count}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-copyright" class="col-sm-2 control-label">微信真实访问量</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" id="input-copyright" name="wxtrue_count"
+                                       value="{$site_info.wxtrue_count}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-venue_start" class="col-sm-2 control-label">开馆时间</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control js-bootstrap-date" id="input-venue_start"
+                                       name="venue_start" value="{:date('Y-m-d',$site_info.venue_start)}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-venue_start" class="col-sm-2 control-label">二维码设置</label>
+                            <div class="col-md-6 col-sm-10">
+                                <php>
+                                    $ewm = $site_info['ewm'];
+                                    $ewm1 = isset($site_info['ewm'][0])?$site_info['ewm'][0]:null;
+                                    $ewm2 = isset($site_info['ewm'][1])?$site_info['ewm'][1]:null;
+                                </php>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="hidden" name="ewm[0][img]" id="ewm-img-1"
+                                           value="{$ewm1.img|default=''}">
+                                    <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#ewm-img-1');"
+                                       style="margin-left: 0;position: relative">
+                                        <if condition="empty($ewm1.img)">
+                                            <img src="/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png"
+                                                 id="ewm-img-1-preview"
+                                                 style="cursor: pointer;display: block;margin-bottom: 20px;width: 135px;height: 135px;">
+                                            <else/>
+                                            <img src="{:cmf_get_image_preview_url($ewm1.img)}"
+                                                 id="ewm-img-1-preview"
+                                                 style="cursor: pointer;width: 135px;height: 135px;"/>
+                                        </if>
+                                        <div class='del-img' title="删除图片"></div>
+                                    </a>
+                                    <input class="form-control" name="ewm[0][title]" value="{$ewm1.title|default=''}"
+                                           placeholder="请输入描述文字"
+                                           type="text" style="width: 10em;margin-top: 20px;">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="hidden" name="ewm[1][img]" id="ewm-img-2"
+                                           value="{$ewm2.img|default=''}">
+                                    <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#ewm-img-2');"
+                                       style="margin-left: 0;position: relative">
+                                        <if condition="empty($ewm2.img)">
+                                            <img src="/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png"
+                                                 id="ewm-img-2-preview"
+                                                 style="cursor: pointer;display: block;margin-bottom: 20px;width: 135px;height: 135px;">
+                                            <else/>
+                                            <img src="{:cmf_get_image_preview_url($ewm2.img)}"
+                                                 id="ewm-img-2-preview"
+                                                 style="cursor: pointer;width: 135px;height: 135px;"/>
+                                        </if>
+                                        <div class='del-img' title="删除图片"></div>
+                                    </a>
+                                    <input class="form-control" name="ewm[1][title]" value="{$ewm2.title|default=''}"
+                                           placeholder="请输入描述文字"
+                                           type="text" style="width: 10em;margin-top: 20px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="second_page_logo">logo上传</label>
+                            <div class="col-md-6 col-sm-10">
+                                <div class="col-md-6">
+                                    <h6>首页logo:</h6>
+                                    <input type="hidden" name="home_page_logo" id="home_page_logo" value="{$site_info.home_page_logo|default=''}">
+                                    <a href="javascript:uploadOneImage('首页logo上传','#home_page_logo');">
+                                        <empty name="site_info.home_page_logo">
+                                            <img src="/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png" id="home_page_logo-preview" alt="" style="width: 135px;cursor: pointer;">
+                                            <else/>
+                                            <img src="{:cmf_get_image_preview_url($site_info.home_page_logo)}" id="home_page_logo-preview" alt="" style="width: 135px;cursor: pointer;">
+                                        </empty>
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>二级页logo:</h6>
+                                    <input type="hidden" name="second_page_logo" id="second_page_logo" value="{$site_info.second_page_logo|default=''}">
+                                    <a style="margin-left:20px;margin-right: 140px;" href="javascript:uploadOneImage('二级页logo上传','#second_page_logo');">
+                                        <empty name="site_info.second_page_logo">
+                                            <img src="/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png" id="second_page_logo-preview" alt="" style="width: 135px;cursor: pointer;">
+                                            <else/>
+                                            <img src="{:cmf_get_image_preview_url($site_info.second_page_logo)}" id="second_page_logo-preview" alt="" style="width: 135px;cursor: pointer;">
+                                        </empty>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary js-ajax-submit" data-refresh="1">保存
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script>
+    $('.del-img').click(function () {
+        $(this).prev().attr('src', '/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png');
+        $(this).parent().prev().val('');
+        return false;
+    })
+</script>
+</body>
+</html>

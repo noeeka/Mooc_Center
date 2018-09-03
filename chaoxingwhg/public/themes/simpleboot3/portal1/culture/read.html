@@ -1,0 +1,93 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/orderread.css'>
+<title></title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="details f-left">
+            </div>
+            <div style="width: 320px;" class="f-right">
+                <div>
+                    <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                    <ul id="Hot">
+                    </ul>
+                </div>
+                <!--<div style="margin-top: 50px;">-->
+                    <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+                    <!--<ul id="read">-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <form class="layui-form" style="display:none;" action="javascript:;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属区域</label>
+            <div class="layui-input-block">
+                <select name="city" lay-verify="required">
+                </select>
+            </div>
+        </div>
+        <!--<div class="layui-form-item">-->
+            <!--<label class="layui-form-label">地址(选填)</label>-->
+            <!--<div class="layui-input-block">-->
+                <!--<input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn want" lay-submit lay-filter="*" style="margin: 17px auto;">我要点单</button>
+            </div>
+        </div>
+        <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+    </form>
+    <div class="success" style="display: none;">
+        <div style="width: 100%;text-align: center;color: #000000;font-size: 18px;line-height: 103px;">点单成功</div>
+        <button class="layui-btn" lay-submit lay-filter="*" style="margin: 0px 195px 49px;">确定</button>
+    </div>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/orderread.js'></script>
+    <script type="text/template" id="detail">
+        <div style="width: 790px;margin-bottom: 11px; padding-bottom: 30px;" class="clearfix">
+            <div class="title" style="font-size: 24px;">{{title}}</div>
+            <img src="{{thumb}}" alt=" " style="width: 450px;height: 253px; margin-right: 44px;" class="f-left">
+            <div class="f-left" style="width: 296px;">
+                <div class="time"><img src="__TMPL__/public/assets/whgcms/images/orderread/danwei.png" alt=""><span>演出单位：</span><span>{{org}}</span></div>
+                <div class="time"><img src="__TMPL__/public/assets/whgcms/images/orderread/venue.png" alt=""><span>所属场馆：</span> <span>{{venue}}</span></div>
+                <div class="time"><img src="__TMPL__/public/assets/whgcms/images/orderread/shijian.png" alt=""><span>点单时间：</span><span>{{date start_time}}</span> ~ <span>{{date end_time}}</span></span>
+                </div>
+                <div class="time"> <img src="__TMPL__/public/assets/whgcms/images/orderread/people.png" alt=""><span>总点单人数：</span><span>{{vote_num}}</span></div>
+            </div>
+            <button class="layui-btn diandan activity-active">{{status end_time}}</button>
+        </div>
+        <p>{{{content}}}</p>
+    </script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each list}}
+        <li style="margin-top: 20px;">
+            <a href="{{buildSecondUrl '/portal/culture/read/?id=' id}}">
+                <div class="bg100" style="background-image: url({{thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="{{buildSecondUrl '/portal/culture/read/?id=' id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信息</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="lib/layui/css/layui.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/classupload.css">
+<link rel="stylesheet" href="css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+    <header-all></header-all>
+    <div class="main">
+    	<div class="main-safe layui-form">
+        	<div class="main-content main-content-active">
+            	<ul class="all-step clearfix">
+                	<li class="step1 f-left">1.课程封面</li>
+                    <li class="step2 f-left">2.课程信息</li>
+                    <li class="step3 f-left">3.课程章节</li>
+                </ul>
+                <div class="upload-b">
+                    <div class="layui-upload" id="upimg">
+                      <div class="layui-upload-list">
+                        <img class="layui-upload-img" src="images/newclass.png" id="upload-img" width="430" height="430">
+                        <p id="demoText"></p>
+                      </div>
+                      <p style="text-align:center; color:#9EA7B4; padding-bottom:15px">推荐尺寸：548*548</p>
+                      <span class="upload-btn">上传封面</span>
+                    </div>
+                </div>
+                <div class="link-b">
+                	<a class="backgroundcolor btn" href="#">返回</a>
+                    <span class="backgroundcolor btn next-btn">下一步</span>
+                </div>
+            </div>
+            
+            <div class="main-content">
+            	<ul class="all-step all-step2 clearfix">
+                	<li class="step1 f-left">1.课程封面</li>
+                    <li class="step2 f-left">2.课程信息</li>
+                    <li class="step3 f-left">3.课程章节</li>
+                </ul>
+                <div class="info-b">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name">课程名</label>
+                        <div class="layui-input-block">
+                          <input class="text-ipt ipt-border" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入课程名" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name">教师</label>
+                        <div class="layui-input-block">
+                          <input class="text-ipt ipt-border" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入教师" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name">说明</label>
+                        <div class="layui-input-block textarea-b">
+                           <textarea placeholder="请输入内容" class="ipt-border textarea" maxlength="500"></textarea>
+                           <span class="fontnum">0/500</span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name">测试设置</label>
+                        <div class="layui-input-block radio-b">
+                          <div><label><i class="radio-i"></i><input class="test-radio" type="radio" name="test" value="开启" title="开启">开启</label></div>
+                          <div><label><i class="radio-i test-active"></i><input class="test-radio" type="radio" name="test" value="关闭" title="关闭" checked="true">关闭</label></div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name">开放设置</label>
+                        <div class="layui-input-block radio-b">
+                          <div><label><i class="radio-i test-active"></i><input class="test-radio date-radio" type="radio" name="open" value="0" title="限时开放" checked="true">限时开放</label></div>
+                          <div><label><i class="radio-i"></i><input class="test-radio date-radio" type="radio" name="open" value="1" title="开放">开放</label></div>
+                          <div><label><i class="radio-i"></i><input class="test-radio date-radio" type="radio" name="open" value="2" title="暂不开放">暂不开放</label></div>
+                        </div>
+                    </div>
+                    <div class="date-b active-date">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="date" class="choose-date ipt-border" id="begindate" placeholder="请选择时间" autocomplete="off" class="layui-input">
+                                <span>开始</span>
+                            </div>
+                        </div>
+                        <div class="date-line"></div>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="date" class="choose-date ipt-border" id="overdate" placeholder="请选择时间" autocomplete="off" class="layui-input">
+                                <span>结束</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="link-b">
+                	<span class="backgroundcolor btn prev-btn" href="#">返回</span>
+                    <span class="backgroundcolor btn next-btn" href="#">下一步</span>
+                </div>
+            </div>
+            
+            <div class="main-content">
+            	<ul class="all-step all-step3 clearfix">
+                	<li class="step1 f-left">1.课程封面</li>
+                    <li class="step2 f-left">2.课程信息</li>
+                    <li class="step3 f-left">3.课程章节</li>
+                </ul>
+                <div class="info-b">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name ipt-num">课程章数</label>
+                        <div class="layui-input-block">
+                          <input class="text-ipt ipt-border zs-ipt edit-ipt" value="1" type="text" name="title" autocomplete="off" placeholder="请输入课程章数" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name ipt-num" lay-verify="num">每章节数</label>
+                        <div class="layui-input-block">
+                          <input class="text-ipt ipt-border js-ipt edit-ipt" value="5" type="text" name="title" lay-verify="aa" autocomplete="off" placeholder="请输入每章节数" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name">课程单元数</label>
+                        <span class="chaper-num">12</span>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label ipt-name"></label>
+                        <div class="layui-input-block radio-b">
+                          <div><label><i class="radio-i"></i><input class="sz-radio" type="radio" name="test" value="0">设置章节数</label></div>
+                          <div><label><i class="radio-i test-active"></i><input class="sz-radio" type="radio" name="test" value="1" checked="true">使用默认模板</label></div>
+                        </div>
+                    </div>
+                    <div class="link-b">
+                        <span class="backgroundcolor btn prev-btn">返回</span>
+                        <span class="backgroundcolor btn" lay-filter="demo1" lay-submit="">保存</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-safe">
+            <div class="footer-content">
+                <ul class="clearfix">
+                    <li class="f-left">
+                        <a href="">技术支持:超星泛雅Copyright © 1993-2018 超星网 </a>
+                    </li>
+                    <li class="f-left">
+                        <a href="">单位编号:1101081827 </a>
+                    </li>
+                    <li class="f-left">
+                        <a href="">京ICP证:060172号 网络 </a>
+                    </li>
+                    <li class="f-left">
+                        <a href="">视听许可证:0110438号 </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="lib/vue2.js"></script>
+<script src="js/header.js"></script>
+<script src="lib/layui/layui.all.js"></script>
+<script src="js/publice.js"></script>
+<script src="js/classupload.js"></script>
+</html>

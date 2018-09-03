@@ -1,0 +1,163 @@
+<include file="public/header" />
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/dist/css/swiper.min.css">
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/reportsread.css'>
+<title></title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div style="width: 830px;" class="f-left">
+                <div style="background-color: #fff;">
+                    <div class="details">
+                        <div style="text-align: center;height: 250px;padding-top: 180px;"><img src="__TMPL__/public/assets/whgcms/images/read/load.gif" alt=""></div>
+                    </div>
+                    <div class="photo-wall">
+                        <h3>照片墙</h3>
+                        <div class="swiper">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper" id="swiper-wrapper">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next swiper-button-black"></div>
+                            <div class="swiper-button-prev swiper-button-black"></div>
+                        </div>
+                        <button class="layui-btn" onclick="uploadMultiImage1('图片上传','#swiper-wrapper','photos-item-tpl');">上传照片</button>
+                    </div>
+                    <div class="comments hide" style="width: 790px;margin: 0 auto;">
+                        <div style="border-bottom: 1px solid #D9D9D9;" class="clearfix">
+                            <input type="text " name="newContent" placeholder="写点评论…… " style="width: 770px;">
+                            <button class="button expire" id="newBtn">发表评论</button>
+                        </div>
+                        <div class="comment-list">
+                            <ul class="section">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="test1" class="page"></div>
+            </div>
+            <div style="width: 320px;" class="f-right">
+                <div>
+                    <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                    <ul id="Hot">
+                    </ul>
+                </div>
+                <!--<div style="margin-top: 50px;">-->
+                    <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+                    <!--<ul id="read">-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="pid" value="{$pid|default=8}">
+    <include file="public/footer" />
+    <script type="text/template" id="detail">
+        <div class="title">{{post_title}}</div>
+        <ul class="number clearfix" style="padding-bottom: 20px;border-bottom:1px solid #DDDEE1;">
+            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px;color: #A0A4AA;"><span>{{date published_time}}</span></li>
+            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px;color: #A0A4AA;">阅读：<span>{{post_hits}}</span>次</li>
+            <li style="margin-right: 9px;display: inline-block;color: #A0A4AA;">{{venue_name}}</li>
+        </ul>
+        {{#if abstract}}
+        <span style="color: #A0A4AA;font-size: 12px;line-height: 21px;margin-top: 16px;display: inline-block;">{{abstract}}</span> {{/if}}
+        <img src="{{img}}" alt=" " style="margin-top:37px;margin-bottom: 37px;width: 100%;height: auto;">
+        <p>{{{post_content}}}</p>
+    </script>
+    <script src="__TMPL__/public/assets/whgcms/lib/swiper/dist/js/swiper.min.js"></script>
+    <script>
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}' /*当前应用名*/
+    };
+    </script>
+    <script src="/static/js/wind.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <script>
+    var token = getCookie('token');
+
+    function uploadMultiImage1(dialog_title, container_selector, item_tpl_wrapper_id, extra_params, app) {
+        if (token == '') {
+            getdialog('登录后上传图片', '/portal/login/login');
+        } else {
+            openUploadDialog(dialog_title, function(dialog, files) {
+                // var tpl = $('#' + item_tpl_wrapper_id).html();
+                // var html = '';
+                var photos = [];
+                $.each(files, function(i, item) {
+                    // var itemtpl = tpl;
+                    // itemtpl = itemtpl.replace(/\{id\}/g, item.id);
+                    // itemtpl = itemtpl.replace(/\{url\}/g, item.url);
+                    // itemtpl = itemtpl.replace(/\{preview_url\}/g, item.preview_url);
+                    // itemtpl = itemtpl.replace(/\{filepath\}/g, item.filepath);
+                    // itemtpl = itemtpl.replace(/\{name\}/g, item.name);
+                    // html += itemtpl;
+                    photos.push(item.filepath);
+                    console.log(photos)
+                });
+                // $(container_selector).append(html);
+                var id = getParam('id', -1);
+
+                // for (var i = 0; i < $('.swiper-slide input').length; i++) {
+                //     var value = $('.swiper-slide input').eq(i).val();
+                //     photos.push(value);
+
+                // }
+                request({
+                    url: '/api/volunarticle/photo_add',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { cid: id, photos: photos },
+                    success: function(res) {
+                        if (res.status == 1) {
+                            getdialog('上传成功，等待审核...');
+                        } else {
+                            getdialog(res.msg);
+                        }
+                    }
+                }, true)
+
+            }, extra_params, 1, 'image', app);
+        }
+
+
+    }
+    </script>
+    <script src='__TMPL__/public/assets/whgcms/js/reportsread.js'></script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each this}}
+        <li style="margin-top: 20px;">
+            <a href="{{buildSecondUrl '/portal/category/read?id=' id}}">
+                <div class="bg100" style="background-image: url({{thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{post_title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/html" id="photos-item-tpl">
+        <div class="swiper-slide" id="saved-image{id}">
+            <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+            <img id="photo-{id}-preview" src="{url}" style="height:124px;" onclick="javascript:parent.imagePreviewDialog(this.src);">;
+        </div>
+    </script>
+</body>
+
+</html>

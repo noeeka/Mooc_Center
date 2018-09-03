@@ -1,0 +1,184 @@
+.main {
+    max-width: 1920px;
+    min-width: 1200px;
+    height: auto;
+    padding-top: 52px;
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *******************详情内容****************** */
+
+.details {
+    width: 100%;
+    min-height: 200px;
+    background-color: #fff;
+}
+
+.details .title {
+    width: 100%;
+    color: #1C2438;
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 17px;
+    line-height: 34px;
+}
+
+.details .number li {
+    /*float: left;*/
+    font-size: 14px;
+    color: #1C2438;
+}
+
+.details p {
+    /*color: #1C2438;*/
+    /*font-size: 14px;*/
+    /*line-height: 21px;*/
+    /*text-align: left;*/
+    /*word-break: break-all;*/
+    /*text-indent: 2em;*/
+}
+
+.details #collectBtn div {
+    border: 1px solid RGBA(47, 52, 59, .1)
+}
+
+
+
+
+
+
+/*评论*/
+
+.comments {
+    width: 1200px;
+}
+
+.comments input {
+    width: 1180px;
+    height: 60px;
+    outline: none;
+    background: RGBA(140, 143, 147, .1);
+    color: #8C8F93;
+    border: 0;
+    padding-left: 20px;
+    margin-bottom: 14px;
+}
+
+.comments .comlist {
+    width: 727px;
+}
+
+.comments .button {
+    /*padding: 12px 17px;*/
+    border: 0;
+    /*background: #BBBEC4;*/
+    color: #FFFFFF;
+    /*font-size: 18px;*/
+    float: right;
+    cursor: pointer;
+    margin-bottom: 22px;
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    /*background-color: #F40556;*/
+    border-radius: 14px;
+    padding: 0;
+    /*margin: 24px 141px 34px;*/
+    /*margin-top: 24px;*/
+    /*margin-bottom: 34px;*/
+    font-size: 14px;
+}
+
+#replyinput button {
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    /*padding: 12px 17px;*/
+    border: 0;
+    border-radius: 14px;
+    /*background: #BBBEC4;*/
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 22px;
+    margin-left: 627px;
+}
+
+.comments .portrait {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin-right: 10px;
+}
+
+.comments .section>li {
+    padding: 35px 0;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.comments .section>li:last-child {
+    border-bottom: 0;
+}
+
+.comments .section>li li {
+    float: left;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 热门推荐 */
+
+#read a:hover {
+    color: #000000;
+}
+
+.details #collectBtn .active {
+    background-color: #F40556;
+    color: #fff!important;
+}
+
+.details #collectBtn .active1 {
+    color: #F40556!important;
+}

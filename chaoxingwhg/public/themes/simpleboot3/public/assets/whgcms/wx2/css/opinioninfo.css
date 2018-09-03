@@ -1,0 +1,164 @@
+.returnHeader{
+    border-bottom: 1px solid #DCDCDC;
+}
+.figure {
+    margin-top: 0.67rem;
+    /*border-top: 1px solid #DCDCDC;*/
+    border-bottom: 1px solid #DCDCDC;
+    padding-bottom: 0.1rem;
+}
+
+.figure h3 {
+    margin: 0.53rem 0.15rem 0.1rem;
+    font-size: 0.2rem;
+    color: #141414;
+    line-height: 1.4;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+}
+
+.figure ul {
+    margin: 0.1rem 0.17rem 0.15rem;
+}
+
+.figure li {
+    float: left;
+    margin-right: 0.19rem;
+    color: #969494;
+    font-size: 0.13rem;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 2.09rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0.23rem;
+}
+
+.figure p {
+    line-height: 0.28rem;
+    /*text-indent: 2em;*/
+    padding: 0 0.15rem;
+    font-size: 0.16rem;
+    color: #454444;
+}
+.figure p img{
+    width: 100%;
+    height: auto;
+}
+
+
+/* 意见 */
+
+form {
+    padding: 0.17rem 0.15rem 0.13rem;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+textarea {
+    width: 100%;
+    height: 1.31rem;
+    color: RGBA(69, 68, 68, .5);
+    font-size: 0.15rem;
+    border: 1px solid #DCDCDC;
+    border-radius: 0.05rem;
+    margin-bottom: 8px;
+}
+
+form div {
+    display: inline-block;
+    color: #303030;
+    font-size: 0.11rem;
+    opacity: 0.5;
+    margin-right: 0.12rem;
+    margin-top: 0.06rem;
+}
+
+form span {
+    display: inline-block;
+    width: 0.1rem;
+    height: 0.1rem;
+    border-radius: 50%;
+    border: 2px solid #80848B;
+    margin-right: 0.04rem;
+}
+
+form .public {
+    /*margin-left: 45%;*/
+}
+
+form .active {
+    border: 2px solid #F40556;
+}
+
+form .active1 {
+    opacity: 1;
+}
+
+form button {
+    display: inline-block;
+    padding: 0.07rem 0.19rem;
+    background-color: #3F97F0;
+    font-size: 0.12rem;
+    color: #FFFFFF;
+    border-radius: 0.04rem;
+    border: 1px solid #3F97F0;
+}
+
+/* ******************评论********************* */
+
+.comments {
+    width: 100%;
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+
+.comments .reply {
+    /*width: 90%;*/
+    padding-bottom: 0.05rem;
+}
+
+.comments li {
+    padding: 0.19rem 0.15rem 0.05rem;
+    /*padding-left: 0.15rem;*/
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.comments li .img {
+    width: 0.25rem;
+    height: 0.25rem;
+    /*margin-left: 0.15rem;*/
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    border-radius: 50%;
+    margin-right: 0.08rem;
+    margin-top: 0.08rem;
+}
+
+.comments li h3 {
+    color: #999;
+    font-size: 0.11rem;
+}
+
+.comments li p {
+    color: #303030;
+    font-size: 0.14rem;
+    margin-bottom: 0.05rem;
+}
+
+
+input[type='button']:enabled:active,
+input[type='button'].mui-active:enabled,
+input[type='submit']:enabled:active,
+input[type='submit'].mui-active:enabled,
+input[type='reset']:enabled:active,
+input[type='reset'].mui-active:enabled,
+button:enabled:active,
+button.mui-active:enabled,
+.mui-btn:enabled:active,
+.mui-btn.mui-active:enabled {
+    background-color: #F0F2F6;
+    color: #303030;
+}

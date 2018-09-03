@@ -1,0 +1,102 @@
+<include file="public@header" />
+<script src="__STATIC__/js/code-mirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="__STATIC__/js/code-mirror/lib/codemirror.css">
+<script src="__STATIC__/js/code-mirror/mode/javascript/javascript.js"></script>
+<style>
+    .CodeMirror{
+        border:1px solid #dce4ec;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('home_page_special_tpl/index')}">特殊模板管理</a></li>
+        <li class="active"><a href="{:url('home_page_special_tpl/add')}">添加特殊模板</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('home_page_special_tpl/addPost')}">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-name" name="name" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">类型<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" name="type" >
+                    <!--<option value="0">请选择类型</option>-->
+                    <option value="1">header</option>
+                    <option value="2">footer</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-image" class="col-sm-2 control-label">示例图<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="hidden" class="form-control" id="exam_img" name="exam_img">
+                <a href="javascript:uploadOneImage('图片上传','#exam_img');">
+                    <img src="__TMPL__/public/assets/images/default-thumbnail.png" style="display: block" id="exam_img-preview" alt="" width="150" height="75">
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">别名<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-url" name="alias">
+            </div>
+        </div>
+        <div class="header-block">
+            <div class="form-group">
+                <label for="background-image" class="col-sm-2 control-label">背景图片</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="hidden" class="form-control" id="background-image" name="background_image">
+                    <a href="javascript:uploadOneImage('图片上传','#background-image');">
+                        <img src="__TMPL__/public/assets/images/default-thumbnail.png" style="display: block" id="background-image-preview" alt="" width="150" height="75">
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="background-color" class="col-sm-2 control-label">背景颜色</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" id="background-color" name="background_color">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="css" class="col-sm-2 control-label">CSS</label>
+                <div class="col-md-6 col-sm-10">
+                    <textarea name="css" id="css" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                <a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+    $(function(){
+        CodeMirror.fromTextArea(document.getElementById('css'), {
+            mode:  "css",
+            lineNumbers:true,
+            theme:'default'
+        });
+        $('[name=type]').change(function(){
+           if($(this).val() == 1){
+               $('.header-block').show();
+           } else{
+               $('.header-block').hide();
+           }
+        });
+    })
+</script>
+</body>
+</html>

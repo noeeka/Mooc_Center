@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>资料管理</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/volData.css?v={$version_list.wx_volData_css}">
+    <style>
+        .date_btn_box{
+            background-color: #fff !important;
+        }
+        .date_ctrl{
+            background-color: #fff !important;
+        }
+        .ym_roll, .date_roll, .datetime_roll, .time_roll{
+            font-weight: normal !important;
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="/wx/my/volunteer" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">资料管理</h3>
+</div>
+    <section style="margin-top: 0.43rem;margin-bottom: 50px;">
+        <div class="personalinfo">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell" id="name">
+                    <a href="javascript:;">
+                        <span>姓名</span>
+                        <span></span>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell" style="display: none;">
+                    <a href="javascript:;">
+                        <span>性别</span>
+                        <span id="sex"></span>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="#">
+                        <span>出生日期</span>
+                        <!--<span id="birthday">1991-08-31</span>-->
+                        <input type="button" id="birthday" value="" class="kbtn" name="birthday">
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="javascript:;" class="mui-navigate-right" id="nation">
+                        <span>民族</span>
+                        <span></span>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="javascript:;" class="mui-navigate-right" id="tel">
+                        <span>联系方式</span>
+                        <span></span>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="javascript:;">
+                        <span>活动区域</span>
+                        <span class="address" id="address" style="display: inline-block; height: 21px;padding-left: 5px;"></span>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="javascript:;" class="mui-navigate-right" id="photos">
+                        <span style="line-height: 0.56rem;" class="f-left">才艺照片</span>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="javascript:;" class="mui-navigate-right" id="speciality">
+                        <span>特长备注</span>
+                        <span class="address"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}'></script>
+<script src='__TMPL__/public/assets/whgcms/wx/js/volData.js?v={$version_list.wx_volData_js}'></script>
+</body>
+</html>

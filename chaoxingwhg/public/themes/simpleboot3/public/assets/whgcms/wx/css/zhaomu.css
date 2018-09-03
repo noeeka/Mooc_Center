@@ -1,0 +1,112 @@
+section {
+    margin-top: 0.43rem;
+}
+
+.classification {
+    padding: 0.14rem 0 0.17rem 0;
+    /* background: url(../images/fenleibg.png) no-repeat; */
+    background-size: 100%;
+}
+
+.search {
+    position: static;
+    margin: 0.14rem 0 0;
+    height: 0.33rem;
+}
+
+
+
+
+
+
+
+
+
+/*筛选*/
+
+.screenTop {
+    /*display: inline-block;*/
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 0.1rem;
+}
+
+.screenTop li {
+    border-right: 1px solid #959595;
+}
+
+.screenTop li:last-child {
+    border-right: none;
+}
+
+.screenTop li img {
+    width: 0.11rem;
+    height: 0.07rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*内容*/
+
+.huodongList.mui-table-view .mui-media-object {
+    width: 1.42rem;
+    height: 0.8rem;
+    max-width: 1.42rem;
+}
+
+.huodongList .mui-table-view-cell:after {
+    left: 0px;
+}
+
+.huodongList.mui-table-view:before {
+    height: 0px;
+}
+
+.classification {
+    padding-bottom: 0.06rem;
+}
+
+.huodongList h3 {
+    font-size: 0.14rem;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*display: -webkit-box;*/
+    /*-webkit-box-orient: vertical;*/
+    /*-webkit-line-clamp: 2;*/
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.huodongList .time {
+    font-size: 0.12rem;
+    color: #625F5F;
+    margin-top: 0.03rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+    white-space: normal;
+}
+
+.huodongList .baomingBtn {
+    font-size: 0.12rem;
+    color: #ffffff;
+    background: #EB6877;
+    border-radius: 0.3rem;
+    width: 0.61rem;
+    height: 0.24rem;
+    text-align: center;
+    line-height: 0.24rem;
+    margin-top: 0.01rem;
+}

@@ -1,0 +1,74 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:url('log/index')}">日志</a></li>
+
+		</ul>
+        <form class="well form-inline margin-top-20" method="post" action="{:url('log/index')}">
+            用户名:
+            <input type="text" class="form-control" name="user_login" style="width: 120px;" value="{:input('request.user_login/s','')}" placeholder="请输入{:lang('USERNAME')}">
+           	角色类型:
+            <select class="form-control" name="user_role" id="user_role">
+				<option value="0">全部</option>
+				<foreach name="roles" item="vo">
+					<option value="{$vo.id}"> {$vo.name}</option>
+				</foreach>
+			</select>
+			<script>
+				$('#user_role').val({$user_role});
+			</script>
+			操作描述:
+			<input type="text" class="form-control" name="object" style="width: 120px;" value="{:input('request.object/s','')}" placeholder="">
+			时间:
+			<input type="text" class="form-control js-bootstrap-datetime" name="start_time"
+				   value="{$start_time|default=''}"
+				   style="width: 140px;" autocomplete="off">-
+			<input type="text" class="form-control js-bootstrap-datetime" name="end_time"
+				   value="{$end_time|default=''}"
+				   style="width: 140px;" autocomplete="off"> &nbsp; &nbsp;
+            <input type="submit" class="btn btn-primary" value="搜索" />
+            <a class="btn btn-danger" href="{:url('log/index')}">清空</a>
+        </form>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>用户名</th>
+					<th>所属角色</th>
+					<th>操作描述</th>
+					<th>操作时间</th>
+					<th>登录IP</th>
+					<th>IP归属</th>
+				</tr>
+			</thead>
+			<tbody>
+				<php>$user_statuses=array("0"=>lang('USER_STATUS_BLOCKED'),"1"=>lang('USER_STATUS_ACTIVATED'),"2"=>lang('USER_STATUS_UNVERIFIED'));</php>
+				<foreach name="users" item="vo">
+				<tr>
+
+					<td>{$vo['user_name']}</td>
+					<td> {$vo['user_role_name']}</if></td>
+					<td>{$vo['object']}</td>
+					<td> {:date('Y-m-d H:i:s',$vo['last_visit_time'])} </td>
+					<td>{$vo['ip']}</td>
+					<td>{$vo['ip_addr']}
+					</td>
+
+				</tr>
+				</foreach>
+			</tbody>
+		</table>
+		<div class="pagination">{$page}</div>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+
+<script>
+
+
+
+
+
+</script>
+</html>

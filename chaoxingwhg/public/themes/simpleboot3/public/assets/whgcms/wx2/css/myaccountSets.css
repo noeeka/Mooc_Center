@@ -1,0 +1,26 @@
+.mui-table-view-cell > a:not(.mui-btn){
+    font-size: 0.17rem;
+    color: #282828;
+    /*height: 52px;*/
+}
+.mui-table-view-cell{
+    padding: 15px 15px;
+}
+.close-btn{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.18rem;
+    border-radius: 0.6rem;
+    margin-top: 0.5rem;
+}
+.mui-btn-primary{
+    border: none;
+    background-color:#3f97f0;
+}
+.mui-btn-primary:enabled:active{
+    border: none;
+    background-color:#3f97f0 ;
+}
+.mui-table-view-cell:after{
+    left: 0px;
+}

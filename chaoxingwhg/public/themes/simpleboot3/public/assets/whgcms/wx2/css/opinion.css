@@ -1,0 +1,123 @@
+/*筛选*/
+
+.screenTop {
+    /*display: inline-block;*/
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 0.1rem;
+    padding-top: 0.1rem;
+    background: #fff;
+}
+
+.screenTop li {
+    border-right: 1px solid #959595;
+}
+
+.screenTop li:last-child {
+    border-right: none;
+}
+
+.screenTop li img {
+    width: 0.11rem;
+    height: 0.07rem;
+}
+
+
+
+
+
+
+
+
+/* 列表 */
+
+.newsTitle,
+.sourcesTitle,
+.activityTitle {
+    padding: 0 15px;
+}
+
+.newsTitle h2,
+.sourcesTitle h2,
+.activityTitle h2 {
+    font-size: 0.16rem;
+}
+
+.newsTitle a img,
+.sourcesTitle a img,
+.activityTitle a img {
+    width: 50%;
+}
+
+.newsTitle a,
+.sourcesTitle a,
+.activityTitle a {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+}
+
+.newsContent h3 {
+    font-size: 0.15rem;
+    margin-top: 0.07rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.newsContent span {
+    display: inline-block;
+    font-size: 0.13rem;
+    color: #969494;
+    margin-top: 0.05rem;
+    margin-right: 0.1rem;
+}
+
+.newsContent img {
+    display: inline-block;
+    width: 0.16rem;
+    height: 0.09rem;
+    /*margin-left: 0.16rem;*/
+}
+
+.newsContent .zhiding {
+    font-size: 0.1rem;
+    color: #EB6877;
+    padding: 0.01rem 0.06rem;
+    border: 1px solid #EB6877;
+    border-radius: 0.04rem;
+    margin-left: 0;
+}
+
+.mui-table-view:before {
+    height: 0px;
+}
+
+.mui-table-view-cell:after {
+    left: 0px;
+}
+
+
+
+
+
+
+
+/*模板2*/
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object {
+    height: 0.82rem;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+    font-size: 0.12rem;
+    line-height: 0.12rem;
+    color: #141414;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell {
+    text-align: left;
+}
+
+.mould2 .mui-table-view:after {
+    height: 0px;
+}

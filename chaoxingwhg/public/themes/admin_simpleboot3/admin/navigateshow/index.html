@@ -1,0 +1,23 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('NavigateShow/index')}">所有导航栏模板</a></li>
+    </ul>
+    <form method="post" class="js-ajax-form margin-top-20" action="{:url('NavigateShow/index')}">
+        <table class="table table-hover table-bordered table-list">
+            <tbody>
+            <foreach name="nav_list" item="vo">
+                <tr>
+                    <td><span><image src="{$vo.img}"></image></span></td>
+
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

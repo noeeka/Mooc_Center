@@ -1,0 +1,102 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/information.css'>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/read.css'>
+<title></title>
+<style>
+.main {
+    padding-top: 40px;
+}
+</style>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div class="main-left f-left" style="display: none">
+                <div class="program">
+                    <div class="program-child">
+                        <span style="margin-right: 5px;">{$title}</span><span>/</span><span style="margin-left: 5px; margin-right: 5px;display: none" class="title"></span><span class="separated" style="display: none">/</span><span class="smalltitle" style="margin-left: 5px;display: none"></span>
+                    </div>
+                </div>
+                <ul class="layui-nav layui-nav-tree" id="left-menu" lay-filter="test"></ul>
+            </div>
+            <div class="main-right f-right">
+                <div class="multi" style="display: none">
+                    <ul class="tab1" style="display: none">
+                        <!--<li class="active1" data-index="3">智能排序</li>-->
+                        <li class="active1 new" data-index="4">最新发布</li>
+                        <li data-index="5" class="hight">人气最高</li>
+                    </ul>
+                    <div style="display: inline-block;text-align: center;width: 100%;margin-top:100px;display: none;" class="no">
+                        <img src="__TMPL__/public/assets/whgcms/images/no.png" alt="">
+                        <span style="font-size: 18px;color: #000000;display: block;">暂无数据</span>
+                    </div>
+                    <ul class="list clearfix" id="data-list">
+                    </ul>
+                    <div id="test1" class="page"></div>
+                </div>
+                <div class="single" style="display: none">
+                    <div class="details" style="display: none;"></div>
+                    <div style="display: inline-block;text-align: center;width: 100%;margin-top:100px;display: none;" class="no">
+                        <img src="__TMPL__/public/assets/whgcms/images/no.png" alt="">
+                        <span style="font-size: 18px;color: #000000;display: block;">暂无数据</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$id|default=0}">
+    <script type="text/template" id="left-slide">
+        {{#each data}}
+        <li class="layui-nav-item">
+            <a href="javascript:;" data-id="{{id}}" data-type="{{type}}"><em>{{name}}</em>
+                {{#if children}}<img src="__TMPL__/public/assets/whgcms/images/information/white.png" alt="">{{/if}}</a>
+            {{#if children}}
+            <dl class="layui-nav-child">
+                {{#each children}}
+                <dd><a href="javascript:;" data-id="{{id}}" data-type="{{type}}">{{name}}</a></dd>
+                {{/each}}
+            </dl>
+            {{/if}}
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/template" id="item">
+        {{#each list}}
+        <li>
+            <!--<a href="/portal/category/read/?id={{id}}&cid={$id|default=8}">-->
+            <a href="{{buildSecondUrl '/portal3/category/read/?id=' id}}">
+                <div class="image bg100" style="background-image: url({{image thumb}});"></div>
+                <div class="text">
+                    <h3 class="ellipsis">{{title}}</h3>
+                    <p>{{abstract}}</p>
+                    <div class="number">
+                        <div class="source f-left" style="margin-right: 20px;">
+                            <img src="__TMPL__/public/assets/whgcms/images/information/5.png" alt="" class="f-left">
+                            <span class="f-left" style="width: 96px;">{{venue_name}}</span>
+                        </div>
+                        <div class="look f-left" style="margin-right: 20px;">
+                            <img src="__TMPL__/public/assets/whgcms/images/information/look.png" alt="" class="f-left" style="width:19px;height: 11px;margin-top:4px;">
+                            <span class="f-left"><em style="display: inline-block;width: 50px;">{{hits}}次</em></span>
+                        </div>
+                        <div class="time f-left" style="margin-left:32px;">
+                            <img src="__TMPL__/public/assets/whgcms/images/information/time.png" alt="" class="f-left" style="width: 17px;">
+                            <span class="f-left" style="width: 68px;">{{date time}}</span>
+                        </div>
+                    </div>
+                </div>
+                <img class="zhiding1" src="__TMPL__/public/assets/whgcms/images/zhiding1.png" alt="">
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/template" id="detail">
+        <div class="title" style="text-align: center;">{{title}}</div>
+        <p>{{{post_content}}}</p>
+    </script>
+    <include file="public/footer" />
+    <script src='__TMPL__/public/assets/whgcms/js/articles.js'></script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+/* reset css */
+*,
+::before,
+::after{
+    padding: 0;
+    margin: 0;
+    /*清除高亮效果*/
+    -webkit-tap-highlight-color:transparent;
+    /*宽度以边框开始计算*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+    /*设置默认字号*/
+    font-size: 14px;
+    /*设置备用字体*/
+    font-family:"MicroSoft YaHei",sumsim，sans-serif;
+    /*前景色*/
+    color: #303030;
+    background: #f6f7f9;
+}
+
+ol,ul{
+    /*清除黑点*/
+    list-style: none;
+}
+a{
+    /*清除超链接的下划线*/
+    text-decoration: none;
+    /*设置超链接颜色*/
+    color: #303030;
+}
+a:hover{
+    /*设置超链接hover颜色*/
+    color: #303030;
+    /*color: #81858F;*/
+}
+p{
+    color: #303030;
+}
+input{
+    /*清除input边框*/
+    border: none;
+    /*清除input轮廓线*/
+    outline: none;
+    /*清除移动的默认样式 内阴影、立体感*/
+    -webkit-appearance: none;
+}
+
+/*common css*/
+.f-left{
+    float: left;
+}
+.f-right{
+    float: right;
+}
+
+/*清除浮动*/
+.clearfix::after,
+.clearfix::before{
+    content: " ";
+    line-height: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+/*class值以icon-开头*/
+[class^=icon-],
+/*class值包含' icon-'*/
+/*[class*=" icon-"]{*/
+    /*background: url("../images/sprites.png") no-repeat;*/
+    /*-webkit-background-size: 200px 200px;*/
+    /*background-size: 200px 200px;*/
+/*}*/
+
+.b-right{
+    border-right: 1px solid #e0e0e0;
+}
+
+.b-bottom{
+    border-bottom: 1px solid #e0e0e0;
+}
+html {font-size: 625%; /*100 ÷ 16 × 100% = 625%*/}
+@media screen and (min-width:360px) and (max-width:374px) and (orientation:portrait) {
+    html { font-size: 703%; }
+}
+@media screen and (min-width:375px) and (max-width:383px) and (orientation:portrait) {
+    html { font-size: 732.4%; }
+}
+@media screen and (min-width:384px) and (max-width:399px) and (orientation:portrait) {
+    html { font-size: 750%; }
+}
+@media screen and (min-width:400px) and (max-width:413px) and (orientation:portrait) {
+    html { font-size: 781.25%; }
+}
+@media screen and (min-width:414px) and (max-width:431px) and (orientation:portrait){
+    html { font-size: 808.6%; }
+}
+@media screen and (min-width:432px) and (max-width:479px) and (orientation:portrait){
+    html { font-size: 843.75%; }
+}
+/*----------------------底部----------------------*/
+.mui-bar-tab .mui-tab-item.mui-active{
+    color: #3088fe;
+}
+.mui-bar{
+    box-shadow: none;
+    -webkit-box-shadow:none;
+    /*background-color: #ffffff;*/
+}
+.mui-icon-home:before,.mui-icon-my:before{
+    content:'';
+    display: inline-block;
+    width: 0.12rem;
+    height:0.12rem;
+
+}
+.mui-icon-home:before{
+    background: url("../../images/home.png");
+    background-repeat: round;
+}
+.mui-icon-my:before{
+    background: url("../../images/my.png");
+    background-repeat: round;
+}
+.mui-bar-tab .mui-tab-item.mui-active .mui-icon-home:before{
+    background: url("../../images/home_hover.png");
+    background-repeat: round;
+}
+.mui-bar-tab .mui-tab-item.mui-active .mui-icon-my:before{
+    background: url("../../images/my_hover.png");
+    background-repeat: round;
+}
+.mui-card{
+    box-shadow: none;
+
+}
+.mt44{
+    margin-top: 0.44rem;
+}
+.mt84{
+    margin-top: 0.84rem
+}
+.mt40{
+    margin-top: 0.4rem;
+}
+.mt84{
+    margin-top: 0.84rem;
+}
+/*头部*/
+.returnHeader{
+    width: 100%;
+    height: 0.4rem;
+    background: #666;
+    line-height: 0.4rem;
+    /*padding-left: 15px;*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+}
+.returnHeader .return{
+    color: #ffffff;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translate(0 , -50%);
+    z-index: 9999
+}
+.returnHeader .return span{
+    font-size: 0.14rem;
+}
+.returnHeader h3{
+    font-size: 0.14rem;
+    color: #ffffff;
+    font-weight: normal;
+    line-height: 0.4rem;
+    height: 0.4rem;
+    margin: 0;
+
+}

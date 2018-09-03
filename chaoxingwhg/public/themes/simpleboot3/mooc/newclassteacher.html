@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>新建课程</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="lib/ztree/zTreeStyle.css">
+<link rel="stylesheet" href="lib/layui/css/layui.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/newclassteacher.css">
+<link rel="stylesheet" href="css/publice.css" />
+</head>
+
+<body>
+<div id="app">
+    <header-all></header-all>
+    <div class="main">
+        <div class="main-safe layui-form">
+            <div class="cnteacher-content clearfix">
+                <div class="tree-b f-left">
+                    <span class="add-dy backgroundcolor">添加章</span>
+                    <ul id="ztree" class="ztree"></ul>
+                </div>
+                <form class="editor-b f-right">
+                    <p class="active-tit"></p>
+                    <script id="editor" type="text/plain" style="width:100%;height:380px!important; overflow:hidden; overflow-Y:auto;"></script>
+                    <div class="clearfix">
+                        <span class="edit-sub-btn layui-btn f-right">保存</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div id="nodename" style="display:none;">
+	<input class="add-dy" type="text">
+</div>-->
+</body>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="lib/vue2.js"></script>
+<script src="js/header.js"></script>
+<script src="lib/ztree/jquery.ztree.core.min.js"></script>
+<script src="lib/ztree/jquery.ztree.exedit.min.js"></script>
+<script src="lib/ueditor/ueditor.config.js"></script>
+<script src="lib/ueditor/ueditor.all.min.js"></script>
+<script src="lib/ueditor/zh-cn.js"></script>
+<script src="lib/layui/layui.all.js"></script>
+<script src="js/publice.js"></script>
+<script src="js/newclassteacher.js"></script>
+</html>

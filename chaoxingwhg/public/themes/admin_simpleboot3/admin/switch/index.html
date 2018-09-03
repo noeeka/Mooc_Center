@@ -1,0 +1,51 @@
+<include file="public@header"/>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+</style>
+
+
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('switch/index')}">总分馆管理</a></li>
+    </ul>
+    <form action="{:url('switch/editPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="100px">是否启用</th>
+                        <td>
+                            <input type="radio" name="switch"   value="1" <if condition="$switch eq 1">checked</if>> 是
+                            <input type="radio" name="switch"   value="0" <if condition="$switch eq 0">checked</if>> 否
+                        </td>
+                    </tr>
+
+
+                </table>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+
+</body>
+</html>

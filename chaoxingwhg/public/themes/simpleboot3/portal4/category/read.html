@@ -1,0 +1,104 @@
+<include file="public/header" />
+<link rel="stylesheet" href="__TMPL__/public/assets/whgcms/lib/swiper/dist/css/swiper.min.css">
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/read.css'>
+<title></title>
+</head>
+
+<body>
+    <include file="public/nav" />
+    <div class="main clearfix">
+        <div class="main-content clearfix">
+            <div style="width: 830px;" class="f-left">
+                <div style="background-color: #fff;">
+                    <div class="details">
+                        <div style="text-align: center;height: 250px;padding-top: 180px;"><img src="__TMPL__/public/assets/whgcms/images/read/load.gif" alt=""></div>
+                    </div>
+                    <div class="comments hide" style="width: 790px;margin: 0 auto;">
+                        <div style="border-bottom: 1px solid #D9D9D9;" class="clearfix">
+                            <!--<div style="width:1200px;padding:15px 0;text-align: left;color:#2F343A;font-size: 18px;border-bottom:1px solid #D9D9D9;margin-bottom: 24px; ">全部评论</div>-->
+                            <input type="text " name="newContent" placeholder="写点评论…… " style="width: 770px;">
+                            <button class="button expire" id="newBtn">发表评论</button>
+                        </div>
+                        <div class="comment-list">
+                            <ul class="section">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="test1" class="page"></div>
+            </div>
+            <div style="width: 320px;" class="f-right">
+                <div>
+                    <h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;">热门推荐</h3>
+                    <ul id="Hot">
+                    </ul>
+                </div>
+                <!--<div style="margin-top: 50px;">-->
+                <!--<h3 style="font-size:16px;color:#1C2438;line-height:24px;padding-left: 8px;border-left: 3px solid #2F343B;margin-bottom: 3px;">相关阅读</h3>-->
+                <!--<ul id="read">-->
+                <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <input type="hidden" name="pid" value="{$pid|default=8}">
+    <include file="public/footer" />
+    <script type="text/template" id="detail">
+        <div class="title">{{title}}</div>
+        <ul class="number clearfix" style="padding-bottom: 20px;border-bottom:1px solid #DDDEE1;">
+            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px;color: #A0A4AA;"><span>{{date time}}</span></li>
+            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px;color: #A0A4AA;">阅读：<span>{{hits}}</span>次</li>
+            <li style="margin-right: 9px;display: inline-block;border-right: 1px solid #A0A4AA;padding-right: 11px;color: #A0A4AA;">收藏：<span class="collect_num">{{collect}}</span>次</li>
+            <li style="margin-right: 9px;display: inline-block;color: #A0A4AA;">{{venue_name}}</li>
+        </ul>
+        {{#if abstract}}
+        <span style="color: #A0A4AA;font-size: 12px;line-height: 21px;margin-top: 16px;display: inline-block;">{{abstract}}</span> {{/if}}
+        <img src="{{image thumb}}" alt=" " style="margin-top:37px;margin-bottom: 37px;width: 100%;height: auto;">
+        <p>{{{content}}}</p>
+        <div class="tags">
+            <img src="__TMPL__/public/assets/whgcms/images/read/biaoqian.png" alt="" class="f-left" style="margin-right: 11px;margin-top: -5px;"> {{#each categorys}}
+            <a href="{{url}}" target="_blank">{{name}}</a> {{/each}}
+        </div>
+        <div id="collectBtn" style="margin-top: 60px; text-align: center;margin-bottom:60px;">
+            <div style="padding:6px 22px;display: inline-block;border-radius: 15px;cursor: pointer;border:1px solid #F40556;">
+                <img src="__TMPL__/public/assets/whgcms/images/read/{{is_collect is_collect}}" alt="" style="width:16px;height: 14px;cursor: pointer;display: inline-block; margin-top:2px;" class="f-left">
+                <span style="color:#FB4784;font-size: 14px;margin-left:5px;display: inline-block;-moz-user-select:none;-webkit-user-select:none;user-select:none;">收藏</span>
+            </div>
+            <!--<div style="background-image:url(__TMPL__/public/assets/whgcms/images/read/{{is_collect is_collect}}); width:16px;height: 14px;cursor: pointer;background-repeat: no-repeat;background-size: cover;display: inline-block;"></div>-->
+        </div>
+    </script>
+    <script src="__TMPL__/public/assets/whgcms/lib/swiper/dist/js/swiper.min.js"></script>
+    <script src='__TMPL__/public/assets/whgcms/js/read.js'></script>
+    <script>
+        Handlebars.registerHelper('reads', function(value) {
+                return value + "?width=320&height=180";
+        });
+    </script>
+    <script type="text/x-handlebars-template" id="hot-template">
+        {{#each list}}
+        <li style="margin-top: 20px;">
+            <a href="{{buildSecondUrl '/portal3/category/read?id=' id}}">
+                <div class="bg100" style="background-image: url({{reads thumb}});background-repeat: no-repeat;background-size: cover;background-position: top center;width: 320px;height: 180px;position: relative;">
+                    <div style="width:320px;height:40px; background:rgba(0,0,0,.5);position: absolute;left: 0;bottom: 0;">
+                        <h3 class="ellipsis" style="font-size:14px;color:rgba(255,255,255,1);overflow: hidden;white-space: nowrap;line-height: 40px;margin: 0 15px;">{{title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="read-template">
+        {{#each this}}
+        <li style="margin-top: 19px;">
+            <a href="/portal3/category/read?id={{id}}" style="display: inline-block;" class="clearfix">
+                <span class="layui-badge-dot layui-bg-cyan f-left" style="width: 3px;height: 3px;margin-right: 10px;margin-top: 8px;display: inline-block;color: #2F343B;"></span>
+                <span class="f-left ellipsis" style="display: inline-block;width: 307px;white-space: nowrap;overflow: hidden;color: #2F343B; font-size: 14px;">{{title}}</span>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

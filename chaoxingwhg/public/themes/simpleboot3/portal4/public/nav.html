@@ -1,0 +1,117 @@
+<div class="header">
+    <div class="header-content clearfix" style="background-size: cover;background-position: center bottom;min-width: 1220px;max-width: 1920px;">
+        <div class="head clearfix">
+            <div style="width: 1200px;height: 126px; margin:0 auto;padding:0 10px;" class="clearfix">
+                <div class="clearfix myclock">
+                    <div id="myclock" class="f-left"></div>
+                    <div class="f-right aa">
+                        <ul class="logo-reg clearfix f-right denglu">
+                            <li><a href="/portal4/login/login">登录<span style="margin-right: 5px;"></span>|<span style="margin-left: 5px;"></span></a></li>
+                            <li><a href="/portal4/login/login">注册</a></li>
+                        </ul>
+                        <div class="login-reg zhuce f-right" style="margin-left:28px; margin-top: 5px;position: relative;display: none">
+                            <ul id="xx" class="clearfix xx">
+                                <li class="tlogin f-left">
+                                    <a href="javascript:;" style="right: 69px;top:4px;">
+                                        <img src="__TMPL__/public/assets/whgcms/images/my/avatar1.png" alt="" style="width:20px;height:20px;margin-right:10px;margin-top: 2px;border-radius: 50%">
+                                    </a>
+                            </li>
+                            <li class="treg f-left">
+                                <a href="javascript:;" style="color:#000;font-size:12px;line-height:24px;"></a>
+                            </li>
+                            </ul>
+                            <div class="out" style="width: 112px;position: absolute;z-index: 99;top:20px;right: 0;display: none;">
+                                <div style="width:100%;height: 20px;"></div>
+                                <div style="box-shadow: 0px 10px 20px -7px #535f6f;">
+                                    <a href="/portal/my/index" style="border-bottom: 1px solid #c6c6c6;">个人中心</a>
+                                    <a class="exit" style="cursor: pointer;">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix logo-parent" style="margin-top: 12px;">
+                    <img src="__TMPL__/public/assets/whgcms/images/web2/logo.png" alt="" style="cursor: pointer;" class="logo f-left">
+                    <div class="search f-right " style="position: relative;">
+                        <input type="text " placeholder="请输入搜索内容" id="sousuoinput" value="" style="position: absolute; ">
+                        <div class="sousuo zhutise"><img src="__TMPL__/public/assets/whgcms/images/search-nav.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-parent zhutise">
+                <div class="navbox zhutise">
+            <!--<ul class="nav clearfix" style="margin-top:26px;margin-bottom: 59px;">-->
+            <ul class="nav clearfix">
+                <!--<li><a href="#" class="active">首页</a></li>-->
+                <!--<li><a href="#">信息展示</a></li>-->
+                <!--<li><a href="#">资源展示</a></li>-->
+                <!--<li><a href="#">活动展示</a></li>-->
+                <!--<li><a href="#">全景展示</a></li>-->
+                <!--<li><a href="#">慕课平台</a></li>-->
+                <!--<li><a href="#">关于我们</a></li>-->
+            </ul>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <script type="text/x-handlebars-template" id="pic">
+    <li class="tlogin f-left">
+        <a>
+            <img src="{{avatar_url}}" alt="" style="width:20px;height:20px;margin-right:10px;border-radius: 50%;margin-top: -2px;">
+        </a>
+    </li>
+    <li class="treg f-left">
+        <a style="color:#000;font-size: 12px;">{{user_nickname}}</a>
+    </li>
+</script> -->
+<script type="text/javascript">
+function clock_12h() {
+    var today = new Date(); //获得当前时间
+    //获得年、月、日，Date()函数中的月份是从0－11计算
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    var date = today.getDate();
+    var hour = today.getHours(); //获得小时、分钟、秒
+    var minute = today.getMinutes();
+    var second = today.getSeconds();
+
+    var apm = "AM"; //默认显示上午: AM
+    if (hour > 12) //按12小时制显示
+    {
+        hour = hour - 12;
+        apm = "PM";
+    }
+    var weekday = 0;
+    switch (today.getDay()) {
+        case 0:
+            weekday = "星期日";
+            break;
+        case 1:
+            weekday = "星期一";
+            break;
+        case 2:
+            weekday = "星期二";
+            break;
+        case 3:
+            weekday = "星期三";
+            break;
+        case 4:
+            weekday = "星期四";
+            break;
+        case 5:
+            weekday = "星期五";
+            break;
+        case 6:
+            weekday = "星期六";
+            break;
+    }
+
+    /*设置div的内容为当前时间*/
+    document.getElementById("myclock").innerHTML = "<h2>" + year + "年" + month + "月" + date + "日&nbsp;" + weekday + "</h2>";
+
+}
+/*使用setInterval()每间隔指定毫秒后调用clock_12h()*/
+var myTime = setInterval("clock_12h()", 1000);
+</script>
+</script>

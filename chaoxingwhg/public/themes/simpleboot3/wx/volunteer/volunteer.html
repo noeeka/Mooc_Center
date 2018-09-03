@@ -1,0 +1,183 @@
+<include file="public/header"/>
+
+<!--<link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx/css/venue.css?v={$version_list.wx_venue_css}">-->
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/volunteers.css?v={$version_list.wx_volunteers_css}'>
+<title></title>
+</head>
+<body>
+<include file="public/nav"/>
+
+<section style="margin-bottom: 50px;">
+    <div style="background-image: url(__TMPL__/public/assets/whgcms/wx/images/fenleibg.png);width: 100%;height: 0.15rem;"></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper" id="swiper-wrapper">
+            <!--<div class="swiper-slide" style="background-image:url(__TMPL__/public/assets/whgcms/wx/images/1.png)"></div>-->
+            <!--<div class="swiper-slide" style="background-image:url(__TMPL__/public/assets/whgcms/wx/images/2.png)"></div>-->
+            <!--<div class="swiper-slide" style="background-image:url(__TMPL__/public/assets/whgcms/wx/images/1.png)"></div>-->
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="count">
+        <!--<div id="volunCount">注册志愿者<span>9</span><span>9</span><span>8</span></div>-->
+        <div id="volunCount" style="font-weight: bold;"></div>
+        <div class="reg"><a href="/wx/volunteer/volRegister" style="color: #fff;">注册</a></div>
+    </div>
+    <section class="news">
+        <div class="newsTitle clearfix">
+            <h2 class="f-left">活动报道</h2>
+            <a class="f-right" href="/wx/volunteer/reports"><img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt=""></a>
+        </div>
+        <ul class="mui-table-view newsContent" id="reportsContent">
+            <!--<li class="mui-table-view-cell mui-media">-->
+                <!--<a href="javascript:;">-->
+                    <!--<div class="mui-media-body">-->
+                        <!--<h3>青年志愿者采集造血干细胞弘扬红十字精神青年志愿者采集造血干细胞弘扬红十字精神</h3>-->
+                        <!--<span class="zhiding">置顶</span>-->
+                        <!--<span class="source">河西文化馆</span>-->
+                        <!--<span class="time"> 2017-6-27</span>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="mui-table-view-cell mui-media">-->
+                <!--<a href="javascript:;">-->
+                    <!--<div class="mui-media-body">-->
+                        <!--<h3>青年志愿者采集造血干细胞弘扬红十字精神</h3>-->
+                        <!--<span class="zhiding">置顶</span>-->
+                        <!--<span class="source">河西文化馆</span>-->
+                        <!--<span class="time"> 2017-6-27</span>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+    </section>
+    <section class="news">
+        <div class="newsTitle clearfix">
+            <h2 class="f-left">活动招募</h2>
+            <a class="f-right" href="/wx/volunteer/zhaomu"><img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt=""></a>
+        </div>
+        <ul class="mui-table-view newsContent  recruiting" id="zhaomuContent">
+        </ul>
+    </section>
+    <!--风采展示-->
+    <section class="sources">
+        <div class="sourcesTitle clearfix">
+            <h2 class="f-left">风采展示</h2>
+            <a class="f-right" href="/wx/volunteer/fengcai"><img src="__TMPL__/public/assets/whgcms/wx/images/moreicon.png" alt=""></a>
+        </div>
+        <ul class="mui-table-view mui-grid-view" id="fengcaiContent">
+            <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+                <!--<a href="elegantinfo.html">-->
+                    <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                    <!--<div class="mui-media-body">志愿者汪小敏风采展示</div>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+                <!--<a href="#">-->
+                    <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                    <!--<div class="mui-media-body">志愿者汪小敏风采展示</div>-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+    </section>
+    <!--志愿者活跃度排行-->
+    <section style="margin-top:0.2rem;">
+        <div class="sourcesTitle clearfix" style="border-bottom: 1px solid #D2D2D2;padding-bottom: 0.19rem;">
+            <h2 class="f-left">志愿者TOP10排行</h2>
+            <!--<a class="f-right" href="#"><img src="images/moreicon.png" alt=""></a>-->
+        </div>
+        <ol class="active1" id="VolunScore">
+            <!--<li><span>王乐民</span><span>积分：27</span>-->
+                <!--<div class="line" style="width: 110.4%;height: 1px;background-color: #D2D2D2;"></div>-->
+            <!--</li>-->
+            <!--<li><span>王乐民</span><span>积分：27</span>-->
+                <!--<div class="line" style="width: 110.4%;height: 1px;background-color: #D2D2D2;"></div>-->
+            <!--</li>-->
+        </ol>
+    </section>
+</section>
+<!--底部-->
+<include file="public/footer">
+
+    <!--<script src="__TMPL__/public/assets/whgcms/wx/lib/screen/demo.js"></script>-->
+    <script src="__TMPL__/public/assets/whgcms/wx/js/volunteers.js?v={$version_list.wx_volunteers_js}"></script>
+    <!--banner-->
+    <script type="text/template" id="volbanner-item">
+        {{#each this}}
+        <div class="swiper-slide">
+            <a href="{{murl}}">
+                <img src="{{img}}" alt="" style="height: 2.08rem;">
+            </a>
+        </div>
+        {{/each}}
+    </script>
+    <!--活动报道-->
+    <script type="text/template" id="reports-item">
+        {{#each this}}
+        <li class="mui-table-view-cell mui-media">
+            <a href="/wx/volunteer/reportsinfo?id={{id}}">
+                <div class="mui-media-body">
+                    <h3>{{post_title}}</h3>
+                    {{#if is_top}}
+                    <span class="zhiding">置顶</span>
+                    {{/if}}
+                    <span class="source">{{name}}</span>
+                    <span class="time"> {{published_time}}</span>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!--活动招募-->
+    <script type="text/template" id="zhaomu-item">
+        {{#each this}}
+        <li class="mui-table-view-cell mui-media">
+            <a href="/wx/volunteer/zhaomuinfo?id={{id}}">
+                <div class="mui-media-body">
+                    <h3>{{title}}</h3>
+                    <span class="source">{{name}}</span>
+                    <span class="time">{{start_time}}~{{end_time}}</span>
+                    <div class="button baomingbtn">报名</div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!--风采展示-->
+    <script type="text/template" id="fencai-item">
+        {{#each this}}
+        <li class="mui-table-view-cell mui-media mui-col-xs-6">
+            <a href="/wx/volunteer/fengcaiinfo?id={{id}}">
+                <img class="mui-media-object" src="{{imgs}}">
+                <div class="mui-media-body">志愿者{{user_realname}}风采展示</div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <!--志愿者排行-->
+    <script type="text/template" id="VolunScore-item">
+        {{#each this}}
+        <a href="/wx/volunteer/fengcaiinfo?id={{id}}">
+        <li>
+
+            <div>
+                <span class="mui-col-xs-2 volphoto" style="padding-left: 0.05rem;">
+                    <!--{{#if avatar}}-->
+                    <!--<img src="{{avatar}}" alt="">-->
+                    <!--{{else}}-->
+                    <!--<img src="__TMPL__/public/assets/whgcms/wx/images/myphoto.png" alt="">-->
+                    <!--{{/if}}-->
+                    <img src="{{avatar}}" alt="">
+                </span>
+                <span class="mui-col-xs-5 ">{{realname}}</span>
+                <span class="mui-col-xs-4 ">积分：{{score}}</span>
+            </div>
+            <div class="line" style="width: 110.4%;height: 1px;background-color: #D2D2D2;"></div>
+
+        </li>
+        </a>
+        {{/each}}
+    </script>
+
+</body>
+</html>

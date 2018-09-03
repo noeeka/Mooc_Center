@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>我的预约</title>
+
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/lib/mui/css/mui.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/lib/swiper/swiper.min.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/lib/screen/demo.css">
+
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/reset.css">
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/lib/swiper/homepage_swiper.css">
+    <link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx2/css/information.css?v={$version_list.wx_information_css}'/>
+    <link rel='stylesheet' type='text/css' href="__TMPL__/public/assets/whgcms/wx2/css/reservation.css">
+
+    <style>
+        .grade-eject, .Category-eject, .Sort-eject{
+            top: 0.93rem;
+        }
+        #date-wrapper h3{
+            background: #3F97F0;!important;
+        }
+        .mui-table-view-cell > a:not(.mui-btn){
+            height: 0.83rem;
+            background: #EEEEEE;
+        }
+        .mui-table-view .mui-media-object.mui-pull-left{
+            width: 0.77rem;
+            height: 0.59rem;
+            max-width: 0.77rem;
+        }
+        .mui-media-body h3{
+            font-size: 0.16rem;
+            color: #141414;
+        }
+        .mui-media-body p{
+            font-size: 0.13rem;
+            color: #625F5F;
+            margin-top: 0.1rem;
+        }
+        .arrow{
+            width: 7px;
+            position: absolute;
+            right: 0.15rem;
+            top: 50%;
+            transform: translate(0,-50%);
+        }
+        .statusBtn,.caozuoBtn{
+            padding: 0.05rem 0.11rem;
+            border: 1px solid #A0A0A0;
+            border-radius: 0.4rem;
+            font-size: 0.13rem;
+            color: #625F5F;
+        }
+        .caozuoBtn{
+            border: 1px solid #B93421;
+            color:#B93421;
+            margin-left: 0.1rem;
+        }
+        .navigation{
+            display:flex;
+        }
+        .navigation li{
+            flex: 1;
+            padding: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return">
+        <span class="mui-icon mui-icon-arrowleft"></span>
+    </a>
+    <h3 class="mui-col-xs-12 mui-text-center">我的预约</h3>
+</div>
+<div class="classification" style="display: block;">
+    <ul class="navigation navmt" style="padding: 0.1rem 0;background: #fff;position:fixed;z-index:2;">
+        <li class="active">全部</li>
+        <li>审核中</li>
+        <li>已通过</li>
+        <li>未通过</li>
+        <li>已取消</li>
+        <li>已完成</li>
+    </ul>
+
+    <div class="linemt" style="width: 100%;height: 0.1rem;background: #EEEEEE;position: fixed;z-index: 2;"></div>
+</div>
+<section class="mainmt" style="margin-bottom: 50px;">
+
+    <div class="sources" >
+        <ul class="mui-table-view huodongList">
+                <li class="mui-table-view-cell mui-media">
+                    <div class="clearfix" style="height: 0.38rem;margin-top: -0.03rem;">
+                        <span class="f-left" style="font-size: 0.13rem;color: #625F5F;">预约人：金三顺</span>
+                        <span class="f-right" style="font-size: 0.13rem;color: #A7A0A0;">2018-07-21 16:00</span>
+                    </div>
+                    <a href="/wx2/apply/info?id={{id}}">
+                        <img class="mui-media-object mui-pull-left" src="__TMPL__/public/assets/whgcms/wx2/images/banner-1.png">
+                        <div class="mui-media-body clearfix">
+                            <h3 class="mui-ellipsis">石景山文化馆书画展览</h3>
+                            <p>活动时间：09-21 09:00~09-23 18:00 </p>
+                        </div>
+                        <img class="arrow" src="__TMPL__/public/assets/whgcms/wx2/images/arrow.png" alt="">
+                    </a>
+                    <div class="clearfix" style="margin-top: 0.2rem;">
+                        <a class="caozuoBtn f-right" href="#">重新预约</a>
+                        <span class="statusBtn f-right">未通过审核</span>
+                    </div>
+                </li>
+                <li class="mui-table-view-cell mui-media">
+                    <div class="clearfix" style="height: 0.38rem;margin-top: -0.03rem;">
+                        <span class="f-left" style="font-size: 0.13rem;color: #625F5F;">预约人：金三顺</span>
+                        <span class="f-right" style="font-size: 0.13rem;color: #A7A0A0;">2018\07\21 16:00</span>
+                    </div>
+                    <a href="/wx2/apply/info?id={{id}}">
+                        <img class="mui-media-object mui-pull-left" src="__TMPL__/public/assets/whgcms/wx2/images/banner-1.png">
+                        <div class="mui-media-body clearfix">
+                            <h3 class="mui-ellipsis">石景山文化馆书画展览</h3>
+                            <p>活动时间：09\21 09:00~09\23 18:00 </p>
+                        </div>
+                        <img class="arrow" src="__TMPL__/public/assets/whgcms/wx2/images/arrow.png" alt="">
+                    </a>
+                    <div class="clearfix" style="margin-top: 0.2rem;">
+                        <a class="caozuoBtn f-right" href="#">重新预约</a>
+                        <span class="statusBtn f-right">审核中</span>
+                    </div>
+                </li>
+        </ul>
+        <div id="lib">
+
+        </div>
+    </div>
+
+
+    <!--列表-->
+    <script type="text/x-handlebars-template" id="list">
+        {{#each this}}
+        {{/each}}
+    </script>
+</section>
+
+
+<!--<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>-->
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/jquery/jquery-3.0.0.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/lib/layui/layui.js "></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/screen/demo-recruiting.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/jquery.date.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx2/lib/dropload/dropload.js"></script>
+<!--<script src="__TMPL__/public/assets/whgcms/wx2/js/reservation.js?v=1.0"></script>-->
+
+</body>
+
+</html>

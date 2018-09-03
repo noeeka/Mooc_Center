@@ -1,0 +1,181 @@
+.figure {
+    margin-top: 0.43rem;
+    /*border-top: 1px solid #DCDCDC;*/
+    border-bottom: 1px solid #DCDCDC;
+    /*padding-bottom: 0.26rem;*/
+}
+
+.figure h3 {
+    margin: 0.56rem 0.15rem 0.1rem;
+    font-size: 0.2rem;
+    color: #141414;
+    line-height: 1.4;
+}
+
+.figure ul {
+    margin: 0rem 0.15rem;
+}
+
+.figure li {
+    float: left;
+    margin-right: 0.21rem;
+    color: #969494;
+    font-size: 0.13rem;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 2.09rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0.23rem;
+    margin-top: 0.28rem;
+}
+
+.figure p {
+    line-height: 0.28rem !important;
+    /*text-indent: 2em;*/
+    padding: 0 0.15rem !important;
+    font-size: 0.16rem !important;
+    color: #454444 !important;
+    margin-bottom: 0.2rem !important;
+    word-break: break-all;
+}
+p img{
+    width: 100%;
+    height: auto;
+}
+.figure p span{
+    font-size: 0.16rem !important;
+    background-color: rgba(244, 247, 253 , 0) !important;
+    color: #454444 !important;
+    line-height: 0.28rem !important;
+}
+
+
+
+
+/* ******************评论********************* */
+
+.comments {
+    width: 100%;
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+
+.comments .reply {
+    padding-right: 0.15rem;
+    /*width: 90%;*/
+    /*padding-bottom: 0.05rem;*/
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+
+.comments .reply2 {
+    padding-top: 0.18rem;
+    padding-bottom: 0.05rem;
+    padding-right: 0.15rem;
+    border-top: 1px solid #E5E5E5;
+    /*border-bottom: 1px solid #DCDCDC;*/
+}
+.comments li {
+    /*padding: 0.19rem 0.15rem 0.05rem;*/
+    padding: 0.19rem 0  0.05rem 0.15rem;
+    /*padding-left: 0.15rem;*/
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.comments li .img {
+    width: 0.25rem;
+    height: 0.25rem;
+    /*margin-left: 0.15rem;*/
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    border-radius: 50%;
+    margin-right: 0.08rem;
+    /*margin-top: 0.08rem;*/
+}
+
+.comments li h3 {
+    color: #999;
+    font-size: 0.14rem;
+}
+
+.comments li p {
+    color: #303030;
+    font-size: 0.15rem;
+}
+.reply p{
+    margin-bottom: 0.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ******************发送****************** */
+
+.send {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 0.5rem;
+    /*margin-top: 0.19rem;*/
+    background-color: #F0F2F6;
+}
+
+.send input {
+    margin-bottom: 0;
+    width: calc(100% - 0.62rem);
+    height: 0.35rem;
+    border: 0;
+    background-color: #FFFFFF;
+    border-radius: 0.05rem;
+    margin-top: 0.08rem;
+    margin-left: 0.08rem;
+    font-size: 0.15rem;
+    color: #81858F;
+}
+
+.send button {
+    /*margin-top: 0.08rem;*/
+    border: 0;
+    line-height: 0.38rem;
+    background-color: #F0F2F6;
+    font-size: 0.14rem;
+    color: #303030;
+}
+
+input[type='button']:enabled:active,
+input[type='button'].mui-active:enabled,
+input[type='submit']:enabled:active,
+input[type='submit'].mui-active:enabled,
+input[type='reset']:enabled:active,
+input[type='reset'].mui-active:enabled,
+button:enabled:active,
+button.mui-active:enabled,
+.mui-btn:enabled:active,
+.mui-btn.mui-active:enabled {
+    background-color: #F0F2F6;
+    color: #303030;
+}

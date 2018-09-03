@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>签到</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/focus.css?v={$version_list.wx_mycollect_css}">
+</head>
+<style>
+.date_btn_box {
+    background-color: #fff !important;
+}
+
+.date_ctrl {
+    background-color: #fff !important;
+}
+
+.ym_roll,
+.date_roll,
+.datetime_roll,
+.time_roll {
+    font-weight: normal !important;
+}
+</style>
+
+<body>
+    <!--头部-->
+    <div class="returnHeader">
+        <a href="" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+        <h3 class="mui-col-xs-12 mui-text-center">签到</h3>
+    </div>
+    <section style="margin-top: 0.43rem;">
+        <div class="personalinfo">
+            <ul class="mui-table-view" id="personalinfo">
+                <li class="mui-table-view-cell">
+                    <span>活动名称</span>
+                    <span id="title"></span>
+                </li>
+                <li class="mui-table-view-cell">
+                    <span>活动时间</span>
+                    <span id="time"></span>
+                </li>
+                <li class="mui-table-view-cell">
+                    <span>活动地点</span>
+                    <span id="address">天津市南开区华苑产业园区开华道20号智慧山西塔F座2301</span>
+                </li>
+                <li class="mui-table-view-cell">
+                    <span>手机号码</span>
+                    <!--<span id="birthday">1991-08-31</span>-->
+                    <input type="text" id="mobile" value="">
+                </li>
+            </ul>
+            <span class="zhu">注：填写手机号码才可进行手机签到</span>
+        </div>
+        <div class="button sub">立即签到</div>
+    </section>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+    <script src='__TMPL__/public/assets/whgcms/wx/js/focus.js?v={$version_list.wx_focus_js}'></script>
+</body>
+
+</html>

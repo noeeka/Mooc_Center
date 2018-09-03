@@ -1,0 +1,86 @@
+<include file="public@header" />
+<script src="__STATIC__/js/code-mirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="__STATIC__/js/code-mirror/lib/codemirror.css">
+<script src="__STATIC__/js/code-mirror/mode/javascript/javascript.js"></script>
+<style>
+    .CodeMirror{
+        border:1px solid #dce4ec
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('weixin_home_page_list_tpl/index')}">微信模板管理</a></li>
+        <li class="active"><a href="{:url('weixin_home_page_list_tpl/add')}">添加微信模板</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('weixin_home_page_list_tpl/addPost')}">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-name" name="name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="html" class="col-sm-2 control-label" style>html<span class="form-required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-10">
+                <!--<input type="text" class="form-control" id="input-url" name="url">-->
+                <textarea class="form-control" name="html" id="html" cols="40" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="css" class="col-sm-2 control-label">css</label>
+            <div class="col-md-6 col-sm-10">
+                <!--<input type="text" class="form-control" id="input-url" name="url">-->
+                <textarea class="form-control" name="css" id="css" cols="40" rows="10"></textarea>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-image" class="col-sm-2 control-label">示例图<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="hidden" class="form-control" id="input-image" name="exam_img">
+                <a href="javascript:uploadOneImage('图片上传','#input-image');">
+                    <img src="__TMPL__/public/assets/images/default-thumbnail.png" style="display: block" id="input-image-preview" alt="" width="150" height="75">
+                </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="desc" class="col-sm-2 control-label">描述</label>
+            <div class="col-md-6 col-sm-10">
+                <!--<input type="text" class="form-control" id="input-url" name="url">-->
+                <textarea class="form-control" name="desc" id="input-description"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">长度<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control"  name="len" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+                <a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<!--<script type="text/javascript" src="__STATIC__/js/monaco.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js" integrity="sha256-0SGl1PJNDyJwcV5T+weg2zpEMrh7xvlwO4oXgvZCeZk=" crossorigin="anonymous"></script>-->
+<script>
+    CodeMirror.fromTextArea(document.getElementById('html'), {
+        mode:  "htmlmixed",
+        lineNumbers:true
+    });
+    CodeMirror.fromTextArea(document.getElementById('css'), {
+        mode:  "css",
+        lineNumbers:true
+    });
+
+
+</script>
+</body>
+</html>

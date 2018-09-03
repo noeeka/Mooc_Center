@@ -1,0 +1,51 @@
+<include file="public/header"/>
+
+<link rel='stylesheet' type='text/css'
+      href="__TMPL__/public/assets/whgcms/wx/css/mylogin.css?v={$version_list.wx_mylogin_css}">
+</head>
+
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">登录</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px; overflow: hidden;">
+    <div class="login">
+        <div class="logo">
+            <img src="__TMPL__/public/assets/whgcms/wx/images//loginlogo.png" alt="">
+        </div>
+        <form class="mui-input-group" id="loginForm">
+            <div class="mui-input-row loginTel">
+                <img src="__TMPL__/public/assets/whgcms/wx/images//loginnameicon.png" alt="">
+                <input type="text" name="user_id" id="user_id" placeholder="请输入手机号">
+            </div>
+            <div class="mui-input-row loginPassword">
+                <img src="__TMPL__/public/assets/whgcms/wx/images//loginpasswordicon.png" alt="">
+                <input type="password" name="password" id="password" placeholder="请输入密码">
+            </div>
+        </form>
+    </div>
+    <div class="mui-button-row">
+        <button type="button" class="passport close-btn feedback mui-btn mui-btn-primary login-btn">确认</button>
+    </div>
+    <div class="forgetPwd">
+        <a href="/wx/login/findpwd">忘记密码？</a>
+    </div>
+    <div class="register">
+        <a href="/wx/login/register.html">没有账号？注册</a>
+    </div>
+</section>
+
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/picker.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/date/datePicker.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/mylogin.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)111123
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+::before,
+::after{
+    padding: 0;
+    margin: 0;
+    /*宽度以边框开始计算*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    background-color: #f5f6f8;
+    line-height: 1;
+    /*设置备用字体*/
+    font-family:"MicroSoft YaHei";
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*common css*/
+.f-left{
+    float: left;
+}
+.f-right{
+    float: right;
+}
+
+/*清除浮动*/
+.clearfix::after,
+.clearfix::before{
+    content: " ";
+    line-height: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.bg100{
+    background-size:100% 100% !important;
+}
+.ellipsis{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+/*详情页标签*/
+.tags{
+    text-align: left;
+    margin-top: 40px;
+}
+.tags a{
+    font-size: 16px;
+    color: #2F343B;
+    padding: 3px 15px;
+    border: 1px solid #7D8591;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+/*内容页*/
+/*内容页*/
+
+.details {
+    width: 790px!important;
+    padding: 15px 20px;
+}
+
+.details p img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-left: -2em!important;
+}
+
+.details p span {
+    color: #1C2438!important;
+    font-size: 14px!important;
+    line-height: 21px!important;
+    text-align: left!important;
+    word-break: break-all!important;
+}
+
+.details p {
+    word-break: break-all!important;
+    line-height: 21px!important;
+    text-align: left!important;
+    text-indent: 2em!important;
+    color: #1C2438!important;
+    font-size: 14px!important;
+}
+
+.navmore{
+    position: absolute;
+    top: 22px;
+    left: -56px;
+    width: 140px;
+    background: #fff;
+    text-align: center;
+    padding: 0px 5px 10px 5px;
+    z-index: 2;
+    display: none;
+}
+.navmore li{
+    /*display: inline;*/
+    margin-top: 10px;
+
+}
+/*main查看更多*/
+.mainModule{
+    position: relative;
+}
+.mainMore{
+    position: absolute;
+    top: 49px;
+    right: 10px;
+    font-size: 16px !important;
+}
+.mainModule-2-title,
+.mainModule-3-title,
+.mainModule-7-title{
+    font-size: 30px !important;
+    font-family: "simsun" !important;
+    font-weight: bold;
+    /*padding: 40px 0 30px 0 !important;*/
+}
+.mainModule-4-title span,
+.mainModule-5-title span,
+.mainModule-6-title span{
+    font-size: 30px !important;
+    font-family: "simsun" !important;
+    font-weight: bold;
+}
+.mainModule-4 .mainMore,
+.mainModule-5 .mainMore,
+.mainModule-6 .mainMore{
+    top:11px;
+}
+.mainModule-4 .mainModule{
+    right: 0;
+}
+/*定义网站左右10px*/
+.top-content,.headerModule-3 .nav,.headerModule-1-content,
+.headerModule-2-content,.bannerModule-1-content,.bannerModule-2-content,
+.bannerModule-3-content,.mainModule-1-content,.mainModule-2-content,.mainModule-3-content,
+.mainModule-4-content,.mainModule-5-content,.mainModule-6-content,.mainModule-7-content,
+.concerning-content,.footer-content {
+    padding: 0 10px;
+}
+
+.headerModule-3 .navmore li{
+    height: 50px;
+    line-height: 50px;
+}
+.headerModule-3 .navmore{
+    top: 66px;
+    background-color: #000;
+}

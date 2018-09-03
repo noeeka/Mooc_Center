@@ -1,0 +1,108 @@
+<include file="public/header" />
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/css/login.css'>
+<title>登录 | 注册—公共文化共享资源库</title>
+<style>
+    .nav-parent,.search,.aa{
+        display: none;
+    }
+</style>
+</head>
+<body>
+<include file="public/nav" />
+<div class="main clearfix">
+    <div class="main-content clearfix">
+        <div class="main-left">
+            <!-- <img src="images/login/biankuang.png" alt="" class="border-img"> -->
+            <ul class="clearfix tab">
+                <li class="active login" style="margin-right: 20px;">登录</li>
+                <li class="reg">注册</li>
+            </ul>
+            <form class="layui-form login" action="post" id="ajaxForm">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="user_id" class="layui-input" style="width: 290px;" id="user_id">
+                         <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;" class="phonenumber">请输入正确手机号码!</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" class="layui-input" style="width: 290px;" id="password">
+                         <span style="display: inline-block;color: #F40556;margin-top:10px;font-size: 12px;display: none;" class="phonepassword">请输入正确密码!</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="" class="layui-input f-left yanzheng" style="width: 107px;" id="validation">
+                        <!-- <img id="verify_img" src="{:captcha_src()}" alt="验证码"><span class="see">看不清？换一张</span> -->
+                        <img src="{:captcha_src()}" alt="" class="f-left" style="width: 100px;height:38px;margin-left: 10px;" id="verify_img"><span class="see" style="font-size: 14px;line-height: 38px;margin-left: 10px;color:#2F343B;cursor: pointer;">看不清？换一张</span>
+                         <span style="display: block;color: #F40556;margin-top:10px;font-size: 12px;clear: both;display: none;" class="phonecode">请输入正确验证码!</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <submit class="layui-btn" lay-submit lay-filter="formDemo" id='submitx' class="submit">登录</submit>
+                        <a href="{:get_forget_url()}" style="color:#2F343B;font-size: 14px;width: 290px;text-align: center;display: block;">忘记密码？</a>
+                    </div>
+                </div>
+            </form>
+            <form class="layui-form leg" action="post" style="display: none;" id="form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="user" class="layui-input" style="width: 290px;" id="user">
+                         <span style="display: inline-block;color:#F40556;margin-top:10px;font-size: 12px;display: none;" class="regnumber">请输入正确手机号码!</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机验证码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="" class="layui-input f-left" style="width: 162px;" id="regcode">
+                        <!-- <img id="verify_img" src="{:captcha_src()}" alt="验证码"><span class="see">看不清？换一张</span> -->
+                        <div alt="" class="f-left codebtn" style="width: 116px;height:38px;margin-left: 10px;line-height: 38px;font-size: 14px;text-align: center;color:#fff;cursor: pointer;">获取验证码</div>
+                         <span style="display: block;color: #F40556;margin-top:30px;font-size: 12px;clear: both;display: none;" class="regcode">请输入正确验证码!</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" class="layui-input" style="width: 290px;" id="regpassword">
+                         <span style="display: inline-block;color: #F40556;margin-top:10px;font-size: 12px;display: none;" class="regpassword">请输入正确密码!</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" class="layui-input" style="width: 290px;" id="regconfirm">
+                         <span style="display: inline-block;color: #F40556;margin-top:10px;font-size: 12px;display: none;" class="regconfirm">请输入正确密码!</span>
+                    </div>
+                </div>
+                <div style="margin-top: 30px;" class="duoxuan">
+                    <!--<i class="layui-icon" style="font-size: 16px; color:#F40556;margin-right: 10px;cursor: pointer;">&#xe627;</i>-->
+                    <img src="__TMPL__/public/assets/whgcms/images/my/yes.png" alt="" style="margin-right: 10px;cursor: pointer;float:left;">
+                    <a href="/portal/login/protocol" target="_blank" style="font-size: 14px; float:left;">我已同意《服务条约》</a>
+                    <br>
+                    <span style="display: inline-block;color: #F40556;margin-top:10px;font-size: 12px;display: none;" class="service">请选择服务条约!</span>
+                    <!--<i class="layui-icon" style="font-size: 16px; color:#F40556;margin-right: 10px;cursor: pointer;">111</i><a href="" style="font-size: 14px;">我已同意《服务条约》</a>-->
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <submit class="layui-btn" lay-submit lay-filter="formDemo" id='submit' class="submit">注册</submit>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-right">
+            </div>
+    </div>
+</div>
+
+<include file="public/footer" />
+<script src="__TMPL__/public/assets/whgcms/js/login5.js"></script>
+
+</body>
+
+</html>

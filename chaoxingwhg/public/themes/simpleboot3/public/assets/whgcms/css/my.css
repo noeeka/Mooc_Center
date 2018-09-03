@@ -1,0 +1,952 @@
+body {
+    background-color: #f5f6f8;
+}
+
+
+.main {
+    max-width: 1920px;
+    min-width: 1200px;
+    height: auto;
+    padding-top: 52px;
+
+    /* background-image: url(../images/bg.png);
+    background-position: top center;
+    background-size: 100% 1006px;
+    background-repeat: no-repeat;*/
+}
+
+.main-content {
+    width: 1200px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.layui-input,
+.layui-select,
+.layui-textarea {
+    background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *************************左/右***************************** */
+
+.content-left {
+    width: 210px;
+}
+
+.content-right {
+    width: 930px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *************************账号管理******************************* */
+
+.layui-form-radio i:hover,
+.layui-form-radioed i {
+    color: #F40556;
+}
+
+.layui-form-radio span {
+    font-size: 14px;
+}
+
+.program {
+    display: inline-block;
+    width: 208px;
+    height: 58px;
+    background-color: #fff;
+    color: #494949;
+    font-size: 14px;
+    border: 1px solid #80848B;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.program span {
+    display: inline-block;
+    line-height: 60px;
+}
+
+
+.main-nav1 {
+    width: 210px!important;
+    background-color: #fff;
+}
+
+
+.main-nav1 li a {
+    display: block;
+    width: 210px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #2F343B;
+    font-weight: bold;
+}
+
+.main-nav1 dl a {
+    font-size: 14px;
+    line-height: 50px;
+    color: RGBA(47, 52, 59, .7);
+    font-weight: normal;
+}
+
+/*.main-nav1 .active {
+    background-color: #2F343B;
+    color: #FFFFFF;
+}
+*/
+
+.touxiang {
+
+    margin: 100px auto auto 240px;
+}
+
+.touxiang img {
+    display: block;
+    width: 130px;
+    height: 130px;
+    margin-left: 118px;
+    margin-bottom: 35px;
+    border-radius: 50%;
+}
+
+.touxiang span {
+    width: 7em;
+    color: #fff;
+}
+
+.txuploadbtn {
+    line-height: 35px;
+}
+
+.touxiang .bg {
+    background-color: #2F343B;
+}
+
+#touxiangbtn .webuploader-pick {
+    width: 69px;
+    height: 28px;
+    position: relative;
+    top: 16px;
+    border-radius: 30px;
+    line-height: 28px;
+    font-size: 14px;
+    background-color: #3259C6;
+    margin-left: 76px;
+}
+
+.weirenzhengdiv .webuploader-pick {
+    background: transparent;
+    color: #000;
+    padding: 0;
+    height: 100%;
+}
+
+.weirenzhengdiv .webuploader-pick-hover {
+    background: transparent;
+}
+
+#ft_sfzimg div:last-child,
+#bd_sfzimg div:last-child {
+    width: 172px!important;
+    height: 111px!important;
+}
+
+.touxiang div:last-child {
+    width: 135px !important;
+    height: 40px !important;
+    left: 33px !important;
+}
+
+.touxiang .webuploader-pick {
+    padding: 0 19px 0 22px;
+    left: -18px;
+}
+
+.layui-btn-primary:hover {
+    border-color: transparent;
+    color: #fff;
+}
+
+
+.content-left .active {
+    color: #fff;
+}
+
+
+.content-content {
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.account-information {
+    height: 39px;
+    color: #494949;
+    border-bottom: 1px solid #80848B;
+}
+
+
+
+.account-information h3 {
+    font-size: 22px;
+    color: #414040;
+    font-weight: bold;
+}
+
+
+.weirenzheng,
+.renzhengshibai {
+    /*margin: 150px 0 0 238px;*/
+    font-size: 16px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.weirenzheng a,
+.renzhengshibai a {
+    text-decoration: underline;
+    color: blue;
+}
+
+.shenfenzhengimg {
+    margin: 20px 64px;
+}
+
+.shenfenzhengimg .btns:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.shenfenzhengimg .btns div {
+    float: left;
+    margin: 0 20px 0 20px;
+}
+
+.shenfenzhengimg .uploadbtn {
+    float: left;
+    line-height: 1;
+    height: 41px;
+}
+
+.shenfenzhengimg .uploader-list {
+    border: 3px dashed #e6e6e6;
+    width: 330px;
+    height: 200px;
+    margin: 15px 0;
+    text-align: center;
+    background-image: url(/pc/assets/images/image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 5px;
+    background-clip: content-box;
+}
+
+#select-img1>div:last-child,
+#select-img2>div:last-child {
+    height: 40px !important;
+    width: 80px !important;
+}
+
+.weirenzhengdiv .submit {
+    width: 15%;
+    height: 40px;
+    background-color: #2775B9;
+    color: #FFF;
+    font-size: 16px;
+    margin: 30px 0 120px 120px;
+}
+
+.content-content .zhinformation {
+    margin-top: 30px;
+}
+
+.layui-form-radio i {
+    font-size: 16px;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 修改密码 */
+
+.main-content .step {
+    padding: 20px 40px 40px 40px;
+    margin: 20px 0 40px 60px;
+}
+
+.main-content .step li {
+    float: left;
+}
+
+.main-content .step .line {
+    width: 15%;
+    height: 2px;
+    margin-top: 25px;
+    background-color: RGBA(47, 52, 59, .5);
+}
+
+.main-content .step .active2 {
+    background-color: #3259C6;
+}
+
+.main-content .step img {
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.main-content .step h3 {
+    text-align: center;
+    font-size: 14px;
+    color: #767676;
+    margin-top: 10px;
+}
+
+.main-content .step .active3 {
+    color: #2F343B;
+}
+
+.main-content form {
+    width: 530px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.layui-btn {
+    width: 150px;
+    height: 28px;
+    /*background-color: #3259C6;*/
+    border-radius: 18px;
+    padding: 0;
+    margin: 24px 70px 34px 30px;
+    margin-top: 28px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.layui-form-label {
+    width: 100px;
+    font-size: 14px;
+    color: #2F343B;
+}
+
+.disabled {
+    background-color: #BBBEC4!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 认证信息 */
+
+.content-content .renzheng input {
+    color: #B2B2B2;
+}
+
+.content-content .renzheng .rerenzheng {
+    padding: 0;
+    width: 100px;
+    text-align: center;
+    font-size: 18px;
+    color: #EEB420;
+    line-height: 38px;
+    cursor: pointer;
+}
+
+.content-content h4 {
+    width: 160px;
+    color: #8F8B8B;
+    font-size: 16px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.content-content h4 span {
+    color: #0059e5;
+    padding: 0 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *****************收藏文章***************** */
+
+.list li {
+    width: 302px;
+    /*height: 407px;*/
+    margin-bottom: 12px;
+    float: left;
+    position: relative;
+}
+
+.list li:nth-child(3n-1) {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.list li:hover {
+    box-shadow: 0px 10px 20px -7px #535f6f;
+}
+
+.list li .image {
+    width: 100%;
+    height: 170px;
+    background-size: cover;
+    background-position: center;
+}
+
+.list li a {
+    text-decoration: none;
+}
+
+.list li .text {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    padding-bottom: 29px;
+}
+
+.list li h3 {
+    /*width: 422px;*/
+    height: 21px;
+    margin: 17px 20px 14px;
+    color: #1C2438;
+    font-size: 16px;
+    /*line-height: 18px;*/
+    /*overflow: hidden;*/
+}
+
+.list .number {
+    padding: 0 19px;
+    height: 21px;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 19px;
+}
+
+.list .number img {
+    width: 19px;
+    height: 15px;
+    margin-right: 7px;
+    margin-top: 2px;
+}
+
+.list .number span {
+    height: 21px;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 12px;
+    color: #A0A4AA;
+    line-height: 19px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 消息通知 */
+
+.message li {
+    line-height: 30px;
+}
+
+.message li a {
+    color: #2F343B;
+    font-size: 16px;
+}
+
+.layui-badge-dot {
+    width: 3px;
+    height: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .layui-layer-iframe iframe {
+    background-color: RGBA(47, 52, 59, .5);
+}
+
+ */
+
+
+/* ********************我的预约*********************** */
+
+.yuyue th {
+    border: 1px solid #80848B;
+    color: #2F343B;
+    font-size: 16px;
+    text-align: center;
+    height: 52px;
+    line-height: 52px;
+    font-weight: bold;
+}
+
+.yuyue td {
+    border: 1px solid #80848B;
+    color: #2F343B;
+    font-size: 16px;
+    text-align: center;
+    height: 52px;
+    line-height: 52px;
+}
+
+.over {
+    background-color: #B5B5B5;
+}
+
+#venueform select {
+    width: auto!important;
+    padding: 0 10px!important;
+    margin: 0!important;
+    height: 32px!important;
+    line-height: 30px!important;
+    margin-right: 11px!important;
+    border: 1px solid #80848B!important;
+    color: #2F343B!important;
+    background-color: transparent!important;
+    border-radius: 4px!important;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center!important;
+    text-align-last: center!important;
+}
+
+#venueform option {
+    text-align: center!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*:-moz-placeholder {
+    color: #2F343B;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    color: #2F343B;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    color: #2F343B;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: #2F343B;
+    opacity: 1;
+}*/
+
+.layui-layer-content #tishi,
+.layui-layer-content #queren {
+    height: 191px!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *****************资料管理*********************** */
+
+.management .layui-form-label {
+    width: 100px;
+    font-size: 14px;
+    color: #2F343B;
+}
+
+.management .layui-input-block {
+    margin-left: 125px;
+}
+
+.management .layui-input,
+.management .layui-select,
+.management .layui-textarea {
+    /*border: 1px solid #2F343B;*/
+    width: 353px;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+
+.layui-form-select .layui-edge {
+    right: 235px;
+}
+
+.management .layui-textarea {
+    width: 497px;
+}
+
+.layui-form-select dl dd.layui-this {
+    background: #2F343B;
+}
+
+.history th {
+    border: 1px solid #80848B;
+    color: #2F343B;
+    font-size: 16px;
+    text-align: center;
+    height: 52px;
+    line-height: 52px;
+    font-weight: bold;
+}
+
+.history td {
+    border: 1px solid #80848B;
+    color: #2F343B;
+    font-size: 16px;
+    text-align: center;
+    height: 52px;
+    line-height: 52px;
+}
+
+.layui-form-select dl{
+    left:130px!important;
+    min-width: 353px!important;
+}
+.prompt {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: rgb(244, 5, 86);
+    font-size: 12px;
+}
+
+/*.layui-btn {
+    width: 110px;
+    height: 39px;
+    background-color: #F40556;
+    border-radius: 19px;
+    padding: 0;
+    margin-right: 100px;
+    margin-top: 24px;
+    margin-bottom: 34px;
+    font-size: 18px;
+    color: #FFFFFF;
+}*/
+
+
+/*.management .layui-form-radio i:hover,
+.management .layui-form-radioed i {
+    color: #F40556;
+}
+
+.management .layui-btn-primary:hover {
+    border-color: #ACACAC;
+    color: #FFFFFF;
+}*/
+
+
+/* ********************我的报名*********************** */
+
+.baoming th {
+    border: 1px solid #80848B;
+    color: #2F343B;
+    font-size: 16px;
+    text-align: center;
+    height: 52px;
+    line-height: 52px;
+    font-weight: bold;
+}
+
+.baoming td {
+    border: 1px solid #80848B;
+    color: #2F343B;
+    font-size: 16px;
+    text-align: center;
+    height: 52px;
+    line-height: 52px;
+}
+
+#activityform select {
+    width: auto!important;
+    padding: 0 10px!important;
+    margin: 0!important;
+    height: 32px!important;
+    line-height: 30px!important;
+    margin-right: 11px!important;
+    border: 1px solid #80848B!important;
+    color: #2F343B!important;
+    background-color: transparent!important;
+    border-radius: 4px!important;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center!important;
+    text-align-last: center!important;
+}
+
+#activityform option {
+    text-align: center!important;
+}
+
+.layui-layer-content #xiaoxi,
+.layui-layer-content #huodongqueren {
+    height: 191px!important;
+}

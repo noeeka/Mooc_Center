@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0,
+          maximum-scale=1.0, initial-scale=1.0">
+    <title>实名认证</title>
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/lib/mui/css/mui.css">
+    <link rel="stylesheet" href="__TMPL__/public/assets/whgcms/wx/css/reset.css?v={$version_list.wx_reset_css}">
+    <link rel='stylesheet' type='text/css' href='/static/js/webuploader/webuploader.css'>
+    <link rel="stylesheet"
+          href="__TMPL__/public/assets/whgcms/wx/css/myaccset-attestation.css?v={$version_list.wx_attestation_css}">
+    <style>
+        .webuploader-pick{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0);
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="returnHeader b-bottom">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">实名认证</h3>
+</div>
+<section style="margin-top: 0.43rem;margin-bottom: 50px;">
+    <div class="attestation">
+        <form class="mui-input-group" id="resetForm">
+            <div class="mui-input-row">
+                <label>姓名</label>
+                <input type="text" name="realname" id="name" placeholder="填写您的真实姓名" disabled="disabled">
+            </div>
+            <div class="mui-input-row">
+                <label>身份证号</label>
+                <input type="text" name="idCards" id="idCards" placeholder="填写18位的证件号码" disabled="disabled">
+            </div>
+            <div class="idphoto">
+                <!--<h3>身份证正面照</h3>-->
+                <div class="idphotoOne" style="background-size: contain;" id="ft_sfzimg"><span style="display:none;">上传身份证正面照</span></div>
+                <!--<h3>身份证负面照</h3>-->
+                <div class="idphotoTwo" style="background-size: contain;" id="bd_sfzimg"><span style="display:none;">上传身份证反面照</span></div>
+            </div>
+            <div class="atteState"></div>
+            <div class="mui-button-row">
+                <input type="hidden" name="ft_sfzimg" value="">
+                <input type="hidden" name="bd_sfzimg" value="">
+                <button type="button" class="passport close-btn mui-btn mui-btn-primary" lay-submit lay-filter="*">提交</button>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/jquery/jquery-3.0.0.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src='/static/js/webuploader/webuploader.min.js'></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/myaccset-attestation.js?v={$version_list.wx_attestation_js}"></script>
+
+
+<script>
+
+</script>
+</body>
+</html>

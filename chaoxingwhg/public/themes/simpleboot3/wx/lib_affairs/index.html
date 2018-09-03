@@ -1,0 +1,33 @@
+<include file="public/header"/>
+<title>{$title}</title>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/information.css?v={$version_list.wx_information_css}'/>
+</head>
+<body>
+<include file="public/nav"/>
+<input type="hidden" name="id" value="{$id}">
+<section>
+    <div  class='test1' style="margin-top: 0.13rem;margin-bottom: 50px;">
+        <div class="infContent">
+            <ul class="mui-table-view newsContent mould1-list"></ul>
+        </div>
+    </div>
+</section>
+<include file="public/footer"/>
+<script src="__TMPL__/public/assets/whgcms/wx/js/lib_affairs.js?v={$version_list.wx_lib_affairs_js}"></script>
+<script type="text/template" id="navigation-item">
+    <li data-id="{{id}}">{{name}}</li>
+</script>
+<script type="text/template" id="infContent-item1">
+    {{#each list}}
+    <li class="mui-table-view-cell mui-media">
+        <a href="/wx/lib_affairs/read/?id={{id}}">
+            <div class="mui-media-body">
+                <h3>{{title}}</h3>
+                <span class="time" style="margin-left: 0"> {{date time}}</span>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+</script>
+</body>

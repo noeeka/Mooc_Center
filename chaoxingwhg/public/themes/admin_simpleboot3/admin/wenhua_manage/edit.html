@@ -1,0 +1,315 @@
+<include file="public@header"/>
+<link rel="stylesheet" href="__TMPL__/public/assets/culmap/lib/ol.css">
+<link rel="stylesheet" href="__TMPL__/public/assets/culmap/css/map.css">
+<style>
+    .amap-sug-result{
+        z-index:99999999999;
+    }
+</style>
+<script type="text/html" id="photos-item-tpl">
+    <li id="saved-image{id}">
+        <input id="photo-{id}" type="hidden" name="photo_urls[]" value="{filepath}">
+        <input class="form-control" id="photo-{id}-name" type="text" name="photo_names[]" value="{name}"
+               style="width: 200px;" title="图片名称">
+        <img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);">
+        <a href="javascript:uploadOneImage('图片上传','#photo-{id}');">替换</a>
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+<script type="text/html" id="files-item-tpl">
+    <li id="saved-file{id}">
+        <input id="file-{id}" type="hidden" name="file_urls[]" value="{filepath}">
+        <input class="form-control" id="file-{id}-name" type="text" name="file_names[]" value="{name}"
+               style="width: 200px;" title="文件名称">
+        <a id="file-{id}-preview" href="{preview_url}" target="_blank">下载</a>
+        <a href="javascript:uploadOne('图片上传','#file-{id}','file');">替换</a>
+        <a href="javascript:(function(){$('#saved-file{id}').remove();})();">移除</a>
+    </li>
+</script>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('WenhuaManage/index')}">文化点管理</a></li>
+        <!--<li>-->
+            <!--<a href="{:url('AdminArticle/add')}">添加信息</a>-->
+        <!--</li>-->
+        <li class="active"><a href="#">编辑文化点</a></li>
+    </ul>
+    <form action="{:url('WenhuaManage/editPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <th style="width: 80px">是否在文化地图显示<span class="form-required">*</span></th>
+                        <td style="width: 150px">
+                            <select name="map_is_show"  class="form-control" id="map_is_show">
+                                <option value="0" <if condition="$map_is_show eq 0">selected</if>>隐藏</option>
+                                <option value="1" <if condition="$map_is_show eq 1">selected</if>>显示</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>文化点类型<span class="form-required">*</span></th>
+                        <td>
+                            <select name="map_type"  class="form-control" id="map_type">
+                                {$map_type_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="width: 80px">是否使用独立图标<span class="form-required">*</span></th>
+                        <td style="width: 150px">
+                            <select name="map_is_diy_img"  class="form-control" id="map_is_diy_img">
+                                <option value="0" <if condition="$map_is_diy_img eq 0">selected</if>>否</option>
+                                <option value="1" <if condition="$map_is_diy_img eq 1">selected</if>>是</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <if condition="$map_is_diy_img eq 1">
+                        <tr id="map_start_level_tr">
+                        <else/>
+                        <tr id="map_start_level_tr" style="display: none">
+                    </if>
+                        <th style="width: 80px">独立图标显示起始层级<span class="form-required">*</span></th>
+                        <td style="width: 150px">
+                            <select name="map_start_level"  class="form-control" id="map_start_level">
+                                <for start="1" end="$max_level" step="1" name="i">
+                                    <option value="{$i}"<if condition="$map_start_level eq $i">selected</if>>第{$i}层</option>
+                                </for>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>文化点图标<span class="form-required">*</span></th>
+                        <td>
+                            <if condition="$map_is_diy_img eq 0">
+                                <div id="diy_img" style="display: none">
+                                <else/>
+                                <div id="diy_img">
+                            </if>
+                                <input type="hidden" name="map_img" id="map_img"
+                                       value="{$map_img|default=''}">
+                                <a class="map_img-preview" href="javascript:uploadOneImage('图片上传','#map_img');">
+                                    <empty name="map_img">
+                                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                                             id="map_img-preview"
+                                             width="135" style="cursor: pointer"/>
+                                        <else/>
+                                        <img src="{:cmf_get_image_preview_url($map_img)}"
+                                             id="map_img-preview"
+                                             width="135" style="cursor: pointer"/>
+                                    </empty>
+                                </a>
+                            </div>
+                            <if condition="$map_is_diy_img eq 1">
+                                <div id="example_img" style="display: none">
+                                    <else/>
+                                <div id="example_img">
+                            </if>
+                                <img src="{$example_icon}"
+                                     id="example-preview"
+                                     width="135" style="cursor: pointer"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>文化点位置<span class="form-required">*</span></th>
+                        <td>
+                            <input type="hidden" name="map_location" value="113.558869,22.264753">
+                            <button type="button" class="form-control" id="map_location_btn">文化地图位置选择</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>显示功能<span class="form-required">*</span></th>
+                        <td>
+                            <volist name="funcs" id="vo">
+                                <input type="checkbox" <in name="$vo.id" value="$map_func">checked</in> value="{$vo.id}" name="map_func[]" id="func_{$vo.id}" /><label for="func_{$vo.id}">{$vo.name}</label>
+                            </volist>
+                            <div>
+                                <input type="checkbox" name="map_subject_is_open" id='map_subject_is_open' value="1" <if condition="$map_subject_is_open eq 1">checked</if>><label
+                                for="map_subject_is_open">专题:</label><input type="text" name="map_subject_url" placeholder="请输入专题链接" class="form-control" value="{$map_subject_url|default=''}">
+                            </div>
+                            <div>
+                                <input type="hidden" name="map_real_location" value="{$map_real_location|default=''}">
+                                <input type="checkbox" name="map_nav_is_open" id='map_nav_is_open' value="1" <if condition="$map_nav_is_open eq 1">checked</if>><label
+                                    for="map_nav_is_open">导航:</label><button type="button" id="map_real_location_btn" class="form-control">实际导航位置</button><input type="hidden" name="map_real_location" value="{$map_real_location|default=''}">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" name="id" value="{$id|default=0}">
+                    <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                    <a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="map-container" style="height:700px;width:980px;position: relative;display: none;">
+        <div id="map" style="height: 100%"></div>
+        <input type="text" id="keyword" placeholder="请输入地点查询" style="position: absolute;right: 10px;top:10px;height: 25px;border: 0;padding-left: 5px;width: 150px;border-radius: 3px;outline: none;box-shadow: 0 0 4px rgba(0,0,0,0.5);">
+    </div>
+    <div id="index-map" style="height: 700px;width: 980px;display: none"></div>
+
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+    var map_center_pc_x={:config('culture.center_pc_x')};
+    var map_center_pc_y={:config('culture.center_pc_y')};
+    var min_zoom={:config('culture.layer_pc')};
+    var map_num=3;
+    var max_zoom=min_zoom+map_num-1;
+    var map_address="culture:zhuhaiall1";
+    var map_scope1={:config('culture.range_pc_start_x')};
+    var map_scope2={:config('culture.range_pc_start_y')};
+    var map_scope3={:config('culture.range_pc_end_x')};
+    var map_scope4={:config('culture.range_pc_end_y')};
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="//webapi.amap.com/maps?v=1.4.6&key=e9beee68c6d0a9a93663f96fdc946656"></script>
+<!--文化地图-->
+<script type="text/javascript" src="__TMPL__/public/assets/culmap/lib/ol.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/js/map.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/js/overlayer.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/js/layer1.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/js/layer2.js"></script>
+<script type="text/javascript" src="__TMPL__/public/assets/js/layer3.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var map_types = {$map_types};
+        var map_imgs = $('#map_img-preview').attr('src');
+        var map_input = $('#map_img').val();
+        $('#map_is_diy_img').change(function(){
+            if($(this).val() == 1){
+                $('#diy_img').show();
+                $('#map_start_level_tr').show();
+                $('#example_img').hide();
+            }else{
+                $('#diy_img').hide();
+                $('#map_start_level_tr').hide();
+                $('#example_img').show();
+            }
+        });
+        $('#map_type').change(function(){
+            $('#example_img img').attr('src',getImage($(this).val()))
+        });
+        function getImage(id){
+            for (x in map_types){
+                if(map_types[x]['id'] == id){
+                    return map_types[x]['img'];
+                }
+            }
+            return null;
+        }
+        //---------------------------
+        //-------文化地图部分--------
+        //---------------------------
+        $('#map_location_btn').click(function(){
+            layer.open({
+                type:1,
+                content:$('#index-map'),
+                title:'选择文化地图显示位置',
+                area:['1000px', '800px'],
+                btn:['确认']
+            });
+            map.updateSize();
+        });
+        //---------------------------
+        //-------高德地图部分--------
+        //---------------------------
+        //地图显示
+        $('#map_real_location_btn').click(function(){
+            layer.open({
+                type:1,
+                content:$('#map-container'),
+                title:'选择实际导航位置',
+                area:['1000px', '800px'],
+                btn:['确认']
+            });
+        });
+        //确认中心点位置
+//        var map_real_location = $('[name=map_real_location]').val();
+//        if(map_real_location == ''){
+//            mapObj = new AMap.Map('iCenter');
+//            mapObj.plugin('AMap.Geolocation', function () {
+//                geolocation = new AMap.Geolocation({
+//                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
+//                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+//                    maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+//                    convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+//                    showButton: true,        //显示定位按钮，默认：true
+//                    buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+//                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+//                    showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+//                    showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+//                    panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+//                    zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+//                });
+//                mapObj.addControl(geolocation);
+//                geolocation.getCurrentPosition(function(e){
+//                    console.log('aaa')
+//                    console.log(arguments)
+//                });
+//                AMap.event.addListener(geolocation, 'complete', function(result){
+//                    console.log(result.position);
+//                    initMap([result.position['lng'], result.position['lat']])
+//                });//返回定位信息
+//                AMap.event.addListener(geolocation, 'error', function(){
+//                    initMap([117.120872,39.092548]);
+//                });      //返回定位出错信息
+//            });
+//        }else{
+//            initMap(map_real_location.split(','));
+//        }
+//        //初始化地图
+//        function initMap(center){
+//            //实例化
+//            var map1 = new AMap.Map('map', {
+//                resizeEnable: true,
+//                zoom: 17,
+//                // zooms:[5,17],
+//                center: center,
+//                showIndoorMap:false
+//                // crs:'EPSG3857'
+//            });
+//            map1.setDefaultCursor("default");
+//            //添加覆盖物
+//            var marker=new AMap.Marker({
+//                position: center,
+//                visible:true,
+//                map:map1
+//            });
+//            map1.on('click', function (e) {
+//                $("[name=map_real_location]").val(e.lnglat);
+//                marker.setPosition(e.lnglat);
+//                marker.show();
+//            });
+//            //提示输出
+//            AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+//                var autoOptions = {
+//                    input: "keyword"//使用联想输入的input的id
+//                };
+//                autocomplete= new AMap.Autocomplete(autoOptions);
+//                var placeSearch = new AMap.PlaceSearch({
+//                    map:map1
+//                })
+//                AMap.event.addListener(autocomplete, "select", function(e){
+//                    //TODO 针对选中的poi实现自己的功能
+//                    placeSearch.setCity(e.poi.adcode);
+//                    placeSearch.search(e.poi.name)
+//                });
+//            });
+//        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<include file="public/header"/>
+<link rel='stylesheet' type='text/css'
+      href="__TMPL__/public/assets/whgcms/wx/css/activityinfo.css?v={$version_list.wx_activityinfo_css}">
+<link rel='stylesheet' type='text/css'
+      href='__TMPL__/public/assets/whgcms/wx/css/hcomments.css?v={$version_list.wx_hcomments_css}'>
+</head>
+
+<body>
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <!--<a href="/wx/activity/index?navid=nav16" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>-->
+    <h3 class="mui-col-xs-12 mui-text-center">场馆详情</h3>
+</div>
+<div class="figure">
+    <script type="text/x-handlebars-template" id="figure">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url({{thumb}});background-size: 100% 100%;"></div>
+            </div>
+        </div>
+    </script>
+
+</div>
+
+<div class="detail">
+    <script type="text/x-handlebars-template" id="detail">
+        <ul>
+            <li>场馆地点:<span>{{venue_addr}}</span></li>
+            <li>开放时间:<span>{{open_time}}</span></li>
+            <li>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:<span>{{tel}}</span></li>
+        </ul>
+        {{#if dianzan}}
+        <button class="dianzan" style="bottom:0.2rem;background-color: #acacac" >点赞</button>
+        {{else}}
+        <button class="dianzan" style="bottom:0.2rem">点赞</button>
+        {{/if}}
+    </script>
+</div>
+<div class="introduction">
+    <script type="text/x-handlebars-template" id="introduction">
+        <h3>场馆详情</h3>
+        <p>{{{introduction}}}</p>
+    </script>
+</div>
+<div class="test1">
+    <ul class="comments" style="display: none">
+    </ul>
+</div>
+<div class="send" style="display: none">
+    <input type="hidden" name="parentid" value="0">
+    <input type="text" id="comm" name="comment_content" value="" placeholder="" class="f-left">
+    <button class="f-left" style="bottom: 13px;position: inherit;width: 55px;padding: 6px 12px;">发送</button>
+</div>
+<!--<a href="#" id="refresh_a" style="display: none">刷新页面</a>-->
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib//layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/totalinfo.js?v={$version_list.wx_totalinfo_js}"></script>
+<script>
+    var id = {$Think.get.id};
+    Handlebars.registerHelper("compare_num", function (apply_people_count, max_num, options) {
+        if (apply_people_count == max_num) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.white {
+    color: #FFFFFF;
+}
+/*主题色*/
+.themecolor {
+    color: #162C6A;
+}
+/*文章标题*/
+.titlecolor {
+    color: #464c5b;
+}
+/*文章简介*/
+.introductioncolor {
+    color: #657180;
+}
+/*文章右侧时间*/
+.timecolor {
+    color: #9EA7B4;
+}

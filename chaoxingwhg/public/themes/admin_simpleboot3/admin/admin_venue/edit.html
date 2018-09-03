@@ -1,0 +1,263 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('AdminVenue/index')}">所有文化馆</a></li>
+        <li><a href="{:url('AdminVenue/add')}">添加文化馆</a></li>
+        <li class="active"><a>编辑文化馆</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('AdminVenue/editPost')}">
+        <div class="form-group">
+            <label for="input-venue_name" class="col-sm-2 control-label">名称<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-venue_name" name="name" value="{$venue.name}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">场馆类型</label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" name="venue_type" >
+                    <option value="0">请选择场馆类型</option>
+                    <foreach name="venue_type" id="type">
+                        <option value="{$type.id}"<if condition="$type.id eq $venue.venue_type" >selected</if>>{$type.name}</option>
+                    </foreach>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">所在地区<span class="form-required">*</span></label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" name="address" id="input-address">
+                    <option value="0">请选择所在地区</option>
+                    {$areas_tree}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">详细地址</label>
+            <div class="col-md-6 col-sm-10" style="position: relative">
+                <input type="text" class="form-control"  name="venue_addr" value="{$venue.venue_addr}" id="keyword">
+                <div  id="map-container" style="width:calc(100% - 30px);position: absolute;display: none;z-index: 1000">
+                    <div id="map" style="height: 600px; width: 100%;"></div>
+                    <div class='close_map' style="position: absolute;right: 10px;top:10px;"><img width="20px" src="/themes/admin_simpleboot3/public/assets/images/close.png" style="float:right;cursor: pointer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="input-address" class="col-sm-2 control-label">周边交通</label>
+            <div class="col-md-6 col-sm-10">
+                <script type="text/plain" id="traffic" name="traffic">{$venue.traffic}</script>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">开放时间</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control"   name="open_time" value="{$venue.open_time}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">联系电话</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control"   name="tel" value="{$venue.tel}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-address" class="col-sm-2 control-label">网站链接</label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" name="has_link" id="has_link">
+                    <option value="1"  <if condition="$venue.has_link eq 1"> selected </if>>有</option>
+                    <option value="0" <if condition="$venue.has_link eq 0"> selected </if>>无</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" id="pc_link">
+            <label for="input-address" class="col-sm-2 control-label">pc链接地址</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control"   name="link" value="{$venue.link}">
+            </div>
+        </div>
+        <div class="form-group" id="wx_link">
+            <label for="input-address" class="col-sm-2 control-label">微信链接地址</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control"   name="wx_link" value="{$venue.wx_link}">
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="input-address" class="col-sm-2 control-label">浏览量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="page_view" value="{$venue.page_view}">
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="input-address" class="col-sm-2 control-label">点赞量</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="hit_like" value="{$venue.hit_like}">
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="input-address" class="col-sm-2 control-label">场馆介绍</label>
+            <div class="col-md-6 col-sm-10">
+                <textarea rows="10"  class="form-control" name="introduction" >{$venue.introduction}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <label for="input-address" class="col-sm-2 control-label">发布时间</label>
+            <div class="col-md-6 col-sm-10">
+                <input class="form-control js-bootstrap-datetime" type="text" name="publish_time"
+                       value="{:date('Y-m-d H:i:s', $venue.publish_time)}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id" value="{$venue.id}">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+                <a class="btn btn-default" href="{:url('AdminVenue/index')}">{:lang('BACK')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="//webapi.amap.com/maps?v=1.4.6&key=e9beee68c6d0a9a93663f96fdc946656"></script>
+<script>
+    editortraffic = new baidu.editor.ui.Editor();
+    editortraffic.render('traffic');
+    try {
+        editorcontent.sync();
+    } catch (err) {
+    }
+
+    if($('#has_link option:selected').val() ==0){
+        $("#pc_link").hide();
+        $("#wx_link").hide();
+    }
+    $("#has_link").change(function () {
+        if($('#has_link option:selected').val() ==0){
+            $("#pc_link").hide();
+            $("#wx_link").hide();
+            //  $("#link").find('input').val('');
+        }else{
+            $("#pc_link").show();
+            $("#wx_link").show();
+        }
+    })
+
+    $("input[name=venue_addr]").focus(function(){
+        $('#map-container').show();
+        var current_location = [117.120872,39.092548];
+        //确认中心点位置
+        var map_real_location = $('[name=venue_addr]').val();
+        if(map_real_location == ''){
+            mapObj = new AMap.Map('iCenter');
+            mapObj.plugin(['AMap.Geolocation','AMap.Geocoder'], function () {
+                geolocation = new AMap.Geolocation({
+                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                    maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                    convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                    showButton: true,        //显示定位按钮，默认：true
+                    buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                    showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                    showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                    panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                    zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                });
+                mapObj.addControl(geolocation);
+                geolocation.getCurrentPosition(function(e){
+                    console.log(arguments)
+                });
+                AMap.event.addListener(geolocation, 'complete', function(result){
+                    initMap([result.position['lng'], result.position['lat']])
+                });//返回定位信息
+                AMap.event.addListener(geolocation, 'error', function(){
+                    initMap(current_location);
+                });      //返回定位出错信息
+            });
+        }else{
+            AMap.plugin(['AMap.Geocoder'], function(){
+                var geocoder = new AMap.Geocoder({
+                    radius: 1000 //范围，默认：500
+                });
+                //地理编码,返回地理编码结果
+                geocoder.getLocation(map_real_location, function(status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        if(result.geocodes.length == 0){
+                            initMap(current_location);
+                        }else{
+                            initMap([result.geocodes[0].location['lng'], result.geocodes[0].location['lat']]);
+                        }
+                    }else{
+                        initMap(current_location);
+                    }
+                });
+            });
+        }
+
+        //初始化地图
+        function initMap(center){
+            console.log(center);
+            //实例化
+            var map1 = new AMap.Map('map', {
+                resizeEnable: true,
+                zoom: 17,
+                // zooms:[5,17],
+                center: center,
+                showIndoorMap:false
+                // crs:'EPSG3857'
+            });
+            map1.setDefaultCursor("default");
+            //添加覆盖物
+            var marker=new AMap.Marker({
+                position: center,
+                visible:true,
+                map:map1
+            });
+            map1.on('click', function (e) {
+                var geocoder = new AMap.Geocoder({
+                    radius: 1000,
+                    extensions: "all"
+                });
+                geocoder.getAddress(e.lnglat, function(status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        $("[name=venue_addr]").val(result.regeocode.formattedAddress);
+                        marker.setPosition(e.lnglat);
+                        marker.show();
+                    }
+                });
+            });
+            //提示输出
+            AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+                var autoOptions = {
+                    input: "keyword"//使用联想输入的input的id
+                };
+                autocomplete= new AMap.Autocomplete(autoOptions);
+                var placeSearch = new AMap.PlaceSearch({
+                    map:map1
+                })
+                AMap.event.addListener(autocomplete, "select", function(e){
+                    //TODO 针对选中的poi实现自己的功能
+                    placeSearch.setCity(e.poi.adcode);
+                    placeSearch.search(e.poi.name)
+                });
+            });
+        }
+    });
+
+
+    $('.close_map').click(function(){
+        $('#map-container').hide();
+    });
+
+
+</script>
+</body>
+</html>

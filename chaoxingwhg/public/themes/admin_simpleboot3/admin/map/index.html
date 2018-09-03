@@ -1,0 +1,150 @@
+<include file="public@header"/>
+<style>
+    .thumbnail-preview {
+        height: 135px;
+    }
+
+    .del-img {
+        background-image: url(/themes/admin_simpleboot3/public/assets/images/close.png);
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        right: -1px;
+        top: -3px;
+        text-align: center;
+        line-height: 18px;
+        color: #666;
+        cursor: pointer;
+        border-radius: 50%;
+        background-size: contain;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li>{:lang('WEB_SITE_INFOS')}</li>
+    </ul>
+    <form class="form-horizontal js-ajax-form margin-top-20" role="form" action="{:url('map/index')}"
+          method="post">
+        <fieldset>
+            <div class="table">
+                <div class="tab-content">
+                    <div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span
+                                    class="form-required">*</span>地图地址（pc）</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" name="pc_addr"
+                                       value="{$map_info.pc_addr}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">地图地址（移动）</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" name="mb_addr"
+                                       value="{$map_info.mb_addr}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">地图层数</label>
+                            <div class="col-md-6 col-sm-10">
+                                <input type="text" class="form-control" name="map_index"
+                                       value="{$map_info.map_index}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label   class="col-sm-2 control-label">二维码</label>
+                            <div class="col-md-6 col-sm-10">
+                                <php>
+                                    $qr_code = isset($map_info['qr_code'])?$map_info['qr_code']:null;
+                                </php>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="hidden" name="qr_code" id="qr_code"
+                                           value="{$qr_code|default=''}">
+                                    <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#qr_code');"
+                                       style="margin-left: 0;position: relative">
+                                        <if condition="empty($qr_code)">
+                                            <img src="/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png"
+                                                 id="qr_code-preview"
+                                                 style="cursor: pointer;display: block;margin-bottom: 20px;width: 135px;height: 135px;">
+                                            <else/>
+                                            <img src="{:cmf_get_image_preview_url($qr_code)}"
+                                                 id="qr_code-preview"
+                                                 style="cursor: pointer;width: 135px;height: 135px;"/>
+                                        </if>
+                                        <div class='del-img' title="删除图片"></div>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label   class="col-sm-2 control-label">LOGO</label>
+                            <div class="col-md-6 col-sm-10">
+                                <php>
+                                    $logo = isset($map_info['logo'])?$map_info['logo']:null;
+                                </php>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="hidden" name="logo" id="logo"
+                                           value="{$logo|default=''}">
+                                    <a class="thumbnail-preview" href="javascript:uploadOneImage('图片上传','#logo');"
+                                       style="margin-left: 0;position: relative">
+                                        <if condition="empty($logo)">
+                                            <img src="/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png"
+                                                 id="logo-preview"
+                                                 style="cursor: pointer;display: block;margin-bottom: 20px;width: 135px;height: 135px;">
+                                            <else/>
+                                            <img src="{:cmf_get_image_preview_url($logo)}"
+                                                 id="logo-preview"
+                                                 style="cursor: pointer;width: 135px;height: 135px;"/>
+                                        </if>
+                                        <div class='del-img' title="删除图片"></div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label   class="col-sm-2 control-label">栏目显示</label>
+                            <div class="col-md-6 col-sm-10">
+
+                                <php>
+                                    foreach($map_cat as $cat){
+                                        if(in_array($cat['id'],$selected_map_cat)){
+                                            echo '<input type="checkbox"  name="map_cat[]" value="'.$cat['id'].'" checked > '.$cat['name'].' ';
+                                         }else{
+                                            echo '<input type="checkbox"  name="map_cat[]" value="'.$cat['id'].'"> '.$cat['name'].' ' ;
+                                         }
+                                    }
+                                </php>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary js-ajax-submit" data-refresh="1">保存
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script>
+    $('.del-img').click(function () {
+        $(this).prev().attr('src', '/themes/admin_simpleboot3/public/assets/images/default-thumbnail.png');
+        $(this).parent().prev().val('');
+        return false;
+    })
+</script>
+</body>
+</html>

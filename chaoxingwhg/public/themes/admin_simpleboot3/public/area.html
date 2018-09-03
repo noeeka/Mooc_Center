@@ -1,0 +1,89 @@
+<div class="form-group area-select">
+
+</div>
+<script>
+
+    var selectHtml = '';
+    var selectid = 13;
+    var path = [];
+    if(selectid != 0){
+        $.ajax({
+            url:'/admin/area/getPathIds',
+            data:{id:selectid},
+            dataType:'json',
+            success:function (res) {
+                path = res.map(function(v){
+                    return parseInt(v);
+                });
+                getTree(null, 0);
+            }
+        })
+    }else{
+        getTree(null, 0);
+    }
+
+    function getTree(dom, parent_id) {
+        $.ajax({
+            url: '/admin/area/getTree',
+            data: {parent_id: parent_id},
+            dataType: 'json',
+            success: function (res) {
+                // console.log(res);
+                generateSelect(dom, res);
+            }
+        });
+    }
+
+    function generateSelect(dom, data) {
+        //顶级时
+        selectHtml = '';
+        var child_select = createChild(data);
+        if (dom == null) {
+            $('.area-select').html(child_select);
+        } else {
+            console.log(child_select);
+            dom.nextAll().remove();
+            dom.after(child_select)
+        }
+    }
+
+    function createChild(child) {
+        var stop = false;
+        var nextTree = null;
+        if (Object.keys(child).length > 0) {
+            var html = '<select class="form-control col-md-2"><option value="-1">请选择</option>';
+            var isFirst = true;
+            for (var i in child) {
+                var item = child[i];
+                if (isFirst) {
+                    isFirst = false;
+                    if (item['children'].length == 0) {
+                        stop = true;
+                    } else {
+                        nextTree = item['children'];
+                    }
+                }
+                html += '<option value="' + item['id'] + '">' + item['name'] + '</option>';
+            }
+            html += '</select>';
+            selectHtml += html;
+        } else {
+            stop = true;
+        }
+        if (stop) {
+            return selectHtml;
+        } else {
+            console.log(nextTree);
+            return createChild(nextTree);
+        }
+    }
+    //绑定事件
+    $('.area-select').on('change', 'select', function () {
+        var parent_id = $(this).val();
+        // if(parent_id == -1){
+        //     parent_id = $(this).find('option').eq(1).attr('value');
+        // }
+        getTree($(this), parent_id);
+    })
+
+</script>

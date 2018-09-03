@@ -1,0 +1,70 @@
+<include file="public/header"/>
+<link rel='stylesheet' type='text/css'
+      href="__TMPL__/public/assets/whgcms/wx2/css/activityinfo.css?v={$version_list.wx_activityinfo_css}">
+<title>活动招募详情</title>
+</head>
+<body>
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <!--<a href="/wx/activity/index?navid=nav16" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>-->
+    <h3 class="mui-col-xs-12 mui-text-center">活动招募详情</h3>
+</div>
+<div class="figure">
+    <script type="text/x-handlebars-template" id="figure">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url({{thumb}});background-size: 100% 100%;"></div>
+            </div>
+        </div>
+        <div class="introduce">
+            <h3>{{title}}</h3>
+            <div>
+                {{#if venue_name}}
+                <span>{{venue_name}}</span>
+                {{/if}}
+                <span>{{start_time}}~{{end_time}}</span>
+            </div>
+        </div>
+    </script>
+
+</div>
+<div class="detail">
+    <script type="text/x-handlebars-template" id="detail">
+        <ul>
+            <li>招募地点:<span>{{address}}</span></li>
+            <li>报名时间:<span>{{baoming_start_time}}</span></li>
+            <li>截至时间:<span>{{baoming_end_time}}</span></li>
+            <li>报名人数:<span class="baomingcount">{{num}}</span> / <span>{{max_num}}</span></li>
+        </ul>
+        <button class="baoming">立即加入</button>
+    </script>
+</div>
+<div class="introduction">
+    <script type="text/x-handlebars-template" id="introduction">
+        <h3>活动详情</h3>
+        <p>{{{content}}}</p>
+    </script>
+</div>
+<!--<a href="#" id="refresh_a" style="display: none">刷新页面</a>-->
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib//layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/zhaomuinfo.js?v={$version_list.wx_zhaomuinfo_js}"></script>
+<script>
+    var id = {$Think.get.id};
+    Handlebars.registerHelper("compare_num",function(apply_people_count,max_num, options){
+        if(apply_people_count == max_num ) {
+            return options.fn(this);
+        } else  {
+            return options.inverse(this);
+        }
+    });
+</script>
+</body>
+</html>

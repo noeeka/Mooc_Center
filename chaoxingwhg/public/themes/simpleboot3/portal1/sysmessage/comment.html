@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>评论回复</title>
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .layui-btn {
+        display: inline-block;
+        width: 150px;
+        height: 38px;
+        background-color: #3259C6;
+        border-radius: 19px;
+        padding: 0;
+        margin: 24px 480px 34px;
+        margin-top: 28px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 38px;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div style="padding: 20px;" class="data">
+        <div style="background-color:RGBA(47,52,59,.2);margin-bottom: 41px;margin:0 auto;padding:30px;" class="clearfix"><span style="font-size: 18px;color: #2F343B;padding-bottom: 18px;font-weight: bold;display: inline-block;">我的评论:</span>
+            <p style="line-height: 25px;color: #2F343B;font-size: 16px; text-indent: 2em;" id="my"></p>
+        </div>
+        <div style="margin-bottom: 41px;margin:0 auto;padding:30px;" class="clearfix"><span style="font-size: 18px;color: #0059e5;padding-bottom: 18px;font-weight: bold;display: inline-block;">管理员回复:</span>
+            <p style="line-height: 25px;color: #2F343B;font-size: 16px; text-indent: 2em;" id="reply"></p>
+        </div>
+        <div style="margin-top: 24px;display: inline-block;text-align: center;width: 100%;">
+            <a id='url' target="_blank" class="layui-btn f-left" style="margin:0;">查看详情</a>
+            <!-- <a class="layui-btn f-left close" style="margin:0;background-color: #fff;border:1px solid #dedede;color:#333;cursor: pointer;margin-left: 10px;">取消</a> -->
+        </div>
+    </div>
+    <script src="__TMPL__/public/assets/whgcms/lib/jquery.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/layui/layui.all.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/lib/jquery.nicescroll.min.js"></script>
+    <script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+    <script>
+    $("html").niceScroll({ cursorcolor: "transparent", cursorborder: "none" });
+    //获取cookie
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            var c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                var c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    function request(ajax, sign) {
+        if (sign != undefined) {
+            if (ajax.data == undefined) ajax.data = {};
+            var salt = getCookie('salt');
+            var token = getCookie('token');
+            ajax.data.timestamp = ((new Date()).getTime()) / 1000;
+            ajax.data.token = token;
+            ajax.data.sign = hex_sha1(token + salt + ajax.url.toLowerCase() + ajax.data.timestamp);
+        }
+        $.ajax(ajax);
+    }
+
+    function getParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return decodeURI(r[2]);
+        return null; //返回参数值
+    }
+    var id = getParam('id');
+    request({
+        url: '/api/sysmessage/read',
+        data: { id: id },
+        dataType: 'json',
+        type: 'post',
+        success: function(res) {
+            console.log(res);
+            if (res.status == 1) {
+                var content = JSON.parse(res.data.content);
+                $('#my').html(content.my);
+                $('#reply').html(content.reply);
+                $('#url').attr('href', res.data.url);
+            } else {
+                $('.data').html('<p>消息不存在！</p>');
+            }
+        }
+    }, true);
+    </script>
+</body>
+
+</html>

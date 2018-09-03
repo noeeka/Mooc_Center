@@ -1,0 +1,112 @@
+<include file="public/header"/>
+<link rel='stylesheet' type='text/css'
+      href="__TMPL__/public/assets/whgcms/wx/css/activityinfo.css?v={$version_list.wx_activityinfo_css}">
+</head>
+
+<body>
+
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <!--<a href="/wx/activity/index?navid=nav16" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>-->
+    <h3 class="mui-col-xs-12 mui-text-center">活动详情</h3>
+</div>
+<div class="figure">
+    <script type="text/x-handlebars-template" id="figure">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url({{thumb}});background-size: 100% 100%;"></div>
+            </div>
+        </div>
+        <div class="introduce">
+            <h3>{{title}}</h3>
+            <div>
+                {{#if venue_name}}
+                <span>{{venue_name}}</span>
+                {{/if}}
+                <span>{{format_start_time}}~{{format_end_time}}</span>
+            </div>
+        </div>
+    </script>
+
+</div>
+<div class="detail">
+    <script type="text/x-handlebars-template" id="detail">
+        <ul>
+            <li>活动地点:<span>{{address}}</span></li>
+            {{#if need_baoming}}
+            <li>报名时间:<span>{{format_baoming_start_time}}</span></li>
+            <li>截至时间:<span>{{format_baoming_end_time}}</span></li>
+            <li>报名人数:<span>{{cnum}} / {{max_num}}</span></li>
+            {{/if}}
+        </ul>
+        {{#if need_baoming}}
+        {{#test this}}
+
+        {{/test}}
+        {{/if}}
+    </script>
+</div>
+<div class="introduction">
+    <script type="text/x-handlebars-template" id="introduction">
+        <h3>活动详情</h3>
+        <p>{{{content}}}</p>
+    </script>
+</div>
+<!--<a href="#" id="refresh_a" style="display: none">刷新页面</a>-->
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib//layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/activityinfo.js?v={$version_list.wx_activityinfo_js}"></script>
+<script>
+    var id = {$Think.get.id};
+    Handlebars.registerHelper("compare_num",function(apply_people_count,max_num, options){
+        if(apply_people_count == max_num ) {
+            return options.fn(this);
+        } else  {
+            return options.inverse(this);
+        }
+    });
+
+    Handlebars.registerHelper("test", function(attr, options) {
+        var timestamp = Date.parse(new Date()) / 1000;
+
+        if(attr['need_baoming'] == 1 &&
+            attr['baoming'] == 1
+        )
+            return "<button class=\"layui-btn yibaoming\" style=\"background-color: #acacac\">已报名</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            timestamp >= attr['baoming_start_time'] &&
+            timestamp <= attr['baoming_end_time'] &&
+            attr['cnum'] != attr['max_num']
+        )
+            return " <button class=\"baoming\">立即报名</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            timestamp >= attr['baoming_start_time'] &&
+            timestamp <= attr['baoming_end_time'] &&
+            attr['cnum'] == attr['max_num']
+        )
+            return "<button class=\"yibaoming\" style=\"background-color: #acacac\" >已订满</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            attr['baoming_start_time'] >= timestamp &&
+            attr['baoming_end_time'] >= timestamp
+        )
+            return " <button style=\"background-color: #acacac\">未开始</button>";
+
+        if(attr['need_baoming'] == 1 &&
+            attr['baoming_start_time'] <= timestamp &&
+            attr['baoming_end_time'] <= timestamp
+        )
+            return " <button style=\"background-color: #acacac\">已过期</button>";
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<include file="public@header"/>
+<script src="__STATIC__/js/code-mirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="__STATIC__/js/code-mirror/lib/codemirror.css">
+<script src="__STATIC__/js/code-mirror/mode/javascript/javascript.js"></script>
+<style>
+    .CodeMirror{
+        border:1px solid #dce4ec
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('HomePageContent/index')}">内容管理</a></li>
+        <li class="active"><a href="javascript:;">编辑基本配置</a></li>
+    </ul>
+    <div class="row margin-top-20">
+        <form class="js-ajax-form" action="{:url('HomePageContent/editConfig')}" method="post">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="header_tpl_id"><span class="form-required">*</span>头部模板</label>
+                    <div>
+                        <select name="header_tpl_id" required id="header_tpl_id" class="form-control">
+                            <option value="0">请选择</option>
+                            {$header_options}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="footer_tpl_id"><span class="form-required">*</span>footer模板</label>
+                    <div>
+                        <select name="footer_tpl_id" required id="footer_tpl_id" class="form-control">
+                            <option value="0">请选择</option>
+                            {$footer_options}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id-css">模块样式</label>
+                    <div>
+                        <textarea class="form-control" name="css" id="css" cols="30"
+                                  rows="10">{$css|default=''}</textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary js-ajax-submit" id="edit">{:lang('EDIT')}</button>
+                <a class="btn btn-default" href="{:url('HomePageContent/index')}">{:lang('BACK')}</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+<script>
+    $(function(){
+        $('#parent_id').change(function () {
+            if ($(this).val() == '0') {
+                $('.sub_input').hide();
+            } else {
+                $('.sub_input').show();
+            }
+        });
+       var css= CodeMirror.fromTextArea(document.getElementById('css'), {
+            mode:  "css",
+            lineNumbers:true,
+            theme:'default'
+        });
+
+        $('#edit').click(function(){
+            var css_val = css.getValue();
+            $('#css').val(css_val);
+
+        });
+    });
+</script>
+</body>
+</html>

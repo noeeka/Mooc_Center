@@ -1,0 +1,153 @@
+.figure {
+    position: relative;
+    width: 100%;
+    height: 2.08rem;
+    margin-top: 0.43rem;
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 2.08rem;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.introduce {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.56rem;
+    background-color: RGBA(0, 0, 0, .6);
+    z-index: 99;
+}
+
+.introduce h3 {
+    margin: 0.1rem 0.15rem 0rem;
+    font-size: 0.15rem;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.introduce div {
+    margin: 0 0.15rem;
+    font-size: 0.13rem;
+    color: #FFFFFF;
+}
+
+.introduce div span:nth-child(1) {
+    display: inline-block;
+    margin-right: 0.15rem;
+}
+
+.detail {
+    position: relative;
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+    font-size: 0.13rem;
+    color: #454444;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.detail li {
+    /*width: 3.4rem;*/
+    line-height: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.detail span {
+    display: inline-block;
+    margin-left: 0.1rem;
+}
+
+button {
+    position: absolute;
+    bottom: 0.32rem;
+    right: 0.15rem;
+    width: 0.96rem;
+    height: 0.35rem;
+    border-radius: 0.18rem;
+    background-color: #EB6877;
+    border: 0;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    margin-top: 0.2rem;
+}
+button:enabled:active{
+    background-color: #EB6877;
+}
+.introduction {
+    width: 100%;
+    padding: 0.18rem 0.17rem 0.23rem;
+    font-size: 0.13rem;
+    color: #454444;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.introduction h3 {
+    font-size: 0.16rem;
+    color: #141414;
+    font-weight: bold;
+    margin-bottom: 0.18rem;
+}
+
+.introduction p {
+    /*text-indent: 2em;*/
+    color: #454444;
+    font-size: 0.16rem;
+    line-height: 0.28rem;
+    margin-bottom: 0;
+}
+
+.details h3 {
+    font-size: 0.16rem;
+    color: #141414;
+    font-weight: bold;
+    margin-bottom: 0.18rem;
+}
+
+.details {
+    width: 100%;
+    padding: 0.17rem 0.15rem;
+}
+
+.details li {
+    /*width: 3.45rem;*/
+    line-height: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.13rem;
+    color: #454444;
+}
+
+.details span {
+    display: inline-block;
+    margin-left: 0.1rem;
+}

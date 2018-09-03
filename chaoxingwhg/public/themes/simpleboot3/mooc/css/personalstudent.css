@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+.personal{
+	width:100%;
+}
+.personal-safe {
+	min-width: 1200px;
+	max-width: 1920px;
+	margin: 0 auto;
+}
+.personal-content {
+	width: 1200px;
+	margin: 0 auto;
+	padding-top:54px;
+}
+.user-main{
+	text-align:center;
+}
+a{ text-decoration:none;}
+.user-img{ width:140px; height:140px; border-radius:50%; margin-bottom:25px;}
+.user-name{font-size:20px; color:#464C5B; padding-bottom:24px;}
+.user-info>span{ padding:0 17px; color:#9EA7B4;}
+.follow{ width:110px; height:40px; line-height:40px; color:#fff; margin:0 auto; border-radius:4px; cursor:pointer; margin-top:30px; font-size:18px; text-align:center;}
+.follow .plus{ padding-right:5px; font-size:30px; position:relative; display:block; float: left; width: 20px; height: 100%; padding: 0 15px;}
+.follow .plus .plus-pos{ position:absolute; top:50%; transform:translateY(-50%);}
+.study-tit{ height:20px; line-height:20px; color:#464C5B; font-size:18px; margin-bottom:20px; padding-left:14px;}
+.study-content li{ margin-bottom:35px; margin-right:24px; width:282px;}
+.study-content li a{ display:inline-block; width:100%;}
+.study-content li a img{ width:100%; display:block;}
+.study-content li:nth-child(4n){ margin-right:0;}
+.study-content .tit{ color:#464C5B; font-size:18px; padding-top:20px; padding-bottom:10px;}
+.study-content .date{ color:#9EA7B4; font-size:16px;}
+.study-more-b{ text-align:center; margin-top:15px;}
+.study-more{ font-size:14px; cursor:pointer;}
+.study-content .img_b{ width:100%; height:220px; overflow:hidden;}
+.study-content .img_b img{ width:100%; height:100%; transition:all ease 0.3s;}
+.study-content li .tit{ transition:all ease 0.3s;}
+.study-content li:hover .img_b img{ transform:scale(1.2);}
+.study-content li:hover .tit{ color:#EC6D3A;}

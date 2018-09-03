@@ -1,0 +1,13 @@
+.personalinfoSet input{
+    border: none;
+    height: 0.5rem;
+    font-size: 0.17rem;
+    color: #282828;
+}
+.closeBtn{
+    font-size: 0.14rem;
+    position: absolute;
+    top: 50%;
+    right: 0.15rem;
+    transform: translate(0,-50%);
+}

@@ -1,0 +1,55 @@
+.close-btn{
+    width: 90%;
+    height: 0.45rem;
+    font-size: 0.18rem;
+    border-radius: 0.6rem;
+    margin-top: 0.08rem;
+}
+.mui-input-group:before{
+    height: 0px;
+}
+.feedbackContent{
+    margin: 0.27rem;
+}
+.mui-input-group textarea{
+    border: 1px solid #B7B7B7;
+    border-radius: 0.06rem;
+    font-size: 0.15rem;
+    height: 2rem;
+}
+.mui-input-group input{
+    border: 1px solid #B7B7B7;
+    border-radius: 0.06rem;
+    font-size: 0.16rem;
+}
+.mui-input-group .mui-input-row:after{
+    height: 0px;
+}
+.mui-input-group .mui-input-row{
+    margin-top: 0.17rem;
+}
+.mui-input-group:after{
+    height: 0px;
+}
+
+.sex input {
+    appearance: button;
+    -webkit-appearance: button;
+}
+
+.sex.mui-radio input[type='radio']:before {
+    font-size: 15px;
+}
+
+.sex.mui-radio input[type='radio']:checked:before {
+    /*color: #1B1B20;*/
+}
+
+.sex.mui-radio {
+    line-height: 30px;
+    margin-top: 4px;
+}
+
+.sex.mui-radio input[type='radio'] {
+    right: 12px;
+}

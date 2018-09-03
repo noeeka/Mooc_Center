@@ -1,0 +1,106 @@
+/*分类*/
+.classification{
+    /*padding: 0.17rem 0 0.17rem 0;*/
+    /*background: url("../images/fenleibg.png") no-repeat;*/
+    /*background-size: 100%;*/
+}
+.navigation{
+    /*height: 0.45rem;*/
+    /*background: pink;*/
+    /*line-height: 0.45rem;*/
+    width: 100%;
+    display: inline;
+    white-space: nowrap;
+    overflow-x: scroll;
+    float: left;
+    overflow-y: hidden;
+}
+.navigation li,.screenTj li{
+    display:inline-block;
+    font-size: 0.13rem;
+    /*margin-left: 0.15rem;*/
+}
+.navigation li:last-child{
+    /*margin-right: 0.15rem;*/
+    border-right: none;
+}
+.navigation li{
+    font-size: 0.15rem;
+    padding: 0rem 0.24rem;
+    border-right: 1px solid #434343;
+    /*border-radius: 0.3rem;*/
+}
+.screenTj li{
+    width: 73px;
+    height: 24px;
+    background: #EEEEEE;
+    color: #969494;
+    text-align: center;
+    line-height: 24px;
+    margin-left: 18px;
+}
+.navigation li.active{
+    /*border: 1px solid #EB6877;*/
+    color: #EB6877;
+}
+.screenTj li.active{
+    background: #B93421;
+    color: #fff;
+}
+.navigation::-webkit-scrollbar {
+    display: none;
+}
+/*筛选条件*/
+.screenTj{
+    margin-top: 0.15rem;
+    display: inline-block;
+}
+/*内容列表*/
+.sources{
+    /*margin-top: 0.1rem;*/
+}
+.sourcesList h3{
+    font-size: 0.14rem;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+}
+.sourcesList span{
+    font-size: 0.12rem;
+    color: #ffffff;
+    margin-right: 0.1rem;
+}
+.sourcesList span:last-child {
+    margin-right: 0;
+}
+.sourcesList .mui-card-content{
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.sourcesList .mui-card-content-inner {
+    padding: 0px 15px;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+}
+.sourcesList .mui-card{
+    position: relative;
+    margin: 0;
+    border-radius: 0px;
+    margin-top: 0.1rem;
+}
+.sourcesList .mui-card:first-child{
+    /*margin-top: 0;*/
+}
+.sourcesList .reads img{
+    width: 0.13rem;
+    height: 0.08rem;
+    margin-right: 0.06rem;
+}

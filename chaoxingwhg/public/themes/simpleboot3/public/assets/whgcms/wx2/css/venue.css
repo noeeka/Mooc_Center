@@ -1,0 +1,42 @@
+/*筛选*/
+.screenTop{
+    /*display: inline-block;*/
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: 0.1rem;
+    padding-top: 0.1rem;
+    background: #fff;
+}
+.screenTop li{
+    border-right: 1px solid #959595;
+}
+.screenTop li:last-child{
+    border-right: none;
+}
+.screenTop li img{
+    width: 0.11rem;
+    height: 0.07rem;
+}
+/*内容*/
+.sourcesList .mui-card-content-inner{
+    position: relative;
+}
+.sourcesList .yuyueBtn{
+    font-size: 0.12rem;
+    color: #0C0A10;
+    background: #ffffff;
+    /*border-radius: 0.3rem;*/
+    width: 0.48rem;
+    height: 0.18rem;
+    text-align: center;
+    line-height: 0.18rem;
+    position: absolute;
+    right: 0.15rem;
+    top: -0.35rem;
+    border-radius: 0.02rem;
+}
+.classification{
+    padding-bottom: 0.05rem!important;
+}
+.sourcesList .mui-card{
+    margin-top: 0.1rem;
+}

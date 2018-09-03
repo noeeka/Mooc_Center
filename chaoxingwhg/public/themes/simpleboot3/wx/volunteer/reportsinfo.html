@@ -1,0 +1,86 @@
+<include file="public/header"/>
+<link rel='stylesheet' type='text/css' href='__TMPL__/public/assets/whgcms/wx/css/reportsinfo.css?v={$version_list.wx_reportsinfo_css}'>
+<title>活动报道详情</title>
+</head>
+<body>
+<div class="returnHeader">
+    <a href="javascript:history.back(-1)" class="return"><span class="mui-icon mui-icon-arrowleft"></span></a>
+    <h3 class="mui-col-xs-12 mui-text-center">活动报道详情</h3>
+</div>
+<div class="figure">
+</div>
+<div class="photos" style="display: none">
+    <div class="clearfix" style="padding: 0rem 0.15rem;">
+        <h3 class="f-left title">照片墙</h3>
+        <a class="f-right photomore" href="javascript:;">更多</a>
+    </div>
+    <ul class="mui-table-view mui-grid-view">
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">提供人：张鹏志愿者</div>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">提供人：张鹏志愿者</div>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">提供人：张鹏志愿者</div>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-6">-->
+            <!--<a href="/wx/volunteer/fengcaiinfo">-->
+                <!--<img class="mui-media-object" src="__TMPL__/public/assets/whgcms/wx/images/banner-1.png">-->
+                <!--<div class="mui-media-body">提供人：张鹏志愿者</div>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+</div>
+<div class="test1" style="display: none">
+    <h3>评论区</h3>
+    <ul class="comments" style="display: none">
+    </ul>
+</div>
+<div class="send"  style="display: none">
+    <input type="hidden" name="parentid" value="0">
+    <input type="text" id="comm" name="comment_content" value="" placeholder="" class="f-left">
+    <button class="f-left">发送</button>
+</div>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/zepto/zepto.min.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/layer_mobile/layer.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/swiper/swiper.min3.0.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/handlebars/handlebars-v4.0.10.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/lib/dropload/dropload.js"></script>
+<script src="__TMPL__/public/assets/whgcms/js/sha1.js"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/common.js?v={$version_list.wx_common_js}"></script>
+<script src="__TMPL__/public/assets/whgcms/wx/js/reportsinfo.js?v={$version_list.wx_reportsinfo_js}"></script>
+<script type="text/template" id="figure">
+    <h3>{{post_title}}</h3>
+    <ul class="clearfix">
+        <li>{{name}}</li>
+        <li>{{date published_time}}</li>
+        <!--<li class="collectBtn"><img src="__TMPL__/public/assets/whgcms/wx/images/like1.png" alt=""-->
+                                    <!--style="width: 0.12rem;height: 0.11rem;margin-right: 0.05rem;"><span>{{collect}}</span></li>-->
+        <!--<li><img src="__TMPL__/public/assets/whgcms/wx/images/look.png" alt=""-->
+                 <!--style="width: 0.16rem;height: 0.09rem;margin-right: 0.05rem;"><span>{{hits}}</span></li>-->
+    </ul>
+    <div class="thumbnail" style="background-image: url({{img}});"></div>
+    <p>{{{post_content}}}</p>
+</script>
+<script type="text/template" id="phote-item">
+    {{#each photo}}
+        <li class="mui-table-view-cell mui-media mui-col-xs-6">
+            <a href="javascript:;">
+                <img class="mui-media-object" src="{{img}}">
+                <div class="mui-media-body">提供人：{{user_realname}}志愿者</div>
+            </a>
+        </li>
+    {{/each}}
+</script>
+</body>
+</html>
