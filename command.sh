@@ -249,9 +249,11 @@ tar -xvf ffmpeg-4.0.2.tar.bz2
 cd ffmpeg-4.0.2
 ./configure --disable-x86asm
 make && make install
-
+chmod -R 777 /usr/local/weeds
 cd /usr/local/weeds && sh master.sh && sh volume.sh
+chmod -R 777 /data/www/mooc_center
 cd /data/www/mooc_center && php time.php start -d
+chmod -R 777 /data/www/iview
 cd /data/www/iview && sh mooc_admin.sh
 mysql -uroot -p${a} <  /data/www/mooc_center/database/mooc_center.sql
 mysql -uroot -p${a} <  /data/www/chaoxingwhg/demo-mooc.sql
