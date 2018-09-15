@@ -28,6 +28,9 @@ rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm
 yum install -y mysql-community-server
 yum install epel -y
 yum install sudo -y
+yum install python-devel -y
+yum install libxml-devel  -y
+yum install libxslt-devel -y
 
 chmod -R 777 /usr/local/go
 echo 'export GOROOT=/usr/local/go
