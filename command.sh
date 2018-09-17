@@ -21,16 +21,14 @@ rpm -Uvh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0
 yum -y install nginx 
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
-yum -y install php70w php70w-fpm php70w-mysql php70w-mbstring php70w-mcrypt php70w-gd php70w-imap php70w-ldap php70w-odbc php70w-pear php70w-xml php70w-xmlrpc php70w-pdo php70w-apcu php70w-pecl-redis php70w-pecl-memcached php70w-devel
+yum -y install php70w php70w-fpm php70w-mbstring php70w-mcrypt php70w-gd php70w-imap php70w-ldap php70w-odbc php70w-pear php70w-xml php70w-xmlrpc php70w-pdo php70w-apcu php70w-pecl-redis php70w-pecl-memcached php70w-devel
+yum -y install php70w-mysqlnd
 rpm -Uvh http://mirrors.ustc.edu.cn/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
 yum install -y redis
 rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm 
 yum install -y mysql-community-server
 yum install epel -y
 yum install sudo -y
-yum install python-devel -y
-yum install libxml-devel  -y
-yum install libxslt-devel -y
 
 chmod -R 777 /usr/local/go
 echo 'export GOROOT=/usr/local/go
@@ -92,14 +90,27 @@ echo 'server
         fastcgi_send_timeout 300;
         fastcgi_read_timeout 300;
 
+        #pc 反向代理
+        location = /themes/simpleboot3/mooc-admin {
+        	proxy_pass http://127.0.0.1:8082/#/login;
+        }
+        location ^~ /dist/{
+        	proxy_pass http://127.0.0.1:8082;
+        }
+        #wx 反向代理
+        location = /themes/simpleboot3/mooc-wx {
+        	proxy_pass http://127.0.0.1:8081/#/index;
+        }
+        location ^~ /static/img/{
+        	proxy_pass http://127.0.0.1:8081;
+        }
+        location ^~ /themes/simpleboot3/static/{
+        	proxy_pass http://127.0.0.1:8081/static/;
+        }
+        location ^~ /app.js{
+        	proxy_pass http://127.0.0.1:8081;
+        }
 
-		location = /themes/simpleboot3/mooc-admin {
-			proxy_pass http://127.0.0.1:8082/#/login;
-		}
-
-		location ^~ /dist/{
-			proxy_pass http://127.0.0.1:8082;
-		}
         location /nginx_status
         {
             stub_status on;
@@ -132,8 +143,26 @@ echo 'server
             fastcgi_buffer_size 128k;
             fastcgi_buffers 32 32k;
             fastcgi_index index.php;
-            include fastcgi.conf;
-            include pathinfo.conf;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param  QUERY_STRING       $query_string;
+            fastcgi_param  REQUEST_METHOD     $request_method;
+            fastcgi_param  CONTENT_TYPE       $content_type;
+            fastcgi_param  CONTENT_LENGTH     $content_length;
+            fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
+            fastcgi_param  REQUEST_URI        $request_uri;
+            fastcgi_param  DOCUMENT_URI       $document_uri;
+            fastcgi_param  DOCUMENT_ROOT      $document_root;
+            fastcgi_param  SERVER_PROTOCOL    $server_protocol;
+            fastcgi_param  REQUEST_SCHEME     $scheme;
+            fastcgi_param  HTTPS              $https if_not_empty;
+            fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
+            fastcgi_param  SERVER_SOFTWARE    nginx/$nginx_version;
+            fastcgi_param  REMOTE_ADDR        $remote_addr;
+            fastcgi_param  REMOTE_PORT        $remote_port;
+            fastcgi_param  SERVER_ADDR        $server_addr;
+            fastcgi_param  SERVER_PORT        $server_port;
+            fastcgi_param  SERVER_NAME        $server_name;
+            fastcgi_param  REDIRECT_STATUS    200;
         }
 }'>/etc/nginx/conf.d/demo-mooc.conf
 echo 'user nginx;
@@ -253,10 +282,17 @@ cd ffmpeg-4.0.2
 ./configure --disable-x86asm
 make && make install
 chmod -R 777 /usr/local/weeds
-cd /usr/local/weeds && sh master.sh && sh volume.sh
+cd /usr/local/weeds &&sudo sh master.sh &&sudo sh volume.sh
 chmod -R 777 /data/www/mooc_center
 cd /data/www/mooc_center && php time.php start -d
 chmod -R 777 /data/www/iview
-cd /data/www/iview && sh mooc_admin.sh
+cd /data/www/iview &&sudo sh mooc_admin.sh
+setenforce 0
+/etc/init.d/redis restart
+echo "127.0.0.1	demo-mooc.com
+127.0.0.1	mooc.com
+">>/etc/hosts
 mysql -uroot -p${a} <  /data/www/mooc_center/database/mooc_center.sql
 mysql -uroot -p${a} <  /data/www/chaoxingwhg/demo-mooc.sql
+
+
