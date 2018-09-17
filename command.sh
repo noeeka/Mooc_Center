@@ -292,7 +292,11 @@ setenforce 0
 echo "127.0.0.1	demo-mooc.com
 127.0.0.1	mooc.com
 ">>/etc/hosts
-mysql -uroot -p${a} <  /data/www/mooc_center/database/mooc_center.sql
-mysql -uroot -p${a} <  /data/www/chaoxingwhg/demo-mooc.sql
-
-
+chmod -R 777 /var/lib/mysql
+chown -R mysql:mysql /var/lib/mysql
+scp -r root@192.168.1.231:/work/www/chaoxingwhg/public/themes/simpleboot3/mooc/*  /data/www/chaoxingwhg/public/themes/simpleboot3/mooc/
+scp root@192.168.1.231:/work/www/chaoxingwhg/app/api/controller/* /data/www/chaoxingwhg/app/api/controller/
+scp root@192.168.1.231:/work/www/iview-admin-dev/* /data/www/iview/
+scp -r root@192.168.1.231:/work/www/iview-admin-dev/* /data/www/iview/
+npm install -g n
+n 8.11.3
